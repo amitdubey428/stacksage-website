@@ -25,18 +25,16 @@ jobs:
 
       - name: Install dependencies
         run: npm ci
-        working-directory: ./web
 
       - name: Build static site
         run: |
           npm run build
-          # Next.js 'export' output is in ./web/out
-        working-directory: ./web
+          # Next.js 'export' output is in ./out
 
       - name: Deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./web/out
+          publish_dir: ./out
           publish_branch: gh-pages
           cname: stacksageai.com
