@@ -10,12 +10,12 @@ export default function Navigation() {
     return (
         <nav className="sticky top-0 z-50 w-full backdrop-blur supports-[backdrop-filter]:bg-white/60 bg-white/80 dark:supports-[backdrop-filter]:bg-black/40 dark:bg-black/60 border-b border-zinc-200/60 dark:border-zinc-800">
             <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-                        <Link href="#" className="font-bold tracking-tight relative inline-block group" onClick={() => setClicks((c) => c + 1)}>
-                            <span className="block">StackSage</span>
-                            <span aria-hidden className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <span className="absolute left-0 top-0 w-full h-full mix-blend-difference" style={{ clipPath: "inset(0 0 80% 0)" }}>StackSage</span>
-                                <span className="absolute left-0 top-0 w-full h-full mix-blend-difference" style={{ clipPath: "inset(80% 0 0 0)" }}>StackSage</span>
-                            </span>
+                <Link href="#" className="font-bold tracking-tight relative inline-block group" onClick={() => setClicks((c) => c + 1)}>
+                    <span className="block">StackSage</span>
+                    <span aria-hidden className="pointer-events-none absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <span className="absolute left-0 top-0 w-full h-full mix-blend-difference" style={{ clipPath: "inset(0 0 80% 0)" }}>StackSage</span>
+                        <span className="absolute left-0 top-0 w-full h-full mix-blend-difference" style={{ clipPath: "inset(80% 0 0 0)" }}>StackSage</span>
+                    </span>
                     <span className="sr-only">Home</span>
                 </Link>
                 <div className="hidden md:flex items-center gap-6">
