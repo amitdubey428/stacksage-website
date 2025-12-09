@@ -15,6 +15,11 @@ export const metadata: Metadata = {
     title: "StackSage — Stop Overpaying for AWS",
     description:
         "StackSage finds hidden cost savings in your infrastructure. Privacy-first, read-only access. No code changes.",
+    icons: {
+        icon: "/logo.svg",
+        shortcut: "/logo.svg",
+        apple: "/logo.svg",
+    },
     openGraph: {
         title: "StackSage — Stop Overpaying for AWS",
         description:
