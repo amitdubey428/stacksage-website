@@ -51,15 +51,17 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-            <html lang="en">
-                <body className={`${inter.variable} antialiased bg-black text-zinc-100`}> 
+        <html lang="en">
+            <body className={`${inter.variable} antialiased bg-black text-zinc-100`}>
                 <header role="banner">
                     <Navigation />
                 </header>
                 <main role="main">{children}</main>
                 <Footer />
-            <EasterEggs />
+                <EasterEggs />
                 <Analytics />
+                {/* Tally embed script to support dynamicHeight for the iframe */}
+                <script async src="https://tally.so/widgets/embed.js"></script>
             </body>
         </html>
     );

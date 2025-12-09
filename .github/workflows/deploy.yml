@@ -27,6 +27,8 @@ jobs:
         run: npm ci
 
       - name: Build static site
+        env:
+          NEXT_PUBLIC_SITE_URL: https://stacksageai.com
         run: |
           npm run build
           # Next.js 'export' output is in ./out
