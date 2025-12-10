@@ -9,7 +9,7 @@ export default function Demo() {
 
             <div className="mt-6 w-full overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800">
                 <iframe
-                    data-tally-src="https://tally.so/embed/A7z6zk?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                    data-tally-src="https://tally.so/embed/68Lrke?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
                     loading="lazy"
                     width="100%"
                     height="835"
@@ -22,7 +22,7 @@ export default function Demo() {
 
             <p className="mt-4 text-sm text-zinc-500 dark:text-zinc-400">
                 If the form doesn’t load, open it directly: {" "}
-                <a className="underline" href="https://tally.so/r/A7z6zk" target="_blank" rel="noreferrer">https://tally.so/r/A7z6zk</a>
+                <a className="underline" href="https://tally.so/r/68Lrke" target="_blank" rel="noreferrer">https://tally.so/r/68Lrke</a>
                 . Or email us at {" "}
                 <a className="underline" href="mailto:hello@stacksageai.com">hello@stacksageai.com</a>.
             </p>
