@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
@@ -58,21 +57,16 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <head>
-                {/* Google Analytics (GA4) */}
-                <Script
-                    src="https://www.googletagmanager.com/gtag/js?id=G-SF9V5FHLEX"
-                    strategy="beforeInteractive"
-                />
-                <Script id="ga4-init" strategy="beforeInteractive">
-                    {`
-                      window.dataLayer = window.dataLayer || [];
-                      function gtag(){dataLayer.push(arguments);}
-                      gtag('js', new Date());
-                      gtag('config', 'G-SF9V5FHLEX');
-                    `}
-                </Script>
-            </head>
+                        <head>
+                                {/* Google Analytics (GA4) - raw tags per Google's detector requirements */}
+                                <script async src="https://www.googletagmanager.com/gtag/js?id=G-SF9V5FHLEX"></script>
+                                <script dangerouslySetInnerHTML={{ __html: `
+                                    window.dataLayer = window.dataLayer || [];
+                                    function gtag(){dataLayer.push(arguments);}
+                                    gtag('js', new Date());
+                                    gtag('config', 'G-SF9V5FHLEX');
+                                ` }} />
+                        </head>
             <body className={`${inter.variable} antialiased bg-black text-zinc-100`}>
                 <header role="banner">
                     <Navigation />
