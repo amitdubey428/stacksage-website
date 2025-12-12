@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import EasterEggs from "@/components/EasterEggs";
+import AnnouncementBanner from "@/components/AnnouncementBanner";
 
 const inter = Inter({
     variable: "--font-inter",
@@ -68,6 +69,7 @@ export default function RootLayout({
                                 ` }} />
                         </head>
             <body className={`${inter.variable} antialiased bg-black text-zinc-100`}>
+                <AnnouncementBanner />
                 <header role="banner">
                     <Navigation />
                 </header>
