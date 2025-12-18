@@ -9,9 +9,9 @@ const tiers = [
         description: "Perfect for small teams and startups",
         features: [
             "Multi-account support (up to 3 accounts)",
+            "Full cost optimization insights",
             "Weekly audits",
             "Email reports",
-            "Basic optimization recommendations",
             "Community support",
         ],
     },
@@ -21,9 +21,9 @@ const tiers = [
         description: "For growing teams and businesses",
         features: [
             "Multi-account support (up to 15 accounts)",
+            "Full cost optimization insights",
             "Daily audits",
             "Slack/Teams integration",
-            "Advanced cost detectors",
             "Priority support",
             "Custom alerts & notifications",
             "API access",
@@ -36,8 +36,8 @@ const tiers = [
         description: "For large organizations & AWS agencies",
         features: [
             "Unlimited AWS accounts included",
+            "Full cost optimization insights",
             "Real-time monitoring",
-            "Custom cost detectors",
             "Dedicated support manager",
             "99.9% SLA guarantee",
             "SSO/SAML integration",
