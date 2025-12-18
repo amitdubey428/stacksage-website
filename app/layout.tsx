@@ -58,16 +58,17 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-                        <head>
-                                {/* Google Analytics (GA4) - raw tags per Google's detector requirements */}
-                                <script async src="https://www.googletagmanager.com/gtag/js?id=G-SF9V5FHLEX"></script>
-                                <script dangerouslySetInnerHTML={{ __html: `
+            <head>
+                {/* Google Analytics (GA4) - raw tags per Google's detector requirements */}
+                <script async src="https://www.googletagmanager.com/gtag/js?id=G-SF9V5FHLEX"></script>
+                <script dangerouslySetInnerHTML={{
+                    __html: `
                                     window.dataLayer = window.dataLayer || [];
                                     function gtag(){dataLayer.push(arguments);}
                                     gtag('js', new Date());
                                     gtag('config', 'G-SF9V5FHLEX');
                                 ` }} />
-                        </head>
+            </head>
             <body className={`${inter.variable} antialiased bg-black text-zinc-100`}>
                 <AnnouncementBanner />
                 <header role="banner">

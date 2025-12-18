@@ -25,7 +25,7 @@ export default function Hero() {
                             Free Audit Available — Limited Time
                         </span>
                     </div>
-                    
+
                     <h1 id="hero-title" className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-sky-600">
                         Stop Overpaying for AWS
                     </h1>

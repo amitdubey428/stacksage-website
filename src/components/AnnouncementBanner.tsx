@@ -12,7 +12,7 @@ export default function AnnouncementBanner() {
             <div className="mx-auto max-w-7xl px-4 py-3">
                 <div className="flex items-center justify-center gap-3 text-center pr-8 sm:pr-0">
                     <span className="text-sm sm:text-base font-medium">
-                        🎉 <span className="hidden sm:inline">Limited Time:</span> Free AWS Cost Audit — 
+                        🎉 <span className="hidden sm:inline">Limited Time:</span> Free AWS Cost Audit —
                         <span className="font-semibold ml-1">
                             Get Your $350+ Savings Report Today
                         </span>
