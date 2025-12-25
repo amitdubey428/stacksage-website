@@ -35,12 +35,12 @@ export default function Hero() {
                     <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                         <Magnetic>
                             <Button asChild size="lg">
-                                <a href="#demo">Get Your Free Audit</a>
+                                <a href="#demo">Get Free Audit</a>
                             </Button>
                         </Magnetic>
                         <Magnetic strength={20}>
                             <Button asChild variant="outline" size="lg">
-                                <a href="#how-it-works">See How It Works</a>
+                                <a href="/demo-report">View Sample Report</a>
                             </Button>
                         </Magnetic>
                     </div>

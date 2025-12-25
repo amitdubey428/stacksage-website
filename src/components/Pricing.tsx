@@ -6,43 +6,36 @@ const tiers = [
     {
         name: "Starter",
         price: "$29/mo",
-        description: "Perfect for small teams and startups",
+        description: "For individuals & small teams",
         features: [
-            "Multi-account support (up to 3 accounts)",
-            "Full cost optimization insights",
-            "Weekly audits",
-            "Email reports",
-            "Community support",
+            "Unlimited AWS accounts (no per-account fees)",
+            "Same audit engine + recommendations",
+            "Read-only IAM access",
         ],
     },
     {
         name: "Growth",
         price: "$99/mo",
-        description: "For growing teams and businesses",
+        description: "For growing teams",
         features: [
-            "Multi-account support (up to 15 accounts)",
-            "Full cost optimization insights",
-            "Daily audits",
-            "Slack/Teams integration",
-            "Priority support",
-            "Custom alerts & notifications",
-            "API access",
+            "Up to 15 team members",
+            "Unlimited AWS accounts (no per-account fees)",
+            "Same audit engine + recommendations",
+            "Read-only IAM access",
         ],
         popular: true,
     },
     {
         name: "Enterprise",
         price: "$219/mo",
-        description: "For large organizations & AWS agencies",
+        description: "For larger orgs & agencies",
         features: [
-            "Unlimited AWS accounts included",
-            "Full cost optimization insights",
-            "Real-time monitoring",
-            "Dedicated support manager",
-            "99.9% SLA guarantee",
-            "SSO/SAML integration",
-            "Compliance & audit reports",
-            "White-label options available",
+            "Unlimited team members",
+            "Unlimited AWS accounts (no per-account fees)",
+            "Same audit engine + recommendations",
+            "Read-only IAM access",
+            "Dashboards & recurring reports",
+            "SSO/SAML (optional)",
         ],
     },
 ];
@@ -53,7 +46,7 @@ export default function Pricing() {
             <div className="text-center mb-12">
                 <h2 id="pricing-title" className="text-3xl sm:text-4xl font-bold tracking-tight">Simple, Transparent Pricing</h2>
                 <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
-                    Flat monthly rate based on your organization size. No hidden fees, no percentage of savings, no per-resource charges.
+                    Flat monthly rate based on team size. Everyone gets the same audit engine and recommendations — pricing just scales with your org.
                 </p>
             </div>
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -75,7 +68,7 @@ export default function Pricing() {
             <div className="mt-8 text-center space-y-2">
                 <p className="text-sm text-zinc-600 dark:text-zinc-400">No credit card • 14-day trial • Cancel anytime</p>
                 <p className="text-xs text-zinc-500 dark:text-zinc-500 max-w-3xl mx-auto">
-                    All plans include multi-account support with no hidden fees. Enterprise pricing covers unlimited AWS accounts — perfect for agencies, consultancies, and large organizations managing multiple environments.
+                    No hidden fees. No per-resource pricing. No % of AWS spend. All plans include unlimited AWS accounts.
                 </p>
             </div>
         </section>
