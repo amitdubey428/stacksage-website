@@ -1,10 +1,10 @@
 import React from "react";
 
 const steps = [
-    { n: 1, title: "Create IAM Role", desc: "Read-only access in 2 minutes" },
-    { n: 2, title: "Run First Audit", desc: "Scan infra for savings opportunities" },
-    { n: 3, title: "Review Findings", desc: "Prioritized recommendations" },
-    { n: 4, title: "Save Money", desc: "Watch your AWS bill drop 10–50%" },
+    { n: 1, title: "Add the Workflow", desc: "Run StackSage in your GitHub Actions runner" },
+    { n: 2, title: "Provide Read-Only Access", desc: "Use a customer-controlled IAM role ARN (assume role)" },
+    { n: 3, title: "Run Manual or Scheduled", desc: "Manual runs can accept inputs; scheduled runs use a repo secret" },
+    { n: 4, title: "Download Artifacts", desc: "HTML report + JSON/CSV findings as workflow artifacts" },
 ];
 
 export default function HowItWorks() {

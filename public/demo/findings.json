@@ -1,0 +1,212 @@
+{
+  "account_id": "123456789012",
+  "regions": [
+    "us-east-1",
+    "us-west-2"
+  ],
+  "findings": [
+    {
+      "type": "idle_ec2",
+      "severity": "critical",
+      "confidence": 0.95,
+      "id": "i-0123456789abcdef0",
+      "region": "us-east-1",
+      "estimated_monthly_cost_usd": 62.4,
+      "estimated_monthly_savings_usd": 62.4,
+      "recommended_action": "Stop or terminate idle EC2 instance (t3.large) - 2% avg CPU over 7 days",
+      "details": "Instance has been running with <5% CPU utilization"
+    },
+    {
+      "type": "unattached_ebs",
+      "severity": "high",
+      "confidence": 1.0,
+      "id": "vol-0123456789abcdef",
+      "region": "us-east-1",
+      "estimated_monthly_cost_usd": 10.0,
+      "estimated_monthly_savings_usd": 10.0,
+      "recommended_action": "Delete unattached EBS volume (100 GB gp3)",
+      "details": "Volume has been unattached for >30 days"
+    },
+    {
+      "type": "unattached_ebs",
+      "severity": "high",
+      "confidence": 1.0,
+      "id": "vol-fedcba9876543210",
+      "region": "us-west-2",
+      "estimated_monthly_cost_usd": 50.0,
+      "estimated_monthly_savings_usd": 50.0,
+      "recommended_action": "Delete unattached EBS volume (500 GB gp2)",
+      "details": "Volume has been unattached for >30 days"
+    },
+    {
+      "type": "gp2_to_gp3_migration",
+      "severity": "medium",
+      "confidence": 0.98,
+      "id": "vol-1111222233334444",
+      "region": "us-east-1",
+      "estimated_monthly_cost_usd": 25.0,
+      "estimated_monthly_savings_usd": 5.0,
+      "recommended_action": "Migrate gp2 volume to gp3 (250 GB)",
+      "details": "Migrate gp2 to gp3 for 20% cost savings + better performance"
+    },
+    {
+      "type": "old_snapshot",
+      "severity": "medium",
+      "confidence": 1.0,
+      "id": "snap-old123456789abc",
+      "region": "us-west-2",
+      "estimated_monthly_cost_usd": 25.0,
+      "estimated_monthly_savings_usd": 25.0,
+      "recommended_action": "Delete snapshot older than 90 days (500 GB)",
+      "details": "Snapshot is 964 days old"
+    },
+    {
+      "type": "cloudwatch_logs_retention",
+      "severity": "medium",
+      "confidence": 0.75,
+      "id": "/aws/lambda/data-processor",
+      "region": "us-east-1",
+      "estimated_monthly_cost_usd": 15.0,
+      "estimated_monthly_savings_usd": 9.0,
+      "recommended_action": "Set CloudWatch Logs retention to 90 days",
+      "details": "Log group has 'Never Expire' retention (150 GB stored)"
+    },
+    {
+      "type": "overprovisioned_lambda",
+      "severity": "low",
+      "confidence": 0.7,
+      "id": "data-transformer",
+      "region": "us-east-1",
+      "estimated_monthly_cost_usd": 12.0,
+      "estimated_monthly_savings_usd": 3.0,
+      "recommended_action": "Reduce Lambda memory from 1024MB to 768MB",
+      "details": "Function uses 25% of timeout with 1024MB memory"
+    },
+    {
+      "type": "unused_eip",
+      "severity": "medium",
+      "confidence": 1.0,
+      "id": "54.123.45.67",
+      "region": "us-east-1",
+      "estimated_monthly_cost_usd": 4.0,
+      "estimated_monthly_savings_usd": 4.0,
+      "recommended_action": "Release unused Elastic IP",
+      "details": "EIP is not attached to any instance"
+    },
+    {
+      "type": "unused_eip",
+      "severity": "medium",
+      "confidence": 1.0,
+      "id": "34.210.98.76",
+      "region": "us-west-2",
+      "estimated_monthly_cost_usd": 4.0,
+      "estimated_monthly_savings_usd": 4.0,
+      "recommended_action": "Release unused Elastic IP",
+      "details": "EIP is not attached to any instance"
+    },
+    {
+      "type": "idle_nat_gateway",
+      "severity": "high",
+      "confidence": 0.85,
+      "id": "nat-0123456789abcdef",
+      "region": "us-east-1",
+      "estimated_monthly_cost_usd": 32.4,
+      "estimated_monthly_savings_usd": 32.4,
+      "recommended_action": "Remove idle NAT Gateway (<1 GB data processed/day)",
+      "details": "Very low traffic detected over 7 days"
+    },
+    {
+      "type": "idle_elb",
+      "severity": "high",
+      "confidence": 0.9,
+      "id": "my-alb-prod",
+      "region": "us-east-1",
+      "estimated_monthly_cost_usd": 25.0,
+      "estimated_monthly_savings_usd": 25.0,
+      "recommended_action": "Delete idle Application Load Balancer (<10 requests/day)",
+      "details": "Load balancer receiving minimal traffic"
+    },
+    {
+      "type": "oversized_rds",
+      "severity": "medium",
+      "confidence": 0.75,
+      "id": "prod-postgres-db",
+      "region": "us-east-1",
+      "estimated_monthly_cost_usd": 156.0,
+      "estimated_monthly_savings_usd": 78.0,
+      "recommended_action": "Downsize RDS instance from db.t3.large to db.t3.medium (15% avg CPU)",
+      "details": "RDS instance consistently underutilized",
+      "metric_status": "skipped_budget"
+    },
+    {
+      "type": "old_snapshot",
+      "severity": "low",
+      "confidence": 1.0,
+      "id": "snap-0123456789abcdef",
+      "region": "us-east-1",
+      "estimated_monthly_cost_usd": 5.0,
+      "estimated_monthly_savings_usd": 5.0,
+      "recommended_action": "Delete snapshot older than 90 days (100 GB)",
+      "details": "Snapshot is 668 days old"
+    },
+    {
+      "type": "s3_vpc_endpoint_missing",
+      "severity": "low",
+      "confidence": 0.6,
+      "id": "my-app-logs-bucket",
+      "region": "us-east-1",
+      "estimated_monthly_cost_usd": 0.0,
+      "estimated_monthly_savings_usd": 15.0,
+      "recommended_action": "Create S3 VPC endpoint to avoid NAT gateway data transfer costs",
+      "details": "Estimated savings from eliminating NAT gateway data transfer"
+    },
+    {
+      "type": "untagged_resource",
+      "severity": "low",
+      "confidence": 1.0,
+      "id": "i-abcdef0123456789a",
+      "region": "us-west-2",
+      "estimated_monthly_cost_usd": 0.0,
+      "estimated_monthly_savings_usd": 0.0,
+      "recommended_action": "Add cost allocation tags (missing: Environment, Project, Owner)",
+      "details": "Resource missing cost tracking tags"
+    }
+  ],
+  "estimated_monthly_cost": 430.4,
+  "estimated_monthly_savings": 352.8,
+  "provenance": {
+    "cloudwatch_metrics": true,
+    "metrics_lookback_days": 7,
+    "cloudwatch_queries_attempted": 15,
+    "cloudwatch_queries_used": 12,
+    "cloudwatch_queries_remaining": 3,
+    "cloudwatch_budget_exhausted": false
+  },
+  "historical_costs": {
+    "time_window": {
+      "start": "2025-11-01",
+      "end": "2025-12-01"
+    },
+    "granularity": "MONTHLY",
+    "total_unblended_cost": 1240.55,
+    "breakdown_by_service_region": {
+      "Amazon EC2": {
+        "us-east-1": 420.12,
+        "us-west-2": 110.05
+      },
+      "Amazon RDS": {
+        "us-east-1": 260.34
+      },
+      "Amazon S3": {
+        "us-east-1": 75.22,
+        "us-west-2": 18.1
+      },
+      "Amazon CloudWatch": {
+        "us-east-1": 44.9
+      },
+      "AWS NAT Gateway": {
+        "us-east-1": 95.0
+      }
+    }
+  }
+}

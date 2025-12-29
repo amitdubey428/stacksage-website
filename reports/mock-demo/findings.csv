@@ -1,0 +1,16 @@
+confidence,details,estimated_monthly_cost_usd,estimated_monthly_savings_usd,id,metric_status,recommended_action,region,severity,type
+0.95,Instance has been running with <5% CPU utilization,62.4,62.4,i-0123456789abcdef0,,Stop or terminate idle EC2 instance (t3.large) - 2% avg CPU over 7 days,us-east-1,critical,idle_ec2
+1.0,Volume has been unattached for >30 days,10.0,10.0,vol-0123456789abcdef,,Delete unattached EBS volume (100 GB gp3),us-east-1,high,unattached_ebs
+1.0,Volume has been unattached for >30 days,50.0,50.0,vol-fedcba9876543210,,Delete unattached EBS volume (500 GB gp2),us-west-2,high,unattached_ebs
+0.98,Migrate gp2 to gp3 for 20% cost savings + better performance,25.0,5.0,vol-1111222233334444,,Migrate gp2 volume to gp3 (250 GB),us-east-1,medium,gp2_to_gp3_migration
+1.0,Snapshot is 964 days old,25.0,25.0,snap-old123456789abc,,Delete snapshot older than 90 days (500 GB),us-west-2,medium,old_snapshot
+0.75,Log group has 'Never Expire' retention (150 GB stored),15.0,9.0,/aws/lambda/data-processor,,Set CloudWatch Logs retention to 90 days,us-east-1,medium,cloudwatch_logs_retention
+0.7,Function uses 25% of timeout with 1024MB memory,12.0,3.0,data-transformer,,Reduce Lambda memory from 1024MB to 768MB,us-east-1,low,overprovisioned_lambda
+1.0,EIP is not attached to any instance,4.0,4.0,54.123.45.67,,Release unused Elastic IP,us-east-1,medium,unused_eip
+1.0,EIP is not attached to any instance,4.0,4.0,34.210.98.76,,Release unused Elastic IP,us-west-2,medium,unused_eip
+0.85,Very low traffic detected over 7 days,32.4,32.4,nat-0123456789abcdef,,Remove idle NAT Gateway (<1 GB data processed/day),us-east-1,high,idle_nat_gateway
+0.9,Load balancer receiving minimal traffic,25.0,25.0,my-alb-prod,,Delete idle Application Load Balancer (<10 requests/day),us-east-1,high,idle_elb
+0.75,RDS instance consistently underutilized,156.0,78.0,prod-postgres-db,skipped_budget,Downsize RDS instance from db.t3.large to db.t3.medium (15% avg CPU),us-east-1,medium,oversized_rds
+1.0,Snapshot is 668 days old,5.0,5.0,snap-0123456789abcdef,,Delete snapshot older than 90 days (100 GB),us-east-1,low,old_snapshot
+0.6,Estimated savings from eliminating NAT gateway data transfer,0.0,15.0,my-app-logs-bucket,,Create S3 VPC endpoint to avoid NAT gateway data transfer costs,us-east-1,low,s3_vpc_endpoint_missing
+1.0,Resource missing cost tracking tags,0.0,0.0,i-abcdef0123456789a,,"Add cost allocation tags (missing: Environment, Project, Owner)",us-west-2,low,untagged_resource

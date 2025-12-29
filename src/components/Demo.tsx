@@ -4,8 +4,8 @@ import React from "react";
 export default function Demo() {
     return (
         <section id="demo" aria-labelledby="demo-title" className="mx-auto max-w-6xl px-4 py-20 scroll-mt-24">
-            <h2 id="demo-title" className="text-3xl sm:text-4xl font-bold tracking-tight">Get Your Free Audit</h2>
-            <p className="mt-2 text-zinc-600 dark:text-zinc-300 max-w-2xl">Share a few details and we'll send tailored automation recommendations.</p>
+            <h2 id="demo-title" className="text-3xl sm:text-4xl font-bold tracking-tight">Request Early Access</h2>
+            <p className="mt-2 text-zinc-600 dark:text-zinc-300 max-w-2xl">Share a few details and we’ll help you set up the GitHub Actions workflow and private image access.</p>
 
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                 <div>
@@ -13,7 +13,7 @@ export default function Demo() {
                         <a className="underline" href="/demo-report">See a real example (no signup)</a>
                     </p>
                     <p className="mt-2 text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                        No credit card. No sales call required. Read-only access.
+                        No AWS credential sharing. Customer-controlled read-only role.
                     </p>
 
                     <div className="mt-4 w-full overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800">
@@ -32,7 +32,7 @@ export default function Demo() {
 
                 {/* Sample Report CTA (kept next to the form) */}
                 <div className="p-6 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 rounded-2xl border border-indigo-200 dark:border-indigo-800">
-                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">See What You'll Get</h3>
+                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">See What You’ll Get</h3>
                     <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-2">
                         Browse a sample audit report with concrete, actionable findings.
                     </p>

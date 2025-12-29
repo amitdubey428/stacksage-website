@@ -2,12 +2,12 @@
 import React from "react";
 
 const faqs = [
-    { q: "Is this safe?", a: "Yes, read-only IAM; privacy-first." },
-    { q: "How long to see results?", a: "Many see wins in days; most within 30 days." },
-    { q: "Do I need code changes?", a: "No." },
+    { q: "Where does StackSage run?", a: "Inside your GitHub Actions runner." },
+    { q: "Do you ingest AWS credentials?", a: "No. AWS access is via a customer-controlled read-only IAM role used by your workflow." },
+    { q: "What do I get as output?", a: "An HTML report plus machine-readable findings (JSON/CSV) as workflow artifacts." },
     {
         q: "What AWS services do you cover?",
-        a: "EC2, EBS, RDS, CloudWatch, networking, tagging; expanding continuously.",
+        a: "Common waste & hygiene checks across EC2, EBS, RDS, tagging, and more. Optional enrichments: CloudWatch utilization + Cost Explorer historical spend (if enabled).",
     },
 ];
 
@@ -24,7 +24,7 @@ export default function FAQ() {
                 ))}
             </div>
             <p className="mt-6 text-sm text-zinc-600 dark:text-zinc-400">
-                Customers often find meaningful savings in the first 30 days (varies by workload).
+                Findings are based on what the workflow can read with the permissions you grant; outcomes vary by account and usage.
             </p>
         </section>
     );

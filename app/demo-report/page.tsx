@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
     title: "Sample Audit Report — StackSage",
-    description: "See a real example of StackSage's AWS cost optimization audit report with actionable insights and savings recommendations.",
+    description: "View a sample StackSage audit report (HTML) and see the JSON/CSV-style findings output format.",
 };
 
 export default function DemoReportPage() {
@@ -10,12 +11,12 @@ export default function DemoReportPage() {
         <div className="min-h-screen bg-zinc-50 dark:bg-zinc-900">
             <div className="mx-auto max-w-7xl px-4 py-8">
                 <div className="mb-6">
-                    <a
+                    <Link
                         href="/"
                         className="inline-flex items-center text-sm text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300"
                     >
                         ← Back to Home
-                    </a>
+                    </Link>
                 </div>
 
                 <div className="mb-8 text-center">
@@ -23,8 +24,8 @@ export default function DemoReportPage() {
                         Sample Audit Report
                     </h1>
                     <p className="text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
-                        This is a real example of what you'll receive after connecting your AWS account.
-                        We've identified $352.80 in monthly savings opportunities across 15 issues.
+                        This page shows the format you’ll receive from a StackSage run: an HTML report plus machine-readable findings (JSON/CSV).
+                        The report embedded below is a mock demo account.
                     </p>
                     <div className="mt-4 flex flex-wrap justify-center gap-3">
                         <a
@@ -35,12 +36,12 @@ export default function DemoReportPage() {
                         >
                             Open Full Report in New Tab
                         </a>
-                        <a
+                        <Link
                             href="/#demo"
                             className="inline-flex items-center justify-center rounded-xl font-medium transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ring-offset-transparent border border-zinc-300 text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800 focus-visible:ring-zinc-400 h-11 px-5 text-base active:scale-[0.98]"
                         >
                             Get Your Own Audit
-                        </a>
+                        </Link>
                     </div>
                 </div>
 
@@ -56,8 +57,8 @@ export default function DemoReportPage() {
 
                 <div className="mt-6 text-center text-sm text-zinc-500 dark:text-zinc-400">
                     <p>
-                        This report is based on a sample AWS account. Your actual report will be customized
-                        to your infrastructure with real metrics from CloudWatch and Cost Explorer.
+                        Your actual report is generated in your GitHub Actions runner.
+                        Optional enrichments include CloudWatch utilization and Cost Explorer historical spend breakdown (if you enable permissions).
                     </p>
                 </div>
             </div>

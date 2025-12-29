@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react";
 import Navigation from "@/components/Navigation";
@@ -13,18 +14,18 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-    title: "StackSage — Stop Overpaying for AWS",
+    title: "StackSage — AWS Audit in GitHub Actions",
     description:
-        "StackSage finds hidden cost savings in your infrastructure. Privacy-first, read-only access. No code changes.",
+        "Run an AWS waste & hygiene audit in your GitHub Actions runner. Customer-controlled read-only role. Outputs: HTML + JSON/CSV artifacts.",
     icons: {
         icon: "/logo.svg",
         shortcut: "/logo.svg",
         apple: "/logo.svg",
     },
     openGraph: {
-        title: "StackSage — Stop Overpaying for AWS",
+        title: "StackSage — AWS Audit in GitHub Actions",
         description:
-            "StackSage finds hidden cost savings in your infrastructure. Privacy-first, read-only access. No code changes.",
+            "Run an AWS waste & hygiene audit in your GitHub Actions runner. Customer-controlled read-only role. Outputs: HTML + JSON/CSV artifacts.",
         images: [
             {
                 url: "/og-image.png",
@@ -36,9 +37,9 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "StackSage — Stop Overpaying for AWS",
+        title: "StackSage — AWS Audit in GitHub Actions",
         description:
-            "StackSage finds hidden cost savings in your infrastructure. Privacy-first, read-only access. No code changes.",
+            "Run an AWS waste & hygiene audit in your GitHub Actions runner. Customer-controlled read-only role. Outputs: HTML + JSON/CSV artifacts.",
         images: ["/og-image.png"],
     },
     metadataBase: (() => {
@@ -59,15 +60,23 @@ export default function RootLayout({
     return (
         <html lang="en">
             <head>
-                {/* Google Analytics (GA4) - raw tags per Google's detector requirements */}
-                <script async src="https://www.googletagmanager.com/gtag/js?id=G-SF9V5FHLEX"></script>
-                <script dangerouslySetInnerHTML={{
-                    __html: `
-                                    window.dataLayer = window.dataLayer || [];
-                                    function gtag(){dataLayer.push(arguments);}
-                                    gtag('js', new Date());
-                                    gtag('config', 'G-SF9V5FHLEX');
-                                ` }} />
+                {/* Google Analytics (GA4) */}
+                <Script
+                    strategy="afterInteractive"
+                    src="https://www.googletagmanager.com/gtag/js?id=G-SF9V5FHLEX"
+                />
+                <Script
+                    id="ga4"
+                    strategy="afterInteractive"
+                    dangerouslySetInnerHTML={{
+                        __html: `
+                            window.dataLayer = window.dataLayer || [];
+                            function gtag(){dataLayer.push(arguments);}
+                            gtag('js', new Date());
+                            gtag('config', 'G-SF9V5FHLEX');
+                        `,
+                    }}
+                />
             </head>
             <body className={`${inter.variable} antialiased bg-black text-zinc-100`}>
                 <AnnouncementBanner />

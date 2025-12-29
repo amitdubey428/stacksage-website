@@ -27,15 +27,15 @@ export default function Hero() {
                     </div>
 
                     <h1 id="hero-title" className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-sky-600">
-                        Stop Overpaying for AWS
+                        Run an AWS waste & hygiene audit in GitHub Actions
                     </h1>
                     <p className="mt-6 text-lg sm:text-xl text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
-                        StackSage finds hidden cost savings in your infrastructure. Privacy-first, read-only access. No code changes.
+                        StackSage runs inside your GitHub Actions runner using a customer-controlled read-only IAM role, and produces an HTML report plus JSON/CSV findings as workflow artifacts.
                     </p>
                     <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                         <Magnetic>
                             <Button asChild size="lg">
-                                <a href="#demo">Get Free Audit</a>
+                                <a href="#demo">Request Early Access</a>
                             </Button>
                         </Magnetic>
                         <Magnetic strength={20}>
@@ -45,9 +45,9 @@ export default function Hero() {
                         </Magnetic>
                     </div>
                     <ul className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm text-zinc-600 dark:text-zinc-400">
-                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">10–50% avg savings</li>
-                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">5 min setup</li>
-                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Read-only access</li>
+                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Runs in GitHub Actions</li>
+                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">HTML + JSON/CSV outputs</li>
+                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Customer-controlled read-only role</li>
                     </ul>
                 </motion.div>
             </div>

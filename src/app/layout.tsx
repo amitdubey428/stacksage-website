@@ -11,13 +11,13 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "StackSage — Stop Overpaying for AWS",
+  title: "StackSage — AWS Audit in GitHub Actions",
   description:
-    "StackSage finds hidden cost savings in your infrastructure. Privacy-first, read-only access. No code changes.",
+    "Run an AWS waste & hygiene audit in your GitHub Actions runner. Customer-controlled read-only role. Outputs: HTML + JSON/CSV artifacts.",
   openGraph: {
-    title: "StackSage — Stop Overpaying for AWS",
+    title: "StackSage — AWS Audit in GitHub Actions",
     description:
-      "StackSage finds hidden cost savings in your infrastructure. Privacy-first, read-only access. No code changes.",
+      "Run an AWS waste & hygiene audit in your GitHub Actions runner. Customer-controlled read-only role. Outputs: HTML + JSON/CSV artifacts.",
     images: [
       {
         url: "/og-image.png",

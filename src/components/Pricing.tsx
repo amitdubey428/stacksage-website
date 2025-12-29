@@ -4,38 +4,35 @@ import { Button } from "@/components/ui/button";
 
 const tiers = [
     {
-        name: "Starter",
-        price: "$29/mo",
-        description: "For individuals & small teams",
+        name: "Pilot",
+        price: "Contact us",
+        description: "Early access for teams piloting StackSage",
         features: [
-            "Unlimited AWS accounts (no per-account fees)",
-            "Same audit engine + recommendations",
-            "Read-only IAM access",
+            "Private GHCR image access",
+            "GitHub Actions workflow template",
+            "Report artifacts (HTML + JSON/CSV)",
+            "Support during setup",
         ],
     },
     {
-        name: "Growth",
-        price: "$99/mo",
-        description: "For growing teams",
+        name: "Team",
+        price: "Contact us",
+        description: "For teams running recurring audits",
         features: [
-            "Up to 15 team members",
-            "Unlimited AWS accounts (no per-account fees)",
-            "Same audit engine + recommendations",
-            "Read-only IAM access",
+            "Everything in Pilot",
+            "Help configuring scheduled runs",
+            "Optional CloudWatch/Cost Explorer enrichments (if enabled)",
         ],
         popular: true,
     },
     {
-        name: "Enterprise",
-        price: "$219/mo",
-        description: "For larger orgs & agencies",
+        name: "Org",
+        price: "Contact us",
+        description: "For org-wide rollouts",
         features: [
-            "Unlimited team members",
-            "Unlimited AWS accounts (no per-account fees)",
-            "Same audit engine + recommendations",
-            "Read-only IAM access",
-            "Dashboards & recurring reports",
-            "SSO/SAML (optional)",
+            "Everything in Team",
+            "Onboarding + support",
+            "Multiple repos/workflows",
         ],
     },
 ];
@@ -46,7 +43,7 @@ export default function Pricing() {
             <div className="text-center mb-12">
                 <h2 id="pricing-title" className="text-3xl sm:text-4xl font-bold tracking-tight">Simple, Transparent Pricing</h2>
                 <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
-                    Flat monthly rate based on team size. Everyone gets the same audit engine and recommendations — pricing just scales with your org.
+                    Early access pricing while we onboard design partners. Tell us about your AWS footprint and how you want to run audits.
                 </p>
             </div>
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -66,9 +63,8 @@ export default function Pricing() {
                 ))}
             </div>
             <div className="mt-8 text-center space-y-2">
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">No credit card • 14-day trial • Cancel anytime</p>
-                <p className="text-xs text-zinc-500 dark:text-zinc-500 max-w-3xl mx-auto">
-                    No hidden fees. No per-resource pricing. No % of AWS spend. All plans include unlimited AWS accounts.
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                    Email us at <a className="underline" href="mailto:hello@stacksageai.com">hello@stacksageai.com</a>
                 </p>
             </div>
         </section>

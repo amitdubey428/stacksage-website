@@ -12,16 +12,14 @@ export default function AnnouncementBanner() {
             <div className="mx-auto max-w-7xl px-4 py-3">
                 <div className="flex items-center justify-center gap-3 text-center pr-8 sm:pr-0">
                     <span className="text-sm sm:text-base font-medium">
-                        🎉 <span className="hidden sm:inline">Limited Time:</span> Free AWS Cost Audit —
-                        <span className="font-semibold ml-1">
-                            Get Your $350+ Savings Report Today
-                        </span>
+                        Run an AWS waste & hygiene audit in your GitHub Actions runner —
+                        <span className="font-semibold ml-1">no SaaS ingestion of AWS credentials</span>
                     </span>
                     <a
-                        href="#demo"
+                        href="/demo-report"
                         className="ml-2 inline-flex items-center rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold transition-colors whitespace-nowrap"
                     >
-                        Claim Now →
+                        View Sample Report →
                     </a>
                 </div>
                 <button
