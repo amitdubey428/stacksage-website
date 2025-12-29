@@ -25,7 +25,7 @@ export default function Demo() {
                             frameBorder="0"
                             marginHeight={0}
                             marginWidth={0}
-                            title="StackSage Free Audit"
+                            title="StackSage Early Access"
                         />
                     </div>
                 </div>
