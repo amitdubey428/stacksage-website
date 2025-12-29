@@ -6,6 +6,15 @@ export default function Footer() {
             <div className="mx-auto max-w-6xl px-4 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
                 <p className="text-sm text-zinc-600 dark:text-zinc-400">© {new Date().getFullYear()} StackSage. All rights reserved.</p>
                 <div className="flex items-center gap-4">
+                    <a
+                        href="https://www.linkedin.com/company/stacksageai/"
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="LinkedIn"
+                        className="hover:text-indigo-600"
+                    >
+                        LinkedIn
+                    </a>
                     <a href="/privacy" aria-label="Privacy" className="hover:text-indigo-600">Privacy</a>
                     <a href="/terms" aria-label="Terms" className="hover:text-indigo-600">Terms</a>
                 </div>
