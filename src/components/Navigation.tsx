@@ -10,7 +10,7 @@ export default function Navigation() {
     return (
         <nav className="sticky top-0 z-50 w-full backdrop-blur supports-[backdrop-filter]:bg-white/60 bg-white/80 dark:supports-[backdrop-filter]:bg-black/40 dark:bg-black/60 border-b border-zinc-200/60 dark:border-zinc-800">
             <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-                <Link href="#" className="font-bold tracking-tight relative inline-block group" onClick={() => setClicks((c) => c + 1)}>
+                <Link href="/" className="font-bold tracking-tight relative inline-block group" onClick={() => setClicks((c) => c + 1)}>
                     {/* Base label */}
                     <span className="block">StackSage</span>
                     {/* Glitch layers (show on hover) */}

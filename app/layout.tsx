@@ -16,7 +16,7 @@ const inter = Inter({
 export const metadata: Metadata = {
     title: "StackSage — AWS Audit in GitHub Actions",
     description:
-        "Run an AWS waste & hygiene audit in your GitHub Actions runner. Customer-controlled read-only role. Outputs: HTML + JSON/CSV artifacts.",
+        "Run an AWS waste & hygiene audit in your GitHub Actions runner. No SaaS ingestion of AWS credentials. Outputs: HTML + JSON/CSV artifacts.",
     icons: {
         icon: "/logo.svg",
         shortcut: "/logo.svg",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     openGraph: {
         title: "StackSage — AWS Audit in GitHub Actions",
         description:
-            "Run an AWS waste & hygiene audit in your GitHub Actions runner. Customer-controlled read-only role. Outputs: HTML + JSON/CSV artifacts.",
+            "Run an AWS waste & hygiene audit in your GitHub Actions runner. No SaaS ingestion of AWS credentials. Outputs: HTML + JSON/CSV artifacts.",
         images: [
             {
                 url: "/og-image.png",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
         card: "summary_large_image",
         title: "StackSage — AWS Audit in GitHub Actions",
         description:
-            "Run an AWS waste & hygiene audit in your GitHub Actions runner. Customer-controlled read-only role. Outputs: HTML + JSON/CSV artifacts.",
+            "Run an AWS waste & hygiene audit in your GitHub Actions runner. No SaaS ingestion of AWS credentials. Outputs: HTML + JSON/CSV artifacts.",
         images: ["/og-image.png"],
     },
     metadataBase: (() => {
