@@ -296,7 +296,8 @@
     <div class="metadata">
       <strong>Account:</strong> 123456789012 | 
       <strong>Regions:</strong> us-east-1, us-west-2 | 
-      <strong>Generated:</strong> 2025-12-09 22:00:52 UTC
+      <strong>Generated:</strong> 2025-12-29 10:08:24 UTC
+      | <strong>Pricing:</strong> v2025-12
     </div>
     
     <!-- Executive Dashboard -->
@@ -342,6 +343,10 @@
         </span>
       
       
+        <span class="provenance-badge badge-cost-explorer" title="Cost Explorer spend summary (service/region totals)">
+          💰 Cost Explorer Data
+        </span>
+      
       
       
         <span class="provenance-badge badge-info" title="CloudWatch queries: attempted/used/remaining">
@@ -352,17 +357,86 @@
     
     
     
+    <p style="font-size: 14px; color: #616161; margin: 16px 0;">
+      <strong>Historical Spend (2025-11-01 → 2025-12-01):</strong> $1240.55
+    </p>
+    
+
+    
+    <h3>💰 Historical Spend Breakdown (Top)</h3>
+    <div style="display: flex; gap: 16px; flex-wrap: wrap; margin: 12px 0 20px 0;">
+      <div style="flex: 1; min-width: 280px;">
+        <div style="font-size: 13px; color: #616161; margin-bottom: 6px;"><strong>Top Services</strong></div>
+        <table>
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>Cost (USD)</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr>
+              <td>Amazon EC2</td>
+              <td>$530.17</td>
+            </tr>
+            
+            <tr>
+              <td>Amazon RDS</td>
+              <td>$260.34</td>
+            </tr>
+            
+            <tr>
+              <td>AWS NAT Gateway</td>
+              <td>$95.0</td>
+            </tr>
+            
+            <tr>
+              <td>Amazon S3</td>
+              <td>$93.32</td>
+            </tr>
+            
+            <tr>
+              <td>Amazon CloudWatch</td>
+              <td>$44.9</td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+
+      
+      <div style="flex: 1; min-width: 280px;">
+        <div style="font-size: 13px; color: #616161; margin-bottom: 6px;"><strong>Top Regions</strong></div>
+        <table>
+          <thead>
+            <tr>
+              <th>Region</th>
+              <th>Cost (USD)</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <tr>
+              <td>us-east-1</td>
+              <td>$895.58</td>
+            </tr>
+            
+            <tr>
+              <td>us-west-2</td>
+              <td>$128.15</td>
+            </tr>
+            
+          </tbody>
+        </table>
+      </div>
+      
+    </div>
+    
 
     <!-- Executive Summary -->
     <h2>Executive Summary</h2>
-    <p style="font-size: 15px; line-height: 1.8; color: #424242;">This AWS account shows significant cost optimization opportunities across multiple resource types. 
-    We identified 15 issues with a total estimated monthly savings potential of $352.80.
-    
-    The primary cost drivers are idle EC2 instances ($62.40/month), 
-    unattached EBS volumes ($60.00/month), 
-    and underutilized infrastructure components. 
-    
-    Immediate action on high-priority items could reduce monthly costs by approximately 85% of the identified waste.</p>
+    <p style="font-size: 15px; line-height: 1.8; color: #424242;">Potential monthly savings: $352.80. Current cost (flagged resources): $430.40. Primary drivers: oversized_rds(prod-postgres-db): $78.00, idle_ec2(i-0123456789abcdef0): $62.40, unattached_ebs(vol-fedcba9876543210): $50.00, idle_nat_gateway(nat-0123456789abcdef): $32.40, old_snapshot(snap-old123456789abc): $25.00</p>
     
     <!-- Top Savings Opportunities -->
     <h3>🎯 Top Savings Opportunities</h3>
@@ -665,6 +739,7 @@
             <th>Est. Cost (USD/mo)</th>
             <th>Est. Savings (USD/mo)</th>
             <th>Recommended Action</th>
+            <th>Estimation</th>
           </tr>
         </thead>
         <tbody>
@@ -701,6 +776,14 @@
               
               
             </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
           </tr>
         
           <tr class="severity-high">
@@ -733,6 +816,14 @@
             <td>
               Delete unattached EBS volume (100 GB gp3)
               
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
               
             </td>
           </tr>
@@ -769,6 +860,14 @@
               
               
             </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
           </tr>
         
           <tr class="severity-medium">
@@ -801,6 +900,14 @@
             <td>
               Migrate gp2 volume to gp3 (250 GB)
               
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
               
             </td>
           </tr>
@@ -837,6 +944,14 @@
               
               
             </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
           </tr>
         
           <tr class="severity-medium">
@@ -869,6 +984,14 @@
             <td>
               Set CloudWatch Logs retention to 90 days
               
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
               
             </td>
           </tr>
@@ -905,6 +1028,14 @@
               
               
             </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
           </tr>
         
           <tr class="severity-medium">
@@ -937,6 +1068,14 @@
             <td>
               Release unused Elastic IP
               
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
               
             </td>
           </tr>
@@ -973,6 +1112,14 @@
               
               
             </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
           </tr>
         
           <tr class="severity-high">
@@ -1007,6 +1154,14 @@
               
               
             </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
           </tr>
         
           <tr class="severity-high">
@@ -1039,6 +1194,14 @@
             <td>
               Delete idle Application Load Balancer (<10 requests/day)
               
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
               
             </td>
           </tr>
@@ -1079,6 +1242,14 @@
               
               
             </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
           </tr>
         
           <tr class="severity-low">
@@ -1111,6 +1282,14 @@
             <td>
               Delete snapshot older than 90 days (100 GB)
               
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
               
             </td>
           </tr>
@@ -1147,6 +1326,14 @@
               
               
             </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
           </tr>
         
           <tr class="severity-low">
@@ -1179,6 +1366,14 @@
             <td>
               Add cost allocation tags (missing: Environment, Project, Owner)
               
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
               
             </td>
           </tr>
