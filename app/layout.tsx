@@ -93,6 +93,15 @@ export default function RootLayout({
                     "Run an AWS waste & hygiene audit in your GitHub Actions runner. No SaaS ingestion of AWS credentials. Outputs: HTML + JSON/CSV artifacts.",
             },
             {
+                "@type": "Organization",
+                name: "StackSage",
+                url: `${siteUrl}/`,
+                logo: {
+                    "@type": "ImageObject",
+                    url: `${siteUrl}/android-chrome-512x512.png`,
+                },
+            },
+            {
                 "@type": "SoftwareApplication",
                 name: "StackSage",
                 applicationCategory: "DeveloperApplication",
