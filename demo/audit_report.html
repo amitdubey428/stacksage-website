@@ -159,6 +159,37 @@
       border-color: #e0e0e0;
       color: #757575;
     }
+
+    /* Instant tooltips (avoid browser title delay) */
+    .tip {
+      position: relative;
+      display: inline-block;
+    }
+    .tip .tiptext {
+      visibility: hidden;
+      opacity: 0;
+      position: absolute;
+      z-index: 1000;
+      left: 0;
+      transform: none;
+      bottom: 125%;
+      min-width: 220px;
+      max-width: 360px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      background: #424242;
+      color: white;
+      font-size: 12px;
+      line-height: 1.4;
+      text-align: left;
+      white-space: normal;
+      transition: opacity 0s;
+      pointer-events: none;
+    }
+    .tip:hover .tiptext {
+      visibility: visible;
+      opacity: 1;
+    }
     
     /* Tables */
     table {
@@ -235,6 +266,9 @@
       transition: max-height 0.3s ease-out;
       background: white;
     }
+    .content.expanded {
+      overflow: visible;
+    }
     
     /* Priority boxes */
     .priority-grid {
@@ -296,7 +330,7 @@
     <div class="metadata">
       <strong>Account:</strong> 123456789012 | 
       <strong>Regions:</strong> us-east-1, us-west-2 | 
-      <strong>Generated:</strong> 2025-12-29 10:08:24 UTC
+      <strong>Generated:</strong> 2026-01-15 09:40:10 UTC
       | <strong>Pricing:</strong> v2025-12
     </div>
     
@@ -304,7 +338,7 @@
     <h2>Executive Dashboard</h2>
     <div class="dashboard">
       <div class="card card-savings">
-        <div class="card-value">$352.8</div>
+        <div class="card-value">$280.4</div>
         <div class="card-label">Potential Savings/Month</div>
       </div>
       
@@ -315,7 +349,7 @@
       
       <div class="card card-priority">
         <div class="card-value">
-          5
+          4
         </div>
         <div class="card-label">High Priority Items</div>
       </div>
@@ -323,7 +357,7 @@
       <div class="card card-waste">
         <div class="card-value">
           
-            82%
+            66%
           
         </div>
         <div class="card-label">Potential Waste</div>
@@ -331,7 +365,7 @@
     </div>
     
     <p style="font-size: 14px; color: #616161; margin: 16px 0;">
-      <strong>Estimated Monthly Cost:</strong> $430.4
+      <strong>Estimated Monthly Cost:</strong> $426.25
     </p>
     
       
@@ -436,49 +470,59 @@
 
     <!-- Executive Summary -->
     <h2>Executive Summary</h2>
-    <p style="font-size: 15px; line-height: 1.8; color: #424242;">Potential monthly savings: $352.80. Current cost (flagged resources): $430.40. Primary drivers: oversized_rds(prod-postgres-db): $78.00, idle_ec2(i-0123456789abcdef0): $62.40, unattached_ebs(vol-fedcba9876543210): $50.00, idle_nat_gateway(nat-0123456789abcdef): $32.40, old_snapshot(snap-old123456789abc): $25.00</p>
+    <p style="font-size: 15px; line-height: 1.8; color: #424242;">Potential monthly savings: $280.40. Current cost (flagged resources): $426.25. Primary drivers: underutilized_rds(prod-postgres-db): $78.00, idle_ec2(i-0123456789abcdef0): $62.40, unattached_ebs(vol-fedcba9876543210): $50.00, old_snapshot(snap-old123456789abc): $25.00, idle_elb(my-alb-prod): $25.00</p>
     
     <!-- Top Savings Opportunities -->
     <h3>🎯 Top Savings Opportunities</h3>
     <ul style="font-size: 14px; line-height: 1.8;">
       
         <li>
-          <strong>oversized_rds</strong> (prod-postgres-db) — 
+          <strong>underutilized_rds</strong> (prod-postgres-db) — 
           <span style="color: #1976d2; font-weight: 600;">$78.0/month</span>
-          via Downsize RDS instance from db.t3.large to db.t3.medium (15% avg CPU)
+          via review-and-rightsize
           
+          
+            <br><small style="color: #666; margin-left: 20px; font-style: italic;">Metric query skipped due to budget exhaustion</small>
           
         </li>
       
         <li>
           <strong>idle_ec2</strong> (i-0123456789abcdef0) — 
           <span style="color: #1976d2; font-weight: 600;">$62.4/month</span>
-          via Stop or terminate idle EC2 instance (t3.large) - 2% avg CPU over 7 days
+          via consider-stopping-or-rightsize
           
+          
+            <br><small style="color: #666; margin-left: 20px; font-style: italic;">Low CPU and low network usage over the lookback window.</small>
           
         </li>
       
         <li>
           <strong>unattached_ebs</strong> (vol-fedcba9876543210) — 
           <span style="color: #1976d2; font-weight: 600;">$50.0/month</span>
-          via Delete unattached EBS volume (500 GB gp2)
+          via snapshot-and-delete
           
           
-        </li>
-      
-        <li>
-          <strong>idle_nat_gateway</strong> (nat-0123456789abcdef) — 
-          <span style="color: #1976d2; font-weight: 600;">$32.4/month</span>
-          via Remove idle NAT Gateway (<1 GB data processed/day)
-          
+            <br><small style="color: #666; margin-left: 20px; font-style: italic;">EBS volume (500 GB) unattached for >7 days. Create snapshot for safety, then delete if unused.</small>
           
         </li>
       
         <li>
           <strong>old_snapshot</strong> (snap-old123456789abc) — 
           <span style="color: #1976d2; font-weight: 600;">$25.0/month</span>
-          via Delete snapshot older than 90 days (500 GB)
+          via delete-snapshot
           
+          
+            <br><small style="color: #666; margin-left: 20px; font-style: italic;">Snapshot is older than the retention window.</small>
+          
+        </li>
+      
+        <li>
+          <strong>idle_elb</strong> (my-alb-prod) — 
+          <span style="color: #1976d2; font-weight: 600;">$25.0/month</span>
+          via review-and-delete-if-unused
+          
+          
+            <br><small style="color: #666; margin-left: 20px; font-style: italic;">Low request count over the lookback window.</small>
           
         </li>
       
@@ -495,9 +539,9 @@
       new Chart(ctx, {
         type: 'pie',
         data: {
-          labels: ['idle_ec2', 'unattached_ebs', 'gp2_to_gp3_migration', 'old_snapshot', 'cloudwatch_logs_retention', 'overprovisioned_lambda', 'unused_eip', 'idle_nat_gateway', 'idle_elb', 'oversized_rds', 's3_vpc_endpoint_missing', 'untagged_resource'],
+          labels: ['ec2', 'ebs', 'snapshot', 'cloudwatch', 'lambda', 'eip', 'nat', 'elb', 'rds'],
           datasets: [{
-            data: [1, 2, 1, 2, 1, 1, 2, 1, 1, 1, 1, 1],
+            data: [1, 3, 2, 1, 1, 2, 1, 2, 2],
             backgroundColor: [
               '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
               '#FF9F40', '#FF6384', '#C9CBCF', '#4BC0C0', '#FF9F40'
@@ -533,7 +577,7 @@
         <ul>
           
             <li>
-              Stop or terminate idle EC2 instance (t3.large) - 2% avg CPU over 7 days
+              consider-stopping-or-rightsize
               
                 <br><small style="color: #1565c0;">💰 Save $62.4/month</small>
               
@@ -545,32 +589,25 @@
       
       
       <div class="priority-box high">
-        <h3 style="color: #e65100;">⚡ High Priority (4)</h3>
+        <h3 style="color: #e65100;">⚡ High Priority (3)</h3>
         <ul>
           
             <li>
-              Delete unattached EBS volume (100 GB gp3)
+              snapshot-and-delete
               
                 <br><small style="color: #1565c0;">💰 Save $10.0/month</small>
               
             </li>
           
             <li>
-              Delete unattached EBS volume (500 GB gp2)
+              snapshot-and-delete
               
                 <br><small style="color: #1565c0;">💰 Save $50.0/month</small>
               
             </li>
           
             <li>
-              Remove idle NAT Gateway (<1 GB data processed/day)
-              
-                <br><small style="color: #1565c0;">💰 Save $32.4/month</small>
-              
-            </li>
-          
-            <li>
-              Delete idle Application Load Balancer (<10 requests/day)
+              review-and-delete-if-unused
               
                 <br><small style="color: #1565c0;">💰 Save $25.0/month</small>
               
@@ -597,13 +634,13 @@
       <tbody>
       
         <tr class="severity-medium">
-          <td>oversized_rds</td>
+          <td>underutilized_rds</td>
           <td style="font-family: monospace; font-size: 12px;">prod-postgres-db</td>
           <td>us-east-1</td>
           <td style="font-weight: 600; color: #1976d2;">
             $78.0
           </td>
-          <td>Downsize RDS instance from db.t3.large to db.t3.medium (15% avg CPU)</td>
+          <td>review-and-rightsize</td>
         </tr>
       
         <tr class="severity-critical">
@@ -613,7 +650,7 @@
           <td style="font-weight: 600; color: #1976d2;">
             $62.4
           </td>
-          <td>Stop or terminate idle EC2 instance (t3.large) - 2% avg CPU over 7 days</td>
+          <td>consider-stopping-or-rightsize</td>
         </tr>
       
         <tr class="severity-high">
@@ -623,17 +660,7 @@
           <td style="font-weight: 600; color: #1976d2;">
             $50.0
           </td>
-          <td>Delete unattached EBS volume (500 GB gp2)</td>
-        </tr>
-      
-        <tr class="severity-high">
-          <td>idle_nat_gateway</td>
-          <td style="font-family: monospace; font-size: 12px;">nat-0123456789abcdef</td>
-          <td>us-east-1</td>
-          <td style="font-weight: 600; color: #1976d2;">
-            $32.4
-          </td>
-          <td>Remove idle NAT Gateway (<1 GB data processed/day)</td>
+          <td>snapshot-and-delete</td>
         </tr>
       
         <tr class="severity-medium">
@@ -643,7 +670,17 @@
           <td style="font-weight: 600; color: #1976d2;">
             $25.0
           </td>
-          <td>Delete snapshot older than 90 days (500 GB)</td>
+          <td>delete-snapshot</td>
+        </tr>
+      
+        <tr class="severity-high">
+          <td>idle_elb</td>
+          <td style="font-family: monospace; font-size: 12px;">my-alb-prod</td>
+          <td>us-east-1</td>
+          <td style="font-weight: 600; color: #1976d2;">
+            $25.0
+          </td>
+          <td>review-and-delete-if-unused</td>
         </tr>
       
       </tbody>
@@ -662,63 +699,48 @@
         <tbody>
         
           <tr>
-            <td>idle_ec2</td>
+            <td>ec2</td>
             <td><strong>1</strong></td>
           </tr>
         
           <tr>
-            <td>unattached_ebs</td>
+            <td>ebs</td>
+            <td><strong>3</strong></td>
+          </tr>
+        
+          <tr>
+            <td>snapshot</td>
             <td><strong>2</strong></td>
           </tr>
         
           <tr>
-            <td>gp2_to_gp3_migration</td>
+            <td>cloudwatch</td>
             <td><strong>1</strong></td>
           </tr>
         
           <tr>
-            <td>old_snapshot</td>
+            <td>lambda</td>
+            <td><strong>1</strong></td>
+          </tr>
+        
+          <tr>
+            <td>eip</td>
             <td><strong>2</strong></td>
           </tr>
         
           <tr>
-            <td>cloudwatch_logs_retention</td>
+            <td>nat</td>
             <td><strong>1</strong></td>
           </tr>
         
           <tr>
-            <td>overprovisioned_lambda</td>
-            <td><strong>1</strong></td>
-          </tr>
-        
-          <tr>
-            <td>unused_eip</td>
+            <td>elb</td>
             <td><strong>2</strong></td>
           </tr>
         
           <tr>
-            <td>idle_nat_gateway</td>
-            <td><strong>1</strong></td>
-          </tr>
-        
-          <tr>
-            <td>idle_elb</td>
-            <td><strong>1</strong></td>
-          </tr>
-        
-          <tr>
-            <td>oversized_rds</td>
-            <td><strong>1</strong></td>
-          </tr>
-        
-          <tr>
-            <td>s3_vpc_endpoint_missing</td>
-            <td><strong>1</strong></td>
-          </tr>
-        
-          <tr>
-            <td>untagged_resource</td>
-            <td><strong>1</strong></td>
+            <td>rds</td>
+            <td><strong>2</strong></td>
           </tr>
         
         </tbody>
@@ -753,6 +775,13 @@
                 </span>
               
               
+                <span class="badge badge-cloudwatch" title="Measured via CloudWatch aggregate metrics">
+                  Measured
+                </span>
+              
+              
+              
+              
             </td>
             <td style="font-family: monospace; font-size: 12px;">
               i-0123456789abcdef0
@@ -772,8 +801,10 @@
               
             </td>
             <td>
-              Stop or terminate idle EC2 instance (t3.large) - 2% avg CPU over 7 days
+              consider-stopping-or-rightsize
               
+              
+                <br><small style="color: #666; font-style: italic;">Low CPU and low network usage over the lookback window.</small>
               
             </td>
             <td>
@@ -791,8 +822,11 @@
               unattached_ebs
               
                 <span class="badge badge-info" title="Detection confidence">
-                  100%
+                  95%
                 </span>
+              
+              
+              
               
               
             </td>
@@ -814,8 +848,10 @@
               
             </td>
             <td>
-              Delete unattached EBS volume (100 GB gp3)
+              snapshot-and-delete
               
+              
+                <br><small style="color: #666; font-style: italic;">EBS volume (100 GB) unattached for >7 days. Create snapshot for safety, then delete if unused.</small>
               
             </td>
             <td>
@@ -833,8 +869,11 @@
               unattached_ebs
               
                 <span class="badge badge-info" title="Detection confidence">
-                  100%
+                  95%
                 </span>
+              
+              
+              
               
               
             </td>
@@ -856,8 +895,10 @@
               
             </td>
             <td>
-              Delete unattached EBS volume (500 GB gp2)
+              snapshot-and-delete
               
+              
+                <br><small style="color: #666; font-style: italic;">EBS volume (500 GB) unattached for >7 days. Create snapshot for safety, then delete if unused.</small>
               
             </td>
             <td>
@@ -879,6 +920,9 @@
                 </span>
               
               
+              
+              
+              
             </td>
             <td style="font-family: monospace; font-size: 12px;">
               vol-1111222233334444
@@ -898,8 +942,10 @@
               
             </td>
             <td>
-              Migrate gp2 volume to gp3 (250 GB)
+              migrate-to-gp3
               
+              
+                <br><small style="color: #666; font-style: italic;">gp3 is typically cheaper than gp2 for similar workloads.</small>
               
             </td>
             <td>
@@ -921,11 +967,16 @@
                 </span>
               
               
+              
+              
+              
             </td>
             <td style="font-family: monospace; font-size: 12px;">
               snap-old123456789abc
               
               
+              
+                <br><small style="color: #666;">964 days old</small>
               
             </td>
             <td>us-west-2</td>
@@ -940,8 +991,10 @@
               
             </td>
             <td>
-              Delete snapshot older than 90 days (500 GB)
+              delete-snapshot
               
+              
+                <br><small style="color: #666; font-style: italic;">Snapshot is older than the retention window.</small>
               
             </td>
             <td>
@@ -963,6 +1016,9 @@
                 </span>
               
               
+              
+              
+              
             </td>
             <td style="font-family: monospace; font-size: 12px;">
               /aws/lambda/data-processor
@@ -982,8 +1038,10 @@
               
             </td>
             <td>
-              Set CloudWatch Logs retention to 90 days
+              set-logs-retention
               
+              
+                <br><small style="color: #666; font-style: italic;">Log group retention is set to Never Expire; set retention to reduce storage costs.</small>
               
             </td>
             <td>
@@ -1005,6 +1063,9 @@
                 </span>
               
               
+              
+              
+              
             </td>
             <td style="font-family: monospace; font-size: 12px;">
               data-transformer
@@ -1024,8 +1085,10 @@
               
             </td>
             <td>
-              Reduce Lambda memory from 1024MB to 768MB
+              reduce-lambda-memory
               
+              
+                <br><small style="color: #666; font-style: italic;">Execution time indicates memory may be over-provisioned.</small>
               
             </td>
             <td>
@@ -1045,6 +1108,9 @@
                 <span class="badge badge-info" title="Detection confidence">
                   100%
                 </span>
+              
+              
+              
               
               
             </td>
@@ -1066,8 +1132,10 @@
               
             </td>
             <td>
-              Release unused Elastic IP
+              release-eip
               
+              
+                <br><small style="color: #666; font-style: italic;">Elastic IP is not attached to any instance; AWS charges for unused EIPs.</small>
               
             </td>
             <td>
@@ -1089,6 +1157,9 @@
                 </span>
               
               
+              
+              
+              
             </td>
             <td style="font-family: monospace; font-size: 12px;">
               34.210.98.76
@@ -1108,8 +1179,10 @@
               
             </td>
             <td>
-              Release unused Elastic IP
+              release-eip
               
+              
+                <br><small style="color: #666; font-style: italic;">Elastic IP is not attached to any instance; AWS charges for unused EIPs.</small>
               
             </td>
             <td>
@@ -1122,13 +1195,16 @@
             </td>
           </tr>
         
-          <tr class="severity-high">
+          <tr class="severity-low">
             <td>
-              idle_nat_gateway
+              nat_gateway
               
                 <span class="badge badge-info" title="Detection confidence">
-                  85%
+                  70%
                 </span>
+              
+              
+              
               
               
             </td>
@@ -1140,18 +1216,20 @@
             </td>
             <td>us-east-1</td>
             <td>
-              <span class="badge badge-high">
-                HIGH
+              <span class="badge badge-low">
+                LOW
               </span>
             </td>
-            <td>32.4</td>
+            <td>32.85</td>
             <td style="font-weight: 600; color: #1976d2;">
-              32.4
+              0.0
               
             </td>
             <td>
-              Remove idle NAT Gateway (<1 GB data processed/day)
+              review-and-consider-vpc-endpoint
               
+              
+                <br><small style="color: #666; font-style: italic;">NAT gateways have hourly + data processing cost; if used primarily for S3, consider an S3 VPC endpoint.</small>
               
             </td>
             <td>
@@ -1159,7 +1237,14 @@
               
               
               
-                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+                
+                
+                
+                
+                <span class="tip">
+                  <span class="badge badge-info">📐 Estimation</span>
+                  <span class="tiptext">Method: base_hourly+uptime • Adjusted cost: $32.85/mo • Assumptions: ['no data processing included', 'uptime estimated from CreateTime', 'regional multiplier applied via pricing tables']</span>
+                </span>
               
             </td>
           </tr>
@@ -1171,6 +1256,13 @@
                 <span class="badge badge-info" title="Detection confidence">
                   90%
                 </span>
+              
+              
+                <span class="badge badge-cloudwatch" title="Measured via CloudWatch aggregate metrics">
+                  Measured
+                </span>
+              
+              
               
               
             </td>
@@ -1192,8 +1284,62 @@
               
             </td>
             <td>
-              Delete idle Application Load Balancer (<10 requests/day)
+              review-and-delete-if-unused
               
+              
+                <br><small style="color: #666; font-style: italic;">Low request count over the lookback window.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-low">
+            <td>
+              idle_elb
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  35%
+                </span>
+              
+              
+              
+                <span class="tip">
+                  <span class="badge badge-info">No Data</span>
+                  <span class="tiptext">CloudWatch returned no datapoints for the lookback window.</span>
+                </span>
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              my-alb-staging
+              
+              
+              
+            </td>
+            <td>us-west-2</td>
+            <td>
+              <span class="badge badge-low">
+                LOW
+              </span>
+            </td>
+            <td>0.0</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              0.0
+              
+            </td>
+            <td>
+              review-lb-usage
+              
+              
+                <br><small style="color: #666; font-style: italic;">Unable to measure load balancer request volume: CloudWatch returned no datapoints for the lookback window.</small>
               
             </td>
             <td>
@@ -1208,11 +1354,14 @@
         
           <tr class="severity-medium">
             <td>
-              oversized_rds
+              underutilized_rds
               
                 <span class="badge badge-info" title="Detection confidence">
                   75%
                 </span>
+              
+              
+              
               
               
                 <span class="badge badge-skipped" title="Metric query skipped due to budget exhaustion">
@@ -1223,6 +1372,12 @@
             <td style="font-family: monospace; font-size: 12px;">
               prod-postgres-db
               
+              
+                <br><small style="color: #666;">db.t3.large
+                
+                  → db.t3.medium
+                
+                </small>
               
               
             </td>
@@ -1238,8 +1393,72 @@
               
             </td>
             <td>
-              Downsize RDS instance from db.t3.large to db.t3.medium (15% avg CPU)
+              review-and-rightsize
               
+                
+                
+              
+              
+                <br><small style="color: #666; font-style: italic;">Metric query skipped due to budget exhaustion</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-low">
+            <td>
+              underutilized_rds
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  30%
+                </span>
+              
+              
+              
+              
+                <span class="tip">
+                  <span class="badge badge-info">Access Denied</span>
+                  <span class="tiptext">Missing CloudWatch permissions to read metrics for this resource.</span>
+                </span>
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              analytics-postgres-db
+              
+              
+                <br><small style="color: #666;">db.t3.large
+                
+                </small>
+              
+              
+            </td>
+            <td>us-east-1</td>
+            <td>
+              <span class="badge badge-low">
+                LOW
+              </span>
+            </td>
+            <td>0.0</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              0.0
+              
+            </td>
+            <td>
+              review-and-rightsize
+              
+                
+                
+              
+              
+                <br><small style="color: #666; font-style: italic;">Unable to measure CPU/storage utilization: missing CloudWatch permissions (AccessDenied).</small>
               
             </td>
             <td>
@@ -1261,11 +1480,16 @@
                 </span>
               
               
+              
+              
+              
             </td>
             <td style="font-family: monospace; font-size: 12px;">
               snap-0123456789abcdef
               
               
+              
+                <br><small style="color: #666;">668 days old</small>
               
             </td>
             <td>us-east-1</td>
@@ -1280,92 +1504,10 @@
               
             </td>
             <td>
-              Delete snapshot older than 90 days (100 GB)
+              delete-snapshot
               
               
-            </td>
-            <td>
-              
-              
-              
-              
-                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
-              
-            </td>
-          </tr>
-        
-          <tr class="severity-low">
-            <td>
-              s3_vpc_endpoint_missing
-              
-                <span class="badge badge-info" title="Detection confidence">
-                  60%
-                </span>
-              
-              
-            </td>
-            <td style="font-family: monospace; font-size: 12px;">
-              my-app-logs-bucket
-              
-              
-              
-            </td>
-            <td>us-east-1</td>
-            <td>
-              <span class="badge badge-low">
-                LOW
-              </span>
-            </td>
-            <td>0.0</td>
-            <td style="font-weight: 600; color: #1976d2;">
-              15.0
-              
-            </td>
-            <td>
-              Create S3 VPC endpoint to avoid NAT gateway data transfer costs
-              
-              
-            </td>
-            <td>
-              
-              
-              
-              
-                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
-              
-            </td>
-          </tr>
-        
-          <tr class="severity-low">
-            <td>
-              untagged_resource
-              
-                <span class="badge badge-info" title="Detection confidence">
-                  100%
-                </span>
-              
-              
-            </td>
-            <td style="font-family: monospace; font-size: 12px;">
-              i-abcdef0123456789a
-              
-              
-              
-            </td>
-            <td>us-west-2</td>
-            <td>
-              <span class="badge badge-low">
-                LOW
-              </span>
-            </td>
-            <td>0.0</td>
-            <td style="font-weight: 600; color: #1976d2;">
-              0.0
-              
-            </td>
-            <td>
-              Add cost allocation tags (missing: Environment, Project, Owner)
-              
+                <br><small style="color: #666; font-style: italic;">Snapshot is older than the retention window.</small>
               
             </td>
             <td>
@@ -1406,7 +1548,9 @@
           const content = this.nextElementSibling;
           if (content.style.maxHeight) {
             content.style.maxHeight = null;
+            content.classList.remove('expanded');
           } else {
+            content.classList.add('expanded');
             content.style.maxHeight = content.scrollHeight + 'px';
           }
         });
