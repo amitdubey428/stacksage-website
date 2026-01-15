@@ -14,10 +14,22 @@ export const metadata: Metadata = {
   title: "StackSage — AWS Audit in GitHub Actions",
   description:
     "Run an AWS waste & hygiene audit in your GitHub Actions runner. No SaaS ingestion of AWS credentials. Outputs: HTML + JSON/CSV artifacts.",
+  keywords: [
+    "AWS cost audit",
+    "AWS cost optimization",
+    "FinOps",
+    "GitHub Actions",
+    "cloud cost",
+    "AWS waste",
+  ],
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: "StackSage — AWS Audit in GitHub Actions",
     description:
       "Run an AWS waste & hygiene audit in your GitHub Actions runner. No SaaS ingestion of AWS credentials. Outputs: HTML + JSON/CSV artifacts.",
+    url: "/",
     images: [
       {
         url: "/og-image.png",
@@ -27,6 +39,14 @@ export const metadata: Metadata = {
       },
     ],
   },
+  metadataBase: (() => {
+    const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://stacksageai.com";
+    try {
+      return new URL(base);
+    } catch {
+      return new URL("https://stacksageai.com");
+    }
+  })(),
 };
 
 export default function RootLayout({

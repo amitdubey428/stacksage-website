@@ -17,6 +17,17 @@ export const metadata: Metadata = {
     title: "StackSage — AWS Audit in GitHub Actions",
     description:
         "Run an AWS waste & hygiene audit in your GitHub Actions runner. No SaaS ingestion of AWS credentials. Outputs: HTML + JSON/CSV artifacts.",
+    keywords: [
+        "AWS cost audit",
+        "AWS cost optimization",
+        "FinOps",
+        "GitHub Actions",
+        "cloud cost",
+        "AWS waste",
+    ],
+    alternates: {
+        canonical: "/",
+    },
     icons: {
         icon: "/logo.svg",
         shortcut: "/logo.svg",
@@ -26,6 +37,7 @@ export const metadata: Metadata = {
         title: "StackSage — AWS Audit in GitHub Actions",
         description:
             "Run an AWS waste & hygiene audit in your GitHub Actions runner. No SaaS ingestion of AWS credentials. Outputs: HTML + JSON/CSV artifacts.",
+        url: "/",
         images: [
             {
                 url: "/og-image.png",
@@ -43,11 +55,11 @@ export const metadata: Metadata = {
         images: ["/og-image.png"],
     },
     metadataBase: (() => {
-        const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://example.com";
+        const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://stacksageai.com";
         try {
             return new URL(base);
         } catch {
-            return new URL("https://example.com");
+            return new URL("https://stacksageai.com");
         }
     })(),
 };

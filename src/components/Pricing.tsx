@@ -5,10 +5,10 @@ import { Button } from "@/components/ui/button";
 const tiers = [
     {
         name: "Starter",
-        price: "$299/mo",
-        description: "For small teams getting their first cost hygiene baseline",
+        price: "$99/mo",
+        description: "For startups getting a first AWS cost hygiene baseline",
         features: [
-            "Up to 2 AWS accounts",
+            "Up to 1 AWS account",
             "Private GHCR image + workflow template",
             "Time-limited license (renewable)",
             "HTML report + JSON/CSV findings",
@@ -16,11 +16,11 @@ const tiers = [
         ],
     },
     {
-        name: "Growth",
-        price: "$799/mo",
-        description: "For growing SMEs running recurring audits across accounts",
+        name: "Team",
+        price: "$249/mo",
+        description: "For SMEs running recurring audits across multiple accounts",
         features: [
-            "Up to 10 AWS accounts",
+            "Up to 5 AWS accounts",
             "Everything in Starter",
             "Help setting up scheduled runs",
             "Optional CloudWatch + Cost Explorer enrichments (opt-in)",

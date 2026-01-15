@@ -24,7 +24,7 @@ npm run start
 
 ## Env vars
 - `NEXT_PUBLIC_TYPEFORM_ID`: Typeform form ID for the demo embed (optional). If missing, a native form is shown.
-- `NEXT_PUBLIC_SITE_URL`: The canonical site URL (e.g., `https://stacksage.com`). Used for sitemap/robots and metadata.
+- `NEXT_PUBLIC_SITE_URL`: The canonical site URL (e.g., `https://stacksageai.com`). Used for sitemap/robots and metadata.
 - `NEXT_PUBLIC_ANALYTICS_ID`: Optional additional analytics ID if you add a provider.
 
 ## Deployment (Vercel recommended)
