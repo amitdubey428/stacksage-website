@@ -21,12 +21,12 @@ export default function Navigation() {
                     <span className="sr-only">Home</span>
                 </Link>
                 <div className="hidden md:flex items-center gap-6">
-                    <a href="#features" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">Features</a>
-                    <a href="#how-it-works" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">How it works</a>
-                    <a href="#pricing" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">Pricing</a>
-                    <a href="#demo" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">Demo</a>
+                    <Link href="/#features" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">Features</Link>
+                    <Link href="/#how-it-works" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">How it works</Link>
+                    <Link href="/#pricing" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">Pricing</Link>
+                    <Link href="/#demo" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">Demo</Link>
                     <Button asChild>
-                        <a href="#demo" aria-label="Get a Demo">Get a Demo</a>
+                        <Link href="/#demo" aria-label="Get a Demo">Get a Demo</Link>
                     </Button>
                 </div>
                 <button
@@ -41,12 +41,12 @@ export default function Navigation() {
             {open && (
                 <div id="mobile-menu" className="md:hidden border-t border-zinc-200 dark:border-zinc-800">
                     <div className="px-4 py-3 grid gap-3">
-                        <a className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="#features">Features</a>
-                        <a className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="#how-it-works">How it works</a>
-                        <a className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="#pricing">Pricing</a>
-                        <a className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="#demo">Demo</a>
+                        <Link className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="/#features">Features</Link>
+                        <Link className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="/#how-it-works">How it works</Link>
+                        <Link className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="/#pricing">Pricing</Link>
+                        <Link className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="/#demo">Demo</Link>
                         <Button asChild>
-                            <a href="#demo" aria-label="Get a Demo">Get a Demo</a>
+                            <Link href="/#demo" aria-label="Get a Demo">Get a Demo</Link>
                         </Button>
                     </div>
                 </div>

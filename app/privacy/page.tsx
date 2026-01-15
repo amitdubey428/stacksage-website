@@ -23,6 +23,17 @@ export default function PrivacyPage() {
                     ingest your AWS credentials into a SaaS.
                 </p>
 
+                <p className="mt-4 text-sm text-zinc-600 dark:text-zinc-300">
+                    For full details on what StackSage reads from AWS, what appears in reports, and what is opt-in, see{" "}
+                    <Link
+                        href="/privacy-access"
+                        className="text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 underline"
+                    >
+                        Privacy &amp; Access
+                    </Link>
+                    .
+                </p>
+
                 <div className="mt-8 space-y-4 text-sm text-zinc-600 dark:text-zinc-300">
                     <p>
                         <span className="font-semibold text-zinc-900 dark:text-zinc-100">Product execution:</span> StackSage
