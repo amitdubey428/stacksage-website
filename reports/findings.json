@@ -1,0 +1,477 @@
+{
+  "account_id": "123456789012",
+  "regions": [
+    "us-east-1",
+    "us-west-2"
+  ],
+  "findings": [
+    {
+      "type": "idle_ec2",
+      "resource_type": "ec2",
+      "severity": "critical",
+      "confidence": 0.95,
+      "id": "i-0123456789abcdef0",
+      "region": "us-east-1",
+      "instance_type": "t3.large",
+      "cpu_avg": 2.1,
+      "net_in_avg": 420000.0,
+      "net_out_avg": 380000.0,
+      "estimated_monthly_cost_usd": 62.4,
+      "estimated_monthly_savings_usd": 62.4,
+      "recommended_action": "consider-stopping-or-rightsize",
+      "explanation": "Low CPU and low network usage over the lookback window.",
+      "remediation_commands": [
+        "aws ec2 stop-instances --instance-ids i-0123456789abcdef0"
+      ],
+      "reason_codes": [
+        "cw_metrics_measured"
+      ],
+      "evidence": {
+        "cloudwatch": {
+          "enabled": true,
+          "lookback_days": 7,
+          "metric_status": null,
+          "errors": [],
+          "budget": {
+            "attempted": 15,
+            "used": 12,
+            "remaining": 3
+          }
+        }
+      }
+    },
+    {
+      "type": "unattached_ebs",
+      "resource_type": "ebs",
+      "severity": "high",
+      "confidence": 0.95,
+      "id": "vol-0123456789abcdef",
+      "region": "us-east-1",
+      "size_gb": 100,
+      "volume_type": "gp3",
+      "estimated_monthly_cost_usd": 10.0,
+      "estimated_monthly_savings_usd": 10.0,
+      "recommended_action": "snapshot-and-delete",
+      "explanation": "EBS volume (100 GB) unattached for >7 days. Create snapshot for safety, then delete if unused.",
+      "remediation_commands": [
+        "# Create snapshot before deleting:",
+        "aws ec2 create-snapshot --volume-id vol-0123456789abcdef --description 'Backup before deletion'",
+        "# Then delete volume:",
+        "aws ec2 delete-volume --volume-id vol-0123456789abcdef"
+      ],
+      "reason_codes": [
+        "heuristic"
+      ],
+      "evidence": {}
+    },
+    {
+      "type": "unattached_ebs",
+      "resource_type": "ebs",
+      "severity": "high",
+      "confidence": 0.95,
+      "id": "vol-fedcba9876543210",
+      "region": "us-west-2",
+      "size_gb": 500,
+      "volume_type": "gp2",
+      "estimated_monthly_cost_usd": 50.0,
+      "estimated_monthly_savings_usd": 50.0,
+      "recommended_action": "snapshot-and-delete",
+      "explanation": "EBS volume (500 GB) unattached for >7 days. Create snapshot for safety, then delete if unused.",
+      "remediation_commands": [
+        "# Create snapshot before deleting:",
+        "aws ec2 create-snapshot --volume-id vol-fedcba9876543210 --description 'Backup before deletion'",
+        "# Then delete volume:",
+        "aws ec2 delete-volume --volume-id vol-fedcba9876543210"
+      ],
+      "reason_codes": [
+        "heuristic"
+      ],
+      "evidence": {}
+    },
+    {
+      "type": "gp2_to_gp3_migration",
+      "resource_type": "ebs",
+      "severity": "medium",
+      "confidence": 0.98,
+      "id": "vol-1111222233334444",
+      "region": "us-east-1",
+      "size_gb": 250,
+      "estimated_monthly_cost_usd": 25.0,
+      "estimated_monthly_savings_usd": 5.0,
+      "recommended_action": "migrate-to-gp3",
+      "explanation": "gp3 is typically cheaper than gp2 for similar workloads.",
+      "remediation_commands": [
+        "# Test in non-prod first, then migrate:",
+        "aws ec2 modify-volume --volume-id vol-1111222233334444 --volume-type gp3",
+        "# Monitor performance after migration:",
+        "aws cloudwatch get-metric-statistics --namespace AWS/EBS --metric-name VolumeReadOps --dimensions Name=VolumeId,Value=vol-1111222233334444 --start-time $(date -u -v-1d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 300 --statistics Average"
+      ],
+      "reason_codes": [
+        "heuristic"
+      ],
+      "evidence": {}
+    },
+    {
+      "type": "old_snapshot",
+      "resource_type": "snapshot",
+      "severity": "medium",
+      "confidence": 1.0,
+      "id": "snap-old123456789abc",
+      "region": "us-west-2",
+      "days_old": 964,
+      "estimated_monthly_cost_usd": 25.0,
+      "estimated_monthly_savings_usd": 25.0,
+      "recommended_action": "delete-snapshot",
+      "explanation": "Snapshot is older than the retention window.",
+      "remediation_commands": [
+        "aws ec2 delete-snapshot --snapshot-id snap-old123456789abc"
+      ],
+      "reason_codes": [
+        "heuristic"
+      ],
+      "evidence": {}
+    },
+    {
+      "type": "cloudwatch_logs_retention",
+      "resource_type": "cloudwatch",
+      "severity": "medium",
+      "confidence": 0.75,
+      "id": "/aws/lambda/data-processor",
+      "region": "us-east-1",
+      "estimated_monthly_cost_usd": 15.0,
+      "estimated_monthly_savings_usd": 9.0,
+      "recommended_action": "set-logs-retention",
+      "explanation": "Log group retention is set to Never Expire; set retention to reduce storage costs.",
+      "remediation_commands": [],
+      "reason_codes": [
+        "heuristic"
+      ],
+      "evidence": {}
+    },
+    {
+      "type": "overprovisioned_lambda",
+      "resource_type": "lambda",
+      "severity": "low",
+      "confidence": 0.7,
+      "id": "data-transformer",
+      "region": "us-east-1",
+      "estimated_monthly_cost_usd": 12.0,
+      "estimated_monthly_savings_usd": 3.0,
+      "recommended_action": "reduce-lambda-memory",
+      "explanation": "Execution time indicates memory may be over-provisioned.",
+      "remediation_commands": [],
+      "reason_codes": [
+        "heuristic"
+      ],
+      "evidence": {}
+    },
+    {
+      "type": "unused_eip",
+      "resource_type": "eip",
+      "severity": "medium",
+      "confidence": 1.0,
+      "id": "54.123.45.67",
+      "region": "us-east-1",
+      "estimated_monthly_cost_usd": 4.0,
+      "estimated_monthly_savings_usd": 4.0,
+      "recommended_action": "release-eip",
+      "explanation": "Elastic IP is not attached to any instance; AWS charges for unused EIPs.",
+      "remediation_commands": [
+        "aws ec2 release-address --public-ip 54.123.45.67"
+      ],
+      "reason_codes": [
+        "heuristic"
+      ],
+      "evidence": {}
+    },
+    {
+      "type": "unused_eip",
+      "resource_type": "eip",
+      "severity": "medium",
+      "confidence": 1.0,
+      "id": "34.210.98.76",
+      "region": "us-west-2",
+      "estimated_monthly_cost_usd": 4.0,
+      "estimated_monthly_savings_usd": 4.0,
+      "recommended_action": "release-eip",
+      "explanation": "Elastic IP is not attached to any instance; AWS charges for unused EIPs.",
+      "remediation_commands": [
+        "aws ec2 release-address --public-ip 34.210.98.76"
+      ],
+      "reason_codes": [
+        "heuristic"
+      ],
+      "evidence": {}
+    },
+    {
+      "type": "nat_gateway",
+      "resource_type": "nat",
+      "severity": "low",
+      "confidence": 0.7,
+      "id": "nat-0123456789abcdef",
+      "region": "us-east-1",
+      "estimated_monthly_cost_usd": 32.85,
+      "adjusted_monthly_cost_usd": 32.85,
+      "estimated_monthly_savings_usd": 0.0,
+      "recommended_action": "review-and-consider-vpc-endpoint",
+      "explanation": "NAT gateways have hourly + data processing cost; if used primarily for S3, consider an S3 VPC endpoint.",
+      "estimation_method": "base_hourly+uptime",
+      "assumptions": [
+        "no data processing included",
+        "uptime estimated from CreateTime",
+        "regional multiplier applied via pricing tables"
+      ],
+      "remediation_commands": [],
+      "reason_codes": [
+        "cost_estimated"
+      ],
+      "evidence": {
+        "estimation": {
+          "method": "base_hourly+uptime",
+          "assumptions": [
+            "no data processing included",
+            "uptime estimated from CreateTime",
+            "regional multiplier applied via pricing tables"
+          ],
+          "adjusted_monthly_cost_usd": 32.85
+        }
+      }
+    },
+    {
+      "type": "idle_elb",
+      "resource_type": "elb",
+      "severity": "high",
+      "confidence": 0.9,
+      "id": "my-alb-prod",
+      "region": "us-east-1",
+      "estimated_monthly_cost_usd": 25.0,
+      "estimated_monthly_savings_usd": 25.0,
+      "recommended_action": "review-and-delete-if-unused",
+      "explanation": "Low request count over the lookback window.",
+      "request_count_avg": 3.0,
+      "remediation_commands": [],
+      "reason_codes": [
+        "cw_metrics_measured"
+      ],
+      "evidence": {
+        "cloudwatch": {
+          "enabled": true,
+          "lookback_days": 7,
+          "metric_status": null,
+          "errors": [],
+          "budget": {
+            "attempted": 15,
+            "used": 12,
+            "remaining": 3
+          }
+        }
+      }
+    },
+    {
+      "type": "idle_elb",
+      "resource_type": "elb",
+      "severity": "low",
+      "confidence": 0.35,
+      "id": "my-alb-staging",
+      "region": "us-west-2",
+      "estimated_monthly_cost_usd": 0.0,
+      "estimated_monthly_savings_usd": 0.0,
+      "recommended_action": "review-lb-usage",
+      "explanation": "Unable to measure load balancer request volume: CloudWatch returned no datapoints for the lookback window.",
+      "remediation_commands": [],
+      "metrics_error": "cw_error:AWS/ApplicationELB:RequestCount:no_data",
+      "cw_metrics": [
+        {
+          "namespace": "AWS/ApplicationELB",
+          "metric": "RequestCount",
+          "statistic": "Sum",
+          "period": 86400,
+          "days": 7,
+          "region": "us-west-2",
+          "status": "no_data",
+          "datapoints": 0
+        }
+      ],
+      "reason_codes": [
+        "cw_no_data"
+      ],
+      "evidence": {
+        "cloudwatch": {
+          "enabled": true,
+          "lookback_days": 7,
+          "metric_status": null,
+          "errors": [
+            "cw_error:AWS/ApplicationELB:RequestCount:no_data"
+          ],
+          "metrics": [
+            {
+              "namespace": "AWS/ApplicationELB",
+              "metric": "RequestCount",
+              "statistic": "Sum",
+              "period": 86400,
+              "days": 7,
+              "region": "us-west-2",
+              "status": "no_data",
+              "datapoints": 0
+            }
+          ],
+          "datapoints_total": 0,
+          "budget": {
+            "attempted": 15,
+            "used": 12,
+            "remaining": 3
+          }
+        }
+      }
+    },
+    {
+      "type": "underutilized_rds",
+      "resource_type": "rds",
+      "severity": "medium",
+      "confidence": 0.75,
+      "id": "prod-postgres-db",
+      "region": "us-east-1",
+      "engine": "postgres",
+      "instance_class": "db.t3.large",
+      "recommended_instance_class": "db.t3.medium",
+      "estimated_monthly_cost_usd": 156.0,
+      "estimated_monthly_savings_usd": 78.0,
+      "recommended_action": "review-and-rightsize",
+      "explanation": "Metric query skipped due to budget exhaustion",
+      "metric_status": "skipped_budget",
+      "remediation_commands": [],
+      "reason_codes": [
+        "cw_budget_exhausted"
+      ],
+      "evidence": {
+        "cloudwatch": {
+          "enabled": true,
+          "lookback_days": 7,
+          "metric_status": "skipped_budget",
+          "errors": [],
+          "budget": {
+            "attempted": 15,
+            "used": 12,
+            "remaining": 3
+          }
+        }
+      }
+    },
+    {
+      "type": "underutilized_rds",
+      "resource_type": "rds",
+      "severity": "low",
+      "confidence": 0.3,
+      "id": "analytics-postgres-db",
+      "region": "us-east-1",
+      "engine": "postgres",
+      "instance_class": "db.t3.large",
+      "estimated_monthly_cost_usd": 0.0,
+      "estimated_monthly_savings_usd": 0.0,
+      "recommended_action": "review-and-rightsize",
+      "explanation": "Unable to measure CPU/storage utilization: missing CloudWatch permissions (AccessDenied).",
+      "remediation_commands": [],
+      "metrics_error": "cw_error:AWS/RDS:CPUUtilization:not_authorized",
+      "cw_metrics": [
+        {
+          "namespace": "AWS/RDS",
+          "metric": "CPUUtilization",
+          "statistic": "Average",
+          "period": 300,
+          "days": 7,
+          "region": "us-east-1",
+          "status": "error",
+          "classification": "not_authorized"
+        }
+      ],
+      "reason_codes": [
+        "cw_not_authorized"
+      ],
+      "evidence": {
+        "cloudwatch": {
+          "enabled": true,
+          "lookback_days": 7,
+          "metric_status": null,
+          "errors": [
+            "cw_error:AWS/RDS:CPUUtilization:not_authorized"
+          ],
+          "metrics": [
+            {
+              "namespace": "AWS/RDS",
+              "metric": "CPUUtilization",
+              "statistic": "Average",
+              "period": 300,
+              "days": 7,
+              "region": "us-east-1",
+              "status": "error",
+              "classification": "not_authorized"
+            }
+          ],
+          "datapoints_total": 0,
+          "budget": {
+            "attempted": 15,
+            "used": 12,
+            "remaining": 3
+          }
+        }
+      }
+    },
+    {
+      "type": "old_snapshot",
+      "resource_type": "snapshot",
+      "severity": "low",
+      "confidence": 1.0,
+      "id": "snap-0123456789abcdef",
+      "region": "us-east-1",
+      "days_old": 668,
+      "estimated_monthly_cost_usd": 5.0,
+      "estimated_monthly_savings_usd": 5.0,
+      "recommended_action": "delete-snapshot",
+      "explanation": "Snapshot is older than the retention window.",
+      "remediation_commands": [
+        "aws ec2 delete-snapshot --snapshot-id snap-0123456789abcdef"
+      ],
+      "reason_codes": [
+        "heuristic"
+      ],
+      "evidence": {}
+    }
+  ],
+  "estimated_monthly_cost": 426.25,
+  "estimated_monthly_savings": 280.4,
+  "provenance": {
+    "cloudwatch_metrics": true,
+    "metrics_lookback_days": 7,
+    "cloudwatch_queries_attempted": 15,
+    "cloudwatch_queries_used": 12,
+    "cloudwatch_queries_remaining": 3,
+    "cloudwatch_budget_exhausted": false
+  },
+  "historical_costs": {
+    "time_window": {
+      "start": "2025-11-01",
+      "end": "2025-12-01"
+    },
+    "granularity": "MONTHLY",
+    "total_unblended_cost": 1240.55,
+    "breakdown_by_service_region": {
+      "Amazon EC2": {
+        "us-east-1": 420.12,
+        "us-west-2": 110.05
+      },
+      "Amazon RDS": {
+        "us-east-1": 260.34
+      },
+      "Amazon S3": {
+        "us-east-1": 75.22,
+        "us-west-2": 18.1
+      },
+      "Amazon CloudWatch": {
+        "us-east-1": 44.9
+      },
+      "AWS NAT Gateway": {
+        "us-east-1": 95.0
+      }
+    }
+  }
+}
