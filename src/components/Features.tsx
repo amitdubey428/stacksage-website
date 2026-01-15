@@ -1,17 +1,58 @@
 "use client";
 import React from "react";
 import { Card } from "@/components/ui/card";
-import { Server, HardDrive, Database, Eye, Network, Tags, ShieldCheck, Timer } from "lucide-react";
+import {
+    Database,
+    Eye,
+    HardDrive,
+    Network,
+    Server,
+    ShieldCheck,
+    Tags,
+    Timer,
+} from "lucide-react";
 
 const features = [
-    { title: "EC2 Hygiene", desc: "Idle instances, basic right-sizing signals (when available)", icon: <Server className="h-5 w-5" /> },
-    { title: "EBS Hygiene", desc: "Unattached volumes, old snapshots, gp2→gp3 suggestions", icon: <HardDrive className="h-5 w-5" /> },
-    { title: "RDS Signals", desc: "Underutilized databases and sizing signals (when available)", icon: <Database className="h-5 w-5" /> },
-    { title: "CloudWatch (Optional)", desc: "Utilization enrichments if you enable permissions", icon: <Eye className="h-5 w-5" /> },
-    { title: "Cost Explorer (Optional)", desc: "Historical spend breakdown if you enable permissions", icon: <Network className="h-5 w-5" /> },
-    { title: "Tag Compliance", desc: "Missing tags, organization best practices", icon: <Tags className="h-5 w-5" /> },
-    { title: "Privacy-First", desc: "Runs in your GitHub Actions runner using a customer-controlled read-only IAM role", icon: <ShieldCheck className="h-5 w-5" /> },
-    { title: "Workflow-Based", desc: "Outputs are downloadable workflow artifacts (HTML + JSON/CSV)", icon: <Timer className="h-5 w-5" /> },
+    {
+        title: "EC2 Waste",
+        desc: "Stopped & idle instances, generation upgrade suggestions",
+        icon: <Server className="h-5 w-5" />,
+    },
+    {
+        title: "EBS + Snapshots",
+        desc: "Unattached volumes, gp2→gp3 recommendations, old snapshot cleanup",
+        icon: <HardDrive className="h-5 w-5" />,
+    },
+    {
+        title: "RDS Signals",
+        desc: "Idle/underused RDS signals with pragmatic recommendations",
+        icon: <Database className="h-5 w-5" />,
+    },
+    {
+        title: "Network Waste",
+        desc: "NAT gateways, unused EIPs, idle load balancers, missing S3 endpoints",
+        icon: <Network className="h-5 w-5" />,
+    },
+    {
+        title: "Tag Hygiene",
+        desc: "Untaged resources surfaced when you opt in",
+        icon: <Tags className="h-5 w-5" />,
+    },
+    {
+        title: "CloudWatch (Optional)",
+        desc: "Utilization enrichments with a bounded query budget + provenance",
+        icon: <Eye className="h-5 w-5" />,
+    },
+    {
+        title: "Privacy-First",
+        desc: "Runs in your GitHub Actions runner with a customer-controlled read-only role",
+        icon: <ShieldCheck className="h-5 w-5" />,
+    },
+    {
+        title: "Workflow Outputs",
+        desc: "HTML report + machine-readable JSON/CSV findings as artifacts",
+        icon: <Timer className="h-5 w-5" />,
+    },
 ];
 
 export default function Features() {

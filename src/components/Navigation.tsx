@@ -26,7 +26,7 @@ export default function Navigation() {
                     <a href="#pricing" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">Pricing</a>
                     <a href="#demo" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">Demo</a>
                     <Button asChild>
-                        <a href="#demo" aria-label="Request Early Access">Request Early Access</a>
+                        <a href="#demo" aria-label="Get a Demo">Get a Demo</a>
                     </Button>
                 </div>
                 <button
@@ -46,7 +46,7 @@ export default function Navigation() {
                         <a className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="#pricing">Pricing</a>
                         <a className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="#demo">Demo</a>
                         <Button asChild>
-                            <a href="#demo" aria-label="Request Early Access">Request Early Access</a>
+                            <a href="#demo" aria-label="Get a Demo">Get a Demo</a>
                         </Button>
                     </div>
                 </div>

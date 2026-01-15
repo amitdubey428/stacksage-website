@@ -4,8 +4,8 @@ import React from "react";
 export default function Demo() {
     return (
         <section id="demo" aria-labelledby="demo-title" className="mx-auto max-w-6xl px-4 py-20 scroll-mt-24">
-            <h2 id="demo-title" className="text-3xl sm:text-4xl font-bold tracking-tight">Request Early Access</h2>
-            <p className="mt-2 text-zinc-600 dark:text-zinc-300 max-w-2xl">Share a few details and we’ll help you set up the GitHub Actions workflow and private image access.</p>
+            <h2 id="demo-title" className="text-3xl sm:text-4xl font-bold tracking-tight">Get a Demo</h2>
+            <p className="mt-2 text-zinc-600 dark:text-zinc-300 max-w-2xl">Share a few details and we’ll help you set up the GitHub Actions workflow, private GHCR access, and a time-limited license.</p>
 
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                 <div>

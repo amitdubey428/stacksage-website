@@ -1,10 +1,10 @@
 import React from "react";
 
 const steps = [
-    { n: 1, title: "Add the Workflow", desc: "Run StackSage in your GitHub Actions runner" },
-    { n: 2, title: "Provide Read-Only Access", desc: "Use a customer-controlled IAM role ARN (assume role)" },
-    { n: 3, title: "Run Manual or Scheduled", desc: "Manual runs can accept inputs; scheduled runs use a repo secret" },
-    { n: 4, title: "Download Artifacts", desc: "HTML report + JSON/CSV findings as workflow artifacts" },
+    { n: 1, title: "Install the Workflow", desc: "Add the StackSage workflow to your repo and pull the private GHCR image" },
+    { n: 2, title: "Grant Read-Only Access", desc: "Provide a customer-controlled IAM role ARN (assume role)" },
+    { n: 3, title: "Add Your License", desc: "Set a StackSage license secret (time-limited) and run manual or scheduled audits" },
+    { n: 4, title: "Get Actionable Outputs", desc: "Download the HTML report + JSON/CSV findings as workflow artifacts" },
 ];
 
 export default function HowItWorks() {

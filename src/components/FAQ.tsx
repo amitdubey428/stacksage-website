@@ -3,11 +3,13 @@ import React from "react";
 
 const faqs = [
     { q: "Where does StackSage run?", a: "Inside your GitHub Actions runner." },
+    { q: "How is StackSage delivered?", a: "As a private Docker image pulled from GHCR and run by your workflow." },
     { q: "Do you ingest AWS credentials?", a: "No. AWS access is via a customer-controlled read-only IAM role used by your workflow." },
+    { q: "What is the StackSage license?", a: "A signed, time-limited token provided by StackSage. If it expires, the audit fails fast until it’s renewed." },
     { q: "What do I get as output?", a: "An HTML report plus machine-readable findings (JSON/CSV) as workflow artifacts." },
     {
         q: "What AWS services do you cover?",
-        a: "Common waste & hygiene checks across EC2, EBS, RDS, tagging, and more. Optional enrichments: CloudWatch utilization + Cost Explorer historical spend (if enabled).",
+        a: "Common waste & hygiene checks across EC2, EBS (incl. snapshots), RDS, S3, and network resources. Optional enrichments: CloudWatch utilization + Cost Explorer historical spend (opt-in).",
     },
 ];
 

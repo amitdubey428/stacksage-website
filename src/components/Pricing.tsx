@@ -4,35 +4,38 @@ import { Button } from "@/components/ui/button";
 
 const tiers = [
     {
-        name: "Pilot",
-        price: "Contact us",
-        description: "Early access for teams piloting StackSage",
+        name: "Starter",
+        price: "$299/mo",
+        description: "For small teams getting their first cost hygiene baseline",
         features: [
-            "Private GHCR image access",
-            "GitHub Actions workflow template",
-            "Report artifacts (HTML + JSON/CSV)",
-            "Support during setup",
+            "Up to 2 AWS accounts",
+            "Private GHCR image + workflow template",
+            "Time-limited license (renewable)",
+            "HTML report + JSON/CSV findings",
+            "Email support during setup",
         ],
     },
     {
-        name: "Team",
-        price: "Contact us",
-        description: "For teams running recurring audits",
+        name: "Growth",
+        price: "$799/mo",
+        description: "For growing SMEs running recurring audits across accounts",
         features: [
-            "Everything in Pilot",
-            "Help configuring scheduled runs",
-            "Optional CloudWatch/Cost Explorer enrichments (if enabled)",
+            "Up to 10 AWS accounts",
+            "Everything in Starter",
+            "Help setting up scheduled runs",
+            "Optional CloudWatch + Cost Explorer enrichments (opt-in)",
+            "Bounded CloudWatch query budget + provenance",
         ],
         popular: true,
     },
     {
-        name: "Org",
-        price: "Contact us",
-        description: "For org-wide rollouts",
+        name: "Scale",
+        price: "Custom",
+        description: "For larger footprints and multi-team rollouts",
         features: [
-            "Everything in Team",
-            "Onboarding + support",
+            "More AWS accounts / org-wide rollout",
             "Multiple repos/workflows",
+            "Custom query budgets + support model",
         ],
     },
 ];
@@ -43,7 +46,7 @@ export default function Pricing() {
             <div className="text-center mb-12">
                 <h2 id="pricing-title" className="text-3xl sm:text-4xl font-bold tracking-tight">Simple, Transparent Pricing</h2>
                 <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
-                    Early access pricing while we onboard design partners. Tell us about your AWS footprint and how you want to run audits.
+                    Designed for SMEs: price by AWS accounts, run it in your own GitHub Actions, and keep permissions read-only.
                 </p>
             </div>
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -63,6 +66,9 @@ export default function Pricing() {
                 ))}
             </div>
             <div className="mt-8 text-center space-y-2">
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                    Annual and pilot options available.
+                </p>
                 <p className="text-sm text-zinc-600 dark:text-zinc-400">
                     Email us at <a className="underline" href="mailto:hello@stacksageai.com">hello@stacksageai.com</a>
                 </p>

@@ -16,15 +16,15 @@ export default function Hero() {
                     className="text-center"
                 >
                     <h1 id="hero-title" className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-sky-600">
-                        Run an AWS waste & hygiene audit in GitHub Actions
+                        AWS cost audits that run in your GitHub Actions
                     </h1>
                     <p className="mt-6 text-lg sm:text-xl text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
-                        StackSage runs inside your GitHub Actions runner using a customer-controlled read-only IAM role, and produces an HTML report plus JSON/CSV findings as workflow artifacts.
+                        StackSage runs inside your runner from a private GHCR image using a customer-controlled read-only role. You get an HTML report + JSON/CSV findings as workflow artifacts — no SaaS agent and no AWS credential sharing.
                     </p>
                     <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                         <Magnetic>
                             <Button asChild size="lg">
-                                <a href="#demo">Request Early Access</a>
+                                <a href="#demo">Get a Demo</a>
                             </Button>
                         </Magnetic>
                         <Magnetic strength={20}>
@@ -35,8 +35,9 @@ export default function Hero() {
                     </div>
                     <ul className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm text-zinc-600 dark:text-zinc-400">
                         <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Runs in GitHub Actions</li>
+                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Private GHCR image</li>
                         <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">HTML + JSON/CSV outputs</li>
-                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Customer-controlled read-only role</li>
+                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Read-only role + optional enrichments</li>
                     </ul>
                 </motion.div>
             </div>
