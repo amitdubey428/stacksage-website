@@ -3,7 +3,8 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
     title: "Sample Audit Report — StackSage",
-    description: "View a sample StackSage audit report (HTML) and see the JSON/CSV-style findings output format.",
+    description:
+        "View a sample StackSage audit report (HTML) and the standard artifacts: summary.md, findings.json, and findings.csv.",
 };
 
 export default function DemoReportPage() {
@@ -24,7 +25,7 @@ export default function DemoReportPage() {
                         Sample Audit Report
                     </h1>
                     <p className="text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
-                        This page shows the format you’ll receive from a StackSage run: an HTML report plus machine-readable findings (JSON/CSV).
+                        This page shows the format you’ll receive from a StackSage run: a one-page summary, an HTML report, and machine-readable findings (JSON/CSV).
                         The report embedded below is a mock demo account.
                     </p>
                     <div className="mt-4 flex flex-wrap justify-center gap-3">
@@ -42,6 +43,18 @@ export default function DemoReportPage() {
                         >
                             Get Your Own Audit
                         </Link>
+                    </div>
+
+                    <div className="mt-4 flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm">
+                        <a className="underline" href="/demo/summary.md" target="_blank" rel="noopener noreferrer">
+                            Download summary.md
+                        </a>
+                        <a className="underline" href="/demo/findings.json" target="_blank" rel="noopener noreferrer">
+                            Download findings.json
+                        </a>
+                        <a className="underline" href="/demo/findings.csv" target="_blank" rel="noopener noreferrer">
+                            Download findings.csv
+                        </a>
                     </div>
                 </div>
 
