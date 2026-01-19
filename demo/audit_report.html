@@ -330,7 +330,7 @@
     <div class="metadata">
       <strong>Account:</strong> 123456789012 | 
       <strong>Regions:</strong> us-east-1, us-west-2 | 
-      <strong>Generated:</strong> 2026-01-19 09:58:06 UTC
+      <strong>Generated:</strong> 2026-01-19 10:04:29 UTC
       | <strong>Pricing:</strong> v2025-12
     </div>
     
@@ -343,13 +343,13 @@
       </div>
       
       <div class="card card-issues">
-        <div class="card-value">15</div>
+        <div class="card-value">22</div>
         <div class="card-label">Issues Found</div>
       </div>
       
       <div class="card card-priority">
         <div class="card-value">
-          4
+          9
         </div>
         <div class="card-label">High Priority Items</div>
       </div>
@@ -539,9 +539,9 @@
       new Chart(ctx, {
         type: 'pie',
         data: {
-          labels: ['ec2', 'ebs', 'snapshot', 'cloudwatch', 'lambda', 'eip', 'nat', 'elb', 'rds'],
+          labels: ['account', 'security-group', 'ec2', 'ebs', 'snapshot', 'cloudwatch', 'lambda', 'eip', 'nat', 'elb', 'rds'],
           datasets: [{
-            data: [1, 3, 2, 1, 1, 2, 1, 2, 2],
+            data: [6, 1, 1, 3, 2, 1, 1, 2, 1, 2, 2],
             backgroundColor: [
               '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
               '#FF9F40', '#FF6384', '#C9CBCF', '#4BC0C0', '#FF9F40'
@@ -573,8 +573,18 @@
     <div class="priority-grid">
       
       <div class="priority-box critical">
-        <h3 style="color: #c62828;">🔥 Critical Priority (1)</h3>
+        <h3 style="color: #c62828;">🔥 Critical Priority (3)</h3>
         <ul>
+          
+            <li>
+              enable-root-mfa
+              
+            </li>
+          
+            <li>
+              remove-root-access-keys
+              
+            </li>
           
             <li>
               consider-stopping-or-rightsize
@@ -589,8 +599,23 @@
       
       
       <div class="priority-box high">
-        <h3 style="color: #e65100;">⚡ High Priority (3)</h3>
+        <h3 style="color: #e65100;">⚡ High Priority (6)</h3>
         <ul>
+          
+            <li>
+              enable-cloudtrail
+              
+            </li>
+          
+            <li>
+              enable-s3-block-public-access
+              
+            </li>
+          
+            <li>
+              restrict-security-group-ingress
+              
+            </li>
           
             <li>
               snapshot-and-delete
@@ -603,13 +628,6 @@
               snapshot-and-delete
               
                 <br><small style="color: #1565c0;">💰 Save $50.0/month</small>
-              
-            </li>
-          
-            <li>
-              review-and-delete-if-unused
-              
-                <br><small style="color: #1565c0;">💰 Save $25.0/month</small>
               
             </li>
           
@@ -699,6 +717,16 @@
         <tbody>
         
           <tr>
+            <td>account</td>
+            <td><strong>6</strong></td>
+          </tr>
+        
+          <tr>
+            <td>security-group</td>
+            <td><strong>1</strong></td>
+          </tr>
+        
+          <tr>
             <td>ec2</td>
             <td><strong>1</strong></td>
           </tr>
@@ -749,7 +777,7 @@
 
 
     <!-- All Findings (Collapsible) -->
-    <button class="collapsible">🔍 All Findings (15 total)</button>
+    <button class="collapsible">🔍 All Findings (22 total)</button>
     <div class="content">
       <table style="margin-top: 16px;">
         <thead>
@@ -765,6 +793,335 @@
           </tr>
         </thead>
         <tbody>
+        
+          <tr class="severity-critical">
+            <td>
+              iam_root_mfa_disabled
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  100%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              root
+              
+              
+              
+            </td>
+            <td>None</td>
+            <td>
+              <span class="badge badge-critical">
+                CRITICAL
+              </span>
+            </td>
+            <td>None</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              0
+              
+            </td>
+            <td>
+              enable-root-mfa
+              
+              
+                <br><small style="color: #666; font-style: italic;">Root MFA is not enabled. Enable MFA on the root user and restrict root usage.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-critical">
+            <td>
+              iam_root_access_keys_present
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  100%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              root
+              
+              
+              
+            </td>
+            <td>None</td>
+            <td>
+              <span class="badge badge-critical">
+                CRITICAL
+              </span>
+            </td>
+            <td>None</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              0
+              
+            </td>
+            <td>
+              remove-root-access-keys
+              
+              
+                <br><small style="color: #666; font-style: italic;">Root access keys are present. Delete root access keys and use least-privilege IAM roles/users.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-medium">
+            <td>
+              iam_password_policy_weak
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  95%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              account
+              
+              
+              
+            </td>
+            <td>None</td>
+            <td>
+              <span class="badge badge-medium">
+                MEDIUM
+              </span>
+            </td>
+            <td>None</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              0
+              
+            </td>
+            <td>
+              harden-iam-password-policy
+              
+              
+                <br><small style="color: #666; font-style: italic;">IAM password policy is weaker than common baseline settings.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-high">
+            <td>
+              cloudtrail_not_configured
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  90%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              account
+              
+              
+              
+            </td>
+            <td>None</td>
+            <td>
+              <span class="badge badge-high">
+                HIGH
+              </span>
+            </td>
+            <td>None</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              0
+              
+            </td>
+            <td>
+              enable-cloudtrail
+              
+              
+                <br><small style="color: #666; font-style: italic;">CloudTrail baseline appears incomplete. Enable an org/account trail (multi-region) and ensure it is actively logging.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-high">
+            <td>
+              s3_account_public_access_block_disabled
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  90%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              account
+              
+              
+              
+            </td>
+            <td>None</td>
+            <td>
+              <span class="badge badge-high">
+                HIGH
+              </span>
+            </td>
+            <td>None</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              0
+              
+            </td>
+            <td>
+              enable-s3-block-public-access
+              
+              
+                <br><small style="color: #666; font-style: italic;">S3 account-level Block Public Access is not fully enabled.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-high">
+            <td>
+              sg_open_to_world
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  95%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              sg-0123abcd4567efgh8
+              
+              
+              
+            </td>
+            <td>us-east-1</td>
+            <td>
+              <span class="badge badge-high">
+                HIGH
+              </span>
+            </td>
+            <td>None</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              0
+              
+            </td>
+            <td>
+              restrict-security-group-ingress
+              
+              
+                <br><small style="color: #666; font-style: italic;">Security group allows inbound access from the public internet on sensitive ports.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-medium">
+            <td>
+              guardduty_not_enabled
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  80%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              account
+              
+              
+              
+            </td>
+            <td>None</td>
+            <td>
+              <span class="badge badge-medium">
+                MEDIUM
+              </span>
+            </td>
+            <td>None</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              0
+              
+            </td>
+            <td>
+              enable-guardduty
+              
+              
+                <br><small style="color: #666; font-style: italic;">GuardDuty is not enabled in one or more regions checked.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
         
           <tr class="severity-critical">
             <td>

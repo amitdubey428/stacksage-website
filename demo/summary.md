@@ -1,7 +1,7 @@
 # StackSage Summary
 
 - Account: 123456789012
-- Timestamp: 2026-01-19 09:58:06 UTC
+- Timestamp: 2026-01-19 10:04:29 UTC
 - Regions scanned: us-east-1, us-west-2
 - Opt-ins: CloudWatch=unknown, CostExplorer=unknown, PricingAPI=unknown
 
@@ -9,11 +9,11 @@
 - Estimated monthly savings opportunities: $280.40
 
 ## Top risks (security/exposure/audit logging)
+- CRITICAL: iam_root_access_keys_present
+- CRITICAL: iam_root_mfa_disabled
 - CRITICAL: idle_ec2 (us-east-1)
+- HIGH: cloudtrail_not_configured
 - HIGH: idle_elb (us-east-1)
-- HIGH: unattached_ebs (us-east-1)
-- HIGH: unattached_ebs (us-west-2)
-- MEDIUM: cloudwatch_logs_retention (us-east-1)
 
 ## Top cost opportunities
 - $78.00/mo: underutilized_rds (us-east-1)

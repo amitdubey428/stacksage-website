@@ -6,6 +6,195 @@
   ],
   "findings": [
     {
+      "type": "iam_root_mfa_disabled",
+      "resource_type": "account",
+      "severity": "critical",
+      "confidence": 1.0,
+      "id": "root",
+      "region": null,
+      "estimated_monthly_cost_usd": null,
+      "estimated_monthly_savings_usd": 0,
+      "recommended_action": "enable-root-mfa",
+      "explanation": "Root MFA is not enabled. Enable MFA on the root user and restrict root usage.",
+      "reason_codes": [
+        "security_baseline",
+        "cost_unknown"
+      ],
+      "evidence": {
+        "iam": {
+          "account_mfa_enabled": false
+        }
+      },
+      "remediation_commands": []
+    },
+    {
+      "type": "iam_root_access_keys_present",
+      "resource_type": "account",
+      "severity": "critical",
+      "confidence": 1.0,
+      "id": "root",
+      "region": null,
+      "estimated_monthly_cost_usd": null,
+      "estimated_monthly_savings_usd": 0,
+      "recommended_action": "remove-root-access-keys",
+      "explanation": "Root access keys are present. Delete root access keys and use least-privilege IAM roles/users.",
+      "reason_codes": [
+        "security_baseline",
+        "cost_unknown"
+      ],
+      "evidence": {
+        "iam": {
+          "root_access_keys_present": true
+        }
+      },
+      "remediation_commands": []
+    },
+    {
+      "type": "iam_password_policy_weak",
+      "resource_type": "account",
+      "severity": "medium",
+      "confidence": 0.95,
+      "id": "account",
+      "region": null,
+      "estimated_monthly_cost_usd": null,
+      "estimated_monthly_savings_usd": 0,
+      "recommended_action": "harden-iam-password-policy",
+      "explanation": "IAM password policy is weaker than common baseline settings.",
+      "reason_codes": [
+        "security_baseline",
+        "cost_unknown"
+      ],
+      "evidence": {
+        "iam": {
+          "password_policy_present": true,
+          "issues": [
+            "MinimumPasswordLength 10 < 14",
+            "Missing complexity requirements (symbols/numbers/upper/lower)"
+          ],
+          "minimum_password_length": 10,
+          "password_reuse_prevention": 0,
+          "max_password_age": 180
+        }
+      },
+      "remediation_commands": []
+    },
+    {
+      "type": "cloudtrail_not_configured",
+      "resource_type": "account",
+      "severity": "high",
+      "confidence": 0.9,
+      "id": "account",
+      "region": null,
+      "estimated_monthly_cost_usd": null,
+      "estimated_monthly_savings_usd": 0,
+      "recommended_action": "enable-cloudtrail",
+      "explanation": "CloudTrail baseline appears incomplete. Enable an org/account trail (multi-region) and ensure it is actively logging.",
+      "reason_codes": [
+        "audit_logging",
+        "cost_unknown"
+      ],
+      "evidence": {
+        "cloudtrail": {
+          "regions_checked": [
+            "us-east-1",
+            "us-west-2"
+          ],
+          "trails_seen": 0,
+          "multi_region_trails": 0,
+          "logging_trails": 0,
+          "log_file_validation_enabled_count": 0,
+          "kms_encrypted_count": 0,
+          "issues": [
+            "No trails found",
+            "No multi-region trail",
+            "No trail appears to be actively logging"
+          ]
+        }
+      },
+      "remediation_commands": []
+    },
+    {
+      "type": "s3_account_public_access_block_disabled",
+      "resource_type": "account",
+      "severity": "high",
+      "confidence": 0.9,
+      "id": "account",
+      "region": null,
+      "estimated_monthly_cost_usd": null,
+      "estimated_monthly_savings_usd": 0,
+      "recommended_action": "enable-s3-block-public-access",
+      "explanation": "S3 account-level Block Public Access is not fully enabled.",
+      "reason_codes": [
+        "public_exposure",
+        "cost_unknown"
+      ],
+      "evidence": {
+        "s3": {
+          "account_public_access_block_missing": [
+            "BlockPublicPolicy"
+          ]
+        }
+      },
+      "remediation_commands": []
+    },
+    {
+      "type": "sg_open_to_world",
+      "resource_type": "security-group",
+      "severity": "high",
+      "confidence": 0.95,
+      "id": "sg-0123abcd4567efgh8",
+      "region": "us-east-1",
+      "estimated_monthly_cost_usd": null,
+      "estimated_monthly_savings_usd": 0,
+      "recommended_action": "restrict-security-group-ingress",
+      "explanation": "Security group allows inbound access from the public internet on sensitive ports.",
+      "reason_codes": [
+        "public_exposure",
+        "cost_unknown"
+      ],
+      "evidence": {
+        "network": {
+          "exposures": [
+            {
+              "protocol": "tcp",
+              "port": 22,
+              "cidr": "world"
+            },
+            {
+              "protocol": "tcp",
+              "port": 5432,
+              "cidr": "world"
+            }
+          ]
+        }
+      },
+      "remediation_commands": []
+    },
+    {
+      "type": "guardduty_not_enabled",
+      "resource_type": "account",
+      "severity": "medium",
+      "confidence": 0.8,
+      "id": "account",
+      "region": null,
+      "estimated_monthly_cost_usd": null,
+      "estimated_monthly_savings_usd": 0,
+      "recommended_action": "enable-guardduty",
+      "explanation": "GuardDuty is not enabled in one or more regions checked.",
+      "reason_codes": [
+        "audit_logging",
+        "cost_unknown"
+      ],
+      "evidence": {
+        "guardduty": {
+          "regions_missing": [
+            "us-west-2"
+          ]
+        }
+      },
+      "remediation_commands": []
+    },
+    {
       "type": "idle_ec2",
       "resource_type": "ec2",
       "severity": "critical",
