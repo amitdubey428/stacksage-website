@@ -34,7 +34,7 @@ export default function Demo() {
                 <div className="p-6 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 rounded-2xl border border-indigo-200 dark:border-indigo-800">
                     <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">See What You’ll Get</h3>
                     <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-2">
-                        Browse a sample audit report with concrete, actionable findings — including Tier‑1 posture signals (IAM, audit logging, exposure).
+                        Browse a sample audit report with concrete, actionable findings — including security posture signals (IAM, audit logging, exposure).
                     </p>
                     <a
                         href="/demo-report"

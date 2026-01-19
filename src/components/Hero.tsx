@@ -19,7 +19,7 @@ export default function Hero() {
                         AWS cost audits that run in your GitHub Actions
                     </h1>
                     <p className="mt-6 text-lg sm:text-xl text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
-                        StackSage runs inside your runner from a private GHCR image using a customer-controlled read-only role. You get a one-page summary, an HTML report, and JSON/CSV findings — plus Tier‑1 posture signals (IAM, audit logging, exposure) — no SaaS agent and no AWS credential sharing.
+                        StackSage runs inside your runner from a private GHCR image using a customer-controlled read-only role. You get a one-page summary, an HTML report, and JSON/CSV findings — plus security posture signals (IAM, audit logging, exposure) — no SaaS agent and no AWS credential sharing.
                     </p>
                     <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                         <Magnetic>
@@ -37,7 +37,7 @@ export default function Hero() {
                         <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Runs in GitHub Actions</li>
                         <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Private GHCR image</li>
                         <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Summary + HTML + JSON/CSV outputs</li>
-                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Tier‑1 posture (IAM, audit logging, exposure)</li>
+                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Security posture (IAM, audit logging, exposure)</li>
                     </ul>
                 </motion.div>
             </div>

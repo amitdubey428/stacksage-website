@@ -20,7 +20,7 @@ const features = [
         icon: <Server className="h-5 w-5" />,
     },
     {
-        title: "Tier‑1 Posture",
+        title: "Security Posture",
         desc: "IAM root posture + key hygiene, audit logging baselines, and public exposure signals",
         icon: <KeyRound className="h-5 w-5" />,
     },
