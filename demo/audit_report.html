@@ -330,7 +330,7 @@
     <div class="metadata">
       <strong>Account:</strong> 123456789012 | 
       <strong>Regions:</strong> us-east-1, us-west-2 | 
-      <strong>Generated:</strong> 2026-01-19 10:04:29 UTC
+      <strong>Generated:</strong> 2026-01-19 10:17:13 UTC
       | <strong>Pricing:</strong> v2025-12
     </div>
     
@@ -775,6 +775,1139 @@
       </table>
     </div>
 
+
+    
+
+    
+    <button class="collapsible">💰 Financial Findings (15 total)</button>
+    <div class="content">
+      <table style="margin-top: 16px;">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Resource</th>
+            <th>Region</th>
+            <th>Severity</th>
+            <th>Est. Cost (USD/mo)</th>
+            <th>Est. Savings (USD/mo)</th>
+            <th>Recommended Action</th>
+            <th>Estimation</th>
+          </tr>
+        </thead>
+        <tbody>
+        
+          <tr class="severity-medium">
+            <td>
+              underutilized_rds
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  75%
+                </span>
+              
+              
+              
+              
+              
+                <span class="badge badge-skipped" title="Metric query skipped due to budget exhaustion">
+                  Skipped
+                </span>
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              prod-postgres-db
+              
+              
+                <br><small style="color: #666;">db.t3.large
+                
+                  → db.t3.medium
+                
+                </small>
+              
+              
+            </td>
+            <td>us-east-1</td>
+            <td>
+              <span class="badge badge-medium">
+                MEDIUM
+              </span>
+            </td>
+            <td>156.0</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              78.0
+              
+            </td>
+            <td>
+              review-and-rightsize
+              
+                
+                
+              
+              
+                <br><small style="color: #666; font-style: italic;">Metric query skipped due to budget exhaustion</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-critical">
+            <td>
+              idle_ec2
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  95%
+                </span>
+              
+              
+                <span class="badge badge-cloudwatch" title="Measured via CloudWatch aggregate metrics">
+                  Measured
+                </span>
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              i-0123456789abcdef0
+              
+              
+              
+            </td>
+            <td>us-east-1</td>
+            <td>
+              <span class="badge badge-critical">
+                CRITICAL
+              </span>
+            </td>
+            <td>62.4</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              62.4
+              
+            </td>
+            <td>
+              consider-stopping-or-rightsize
+              
+              
+                <br><small style="color: #666; font-style: italic;">Low CPU and low network usage over the lookback window.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-high">
+            <td>
+              unattached_ebs
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  95%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              vol-fedcba9876543210
+              
+              
+              
+            </td>
+            <td>us-west-2</td>
+            <td>
+              <span class="badge badge-high">
+                HIGH
+              </span>
+            </td>
+            <td>50.0</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              50.0
+              
+            </td>
+            <td>
+              snapshot-and-delete
+              
+              
+                <br><small style="color: #666; font-style: italic;">EBS volume (500 GB) unattached for >7 days. Create snapshot for safety, then delete if unused.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-high">
+            <td>
+              idle_elb
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  90%
+                </span>
+              
+              
+                <span class="badge badge-cloudwatch" title="Measured via CloudWatch aggregate metrics">
+                  Measured
+                </span>
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              my-alb-prod
+              
+              
+              
+            </td>
+            <td>us-east-1</td>
+            <td>
+              <span class="badge badge-high">
+                HIGH
+              </span>
+            </td>
+            <td>25.0</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              25.0
+              
+            </td>
+            <td>
+              review-and-delete-if-unused
+              
+              
+                <br><small style="color: #666; font-style: italic;">Low request count over the lookback window.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-medium">
+            <td>
+              old_snapshot
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  100%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              snap-old123456789abc
+              
+              
+              
+                <br><small style="color: #666;">964 days old</small>
+              
+            </td>
+            <td>us-west-2</td>
+            <td>
+              <span class="badge badge-medium">
+                MEDIUM
+              </span>
+            </td>
+            <td>25.0</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              25.0
+              
+            </td>
+            <td>
+              delete-snapshot
+              
+              
+                <br><small style="color: #666; font-style: italic;">Snapshot is older than the retention window.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-high">
+            <td>
+              unattached_ebs
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  95%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              vol-0123456789abcdef
+              
+              
+              
+            </td>
+            <td>us-east-1</td>
+            <td>
+              <span class="badge badge-high">
+                HIGH
+              </span>
+            </td>
+            <td>10.0</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              10.0
+              
+            </td>
+            <td>
+              snapshot-and-delete
+              
+              
+                <br><small style="color: #666; font-style: italic;">EBS volume (100 GB) unattached for >7 days. Create snapshot for safety, then delete if unused.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-medium">
+            <td>
+              cloudwatch_logs_retention
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  75%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              /aws/lambda/data-processor
+              
+              
+              
+            </td>
+            <td>us-east-1</td>
+            <td>
+              <span class="badge badge-medium">
+                MEDIUM
+              </span>
+            </td>
+            <td>15.0</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              9.0
+              
+            </td>
+            <td>
+              set-logs-retention
+              
+              
+                <br><small style="color: #666; font-style: italic;">Log group retention is set to Never Expire; set retention to reduce storage costs.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-medium">
+            <td>
+              gp2_to_gp3_migration
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  98%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              vol-1111222233334444
+              
+              
+              
+            </td>
+            <td>us-east-1</td>
+            <td>
+              <span class="badge badge-medium">
+                MEDIUM
+              </span>
+            </td>
+            <td>25.0</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              5.0
+              
+            </td>
+            <td>
+              migrate-to-gp3
+              
+              
+                <br><small style="color: #666; font-style: italic;">gp3 is typically cheaper than gp2 for similar workloads.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-low">
+            <td>
+              old_snapshot
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  100%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              snap-0123456789abcdef
+              
+              
+              
+                <br><small style="color: #666;">668 days old</small>
+              
+            </td>
+            <td>us-east-1</td>
+            <td>
+              <span class="badge badge-low">
+                LOW
+              </span>
+            </td>
+            <td>5.0</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              5.0
+              
+            </td>
+            <td>
+              delete-snapshot
+              
+              
+                <br><small style="color: #666; font-style: italic;">Snapshot is older than the retention window.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-medium">
+            <td>
+              unused_eip
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  100%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              54.123.45.67
+              
+              
+              
+            </td>
+            <td>us-east-1</td>
+            <td>
+              <span class="badge badge-medium">
+                MEDIUM
+              </span>
+            </td>
+            <td>4.0</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              4.0
+              
+            </td>
+            <td>
+              release-eip
+              
+              
+                <br><small style="color: #666; font-style: italic;">Elastic IP is not attached to any instance; AWS charges for unused EIPs.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-medium">
+            <td>
+              unused_eip
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  100%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              34.210.98.76
+              
+              
+              
+            </td>
+            <td>us-west-2</td>
+            <td>
+              <span class="badge badge-medium">
+                MEDIUM
+              </span>
+            </td>
+            <td>4.0</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              4.0
+              
+            </td>
+            <td>
+              release-eip
+              
+              
+                <br><small style="color: #666; font-style: italic;">Elastic IP is not attached to any instance; AWS charges for unused EIPs.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-low">
+            <td>
+              overprovisioned_lambda
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  70%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              data-transformer
+              
+              
+              
+            </td>
+            <td>us-east-1</td>
+            <td>
+              <span class="badge badge-low">
+                LOW
+              </span>
+            </td>
+            <td>12.0</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              3.0
+              
+            </td>
+            <td>
+              reduce-lambda-memory
+              
+              
+                <br><small style="color: #666; font-style: italic;">Execution time indicates memory may be over-provisioned.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-low">
+            <td>
+              idle_elb
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  35%
+                </span>
+              
+              
+              
+                <span class="tip">
+                  <span class="badge badge-info">No Data</span>
+                  <span class="tiptext">CloudWatch returned no datapoints for the lookback window.</span>
+                </span>
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              my-alb-staging
+              
+              
+              
+            </td>
+            <td>us-west-2</td>
+            <td>
+              <span class="badge badge-low">
+                LOW
+              </span>
+            </td>
+            <td>0.0</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              0.0
+              
+            </td>
+            <td>
+              review-lb-usage
+              
+              
+                <br><small style="color: #666; font-style: italic;">Unable to measure load balancer request volume: CloudWatch returned no datapoints for the lookback window.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-low">
+            <td>
+              nat_gateway
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  70%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              nat-0123456789abcdef
+              
+              
+              
+            </td>
+            <td>us-east-1</td>
+            <td>
+              <span class="badge badge-low">
+                LOW
+              </span>
+            </td>
+            <td>32.85</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              0.0
+              
+            </td>
+            <td>
+              review-and-consider-vpc-endpoint
+              
+              
+                <br><small style="color: #666; font-style: italic;">NAT gateways have hourly + data processing cost; if used primarily for S3, consider an S3 VPC endpoint.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                
+                
+                
+                
+                <span class="tip">
+                  <span class="badge badge-info">📐 Estimation</span>
+                  <span class="tiptext">Method: base_hourly+uptime • Adjusted cost: $32.85/mo • Assumptions: ['no data processing included', 'uptime estimated from CreateTime', 'regional multiplier applied via pricing tables']</span>
+                </span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-low">
+            <td>
+              underutilized_rds
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  30%
+                </span>
+              
+              
+              
+              
+                <span class="tip">
+                  <span class="badge badge-info">Access Denied</span>
+                  <span class="tiptext">Missing CloudWatch permissions to read metrics for this resource.</span>
+                </span>
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              analytics-postgres-db
+              
+              
+                <br><small style="color: #666;">db.t3.large
+                
+                </small>
+              
+              
+            </td>
+            <td>us-east-1</td>
+            <td>
+              <span class="badge badge-low">
+                LOW
+              </span>
+            </td>
+            <td>0.0</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              0.0
+              
+            </td>
+            <td>
+              review-and-rightsize
+              
+                
+                
+              
+              
+                <br><small style="color: #666; font-style: italic;">Unable to measure CPU/storage utilization: missing CloudWatch permissions (AccessDenied).</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    
+
+    
+    <button class="collapsible">🛡️ Security Posture Findings (7 total)</button>
+    <div class="content">
+      <table style="margin-top: 16px;">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Resource</th>
+            <th>Region</th>
+            <th>Severity</th>
+            <th>Est. Cost (USD/mo)</th>
+            <th>Est. Savings (USD/mo)</th>
+            <th>Recommended Action</th>
+            <th>Estimation</th>
+          </tr>
+        </thead>
+        <tbody>
+        
+          <tr class="severity-critical">
+            <td>
+              iam_root_access_keys_present
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  100%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              root
+              
+              
+              
+            </td>
+            <td>None</td>
+            <td>
+              <span class="badge badge-critical">
+                CRITICAL
+              </span>
+            </td>
+            <td>None</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              0
+              
+            </td>
+            <td>
+              remove-root-access-keys
+              
+              
+                <br><small style="color: #666; font-style: italic;">Root access keys are present. Delete root access keys and use least-privilege IAM roles/users.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-critical">
+            <td>
+              iam_root_mfa_disabled
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  100%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              root
+              
+              
+              
+            </td>
+            <td>None</td>
+            <td>
+              <span class="badge badge-critical">
+                CRITICAL
+              </span>
+            </td>
+            <td>None</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              0
+              
+            </td>
+            <td>
+              enable-root-mfa
+              
+              
+                <br><small style="color: #666; font-style: italic;">Root MFA is not enabled. Enable MFA on the root user and restrict root usage.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-high">
+            <td>
+              cloudtrail_not_configured
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  90%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              account
+              
+              
+              
+            </td>
+            <td>None</td>
+            <td>
+              <span class="badge badge-high">
+                HIGH
+              </span>
+            </td>
+            <td>None</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              0
+              
+            </td>
+            <td>
+              enable-cloudtrail
+              
+              
+                <br><small style="color: #666; font-style: italic;">CloudTrail baseline appears incomplete. Enable an org/account trail (multi-region) and ensure it is actively logging.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-high">
+            <td>
+              s3_account_public_access_block_disabled
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  90%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              account
+              
+              
+              
+            </td>
+            <td>None</td>
+            <td>
+              <span class="badge badge-high">
+                HIGH
+              </span>
+            </td>
+            <td>None</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              0
+              
+            </td>
+            <td>
+              enable-s3-block-public-access
+              
+              
+                <br><small style="color: #666; font-style: italic;">S3 account-level Block Public Access is not fully enabled.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-high">
+            <td>
+              sg_open_to_world
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  95%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              sg-0123abcd4567efgh8
+              
+              
+              
+            </td>
+            <td>us-east-1</td>
+            <td>
+              <span class="badge badge-high">
+                HIGH
+              </span>
+            </td>
+            <td>None</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              0
+              
+            </td>
+            <td>
+              restrict-security-group-ingress
+              
+              
+                <br><small style="color: #666; font-style: italic;">Security group allows inbound access from the public internet on sensitive ports.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-medium">
+            <td>
+              guardduty_not_enabled
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  80%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              account
+              
+              
+              
+            </td>
+            <td>None</td>
+            <td>
+              <span class="badge badge-medium">
+                MEDIUM
+              </span>
+            </td>
+            <td>None</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              0
+              
+            </td>
+            <td>
+              enable-guardduty
+              
+              
+                <br><small style="color: #666; font-style: italic;">GuardDuty is not enabled in one or more regions checked.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-medium">
+            <td>
+              iam_password_policy_weak
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  95%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              account
+              
+              
+              
+            </td>
+            <td>None</td>
+            <td>
+              <span class="badge badge-medium">
+                MEDIUM
+              </span>
+            </td>
+            <td>None</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              0
+              
+            </td>
+            <td>
+              harden-iam-password-policy
+              
+              
+                <br><small style="color: #666; font-style: italic;">IAM password policy is weaker than common baseline settings.</small>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+        </tbody>
+      </table>
+    </div>
+    
+
+    
 
     <!-- All Findings (Collapsible) -->
     <button class="collapsible">🔍 All Findings (22 total)</button>
