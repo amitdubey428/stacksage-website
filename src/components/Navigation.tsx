@@ -23,6 +23,7 @@ export default function Navigation() {
                 <div className="hidden md:flex items-center gap-6">
                     <Link href="/#features" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">Features</Link>
                     <Link href="/#how-it-works" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">How it works</Link>
+                    <Link href="/docs" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">Docs</Link>
                     <Link href="/#pricing" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">Pricing</Link>
                     <Link href="/#demo" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">Demo</Link>
                     <Button asChild>
@@ -43,6 +44,7 @@ export default function Navigation() {
                     <div className="px-4 py-3 grid gap-3">
                         <Link className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="/#features">Features</Link>
                         <Link className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="/#how-it-works">How it works</Link>
+                        <Link className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="/docs">Docs</Link>
                         <Link className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="/#pricing">Pricing</Link>
                         <Link className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="/#demo">Demo</Link>
                         <Button asChild>
