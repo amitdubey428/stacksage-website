@@ -19,7 +19,9 @@ export default function Hero() {
                         AWS cost audits that run in your GitHub Actions
                     </h1>
                     <p className="mt-6 text-lg sm:text-xl text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
-                        StackSage runs inside your runner using a customer-controlled read-only role. Start with the self-serve Trial (public image, no license), then upgrade to the paid GitHub workflow for full coverage. You get a one-page summary, an HTML report, and JSON/CSV findings — plus security posture signals (IAM, audit logging, exposure) — no SaaS agent and no AWS credential sharing.
+                        StackSage runs inside your GitHub Actions runner with a customer-controlled, read-only role.
+                        Start with the self-serve Trial (public image, no license), then upgrade to the paid workflow for full coverage.
+                        You’ll get a simple summary, a full HTML report, and JSON/CSV findings — without sharing AWS credentials with a SaaS.
                     </p>
                     <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                         <Magnetic>
