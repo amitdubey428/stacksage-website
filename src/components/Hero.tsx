@@ -20,7 +20,6 @@ export default function Hero() {
                     </h1>
                     <p className="mt-6 text-lg sm:text-xl text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
                         StackSage runs inside your GitHub Actions runner with a customer-controlled, read-only role.
-                        Start with the self-serve Trial (public image, no license).
                         Get a simple summary, a full HTML report, and JSON/CSV findings — without sharing AWS credentials.
                     </p>
                     <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
