@@ -50,6 +50,19 @@ export default function PrivacyAccessPage() {
                     credentials into a hosted SaaS.
                 </p>
 
+                <Section title="Trial vs paid workflow">
+                    <ul className="list-disc pl-5 space-y-2">
+                        <li>
+                            <span className="font-semibold text-zinc-900 dark:text-zinc-100">Trial</span>: minimal read-only access,
+                            public image, no license. Includes security posture basics and a limited cost/waste preview.
+                        </li>
+                        <li>
+                            <span className="font-semibold text-zinc-900 dark:text-zinc-100">Paid workflow</span>: deeper coverage and
+                            optional enrichments (CloudWatch utilization, Cost Explorer spend totals), enabled explicitly.
+                        </li>
+                    </ul>
+                </Section>
+
                 <Section title="Data flow (high level)">
                     <ol className="list-decimal pl-5 space-y-2">
                         <li>Run the StackSage workflow (or run locally).</li>

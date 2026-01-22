@@ -1,9 +1,9 @@
 import React from "react";
 
 const steps = [
-    { n: 1, title: "Install the Workflow", desc: "Add the StackSage workflow to your repo and pull the private GHCR image" },
+    { n: 1, title: "Install the Workflow", desc: "Add the StackSage workflow to your repo (Trial or paid)" },
     { n: 2, title: "Grant Read-Only Access", desc: "Provide a customer-controlled IAM role ARN (assume role)" },
-    { n: 3, title: "Add Your License", desc: "Set a StackSage license secret (time-limited) and run manual or scheduled audits" },
+    { n: 3, title: "Run Trial (or add license)", desc: "Trial runs without a license. Paid workflow uses a time-limited license secret." },
     { n: 4, title: "Get Actionable Outputs", desc: "Download the HTML report + JSON/CSV findings as workflow artifacts" },
 ];
 

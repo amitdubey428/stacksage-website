@@ -117,15 +117,15 @@ export default function RootLayout({
                         name: "Where does StackSage run?",
                         acceptedAnswer: {
                             "@type": "Answer",
-                            text: "Inside your GitHub Actions runner.",
+                            text: "Inside your GitHub Actions runner (in your repo).",
                         },
                     },
                     {
                         "@type": "Question",
-                        name: "How is StackSage delivered?",
+                        name: "Can I run the Trial without contacting you?",
                         acceptedAnswer: {
                             "@type": "Answer",
-                            text: "As a private Docker image pulled from GHCR and run by your workflow.",
+                            text: "Yes. Trial is self-serve: create a read-only IAM role, add GitHub secrets, copy the workflow, and run it.",
                         },
                     },
                     {
@@ -138,10 +138,10 @@ export default function RootLayout({
                     },
                     {
                         "@type": "Question",
-                        name: "What is the StackSage license?",
+                        name: "How is Trial delivered?",
                         acceptedAnswer: {
                             "@type": "Answer",
-                            text: "A signed, time-limited token provided by StackSage. If it expires, the audit fails fast until it’s renewed.",
+                            text: "As a public Docker image pulled from GHCR and run by your workflow (no license required).",
                         },
                     },
                     {
@@ -154,10 +154,10 @@ export default function RootLayout({
                     },
                     {
                         "@type": "Question",
-                        name: "What AWS services do you cover?",
+                        name: "Does Trial include savings ($) estimates?",
                         acceptedAnswer: {
                             "@type": "Answer",
-                            text: "Common waste & hygiene checks across EC2, EBS (incl. snapshots), RDS, S3, and network resources. Optional enrichments: CloudWatch utilization + Cost Explorer historical spend (opt-in).",
+                            text: "Trial includes a limited cost/waste preview but does not compute exact savings. The paid workflow unlocks deeper coverage and quantification.",
                         },
                     },
                 ],
@@ -200,8 +200,6 @@ export default function RootLayout({
                 <Footer />
                 <EasterEggs />
                 <Analytics />
-                {/* Tally embed script to support dynamicHeight for the iframe */}
-                <script async src="https://tally.so/widgets/embed.js"></script>
             </body>
         </html>
     );

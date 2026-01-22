@@ -7,9 +7,9 @@ export const metadata: Metadata = {
         "How StackSage works, what it reads, what it outputs, and how to get started running audits in GitHub Actions.",
 };
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({ id, title, children }: { id?: string; title: string; children: React.ReactNode }) {
     return (
-        <section className="mt-10">
+        <section className="mt-10" id={id}>
             <h2 className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">{title}</h2>
             <div className="mt-3 space-y-3 text-sm text-zinc-600 dark:text-zinc-300">{children}</div>
         </section>
@@ -73,6 +73,177 @@ export default function DocsPage() {
                     </ul>
                 </Section>
 
+                                <Section id="trial" title="Trial mode (self-serve)">
+                                        <p>
+                                                StackSage Trial is designed to run without dependency on us: you can set it up in your own repo, run it on demand,
+                                                and download artifacts. Trial uses a <span className="font-semibold text-zinc-900 dark:text-zinc-100">public</span> GHCR
+                                                image and does <span className="font-semibold text-zinc-900 dark:text-zinc-100">not</span> require a license.
+                                        </p>
+                                        <p className="text-zinc-500 dark:text-zinc-400">
+                                                Trial is intentionally limited: it caps findings and does not compute exact savings.
+                                        </p>
+
+                                        <h3 className="mt-6 text-base font-semibold text-zinc-900 dark:text-zinc-100">What you need</h3>
+                                        <ul className="list-disc pl-5 space-y-2">
+                                                <li>A GitHub repo with Actions enabled</li>
+                                                <li>AWS credentials (owned by you) stored as GitHub secrets</li>
+                                                <li>A read-only IAM role ARN that the workflow can assume</li>
+                                        </ul>
+
+                                        <h3 className="mt-6 text-base font-semibold text-zinc-900 dark:text-zinc-100">Step 1 — Create the IAM role (AWS)</h3>
+                                        <p>
+                                                Create an IAM role in your AWS account and allow the GitHub runner to assume it (STS AssumeRole). Attach this minimal
+                                                trial policy to that role:
+                                        </p>
+                                        <CodeBlock>{`{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "StackSageTrialReadOnly",
+            "Effect": "Allow",
+            "Action": [
+                "sts:GetCallerIdentity",
+                "ec2:DescribeRegions",
+                "ec2:DescribeSecurityGroups",
+                "ec2:DescribeAddresses",
+                "ec2:DescribeVolumes",
+                "iam:GetAccountSummary",
+                "cloudtrail:DescribeTrails",
+                "cloudtrail:GetTrailStatus",
+                "s3control:GetPublicAccessBlock"
+            ],
+            "Resource": "*"
+        }
+    ]
+}`}</CodeBlock>
+
+                                        <h3 className="mt-6 text-base font-semibold text-zinc-900 dark:text-zinc-100">Step 2 — Add GitHub secrets</h3>
+                                        <p>In your repo: Settings → Secrets and variables → Actions</p>
+                                        <ul className="list-disc pl-5 space-y-2">
+                                                <li>
+                                                        Required: <span className="font-mono">AWS_ACCESS_KEY_ID</span>, <span className="font-mono">AWS_SECRET_ACCESS_KEY</span>
+                                                </li>
+                                                <li>
+                                                        Recommended: <span className="font-mono">AWS_DEFAULT_REGION</span> (example: <span className="font-mono">us-east-1</span>)
+                                                </li>
+                                                <li>
+                                                        Required (unless you always provide it as a workflow input): <span className="font-mono">CUSTOMER_ROLE_ARN</span>
+                                                </li>
+                                                <li>
+                                                        Optional: <span className="font-mono">AWS_SESSION_TOKEN</span>, <span className="font-mono">CUSTOMER_EXTERNAL_ID</span>
+                                                </li>
+                                        </ul>
+
+                                        <h3 className="mt-6 text-base font-semibold text-zinc-900 dark:text-zinc-100">Step 3 — Add the workflow file</h3>
+                                        <p>
+                                                Create <span className="font-mono">.github/workflows/stacksage_trial.yml</span> with the workflow below.
+                                                Run it from GitHub → Actions → “StackSage Audit (Trial)”.
+                                        </p>
+                                                                                <CodeBlock>{`name: StackSage Audit (Trial)
+
+on:
+    workflow_dispatch:
+        inputs:
+            customer_role_arn:
+                description: "Customer role ARN to assume"
+                required: false
+                type: string
+            regions:
+                description: "Comma-separated AWS regions (optional; default: 1 region for trial)"
+                required: false
+                type: string
+            log_level:
+                description: "Log level (INFO/DEBUG)"
+                required: false
+                default: "INFO"
+                type: choice
+                options: ["INFO", "DEBUG"]
+
+jobs:
+    audit:
+        runs-on: ubuntu-latest
+        env:
+            STACKSAGE_TRIAL_IMAGE: ghcr.io/stacksage-ai/stacksage-trial:latest
+
+        steps:
+            - name: Pull StackSage trial image
+                run: docker pull "\${STACKSAGE_TRIAL_IMAGE}"
+
+            - name: Run audit (trial mode)
+                shell: bash
+                run: |
+                    set -euo pipefail
+
+                    : "\${AWS_ACCESS_KEY_ID:?Missing secret AWS_ACCESS_KEY_ID}"
+                    : "\${AWS_SECRET_ACCESS_KEY:?Missing secret AWS_SECRET_ACCESS_KEY}"
+
+                    ROLE_ARN="\${{ inputs.customer_role_arn || secrets.CUSTOMER_ROLE_ARN }}"
+                    : "\${ROLE_ARN:?Missing role ARN. Set input customer_role_arn or repo secret CUSTOMER_ROLE_ARN}"
+
+                    REGIONS_ARG=""
+                    if [[ -n "\${{ inputs.regions }}" ]]; then
+                        REGIONS_ARG="--regions \${{ inputs.regions }}"
+                    fi
+
+                    EXT_ID_ARG=""
+                    if [[ -n "\${CUSTOMER_EXTERNAL_ID:-}" ]]; then
+                        EXT_ID_ARG="--external-id \${CUSTOMER_EXTERNAL_ID}"
+                    fi
+                    fi
+
+                    mkdir -p reports
+
+                    docker run --rm \
+                        -e AWS_ACCESS_KEY_ID="\${AWS_ACCESS_KEY_ID}" \
+                        -e AWS_SECRET_ACCESS_KEY="\${AWS_SECRET_ACCESS_KEY}" \
+                        -e AWS_SESSION_TOKEN="\${AWS_SESSION_TOKEN:-}" \
+                        -e AWS_DEFAULT_REGION="\${AWS_DEFAULT_REGION:-}" \
+                        -v "$PWD":/work -w /app \
+                        "\${STACKSAGE_TRIAL_IMAGE}" \
+                        bash -lc "python -m stacksage_trial.cli audit --role-arn \${ROLE_ARN} \${EXT_ID_ARG} \${REGIONS_ARG} --out /work/reports --log-level \${{ inputs.log_level }}"
+
+            - name: Upload reports artifact
+                uses: actions/upload-artifact@v4
+                with:
+                    name: stacksage-reports
+                    path: reports/
+                    if-no-files-found: error
+                env:
+                    AWS_ACCESS_KEY_ID: \${{ secrets.AWS_ACCESS_KEY_ID }}
+                    AWS_SECRET_ACCESS_KEY: \${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                    AWS_SESSION_TOKEN: \${{ secrets.AWS_SESSION_TOKEN }}
+                    AWS_DEFAULT_REGION: \${{ secrets.AWS_DEFAULT_REGION }}
+                    CUSTOMER_EXTERNAL_ID: \${{ secrets.CUSTOMER_EXTERNAL_ID }}
+`}</CodeBlock>
+
+                                        <h3 className="mt-6 text-base font-semibold text-zinc-900 dark:text-zinc-100">Outputs</h3>
+                                        <p>The workflow uploads an artifact named <span className="font-mono">stacksage-reports</span> containing:</p>
+                                        <ul className="list-disc pl-5 space-y-2">
+                                                <li>
+                                                        <span className="font-mono">audit_report.html</span> — includes Security Findings + a limited Cost/Waste Preview
+                                                </li>
+                                                <li><span className="font-mono">summary.md</span></li>
+                                                <li><span className="font-mono">findings.json</span> / <span className="font-mono">findings.csv</span></li>
+                                                <li><span className="font-mono">run_provenance.json</span></li>
+                                        </ul>
+
+                                        <h3 className="mt-6 text-base font-semibold text-zinc-900 dark:text-zinc-100">Troubleshooting</h3>
+                                        <ul className="list-disc pl-5 space-y-2">
+                                                <li>
+                                                        <span className="font-semibold text-zinc-900 dark:text-zinc-100">AccessDenied</span>: ensure the trial policy is
+                                                        attached to the assumed role and the trust policy allows your GitHub principal.
+                                                </li>
+                                                <li>
+                                                        <span className="font-semibold text-zinc-900 dark:text-zinc-100">No regions</span>: set <span className="font-mono">AWS_DEFAULT_REGION</span>
+                                                        or provide <span className="font-mono">regions</span> input.
+                                                </li>
+                                                <li>
+                                                        <span className="font-semibold text-zinc-900 dark:text-zinc-100">Missing artifact</span>: confirm the workflow step
+                                                        writes to <span className="font-mono">reports/</span> before upload.
+                                                </li>
+                                        </ul>
+                                </Section>
+
                 <Section title="How it works (high level)">
                     <ol className="list-decimal pl-5 space-y-2">
                         <li>Run StackSage on a schedule (GitHub Actions) or locally.</li>
@@ -102,22 +273,19 @@ export default function DocsPage() {
                     </p>
                 </Section>
 
-                <Section title="Getting started (GitHub Actions)">
+                <Section id="paid" title="Paid GitHub workflow ($99/mo)">
                     <p>
-                        The typical setup is a scheduled workflow that runs StackSage in a container and uploads the report artifacts.
-                        StackSage requires a customer-controlled IAM role to assume.
+                        The paid workflow is the “full” StackSage experience: deeper coverage, richer evidence, and a license secret. Trial is
+                        the fastest way to validate the report format and baseline posture.
                     </p>
-                    <ol className="list-decimal pl-5 space-y-2">
-                        <li>Create a read-only IAM role in your AWS account with the recommended permissions.</li>
-                        <li>Add the role ARN as a GitHub Actions secret (for example: <span className="font-mono">CUSTOMER_ROLE_ARN</span>).</li>
-                        <li>Run the workflow on a schedule (weekly/daily) and review artifacts.</li>
-                    </ol>
+                    <ul className="list-disc pl-5 space-y-2">
+                        <li>Runs in your GitHub Actions runner, using a customer-controlled read-only role</li>
+                        <li>Private GHCR image + time-limited license secret</li>
+                        <li>Intended for recurring audits (weekly/daily)</li>
+                    </ul>
                     <p>
-                        For the exact permissions and opt-ins, see <Link className="underline" href="/privacy-access">Privacy &amp; Access</Link>.
+                        For permissions and opt-ins, see <Link className="underline" href="/privacy-access">Privacy &amp; Access</Link>.
                     </p>
-                    <CodeBlock>{`# Typical secrets / inputs
-CUSTOMER_ROLE_ARN=arn:aws:iam::<account-id>:role/<role-name>
-STACKSAGE_LICENSE=<time-limited signed license (pilot)>`}</CodeBlock>
                 </Section>
 
                 <Section title="Security posture signals (what we check)">
@@ -153,7 +321,7 @@ STACKSAGE_LICENSE=<time-limited signed license (pilot)>`}</CodeBlock>
 
                 <Section title="Support">
                     <p>
-                        Questions or want help getting set up? Email <a className="underline" href="mailto:hello@stacksageai.com">hello@stacksageai.com</a>.
+                        If you get stuck, email <a className="underline" href="mailto:hello@stacksageai.com">hello@stacksageai.com</a>.
                     </p>
                 </Section>
             </div>

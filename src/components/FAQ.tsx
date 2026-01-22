@@ -2,14 +2,27 @@
 import React from "react";
 
 const faqs = [
-    { q: "Where does StackSage run?", a: "Inside your GitHub Actions runner." },
-    { q: "How is StackSage delivered?", a: "As a private Docker image pulled from GHCR and run by your workflow." },
-    { q: "Do you ingest AWS credentials?", a: "No. AWS access is via a customer-controlled read-only IAM role used by your workflow." },
-    { q: "What is the StackSage license?", a: "A signed, time-limited token provided by StackSage. If it expires, the audit fails fast until it’s renewed." },
-    { q: "What do I get as output?", a: "An HTML report plus machine-readable findings (JSON/CSV) as workflow artifacts." },
+    { q: "Where does StackSage run?", a: "Inside your GitHub Actions runner (in your repo)." },
     {
-        q: "What AWS services do you cover?",
-        a: "Common waste & hygiene checks across EC2, EBS (incl. snapshots), RDS, S3, and network resources. Optional enrichments: CloudWatch utilization + Cost Explorer historical spend (opt-in).",
+        q: "Can I run the Trial without contacting you?",
+        a: "Yes. Trial is self-serve: create a read-only IAM role, add GitHub secrets, copy the workflow, and run it. Full steps are on /docs.",
+    },
+    {
+        q: "How is Trial delivered?",
+        a: "As a public Docker image pulled from GHCR and run by your workflow (no license required).",
+    },
+    {
+        q: "How is the paid GitHub Workflow delivered?",
+        a: "As a private Docker image pulled from GHCR, run by your workflow, with a time-limited license secret.",
+    },
+    { q: "Do you ingest AWS credentials?", a: "No. AWS access is via a customer-controlled read-only IAM role used by your workflow." },
+    {
+        q: "What do I get as output?",
+        a: "An HTML report plus machine-readable findings (JSON/CSV) as workflow artifacts.",
+    },
+    {
+        q: "Does Trial include savings ($) estimates?",
+        a: "Trial includes a limited cost/waste preview but does not compute exact savings. The paid workflow unlocks deeper coverage and quantification.",
     },
 ];
 
