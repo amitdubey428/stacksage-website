@@ -1,12 +1,53 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export default function Navigation() {
+    const router = useRouter();
+    const pathname = usePathname();
     const [open, setOpen] = React.useState(false);
     const [clicks, setClicks] = React.useState(0);
+
+    const goToSection = React.useCallback(
+        (id: string) => {
+            const targetHash = `#${id}`;
+
+            // Navigate to home if needed.
+            if (pathname !== "/") {
+                router.push(`/${targetHash}`);
+            } else {
+                // Keep URL in sync without a route change.
+                window.history.pushState(null, "", targetHash);
+            }
+
+            // Scroll once the element exists (handles route transitions).
+            const maxAttempts = 40;
+            let attempts = 0;
+            const tryScroll = () => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.scrollIntoView({ behavior: "smooth", block: "start" });
+                    return;
+                }
+                attempts += 1;
+                if (attempts < maxAttempts) {
+                    window.setTimeout(tryScroll, 50);
+                }
+            };
+            tryScroll();
+        },
+        [pathname, router]
+    );
+
+    const onNavSectionClick = (e: React.MouseEvent, id: string) => {
+        e.preventDefault();
+        setOpen(false);
+        goToSection(id);
+    };
+
     return (
         <nav className="sticky top-0 z-50 w-full backdrop-blur supports-[backdrop-filter]:bg-white/60 bg-white/80 dark:supports-[backdrop-filter]:bg-black/40 dark:bg-black/60 border-b border-zinc-200/60 dark:border-zinc-800">
             <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
@@ -21,13 +62,37 @@ export default function Navigation() {
                     <span className="sr-only">Home</span>
                 </Link>
                 <div className="hidden md:flex items-center gap-6">
-                    <Link href="/#features" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">Features</Link>
-                    <Link href="/#how-it-works" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">How it works</Link>
+                    <Link
+                        href="/#features"
+                        onClick={(e) => onNavSectionClick(e, "features")}
+                        className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1"
+                    >
+                        Features
+                    </Link>
+                    <Link
+                        href="/#how-it-works"
+                        onClick={(e) => onNavSectionClick(e, "how-it-works")}
+                        className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1"
+                    >
+                        How it works
+                    </Link>
                     <Link href="/docs" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">Docs</Link>
-                    <Link href="/#pricing" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">Pricing</Link>
-                    <Link href="/#demo" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">Demo</Link>
+                    <Link
+                        href="/#pricing"
+                        onClick={(e) => onNavSectionClick(e, "pricing")}
+                        className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1"
+                    >
+                        Pricing
+                    </Link>
+                    <Link
+                        href="/#demo"
+                        onClick={(e) => onNavSectionClick(e, "demo")}
+                        className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1"
+                    >
+                        Demo
+                    </Link>
                     <Button asChild>
-                        <Link href="/#demo" aria-label="Get a Demo">Get a Demo</Link>
+                        <Link href="/#demo" onClick={(e) => onNavSectionClick(e, "demo")} aria-label="Get a Demo">Get a Demo</Link>
                     </Button>
                 </div>
                 <button
@@ -42,13 +107,37 @@ export default function Navigation() {
             {open && (
                 <div id="mobile-menu" className="md:hidden border-t border-zinc-200 dark:border-zinc-800">
                     <div className="px-4 py-3 grid gap-3">
-                        <Link className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="/#features">Features</Link>
-                        <Link className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="/#how-it-works">How it works</Link>
+                        <Link
+                            className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1"
+                            href="/#features"
+                            onClick={(e) => onNavSectionClick(e, "features")}
+                        >
+                            Features
+                        </Link>
+                        <Link
+                            className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1"
+                            href="/#how-it-works"
+                            onClick={(e) => onNavSectionClick(e, "how-it-works")}
+                        >
+                            How it works
+                        </Link>
                         <Link className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="/docs">Docs</Link>
-                        <Link className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="/#pricing">Pricing</Link>
-                        <Link className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="/#demo">Demo</Link>
+                        <Link
+                            className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1"
+                            href="/#pricing"
+                            onClick={(e) => onNavSectionClick(e, "pricing")}
+                        >
+                            Pricing
+                        </Link>
+                        <Link
+                            className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1"
+                            href="/#demo"
+                            onClick={(e) => onNavSectionClick(e, "demo")}
+                        >
+                            Demo
+                        </Link>
                         <Button asChild>
-                            <Link href="/#demo" aria-label="Get a Demo">Get a Demo</Link>
+                            <Link href="/#demo" onClick={(e) => onNavSectionClick(e, "demo")} aria-label="Get a Demo">Get a Demo</Link>
                         </Button>
                     </div>
                 </div>
