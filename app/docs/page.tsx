@@ -195,17 +195,17 @@ jobs:
                       bash -lc "python -m stacksage_trial.cli audit --role-arn \${ROLE_ARN} \${EXT_ID_ARG} \${REGIONS_ARG} --out /work/reports --log-level \${{ inputs.log_level }}"
 
             - name: Upload reports artifact
-                uses: actions/upload-artifact@v4
-                with:
-                    name: stacksage-reports
-                    path: reports/
-                    if-no-files-found: error
-                env:
-                    AWS_ACCESS_KEY_ID: \${{ secrets.AWS_ACCESS_KEY_ID }}
-                    AWS_SECRET_ACCESS_KEY: \${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                    AWS_SESSION_TOKEN: \${{ secrets.AWS_SESSION_TOKEN }}
-                    AWS_DEFAULT_REGION: \${{ secrets.AWS_DEFAULT_REGION }}
-                    CUSTOMER_EXTERNAL_ID: \${{ secrets.CUSTOMER_EXTERNAL_ID }}
+              uses: actions/upload-artifact@v4
+              with:
+                  name: stacksage-reports
+                  path: reports/
+                  if-no-files-found: error
+              env:
+                  AWS_ACCESS_KEY_ID: \${{ secrets.AWS_ACCESS_KEY_ID }}
+                  AWS_SECRET_ACCESS_KEY: \${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  AWS_SESSION_TOKEN: \${{ secrets.AWS_SESSION_TOKEN }}
+                  AWS_DEFAULT_REGION: \${{ secrets.AWS_DEFAULT_REGION }}
+                  CUSTOMER_EXTERNAL_ID: \${{ secrets.CUSTOMER_EXTERNAL_ID }}
 `}</CodeBlock>
 
                     <h3 className="mt-6 text-base font-semibold text-zinc-900 dark:text-zinc-100">Outputs</h3>
