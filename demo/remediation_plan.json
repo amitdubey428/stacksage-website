@@ -1,0 +1,134 @@
+{
+  "version": 1,
+  "generated_at": "2026-01-24 08:44:00 UTC",
+  "account_id": "123456789012",
+  "actions": [
+    {
+      "action_id": "old_snapshot:us-west-2:snap-old123456789abc",
+      "title": "Delete old snapshot after verification (snap-old123456789abc)",
+      "category": "cost",
+      "owner": "finops/devops",
+      "risk": "high",
+      "requires_approval": true,
+      "account_id": "123456789012",
+      "region": "us-west-2",
+      "resource_type": "snapshot",
+      "resource_id": "snap-old123456789abc",
+      "finding_type": "old_snapshot",
+      "recommended_action": "delete-snapshot",
+      "estimated_monthly_savings_usd": 25.0,
+      "commands": [
+        "# Verify snapshot is not needed (retention/compliance):",
+        "aws ec2 describe-snapshots --snapshot-ids snap-old123456789abc --region us-west-2",
+        "# Delete only after verification:",
+        "aws ec2 delete-snapshot --snapshot-id snap-old123456789abc"
+      ],
+      "rollback": "Snapshot deletion is irreversible. Before deleting, confirm retention/compliance needs and consider creating a fresh snapshot or copying to a backup vault/account.",
+      "notes": "Generated from a read-only audit. Verify impact and ownership before applying."
+    },
+    {
+      "action_id": "old_snapshot:us-east-1:snap-0123456789abcdef",
+      "title": "Delete old snapshot after verification (snap-0123456789abcdef)",
+      "category": "cost",
+      "owner": "finops/devops",
+      "risk": "high",
+      "requires_approval": true,
+      "account_id": "123456789012",
+      "region": "us-east-1",
+      "resource_type": "snapshot",
+      "resource_id": "snap-0123456789abcdef",
+      "finding_type": "old_snapshot",
+      "recommended_action": "delete-snapshot",
+      "estimated_monthly_savings_usd": 5.0,
+      "commands": [
+        "# Verify snapshot is not needed (retention/compliance):",
+        "aws ec2 describe-snapshots --snapshot-ids snap-0123456789abcdef --region us-east-1",
+        "# Delete only after verification:",
+        "aws ec2 delete-snapshot --snapshot-id snap-0123456789abcdef"
+      ],
+      "rollback": "Snapshot deletion is irreversible. Before deleting, confirm retention/compliance needs and consider creating a fresh snapshot or copying to a backup vault/account.",
+      "notes": "Generated from a read-only audit. Verify impact and ownership before applying."
+    },
+    {
+      "action_id": "gp2_to_gp3_migration:us-east-1:vol-1111222233334444",
+      "title": "Migrate EBS volume gp2 \u2192 gp3 (vol-1111222233334444)",
+      "category": "cost",
+      "owner": "finops/devops",
+      "risk": "medium",
+      "requires_approval": true,
+      "account_id": "123456789012",
+      "region": "us-east-1",
+      "resource_type": "ebs",
+      "resource_id": "vol-1111222233334444",
+      "finding_type": "gp2_to_gp3_migration",
+      "recommended_action": "migrate-to-gp3",
+      "estimated_monthly_savings_usd": 5.0,
+      "commands": [
+        "# Test in non-prod first, then migrate:",
+        "aws ec2 modify-volume --volume-id vol-1111222233334444 --volume-type gp3",
+        "# Monitor performance after migration:",
+        "aws cloudwatch get-metric-statistics --namespace AWS/EBS --metric-name VolumeReadOps --dimensions Name=VolumeId,Value=vol-1111222233334444 --start-time $(date -u -v-1d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 300 --statistics Average"
+      ],
+      "rollback": "You can usually revert by modifying the volume type back to gp2 (note: performance characteristics may differ).",
+      "notes": "Generated from a read-only audit. Verify impact and ownership before applying."
+    },
+    {
+      "action_id": "unused_eip:us-west-2:34.210.98.76",
+      "title": "Release unused Elastic IP (34.210.98.76)",
+      "category": "cost",
+      "owner": "finops/devops",
+      "risk": "medium",
+      "requires_approval": true,
+      "account_id": "123456789012",
+      "region": "us-west-2",
+      "resource_type": "eip",
+      "resource_id": "34.210.98.76",
+      "finding_type": "unused_eip",
+      "recommended_action": "release-eip",
+      "estimated_monthly_savings_usd": 4.0,
+      "commands": [
+        "# Verify EIP is truly unused (no association):",
+        "aws ec2 describe-addresses --public-ips 34.210.98.76 --region us-west-2",
+        "# If unassociated, release:",
+        "aws ec2 release-address --public-ip 34.210.98.76"
+      ],
+      "rollback": "Allocate a new Elastic IP and update any DNS / allowlists if you later need a static IP.",
+      "notes": "Generated from a read-only audit. Verify impact and ownership before applying."
+    },
+    {
+      "action_id": "unused_eip:us-east-1:54.123.45.67",
+      "title": "Release unused Elastic IP (54.123.45.67)",
+      "category": "cost",
+      "owner": "finops/devops",
+      "risk": "medium",
+      "requires_approval": true,
+      "account_id": "123456789012",
+      "region": "us-east-1",
+      "resource_type": "eip",
+      "resource_id": "54.123.45.67",
+      "finding_type": "unused_eip",
+      "recommended_action": "release-eip",
+      "estimated_monthly_savings_usd": 4.0,
+      "commands": [
+        "# Verify EIP is truly unused (no association):",
+        "aws ec2 describe-addresses --public-ips 54.123.45.67 --region us-east-1",
+        "# If unassociated, release:",
+        "aws ec2 release-address --public-ip 54.123.45.67"
+      ],
+      "rollback": "Allocate a new Elastic IP and update any DNS / allowlists if you later need a static IP.",
+      "notes": "Generated from a read-only audit. Verify impact and ownership before applying."
+    }
+  ],
+  "totals": {
+    "actions": 5,
+    "estimated_monthly_savings_usd": 43.0
+  },
+  "scope": {
+    "included_finding_types": [
+      "gp2_to_gp3_migration",
+      "old_snapshot",
+      "snapshot_consolidation",
+      "unused_eip"
+    ]
+  }
+}
