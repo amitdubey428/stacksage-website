@@ -157,6 +157,11 @@ jobs:
         runs-on: ubuntu-latest
         env:
             STACKSAGE_TRIAL_IMAGE: ghcr.io/amitdubey428/stacksage-trial:latest
+            AWS_ACCESS_KEY_ID: \${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: \${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            AWS_SESSION_TOKEN: \${{ secrets.AWS_SESSION_TOKEN }}
+            AWS_DEFAULT_REGION: \${{ secrets.AWS_DEFAULT_REGION }}
+            CUSTOMER_EXTERNAL_ID: \${{ secrets.CUSTOMER_EXTERNAL_ID }}
 
         steps:
             - name: Pull StackSage trial image
