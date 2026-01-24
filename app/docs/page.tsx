@@ -1,5 +1,8 @@
+"use client";
+
 import type { Metadata } from "next";
 import Link from "next/link";
+import { useState } from "react";
 
 export const metadata: Metadata = {
     title: "Documentation — StackSage",
@@ -17,10 +20,32 @@ function Section({ id, title, children }: { id?: string; title: string; children
 }
 
 function CodeBlock({ children }: { children: string }) {
+    const [copied, setCopied] = useState(false);
+
+    const handleCopy = async () => {
+        try {
+            await navigator.clipboard.writeText(children);
+            setCopied(true);
+            setTimeout(() => setCopied(false), 1500);
+        } catch {
+            setCopied(false);
+        }
+    };
+
     return (
-        <pre className="mt-4 overflow-x-auto rounded-xl border border-zinc-200/60 dark:border-zinc-800 bg-white/70 dark:bg-black/30 p-4 text-xs text-zinc-800 dark:text-zinc-100">
-            <code className="font-mono">{children}</code>
-        </pre>
+        <div className="relative mt-4">
+            <button
+                type="button"
+                onClick={handleCopy}
+                className="absolute right-3 top-3 rounded-lg border border-zinc-200/60 dark:border-zinc-800 bg-white/80 dark:bg-black/40 px-2 py-1 text-[11px] text-zinc-700 dark:text-zinc-200 hover:bg-white dark:hover:bg-black/60"
+                aria-label={copied ? "Copied" : "Copy to clipboard"}
+            >
+                {copied ? "Copied" : "Copy"}
+            </button>
+            <pre className="overflow-x-auto rounded-xl border border-zinc-200/60 dark:border-zinc-800 bg-white/70 dark:bg-black/30 p-4 text-xs text-zinc-800 dark:text-zinc-100">
+                <code className="font-mono">{children}</code>
+            </pre>
+        </div>
     );
 }
 
@@ -167,40 +192,39 @@ jobs:
 
         steps:
             - name: Pull StackSage trial image
-                run: docker pull "\${STACKSAGE_TRIAL_IMAGE}"
+              run: docker pull "\${STACKSAGE_TRIAL_IMAGE}"
 
             - name: Run audit (trial mode)
-                shell: bash
-                run: |
-                    set -euo pipefail
+              shell: bash
+              run: |
+                  set -euo pipefail
 
-                    : "\${AWS_ACCESS_KEY_ID:?Missing secret AWS_ACCESS_KEY_ID}"
-                    : "\${AWS_SECRET_ACCESS_KEY:?Missing secret AWS_SECRET_ACCESS_KEY}"
+                  : "\${AWS_ACCESS_KEY_ID:?Missing secret AWS_ACCESS_KEY_ID}"
+                  : "\${AWS_SECRET_ACCESS_KEY:?Missing secret AWS_SECRET_ACCESS_KEY}"
 
-                    ROLE_ARN="\${{ inputs.customer_role_arn || secrets.CUSTOMER_ROLE_ARN }}"
-                    : "\${ROLE_ARN:?Missing role ARN. Set input customer_role_arn or repo secret CUSTOMER_ROLE_ARN}"
+                  ROLE_ARN="\${{ inputs.customer_role_arn || secrets.CUSTOMER_ROLE_ARN }}"
+                  : "\${ROLE_ARN:?Missing role ARN. Set input customer_role_arn or repo secret CUSTOMER_ROLE_ARN}"
 
-                    REGIONS_ARG=""
-                    if [[ -n "\${{ inputs.regions }}" ]]; then
-                        REGIONS_ARG="--regions \${{ inputs.regions }}"
-                    fi
+                  REGIONS_ARG=""
+                  if [[ -n "\${{ inputs.regions }}" ]]; then
+                      REGIONS_ARG="--regions \${{ inputs.regions }}"
+                  fi
 
-                    EXT_ID_ARG=""
-                    if [[ -n "\${CUSTOMER_EXTERNAL_ID:-}" ]]; then
-                        EXT_ID_ARG="--external-id \${CUSTOMER_EXTERNAL_ID}"
-                    fi
-                    fi
+                  EXT_ID_ARG=""
+                  if [[ -n "\${CUSTOMER_EXTERNAL_ID:-}" ]]; then
+                      EXT_ID_ARG="--external-id \${CUSTOMER_EXTERNAL_ID}"
+                  fi
 
-                    mkdir -p reports
+                  mkdir -p reports
 
-                    docker run --rm \
-                        -e AWS_ACCESS_KEY_ID="\${AWS_ACCESS_KEY_ID}" \
-                        -e AWS_SECRET_ACCESS_KEY="\${AWS_SECRET_ACCESS_KEY}" \
-                        -e AWS_SESSION_TOKEN="\${AWS_SESSION_TOKEN:-}" \
-                        -e AWS_DEFAULT_REGION="\${AWS_DEFAULT_REGION:-}" \
-                        -v "$PWD":/work -w /app \
-                        "\${STACKSAGE_TRIAL_IMAGE}" \
-                        bash -lc "python -m stacksage_trial.cli audit --role-arn \${ROLE_ARN} \${EXT_ID_ARG} \${REGIONS_ARG} --out /work/reports --log-level \${{ inputs.log_level }}"
+                  docker run --rm \
+                      -e AWS_ACCESS_KEY_ID="\${AWS_ACCESS_KEY_ID}" \
+                      -e AWS_SECRET_ACCESS_KEY="\${AWS_SECRET_ACCESS_KEY}" \
+                      -e AWS_SESSION_TOKEN="\${AWS_SESSION_TOKEN:-}" \
+                      -e AWS_DEFAULT_REGION="\${AWS_DEFAULT_REGION:-}" \
+                      -v "$PWD":/work -w /app \
+                      "\${STACKSAGE_TRIAL_IMAGE}" \
+                      bash -lc "python -m stacksage_trial.cli audit --role-arn \${ROLE_ARN} \${EXT_ID_ARG} \${REGIONS_ARG} --out /work/reports --log-level \${{ inputs.log_level }}"
 
             - name: Upload reports artifact
                 uses: actions/upload-artifact@v4
