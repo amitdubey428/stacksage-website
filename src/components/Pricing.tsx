@@ -33,6 +33,10 @@ const tiers = [
 ];
 
 export default function Pricing() {
+    const paymentLink = process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK;
+    const paidHref = paymentLink || "/#paid-access";
+    const paidIsExternal = Boolean(paymentLink);
+
     return (
         <section id="pricing" aria-labelledby="pricing-title" className="mx-auto max-w-6xl px-4 py-20 scroll-mt-24">
             <div className="text-center mb-12">
@@ -51,11 +55,30 @@ export default function Pricing() {
                                 <li key={f} className="text-sm">• {f}</li>
                             ))}
                         </ul>
-                        <Button className="mt-6" asChild>
-                            <Link href={t.name === "Trial" ? "/docs/#trial" : "/#paid-access"} aria-label={`Choose ${t.name}`}>
-                                {t.name === "Trial" ? "Start Trial" : "Request Paid Access"}
-                            </Link>
-                        </Button>
+                        {t.name === "Trial" ? (
+                            <Button className="mt-6" asChild>
+                                <Link href="/docs/#trial" aria-label="Start Trial">
+                                    Start Trial
+                                </Link>
+                            </Button>
+                        ) : (
+                            <Button className="mt-6" asChild>
+                                {paidIsExternal ? (
+                                    <a
+                                        href={paidHref}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label="Buy StackSage"
+                                    >
+                                        Buy now
+                                    </a>
+                                ) : (
+                                    <Link href={paidHref} aria-label="Request Paid Access">
+                                        Request Paid Access
+                                    </Link>
+                                )}
+                            </Button>
+                        )}
                     </Card>
                 ))}
             </div>
