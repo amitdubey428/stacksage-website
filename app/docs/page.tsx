@@ -175,6 +175,10 @@ jobs:
                   : "\${AWS_ACCESS_KEY_ID:?Missing secret AWS_ACCESS_KEY_ID}"
                   : "\${AWS_SECRET_ACCESS_KEY:?Missing secret AWS_SECRET_ACCESS_KEY}"
 
+                  if [[ -z "\${AWS_DEFAULT_REGION:-}" ]]; then
+                      export AWS_DEFAULT_REGION="us-east-1"
+                  fi
+
                   ROLE_ARN="\${{ inputs.customer_role_arn || secrets.CUSTOMER_ROLE_ARN }}"
                   : "\${ROLE_ARN:?Missing role ARN. Set input customer_role_arn or repo secret CUSTOMER_ROLE_ARN}"
 
