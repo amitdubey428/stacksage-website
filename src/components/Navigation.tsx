@@ -76,7 +76,7 @@ export default function Navigation() {
                     >
                         How it works
                     </Link>
-                    <Link href="/docs" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">Docs</Link>
+                    <Link href="/docs/" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">Docs</Link>
                     <Link
                         href="/#pricing"
                         onClick={(e) => onNavSectionClick(e, "pricing")}
@@ -121,7 +121,7 @@ export default function Navigation() {
                         >
                             How it works
                         </Link>
-                        <Link className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="/docs">Docs</Link>
+                        <Link className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="/docs/">Docs</Link>
                         <Link
                             className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1"
                             href="/#pricing"

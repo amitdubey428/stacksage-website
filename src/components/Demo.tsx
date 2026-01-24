@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 import Script from "next/script";
 
 export default function Demo() {
@@ -13,7 +14,7 @@ export default function Demo() {
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
                 <div>
                     <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                        <a className="underline" href="/demo-report">See a real example (no signup)</a>
+                        <Link className="underline" href="/demo-report/">See a real example (no signup)</Link>
                     </p>
                     <p className="mt-2 text-sm font-medium text-zinc-700 dark:text-zinc-300">
                         No AWS credential sharing. Customer-controlled read-only role.
@@ -27,12 +28,12 @@ export default function Demo() {
                             <li>• GitHub secrets: AWS access keys + role ARN</li>
                         </ul>
 
-                        <a
-                            href="/docs#trial"
+                        <Link
+                            href="/docs/#trial"
                             className="mt-5 inline-flex items-center justify-center rounded-xl font-medium transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ring-offset-transparent bg-indigo-600 text-white hover:bg-indigo-700 focus-visible:ring-indigo-400 h-11 px-5 text-base active:scale-[0.98] whitespace-nowrap"
                         >
                             View Trial Setup Guide →
-                        </a>
+                        </Link>
                     </div>
                 </div>
 
@@ -42,12 +43,12 @@ export default function Demo() {
                     <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-2">
                         Browse a sample audit report with concrete, actionable findings — including security posture signals (IAM, audit logging, exposure).
                     </p>
-                    <a
-                        href="/demo-report"
+                    <Link
+                        href="/demo-report/"
                         className="mt-4 inline-flex items-center justify-center rounded-xl font-medium transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ring-offset-transparent bg-indigo-600 text-white hover:bg-indigo-700 focus-visible:ring-indigo-400 h-11 px-5 text-base active:scale-[0.98] whitespace-nowrap"
                     >
                         View Sample Report →
-                    </a>
+                    </Link>
                 </div>
             </div>
 

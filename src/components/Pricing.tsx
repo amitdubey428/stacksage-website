@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -51,9 +52,9 @@ export default function Pricing() {
                             ))}
                         </ul>
                         <Button className="mt-6" asChild>
-                            <a href={t.name === "Trial" ? "/docs#trial" : "/#paid-access"} aria-label={`Choose ${t.name}`}>
+                            <Link href={t.name === "Trial" ? "/docs/#trial" : "/#paid-access"} aria-label={`Choose ${t.name}`}>
                                 {t.name === "Trial" ? "Start Trial" : "Request Paid Access"}
-                            </a>
+                            </Link>
                         </Button>
                     </Card>
                 ))}

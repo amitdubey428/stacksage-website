@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 export default function Footer() {
     return (
@@ -15,10 +16,10 @@ export default function Footer() {
                     >
                         LinkedIn
                     </a>
-                    <a href="/docs" aria-label="Docs" className="hover:text-indigo-600">Docs</a>
-                    <a href="/privacy" aria-label="Privacy" className="hover:text-indigo-600">Privacy</a>
-                    <a href="/privacy-access" aria-label="Privacy & Access" className="hover:text-indigo-600">Privacy &amp; Access</a>
-                    <a href="/terms" aria-label="Terms" className="hover:text-indigo-600">Terms</a>
+                    <Link href="/docs/" aria-label="Docs" className="hover:text-indigo-600">Docs</Link>
+                    <Link href="/privacy/" aria-label="Privacy" className="hover:text-indigo-600">Privacy</Link>
+                    <Link href="/privacy-access/" aria-label="Privacy & Access" className="hover:text-indigo-600">Privacy &amp; Access</Link>
+                    <Link href="/terms/" aria-label="Terms" className="hover:text-indigo-600">Terms</Link>
                 </div>
             </div>
         </footer>

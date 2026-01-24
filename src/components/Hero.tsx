@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import AnimatedGradient from "@/components/AnimatedGradient";
 
@@ -25,12 +26,12 @@ export default function Hero() {
                     <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                         <Magnetic>
                             <Button asChild size="lg">
-                                <a href="/docs#trial">Start Trial</a>
+                                <Link href="/docs/#trial">Start Trial</Link>
                             </Button>
                         </Magnetic>
                         <Magnetic strength={20}>
                             <Button asChild variant="outline" size="lg">
-                                <a href="/demo-report">View Sample Report</a>
+                                <Link href="/demo-report/">View Sample Report</Link>
                             </Button>
                         </Magnetic>
                     </div>

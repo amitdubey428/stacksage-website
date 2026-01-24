@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { X } from "lucide-react";
+import Link from "next/link";
 
 export default function AnnouncementBanner() {
     const [isVisible, setIsVisible] = React.useState(true);
@@ -15,12 +16,12 @@ export default function AnnouncementBanner() {
                         Run an AWS waste & hygiene audit in your GitHub Actions runner —
                         <span className="font-semibold ml-1">no SaaS ingestion of AWS credentials</span>
                     </span>
-                    <a
-                        href="/demo-report"
+                    <Link
+                        href="/demo-report/"
                         className="ml-2 inline-flex items-center rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm px-4 py-1.5 text-sm font-semibold transition-colors whitespace-nowrap"
                     >
                         View Sample Report →
-                    </a>
+                    </Link>
                 </div>
                 <button
                     onClick={() => setIsVisible(false)}
