@@ -156,7 +156,7 @@ jobs:
     audit:
         runs-on: ubuntu-latest
         env:
-            STACKSAGE_TRIAL_IMAGE: ghcr.io/stacksage-ai/stacksage-trial:latest
+            STACKSAGE_TRIAL_IMAGE: ghcr.io/amitdubey428/stacksage-trial:latest
 
         steps:
             - name: Pull StackSage trial image
