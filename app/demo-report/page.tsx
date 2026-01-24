@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
     title: "Sample Audit Report — StackSage",
     description:
-        "View a sample StackSage audit report (HTML) and the standard artifacts: summary.md, findings.json, and findings.csv.",
+        "View a sample StackSage audit report (HTML) and the standard artifacts: summary.md, findings.json, findings.csv, plus a remediation plan.",
 };
 
 export default function DemoReportPage() {
@@ -26,6 +26,7 @@ export default function DemoReportPage() {
                     </h1>
                     <p className="text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
                         This page shows the format you’ll receive from a StackSage run: a one-page summary, an HTML report, and machine-readable findings (JSON/CSV).
+                        Paid runs also include a remediation plan.
                         The report embedded below is a mock demo account.
                     </p>
                     <div className="mt-4 flex flex-wrap justify-center gap-3">
@@ -54,6 +55,12 @@ export default function DemoReportPage() {
                         </a>
                         <a className="underline" href="/demo/findings.csv" target="_blank" rel="noopener noreferrer">
                             Download findings.csv
+                        </a>
+                        <a className="underline" href="/demo/remediation_plan.md" target="_blank" rel="noopener noreferrer">
+                            Download remediation_plan.md
+                        </a>
+                        <a className="underline" href="/demo/remediation_plan.json" target="_blank" rel="noopener noreferrer">
+                            Download remediation_plan.json
                         </a>
                     </div>
                 </div>

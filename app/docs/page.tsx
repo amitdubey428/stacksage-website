@@ -73,29 +73,29 @@ export default function DocsPage() {
                     </ul>
                 </Section>
 
-                                <Section id="trial" title="Trial mode (self-serve)">
-                                        <p>
-                                                StackSage Trial is designed to run without dependency on us: you can set it up in your own repo, run it on demand,
-                                                and download artifacts. Trial uses a <span className="font-semibold text-zinc-900 dark:text-zinc-100">public</span> GHCR
-                                                image and does <span className="font-semibold text-zinc-900 dark:text-zinc-100">not</span> require a license.
-                                        </p>
-                                        <p className="text-zinc-500 dark:text-zinc-400">
-                                                Trial is intentionally limited: it caps findings and does not compute exact savings.
-                                        </p>
+                <Section id="trial" title="Trial mode (self-serve)">
+                    <p>
+                        StackSage Trial is designed to run without dependency on us: you can set it up in your own repo, run it on demand,
+                        and download artifacts. Trial uses a <span className="font-semibold text-zinc-900 dark:text-zinc-100">public</span> GHCR
+                        image and does <span className="font-semibold text-zinc-900 dark:text-zinc-100">not</span> require a license.
+                    </p>
+                    <p className="text-zinc-500 dark:text-zinc-400">
+                        Trial is intentionally limited: it caps findings and does not compute exact savings.
+                    </p>
 
-                                        <h3 className="mt-6 text-base font-semibold text-zinc-900 dark:text-zinc-100">What you need</h3>
-                                        <ul className="list-disc pl-5 space-y-2">
-                                                <li>A GitHub repo with Actions enabled</li>
-                                                <li>AWS credentials (owned by you) stored as GitHub secrets</li>
-                                                <li>A read-only IAM role ARN that the workflow can assume</li>
-                                        </ul>
+                    <h3 className="mt-6 text-base font-semibold text-zinc-900 dark:text-zinc-100">What you need</h3>
+                    <ul className="list-disc pl-5 space-y-2">
+                        <li>A GitHub repo with Actions enabled</li>
+                        <li>AWS credentials (owned by you) stored as GitHub secrets</li>
+                        <li>A read-only IAM role ARN that the workflow can assume</li>
+                    </ul>
 
-                                        <h3 className="mt-6 text-base font-semibold text-zinc-900 dark:text-zinc-100">Step 1 — Create the IAM role (AWS)</h3>
-                                        <p>
-                                                Create an IAM role in your AWS account and allow the GitHub runner to assume it (STS AssumeRole). Attach this minimal
-                                                trial policy to that role:
-                                        </p>
-                                        <CodeBlock>{`{
+                    <h3 className="mt-6 text-base font-semibold text-zinc-900 dark:text-zinc-100">Step 1 — Create the IAM role (AWS)</h3>
+                    <p>
+                        Create an IAM role in your AWS account and allow the GitHub runner to assume it (STS AssumeRole). Attach this minimal
+                        trial policy to that role:
+                    </p>
+                    <CodeBlock>{`{
     "Version": "2012-10-17",
     "Statement": [
         {
@@ -117,29 +117,29 @@ export default function DocsPage() {
     ]
 }`}</CodeBlock>
 
-                                        <h3 className="mt-6 text-base font-semibold text-zinc-900 dark:text-zinc-100">Step 2 — Add GitHub secrets</h3>
-                                        <p>In your repo: Settings → Secrets and variables → Actions</p>
-                                        <ul className="list-disc pl-5 space-y-2">
-                                                <li>
-                                                        Required: <span className="font-mono">AWS_ACCESS_KEY_ID</span>, <span className="font-mono">AWS_SECRET_ACCESS_KEY</span>
-                                                </li>
-                                                <li>
-                                                        Recommended: <span className="font-mono">AWS_DEFAULT_REGION</span> (example: <span className="font-mono">us-east-1</span>)
-                                                </li>
-                                                <li>
-                                                        Required (unless you always provide it as a workflow input): <span className="font-mono">CUSTOMER_ROLE_ARN</span>
-                                                </li>
-                                                <li>
-                                                        Optional: <span className="font-mono">AWS_SESSION_TOKEN</span>, <span className="font-mono">CUSTOMER_EXTERNAL_ID</span>
-                                                </li>
-                                        </ul>
+                    <h3 className="mt-6 text-base font-semibold text-zinc-900 dark:text-zinc-100">Step 2 — Add GitHub secrets</h3>
+                    <p>In your repo: Settings → Secrets and variables → Actions</p>
+                    <ul className="list-disc pl-5 space-y-2">
+                        <li>
+                            Required: <span className="font-mono">AWS_ACCESS_KEY_ID</span>, <span className="font-mono">AWS_SECRET_ACCESS_KEY</span>
+                        </li>
+                        <li>
+                            Recommended: <span className="font-mono">AWS_DEFAULT_REGION</span> (example: <span className="font-mono">us-east-1</span>)
+                        </li>
+                        <li>
+                            Required (unless you always provide it as a workflow input): <span className="font-mono">CUSTOMER_ROLE_ARN</span>
+                        </li>
+                        <li>
+                            Optional: <span className="font-mono">AWS_SESSION_TOKEN</span>, <span className="font-mono">CUSTOMER_EXTERNAL_ID</span>
+                        </li>
+                    </ul>
 
-                                        <h3 className="mt-6 text-base font-semibold text-zinc-900 dark:text-zinc-100">Step 3 — Add the workflow file</h3>
-                                        <p>
-                                                Create <span className="font-mono">.github/workflows/stacksage_trial.yml</span> with the workflow below.
-                                                Run it from GitHub → Actions → “StackSage Audit (Trial)”.
-                                        </p>
-                                                                                <CodeBlock>{`name: StackSage Audit (Trial)
+                    <h3 className="mt-6 text-base font-semibold text-zinc-900 dark:text-zinc-100">Step 3 — Add the workflow file</h3>
+                    <p>
+                        Create <span className="font-mono">.github/workflows/stacksage_trial.yml</span> with the workflow below.
+                        Run it from GitHub → Actions → “StackSage Audit (Trial)”.
+                    </p>
+                    <CodeBlock>{`name: StackSage Audit (Trial)
 
 on:
     workflow_dispatch:
@@ -216,33 +216,33 @@ jobs:
                     CUSTOMER_EXTERNAL_ID: \${{ secrets.CUSTOMER_EXTERNAL_ID }}
 `}</CodeBlock>
 
-                                        <h3 className="mt-6 text-base font-semibold text-zinc-900 dark:text-zinc-100">Outputs</h3>
-                                        <p>The workflow uploads an artifact named <span className="font-mono">stacksage-reports</span> containing:</p>
-                                        <ul className="list-disc pl-5 space-y-2">
-                                                <li>
-                                                        <span className="font-mono">audit_report.html</span> — includes Security Findings + a limited Cost/Waste Preview
-                                                </li>
-                                                <li><span className="font-mono">summary.md</span></li>
-                                                <li><span className="font-mono">findings.json</span> / <span className="font-mono">findings.csv</span></li>
-                                                <li><span className="font-mono">run_provenance.json</span></li>
-                                        </ul>
+                    <h3 className="mt-6 text-base font-semibold text-zinc-900 dark:text-zinc-100">Outputs</h3>
+                    <p>The workflow uploads an artifact named <span className="font-mono">stacksage-reports</span> containing:</p>
+                    <ul className="list-disc pl-5 space-y-2">
+                        <li>
+                            <span className="font-mono">audit_report.html</span> — includes Security Findings + a limited Cost/Waste Preview
+                        </li>
+                        <li><span className="font-mono">summary.md</span></li>
+                        <li><span className="font-mono">findings.json</span> / <span className="font-mono">findings.csv</span></li>
+                        <li><span className="font-mono">run_provenance.json</span></li>
+                    </ul>
 
-                                        <h3 className="mt-6 text-base font-semibold text-zinc-900 dark:text-zinc-100">Troubleshooting</h3>
-                                        <ul className="list-disc pl-5 space-y-2">
-                                                <li>
-                                                        <span className="font-semibold text-zinc-900 dark:text-zinc-100">AccessDenied</span>: ensure the trial policy is
-                                                        attached to the assumed role and the trust policy allows your GitHub principal.
-                                                </li>
-                                                <li>
-                                                        <span className="font-semibold text-zinc-900 dark:text-zinc-100">No regions</span>: set <span className="font-mono">AWS_DEFAULT_REGION</span>
-                                                        or provide <span className="font-mono">regions</span> input.
-                                                </li>
-                                                <li>
-                                                        <span className="font-semibold text-zinc-900 dark:text-zinc-100">Missing artifact</span>: confirm the workflow step
-                                                        writes to <span className="font-mono">reports/</span> before upload.
-                                                </li>
-                                        </ul>
-                                </Section>
+                    <h3 className="mt-6 text-base font-semibold text-zinc-900 dark:text-zinc-100">Troubleshooting</h3>
+                    <ul className="list-disc pl-5 space-y-2">
+                        <li>
+                            <span className="font-semibold text-zinc-900 dark:text-zinc-100">AccessDenied</span>: ensure the trial policy is
+                            attached to the assumed role and the trust policy allows your GitHub principal.
+                        </li>
+                        <li>
+                            <span className="font-semibold text-zinc-900 dark:text-zinc-100">No regions</span>: set <span className="font-mono">AWS_DEFAULT_REGION</span>
+                            or provide <span className="font-mono">regions</span> input.
+                        </li>
+                        <li>
+                            <span className="font-semibold text-zinc-900 dark:text-zinc-100">Missing artifact</span>: confirm the workflow step
+                            writes to <span className="font-mono">reports/</span> before upload.
+                        </li>
+                    </ul>
+                </Section>
 
                 <Section title="How it works (high level)">
                     <ol className="list-decimal pl-5 space-y-2">
@@ -267,6 +267,10 @@ jobs:
                             <span className="font-mono">findings.json</span> / <span className="font-mono">findings.csv</span> —
                             machine-readable exports
                         </li>
+                        <li>
+                            <span className="font-mono">remediation_plan.md</span> / <span className="font-mono">remediation_plan.json</span> —
+                            prioritized fix plan with safe verification steps (paid runs)
+                        </li>
                     </ul>
                     <p>
                         See a real example at <Link className="underline" href="/demo-report">/demo-report</Link>.
@@ -281,6 +285,7 @@ jobs:
                     <ul className="list-disc pl-5 space-y-2">
                         <li>Runs in your GitHub Actions runner, using a customer-controlled read-only role</li>
                         <li>Private GHCR image + time-limited license secret</li>
+                        <li>Includes remediation plan generation (prioritized actions + safe verification steps)</li>
                         <li>Intended for recurring audits (weekly/daily)</li>
                     </ul>
                     <p>
