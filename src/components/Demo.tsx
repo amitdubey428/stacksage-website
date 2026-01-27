@@ -11,34 +11,33 @@ export default function Demo() {
                 You can run StackSage Trial independently in your GitHub Actions with a customer-controlled read-only role. No license required.
             </p>
 
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
-                <div>
-                    <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                        <Link className="underline" href="/demo-report/">See a real example (no signup)</Link>
-                    </p>
-                    <p className="mt-2 text-sm font-medium text-zinc-700 dark:text-zinc-300">
-                        No AWS credential sharing. Customer-controlled read-only role.
-                    </p>
+            <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-zinc-600 dark:text-zinc-400">
+                <Link className="underline" href="/demo-report/">See a real example (no signup)</Link>
+                <span className="text-zinc-300 dark:text-zinc-700">•</span>
+                <span className="text-zinc-700 dark:text-zinc-300">
+                    No AWS credential sharing. Customer-controlled read-only role.
+                </span>
+            </div>
 
-                    <div className="mt-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 p-6">
-                        <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">What you’ll need</h3>
-                        <ul className="mt-3 space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
-                            <li>• A GitHub repo with Actions enabled</li>
-                            <li>• AWS IAM role ARN (read-only) that GitHub can assume</li>
-                            <li>• GitHub secrets: AWS access keys + role ARN</li>
-                        </ul>
+            <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
+                <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 p-6 h-full flex flex-col">
+                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">What you’ll need</h3>
+                    <ul className="mt-3 space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
+                        <li>• A GitHub repo with Actions enabled</li>
+                        <li>• AWS IAM role ARN (read-only) that GitHub can assume</li>
+                        <li>• GitHub secrets: AWS access keys + role ARN</li>
+                    </ul>
 
-                        <Link
-                            href="/docs/#trial"
-                            className="mt-5 inline-flex items-center justify-center rounded-xl font-medium transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ring-offset-transparent bg-indigo-600 text-white hover:bg-indigo-700 focus-visible:ring-indigo-400 h-11 px-5 text-base active:scale-[0.98] whitespace-nowrap"
-                        >
-                            View Trial Setup Guide →
-                        </Link>
-                    </div>
+                    <Link
+                        href="/docs/#trial"
+                        className="mt-5 inline-flex items-center justify-center rounded-xl font-medium transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ring-offset-transparent bg-indigo-600 text-white hover:bg-indigo-700 focus-visible:ring-indigo-400 h-11 px-5 text-base active:scale-[0.98] whitespace-nowrap"
+                    >
+                        View Trial Setup Guide →
+                    </Link>
                 </div>
 
                 {/* Sample Report CTA (kept next to the form) */}
-                <div className="p-6 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 rounded-2xl border border-indigo-200 dark:border-indigo-800">
+                <div className="p-6 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 rounded-2xl border border-indigo-200 dark:border-indigo-800 h-full">
                     <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">See What You’ll Get</h3>
                     <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-2">
                         Browse a sample audit report with concrete, actionable findings — including security posture signals (IAM, audit logging, exposure).
