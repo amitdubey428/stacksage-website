@@ -8,3 +8,4 @@ All notable changes to this project will be documented in this file.
 - Demo artifacts: add remediation plan files to the public demo bundle.
 - Pricing: support Stripe Payment Link CTA for paid checkout (optional env var).
 - Docs: fix trial IAM policy action for S3 account public access block.
+- Docs: align trial policy action with actual AccessDenied (s3:GetAccountPublicAccessBlock).

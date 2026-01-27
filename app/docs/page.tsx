@@ -103,7 +103,7 @@ export default function DocsPage() {
                 "iam:GetAccountSummary",
                 "cloudtrail:DescribeTrails",
                 "cloudtrail:GetTrailStatus",
-                "s3control:GetPublicAccessBlock"
+                "s3:GetAccountPublicAccessBlock"
             ],
             "Resource": "*"
         }
