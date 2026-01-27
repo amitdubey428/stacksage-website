@@ -9,3 +9,4 @@ All notable changes to this project will be documented in this file.
 - Pricing: support Stripe Payment Link CTA for paid checkout (optional env var).
 - Docs: fix trial IAM policy action for S3 account public access block.
 - Docs: align trial policy action with actual AccessDenied (s3:GetAccountPublicAccessBlock).
+- Docs: expand trial setup guidance (role ARN, optional assume role) and improve workflow snippet.

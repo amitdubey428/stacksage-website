@@ -80,13 +80,16 @@ export default function DocsPage() {
                     <ul className="list-disc pl-5 space-y-2">
                         <li>A GitHub repo with Actions enabled</li>
                         <li>AWS credentials (owned by you) stored as GitHub secrets</li>
-                        <li>A read-only IAM role ARN that the workflow can assume</li>
+                        <li>
+                            A read-only IAM role ARN that the workflow can assume (recommended). Example:
+                            <span className="font-mono"> arn:aws:iam::123456789012:role/StackSageAuditReadOnly</span>
+                        </li>
                     </ul>
 
                     <h3 className="mt-6 text-base font-semibold text-zinc-900 dark:text-zinc-100">Step 1 — Create the IAM role (AWS)</h3>
                     <p>
                         Create an IAM role in your AWS account and allow the GitHub runner to assume it (STS AssumeRole). Attach this minimal
-                        trial policy to that role:
+                        trial policy to that role. Copy the Role ARN (you will add it as a secret or workflow input).
                     </p>
                     <CodeBlock>{`{
     "Version": "2012-10-17",
@@ -120,12 +123,16 @@ export default function DocsPage() {
                             Recommended: <span className="font-mono">AWS_DEFAULT_REGION</span> (example: <span className="font-mono">us-east-1</span>)
                         </li>
                         <li>
-                            Required (unless you always provide it as a workflow input): <span className="font-mono">CUSTOMER_ROLE_ARN</span>
+                            Recommended: <span className="font-mono">CUSTOMER_ROLE_ARN</span> (Role ARN to assume)
                         </li>
                         <li>
                             Optional: <span className="font-mono">AWS_SESSION_TOKEN</span>, <span className="font-mono">CUSTOMER_EXTERNAL_ID</span>
                         </li>
                     </ul>
+                    <p className="text-sm text-zinc-500 dark:text-zinc-400">
+                        If you don’t want to assume a role, omit <span className="font-mono">CUSTOMER_ROLE_ARN</span> and the workflow will
+                        use the provided AWS credentials directly. Role assumption is recommended for least privilege.
+                    </p>
 
                     <h3 className="mt-6 text-base font-semibold text-zinc-900 dark:text-zinc-100">Step 3 — Add the workflow file</h3>
                     <p>
@@ -180,7 +187,10 @@ jobs:
                   fi
 
                   ROLE_ARN="\${{ inputs.customer_role_arn || secrets.CUSTOMER_ROLE_ARN }}"
-                  : "\${ROLE_ARN:?Missing role ARN. Set input customer_role_arn or repo secret CUSTOMER_ROLE_ARN}"
+                  ROLE_ARG=""
+                  if [[ -n "\${ROLE_ARN}" ]]; then
+                      ROLE_ARG="--role-arn \${ROLE_ARN}"
+                  fi
 
                   REGIONS_ARG=""
                   if [[ -n "\${{ inputs.regions }}" ]]; then
@@ -201,7 +211,7 @@ jobs:
                       -e AWS_DEFAULT_REGION="\${AWS_DEFAULT_REGION:-}" \
                       -v "$PWD":/work -w /app \
                       "\${STACKSAGE_TRIAL_IMAGE}" \
-                      bash -lc "python -m stacksage_trial.cli audit --role-arn \${ROLE_ARN} \${EXT_ID_ARG} \${REGIONS_ARG} --out /work/reports --log-level \${{ inputs.log_level }}"
+                      bash -lc "python -m stacksage_trial.cli audit \${ROLE_ARG} \${EXT_ID_ARG} \${REGIONS_ARG} --out /work/reports --log-level \${{ inputs.log_level }}"
 
             - name: Upload reports artifact
               uses: actions/upload-artifact@v4
