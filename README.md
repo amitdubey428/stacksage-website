@@ -26,6 +26,13 @@ npm run start
 - `NEXT_PUBLIC_TYPEFORM_ID`: Typeform form ID for the demo embed (optional). If missing, a native form is shown.
 - `NEXT_PUBLIC_SITE_URL`: The canonical site URL (e.g., `https://stacksageai.com`). Used for sitemap/robots and metadata.
 - `NEXT_PUBLIC_ANALYTICS_ID`: Optional additional analytics ID if you add a provider.
+- `NEXT_PUBLIC_RAZORPAY_KEY_ID`: Razorpay public key for Checkout.
+- `NEXT_PUBLIC_RAZORPAY_ORDER_URL`: Worker endpoint for order creation (e.g., `https://stacksage-razorpay.<your-domain>/create-order`).
+- `NEXT_PUBLIC_RAZORPAY_PAYMENT_LINK`: Optional fallback link.
+
+## Razorpay checkout (Cloudflare Workers)
+
+Worker setup is in [workers/razorpay](workers/razorpay). It creates orders and validates webhooks.
 
 ## Deployment (Vercel recommended)
 1. Push the repo to GitHub.

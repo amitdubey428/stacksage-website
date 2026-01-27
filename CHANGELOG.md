@@ -10,3 +10,4 @@ All notable changes to this project will be documented in this file.
 - Docs: fix trial IAM policy action for S3 account public access block.
 - Docs: align trial policy action with actual AccessDenied (s3:GetAccountPublicAccessBlock).
 - Docs: expand trial setup guidance (role ARN, optional assume role) and improve workflow snippet.
+- Checkout: add Razorpay Worker integration and checkout CTA.
