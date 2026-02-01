@@ -1,7 +1,7 @@
 # StackSage Summary
 
 - Account: 123456789012
-- Timestamp: 2026-01-24 08:44:00 UTC
+- Timestamp: 2026-02-01 11:12:15 UTC
 - Regions scanned: us-east-1, us-west-2
 - Opt-ins: CloudWatch=unknown, CostExplorer=unknown, PricingAPI=unknown
 
@@ -21,6 +21,19 @@
 - $50.00/mo: unattached_ebs (us-west-2)
 - $25.00/mo: old_snapshot (us-west-2)
 - $25.00/mo: idle_elb (us-east-1)
+
+## Spend movers (period-over-period)
+- Total change: $50.15 (13.92%)
+- Threshold: $5.00
+- Top service increases:
+  - Amazon EC2: $40.10 (33.39%)
+  - Amazon S3: $15.00 (75.0%)
+- Top service decreases:
+  - Amazon CloudWatch: $-7.50 (-48.39%)
+- Top region increases:
+  - us-east-1: $45.00 (17.65%)
+- Top region decreases:
+  - us-west-2: $5.15 (4.9%)
 
 ## Next actions
 - Review any CRITICAL/HIGH findings first and confirm exposure changes with your security owner.

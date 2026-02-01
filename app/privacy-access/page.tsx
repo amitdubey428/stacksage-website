@@ -58,7 +58,7 @@ export default function PrivacyAccessPage() {
                         </li>
                         <li>
                             <span className="font-semibold text-zinc-900 dark:text-zinc-100">Paid workflow</span>: deeper coverage and
-                            optional enrichments (CloudWatch utilization, Cost Explorer spend totals), enabled explicitly.
+                            optional enrichments (CloudWatch utilization, Cost Explorer spend totals and spend movers), enabled explicitly.
                         </li>
                     </ul>
                 </Section>
@@ -82,7 +82,10 @@ export default function PrivacyAccessPage() {
                             CloudWatch utilization (when enabled) uses aggregate statistics only (e.g., Average over a lookback
                             window) with a bounded query budget.
                         </li>
-                        <li>Cost Explorer (when enabled) uses spend totals only (grouped by service and region).</li>
+                        <li>
+                            Cost Explorer (when enabled) uses spend totals only (grouped by service and region), including period-over-period
+                            deltas for spend movers.
+                        </li>
                     </ul>
                 </Section>
 
@@ -205,6 +208,12 @@ export default function PrivacyAccessPage() {
                                 <td className="px-4 py-3 font-mono">ce:GetCostAndUsage</td>
                                 <td className="px-4 py-3">Service/region totals for a time window</td>
                                 <td className="px-4 py-3">Total spend + top services/regions tables</td>
+                            </tr>
+                            <tr>
+                                <td className="px-4 py-3">Spend movers</td>
+                                <td className="px-4 py-3 font-mono">ce:GetCostAndUsage</td>
+                                <td className="px-4 py-3">Service/region totals for two adjacent windows</td>
+                                <td className="px-4 py-3">Period-over-period deltas (top increases/decreases)</td>
                             </tr>
                         </tbody>
                     </Table>

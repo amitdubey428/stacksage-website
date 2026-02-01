@@ -27,6 +27,7 @@ export default function DemoReportPage() {
                     <p className="text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
                         This page shows the format you’ll receive from a StackSage run: a one-page summary, an HTML report, and machine-readable findings (JSON/CSV).
                         Paid runs also include a remediation plan.
+                        Optional enrichments include Cost Explorer spend totals and spend movers (period-over-period deltas) when permissions are enabled.
                         The report embedded below is a mock demo account.
                     </p>
                     <div className="mt-4 flex flex-wrap justify-center gap-3">
@@ -78,7 +79,7 @@ export default function DemoReportPage() {
                 <div className="mt-6 text-center text-sm text-zinc-500 dark:text-zinc-400">
                     <p>
                         Your actual report is generated in your GitHub Actions runner.
-                        Optional enrichments include CloudWatch utilization and Cost Explorer historical spend breakdown (if you enable permissions).
+                        Optional enrichments include CloudWatch utilization, Cost Explorer historical spend breakdown, and spend movers (if you enable permissions).
                     </p>
                 </div>
             </div>

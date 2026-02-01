@@ -662,5 +662,78 @@
         "us-east-1": 95.0
       }
     }
+  },
+  "spend_movers": {
+    "time_window": {
+      "current": {
+        "start": "2025-12-24",
+        "end": "2025-12-31"
+      },
+      "previous": {
+        "start": "2025-12-17",
+        "end": "2025-12-24"
+      }
+    },
+    "granularity": "DAILY",
+    "lookback_days": 7,
+    "compare_days": 7,
+    "min_delta_usd": 5.0,
+    "total_current": 410.25,
+    "total_previous": 360.1,
+    "total_delta": 50.15,
+    "total_pct_change": 13.92,
+    "top_increases_by_service": [
+      {
+        "key": "Amazon EC2",
+        "current_cost": 160.2,
+        "previous_cost": 120.1,
+        "delta": 40.1,
+        "pct_change": 33.39,
+        "new_spend": false,
+        "stopped_spend": false
+      },
+      {
+        "key": "Amazon S3",
+        "current_cost": 35.0,
+        "previous_cost": 20.0,
+        "delta": 15.0,
+        "pct_change": 75.0,
+        "new_spend": false,
+        "stopped_spend": false
+      }
+    ],
+    "top_decreases_by_service": [
+      {
+        "key": "Amazon CloudWatch",
+        "current_cost": 8.0,
+        "previous_cost": 15.5,
+        "delta": -7.5,
+        "pct_change": -48.39,
+        "new_spend": false,
+        "stopped_spend": false
+      }
+    ],
+    "top_increases_by_region": [
+      {
+        "key": "us-east-1",
+        "current_cost": 300.0,
+        "previous_cost": 255.0,
+        "delta": 45.0,
+        "pct_change": 17.65,
+        "new_spend": false,
+        "stopped_spend": false
+      }
+    ],
+    "top_decreases_by_region": [
+      {
+        "key": "us-west-2",
+        "current_cost": 110.25,
+        "previous_cost": 105.1,
+        "delta": 5.15,
+        "pct_change": 4.9,
+        "new_spend": false,
+        "stopped_spend": false
+      }
+    ]
   }
 }

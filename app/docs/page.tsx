@@ -57,6 +57,10 @@ export default function DocsPage() {
                             savings opportunities.
                         </li>
                         <li>
+                            Surfaces <span className="font-semibold text-zinc-900 dark:text-zinc-100">spend movers</span> (period-over-period deltas)
+                            by service and region when Cost Explorer is enabled.
+                        </li>
+                        <li>
                             Checks <span className="font-semibold text-zinc-900 dark:text-zinc-100">cost guardrails</span>
                             (Budgets and Anomaly Detection) so you catch spikes early.
                         </li>
@@ -292,6 +296,9 @@ jobs:
                         <li>
                             <span className="font-mono">findings.json</span> / <span className="font-mono">findings.csv</span> —
                             machine-readable exports
+                        </li>
+                        <li>
+                            Cost Explorer enrichments (optional): historical spend totals and spend movers (period-over-period deltas)
                         </li>
                         <li>
                             <span className="font-mono">remediation_plan.md</span> / <span className="font-mono">remediation_plan.json</span> —
