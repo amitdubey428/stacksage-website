@@ -351,8 +351,16 @@ jobs:
                             group ingress on sensitive ports, S3 public access block posture, RDS public/encryption/backup baselines
                         </li>
                         <li>
+                            <span className="font-semibold text-zinc-900 dark:text-zinc-100">Data protection</span>: S3 default encryption
+                            and EBS encryption-by-default (region-level)
+                        </li>
+                        <li>
                             <span className="font-semibold text-zinc-900 dark:text-zinc-100">Audit logging</span>: CloudTrail baseline,
                             AWS Config recorder status, high-level enablement checks
+                        </li>
+                        <li>
+                            <span className="font-semibold text-zinc-900 dark:text-zinc-100">Detection readiness</span>: CloudWatch alarms
+                            presence (counts only) and an incident response readiness signal
                         </li>
                     </ul>
                 </Section>

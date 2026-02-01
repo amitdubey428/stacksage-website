@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file.
 - Docs: mention Cost Explorer spend movers in demo report, docs, and privacy/access pages.
 - Demo artifacts: refresh demo bundle with spend movers content.
 - Docs: add Spend Movers interpretation guide and link it from docs/demo.
+- Docs: expand security posture coverage (S3 default encryption, EBS encryption by default, CloudWatch alarms presence).
 - Pricing: support Stripe Payment Link CTA for paid checkout (optional env var).
 - Docs: fix trial IAM policy action for S3 account public access block.
 - Docs: align trial policy action with actual AccessDenied (s3:GetAccountPublicAccessBlock).

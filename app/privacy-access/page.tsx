@@ -217,6 +217,38 @@ export default function PrivacyAccessPage() {
                             </tr>
                         </tbody>
                     </Table>
+
+                    <h3 className="mt-8 text-base font-semibold text-zinc-900 dark:text-zinc-100">Security posture (default)</h3>
+                    <Table>
+                        <thead className="bg-zinc-50/80 dark:bg-zinc-900/40">
+                            <tr>
+                                <th className="px-4 py-3 font-semibold">Feature</th>
+                                <th className="px-4 py-3 font-semibold">AWS API(s)</th>
+                                <th className="px-4 py-3 font-semibold">What we read</th>
+                                <th className="px-4 py-3 font-semibold">What appears in outputs</th>
+                            </tr>
+                        </thead>
+                        <tbody className="divide-y divide-zinc-200/60 dark:divide-zinc-800">
+                            <tr>
+                                <td className="px-4 py-3">S3 default encryption</td>
+                                <td className="px-4 py-3 font-mono">s3:GetBucketEncryption</td>
+                                <td className="px-4 py-3">Bucket default encryption status</td>
+                                <td className="px-4 py-3">Counts/booleans by default</td>
+                            </tr>
+                            <tr>
+                                <td className="px-4 py-3">EBS encryption by default</td>
+                                <td className="px-4 py-3 font-mono">ec2:GetEbsEncryptionByDefault</td>
+                                <td className="px-4 py-3">Region-level default encryption status</td>
+                                <td className="px-4 py-3">Boolean posture finding</td>
+                            </tr>
+                            <tr>
+                                <td className="px-4 py-3">CloudWatch alarms presence</td>
+                                <td className="px-4 py-3 font-mono">cloudwatch:DescribeAlarms</td>
+                                <td className="px-4 py-3">Alarm counts by region</td>
+                                <td className="px-4 py-3">Counts only</td>
+                            </tr>
+                        </tbody>
+                    </Table>
                 </Section>
 
                 <p className="mt-12 text-sm text-zinc-500 dark:text-zinc-400">
