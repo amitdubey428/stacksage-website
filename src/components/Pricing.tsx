@@ -9,12 +9,12 @@ const tiers = [
     {
         name: "Trial",
         price: "Free",
-        description: "Self-serve trial you can run independently in your GitHub Actions",
+        description: "Self-serve audit pack you can run independently in GitHub Actions",
         features: [
             "Public trial image (GHCR)",
             "No license required",
             "Minimal IAM permissions (read-only)",
-            "HTML report + JSON/CSV outputs",
+            "Summary + HTML + JSON/CSV outputs",
             "Security posture basics + limited cost/waste preview",
             "Findings capped (intentionally)",
         ],
@@ -22,7 +22,7 @@ const tiers = [
     {
         name: "GitHub Workflow",
         price: "$99/mo",
-        description: "Full StackSage scan delivered as a workflow you run on your schedule",
+        description: "Full audit pack delivered as a workflow you run on your schedule",
         features: [
             "Private GHCR image + workflow template",
             "Time-limited license secret",

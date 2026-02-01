@@ -13,16 +13,17 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-    title: "StackSage — AWS Audit in GitHub Actions",
+    title: "StackSage — Cloud Audit Pack in GitHub Actions",
     description:
-        "Run an AWS waste & hygiene audit in your GitHub Actions runner. No SaaS ingestion of AWS credentials. Outputs: HTML + JSON/CSV artifacts.",
+        "Run a privacy-first AWS audit pack in your GitHub Actions runner. Cost savings + guardrails + security posture in one report. Outputs: summary + HTML + JSON/CSV artifacts.",
     keywords: [
-        "AWS cost audit",
-        "AWS cost optimization",
+        "AWS audit",
+        "cloud audit pack",
+        "AWS security posture",
         "FinOps",
         "GitHub Actions",
         "cloud cost",
-        "AWS waste",
+        "AWS hygiene",
     ],
     alternates: {
         canonical: "/",
@@ -37,9 +38,9 @@ export const metadata: Metadata = {
         apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
     },
     openGraph: {
-        title: "StackSage — AWS Audit in GitHub Actions",
+        title: "StackSage — Cloud Audit Pack in GitHub Actions",
         description:
-            "Run an AWS waste & hygiene audit in your GitHub Actions runner. No SaaS ingestion of AWS credentials. Outputs: HTML + JSON/CSV artifacts.",
+            "Run a privacy-first AWS audit pack in your GitHub Actions runner. Cost savings + guardrails + security posture in one report.",
         url: "/",
         images: [
             {
@@ -52,9 +53,9 @@ export const metadata: Metadata = {
     },
     twitter: {
         card: "summary_large_image",
-        title: "StackSage — AWS Audit in GitHub Actions",
+        title: "StackSage — Cloud Audit Pack in GitHub Actions",
         description:
-            "Run an AWS waste & hygiene audit in your GitHub Actions runner. No SaaS ingestion of AWS credentials. Outputs: HTML + JSON/CSV artifacts.",
+            "Run a privacy-first AWS audit pack in your GitHub Actions runner. Cost savings + guardrails + security posture in one report.",
         images: ["/og-image.png"],
     },
     metadataBase: (() => {
@@ -89,7 +90,7 @@ export default function RootLayout({
                 url: `${siteUrl}/`,
                 name: "StackSage",
                 description:
-                    "Run an AWS waste & hygiene audit in your GitHub Actions runner. No SaaS ingestion of AWS credentials. Outputs: HTML + JSON/CSV artifacts.",
+                    "Run a privacy-first AWS audit pack in your GitHub Actions runner. Cost savings + guardrails + security posture in one report.",
             },
             {
                 "@type": "Organization",
@@ -107,7 +108,7 @@ export default function RootLayout({
                 operatingSystem: "Linux",
                 url: `${siteUrl}/`,
                 description:
-                    "AWS cost audits that run in your GitHub Actions runner from a private GHCR image. Outputs: HTML + JSON/CSV artifacts.",
+                    "Cloud audit packs that run in your GitHub Actions runner. Outputs: summary + HTML + JSON/CSV artifacts covering cost and security posture.",
             },
             {
                 "@type": "FAQPage",
@@ -149,7 +150,15 @@ export default function RootLayout({
                         name: "What do I get as output?",
                         acceptedAnswer: {
                             "@type": "Answer",
-                            text: "An HTML report plus machine-readable findings (JSON/CSV) as workflow artifacts.",
+                            text: "A full audit pack: a one-page summary, an HTML report, and machine-readable findings (JSON/CSV) as workflow artifacts.",
+                        },
+                    },
+                    {
+                        "@type": "Question",
+                        name: "Is this just a cost tool?",
+                        acceptedAnswer: {
+                            "@type": "Answer",
+                            text: "No. StackSage combines cost savings, guardrails, and security posture signals so teams get a complete audit view in one report.",
                         },
                     },
                     {

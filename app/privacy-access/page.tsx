@@ -45,7 +45,7 @@ export default function PrivacyAccessPage() {
 
                 <h1 className="mt-6 text-3xl sm:text-4xl font-bold tracking-tight">Privacy &amp; Access</h1>
                 <p className="mt-4 text-zinc-600 dark:text-zinc-300">
-                    This page explains exactly what StackSage reads from AWS, what ends up in your outputs, and what is opt-in.
+                    This page explains exactly what StackSage reads from AWS, what ends up in your audit pack, and what is opt-in.
                     StackSage is privacy-first by default: it runs inside your GitHub Actions runner and does not ingest AWS
                     credentials into a hosted SaaS.
                 </p>
@@ -69,7 +69,7 @@ export default function PrivacyAccessPage() {
                         <li>Assume a customer-controlled read-only role (STS AssumeRole).</li>
                         <li>Read resource metadata and (optional) aggregate metrics / spend totals.</li>
                         <li>
-                            Produce local artifacts (HTML report + JSON/CSV findings) as workflow artifacts under your control.
+                            Produce a local audit pack (summary + HTML + JSON/CSV findings) as workflow artifacts under your control.
                         </li>
                     </ol>
                 </Section>

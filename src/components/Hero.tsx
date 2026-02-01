@@ -17,11 +17,11 @@ export default function Hero() {
                     className="text-center"
                 >
                     <h1 id="hero-title" className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-sky-600">
-                        AWS cost audits that run in your GitHub Actions
+                        Cloud audit packs that run in your GitHub Actions
                     </h1>
                     <p className="mt-6 text-lg sm:text-xl text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
-                        StackSage runs inside your GitHub Actions runner with a customer-controlled, read-only role.
-                        Get a simple summary, a full HTML report, and JSON/CSV findings — without sharing AWS credentials.
+                        StackSage runs inside your GitHub Actions runner with a customer‑controlled, read‑only role.
+                        It delivers a CTO‑ready audit pack: cost savings, guardrails, and security posture — without sharing AWS credentials.
                     </p>
                     <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
                         <Magnetic>
@@ -38,8 +38,8 @@ export default function Hero() {
                     <ul className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm text-zinc-600 dark:text-zinc-400">
                         <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Runs in GitHub Actions</li>
                         <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Self-serve Trial</li>
+                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Cost + security posture in one pack</li>
                         <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Summary + HTML + JSON/CSV outputs</li>
-                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Security posture (IAM, audit logging, exposure)</li>
                     </ul>
                 </motion.div>
             </div>

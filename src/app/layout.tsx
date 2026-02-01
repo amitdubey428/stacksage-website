@@ -11,24 +11,25 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "StackSage — AWS Audit in GitHub Actions",
+  title: "StackSage — Cloud Audit Pack in GitHub Actions",
   description:
-    "Run an AWS waste & hygiene audit in your GitHub Actions runner. No SaaS ingestion of AWS credentials. Outputs: HTML + JSON/CSV artifacts.",
+    "Run a privacy-first AWS audit pack in your GitHub Actions runner. Cost savings + guardrails + security posture in one report.",
   keywords: [
-    "AWS cost audit",
-    "AWS cost optimization",
+    "AWS audit",
+    "cloud audit pack",
+    "AWS security posture",
     "FinOps",
     "GitHub Actions",
     "cloud cost",
-    "AWS waste",
+    "AWS hygiene",
   ],
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "StackSage — AWS Audit in GitHub Actions",
+    title: "StackSage — Cloud Audit Pack in GitHub Actions",
     description:
-      "Run an AWS waste & hygiene audit in your GitHub Actions runner. No SaaS ingestion of AWS credentials. Outputs: HTML + JSON/CSV artifacts.",
+      "Run a privacy-first AWS audit pack in your GitHub Actions runner. Cost savings + guardrails + security posture in one report.",
     url: "/",
     images: [
       {

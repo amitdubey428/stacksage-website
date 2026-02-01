@@ -8,7 +8,7 @@ export default function Demo() {
         <section id="demo" aria-labelledby="demo-title" className="mx-auto max-w-6xl px-4 py-20 scroll-mt-24">
             <h2 id="demo-title" className="text-3xl sm:text-4xl font-bold tracking-tight">Run the Trial (Self-Serve)</h2>
             <p className="mt-2 text-zinc-600 dark:text-zinc-300 max-w-2xl">
-                You can run StackSage Trial independently in your GitHub Actions with a customer-controlled read-only role. No license required.
+                Run a full audit pack inside your GitHub Actions runner with a customer‑controlled read‑only role. No license required.
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-zinc-600 dark:text-zinc-400">
@@ -40,7 +40,7 @@ export default function Demo() {
                 <div className="p-6 bg-gradient-to-r from-indigo-50 to-purple-50 dark:from-indigo-950/30 dark:to-purple-950/30 rounded-2xl border border-indigo-200 dark:border-indigo-800 h-full">
                     <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">See What You’ll Get</h3>
                     <p className="text-sm text-zinc-600 dark:text-zinc-400 mt-2">
-                        Browse a sample audit report with concrete, actionable findings — including security posture signals (IAM, audit logging, exposure).
+                        Browse a sample audit pack with concrete, actionable findings — cost savings plus security posture signals.
                     </p>
                     <Link
                         href="/demo-report/"

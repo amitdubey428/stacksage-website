@@ -18,7 +18,11 @@ const faqs = [
     { q: "Do you ingest AWS credentials?", a: "No. AWS access is via a customer-controlled read-only IAM role used by your workflow." },
     {
         q: "What do I get as output?",
-        a: "An HTML report plus machine-readable findings (JSON/CSV) as workflow artifacts.",
+        a: "A full audit pack: a one-page summary, an HTML report, and machine-readable findings (JSON/CSV) as workflow artifacts.",
+    },
+    {
+        q: "Is this just a cost tool?",
+        a: "No. StackSage combines cost savings, guardrails, and security posture signals so teams get a complete audit view in one report.",
     },
     {
         q: "Does Trial include savings ($) estimates?",

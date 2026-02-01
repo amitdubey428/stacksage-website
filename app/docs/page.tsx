@@ -46,8 +46,8 @@ export default function DocsPage() {
 
                 <h1 className="mt-6 text-3xl sm:text-4xl font-bold tracking-tight">Documentation</h1>
                 <p className="mt-4 text-zinc-600 dark:text-zinc-300">
-                    StackSage runs AWS audits in your environment (typically GitHub Actions) using a customer-controlled read-only role.
-                    It produces local artifacts you can share internally: a one-page summary, an HTML report, and machine-readable findings.
+                    StackSage runs AWS audits in your environment (typically GitHub Actions) using a customer‑controlled read‑only role.
+                    It produces a shareable audit pack: a one‑page summary, an HTML report, and machine‑readable findings.
                 </p>
 
                 <Section title="What StackSage does">
@@ -66,7 +66,7 @@ export default function DocsPage() {
                         </li>
                         <li>
                             Flags <span className="font-semibold text-zinc-900 dark:text-zinc-100">security posture signals</span>
-                            (IAM hygiene, exposure basics, audit logging baselines).
+                            (IAM hygiene, exposure basics, audit logging, and encryption baselines).
                         </li>
                         <li>
                             Makes findings explainable via evidence/provenance (e.g. measured vs heuristic vs skipped due to permissions).

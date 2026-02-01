@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-    title: "Sample Audit Report — StackSage",
+    title: "Sample Audit Pack — StackSage",
     description:
-        "View a sample StackSage audit report (HTML) and the standard artifacts: summary.md, findings.json, findings.csv, plus a remediation plan.",
+        "View a sample StackSage audit pack (summary, HTML report, JSON/CSV findings) plus a remediation plan.",
 };
 
 export default function DemoReportPage() {
@@ -22,10 +22,10 @@ export default function DemoReportPage() {
 
                 <div className="mb-8 text-center">
                     <h1 className="text-3xl sm:text-4xl font-bold tracking-tight mb-3">
-                        Sample Audit Report
+                        Sample Audit Pack
                     </h1>
                     <p className="text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
-                        This page shows the format you’ll receive from a StackSage run: a one-page summary, an HTML report, and machine-readable findings (JSON/CSV).
+                        This page shows the audit pack you’ll receive from a StackSage run: a one-page summary, an HTML report, and machine-readable findings (JSON/CSV).
                         Paid runs also include a remediation plan.
                         Optional enrichments include Cost Explorer spend totals and spend movers (period-over-period deltas) when permissions are enabled.
                         The report embedded below is a mock demo account.
@@ -71,7 +71,7 @@ export default function DemoReportPage() {
                         src="/demo/audit_report.html"
                         className="w-full"
                         style={{ height: "calc(100vh - 250px)", minHeight: "600px" }}
-                        title="StackSage Sample Audit Report"
+                        title="StackSage Sample Audit Pack"
                         sandbox="allow-scripts allow-same-origin"
                     />
                 </div>

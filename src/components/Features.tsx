@@ -15,13 +15,13 @@ import {
 
 const features = [
     {
-        title: "EC2 Waste",
-        desc: "Stopped & idle instances, generation upgrade suggestions",
+        title: "EC2 Savings",
+        desc: "Stopped & idle instances plus generation upgrade opportunities",
         icon: <Server className="h-5 w-5" />,
     },
     {
         title: "Security Posture",
-        desc: "IAM root posture + key hygiene, audit logging baselines, and public exposure signals",
+        desc: "IAM hygiene, audit logging baselines, exposure signals, and encryption posture",
         icon: <KeyRound className="h-5 w-5" />,
     },
     {
@@ -31,7 +31,7 @@ const features = [
     },
     {
         title: "RDS Signals",
-        desc: "Idle/underused RDS signals with pragmatic recommendations",
+        desc: "Right-sizing signals plus public access, encryption, and backup posture",
         icon: <Database className="h-5 w-5" />,
     },
     {
@@ -64,8 +64,8 @@ const features = [
 export default function Features() {
     return (
         <section id="features" aria-labelledby="features-title" className="mx-auto max-w-6xl px-4 py-20 scroll-mt-24">
-            <h2 id="features-title" className="text-3xl sm:text-4xl font-bold tracking-tight">Detectors that find waste & hygiene issues</h2>
-            <p className="mt-2 text-zinc-600 dark:text-zinc-300">Run audits in GitHub Actions and get a report you can share: a one-page summary, an HTML report, and machine-readable findings (JSON/CSV).</p>
+            <h2 id="features-title" className="text-3xl sm:text-4xl font-bold tracking-tight">An audit pack, not just a cost scan</h2>
+            <p className="mt-2 text-zinc-600 dark:text-zinc-300">Get cost savings, guardrails, and security posture in one shareable report — summary, HTML, and JSON/CSV artifacts.</p>
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {features.map((f, i) => (
                     <Parallax key={f.title} amount={10 + (i % 4) * 5}>
