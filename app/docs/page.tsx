@@ -69,6 +69,10 @@ export default function DocsPage() {
                             (IAM hygiene, exposure basics, audit logging, and encryption baselines).
                         </li>
                         <li>
+                            Includes <span className="font-semibold text-zinc-900 dark:text-zinc-100">verification CLI commands</span>
+                            so teams can independently confirm findings.
+                        </li>
+                        <li>
                             Makes findings explainable via evidence/provenance (e.g. measured vs heuristic vs skipped due to permissions).
                         </li>
                     </ul>

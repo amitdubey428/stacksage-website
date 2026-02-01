@@ -1,12 +1,27 @@
 # StackSage Summary
 
 - Account: 123456789012
-- Timestamp: 2026-02-01 11:37:39 UTC
+- Timestamp: 2026-02-01 18:36:45 UTC
 - Regions scanned: us-east-1, us-west-2
 - Opt-ins: CloudWatch=unknown, CostExplorer=unknown, PricingAPI=unknown
 
 - Estimated monthly cost: $426.25
 - Estimated monthly savings opportunities: $280.40
+
+## Security posture scorecard
+| Check | Status |
+| --- | --- |
+| Root MFA + no root keys | Fail |
+| Password policy baseline | Fail |
+| Access key hygiene | Pass |
+| S3 account public access block | Fail |
+| S3 default encryption | Pass |
+| EBS encryption by default | Pass |
+| CloudTrail baseline | Fail |
+| AWS Config recorder | Pass |
+| GuardDuty enabled | Fail |
+| Security Hub enabled | Pass |
+| CloudWatch alarms present | Pass |
 
 ## Security posture findings
 - CRITICAL: iam_root_access_keys_present
