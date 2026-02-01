@@ -29,7 +29,10 @@
           "resource_id": "root"
         }
       },
-      "remediation_commands": []
+      "remediation_commands": [],
+      "verification_commands": [
+        "aws iam get-account-summary --query 'SummaryMap.AccountMFAEnabled'"
+      ]
     },
     {
       "type": "iam_root_access_keys_present",
@@ -55,7 +58,10 @@
           "resource_id": "root"
         }
       },
-      "remediation_commands": []
+      "remediation_commands": [],
+      "verification_commands": [
+        "aws iam get-account-summary --query 'SummaryMap.AccountAccessKeysPresent'"
+      ]
     },
     {
       "type": "iam_password_policy_weak",
@@ -88,7 +94,10 @@
           "resource_id": "account"
         }
       },
-      "remediation_commands": []
+      "remediation_commands": [],
+      "verification_commands": [
+        "aws iam get-account-password-policy"
+      ]
     },
     {
       "type": "cloudtrail_not_configured",
@@ -127,7 +136,11 @@
           "resource_id": "account"
         }
       },
-      "remediation_commands": []
+      "remediation_commands": [],
+      "verification_commands": [
+        "aws cloudtrail describe-trails",
+        "aws cloudtrail get-trail-status --name <trail-name>"
+      ]
     },
     {
       "type": "s3_account_public_access_block_disabled",
@@ -155,7 +168,10 @@
           "resource_id": "account"
         }
       },
-      "remediation_commands": []
+      "remediation_commands": [],
+      "verification_commands": [
+        "aws s3control get-public-access-block --account-id 123456789012"
+      ]
     },
     {
       "type": "sg_open_to_world",
@@ -193,7 +209,11 @@
           "region": "us-east-1"
         }
       },
-      "remediation_commands": []
+      "remediation_commands": [],
+      "verification_commands": [
+        "aws ec2 describe-security-groups --group-ids sg-0123abcd4567efgh8",
+        "aws ec2 describe-security-group-rules --filters Name=group-id,Values=sg-0123abcd4567efgh8"
+      ]
     },
     {
       "type": "guardduty_not_enabled",
@@ -221,7 +241,11 @@
           "resource_id": "account"
         }
       },
-      "remediation_commands": []
+      "remediation_commands": [],
+      "verification_commands": [
+        "aws guardduty list-detectors --region us-east-1",
+        "aws guardduty list-detectors --region us-west-2"
+      ]
     },
     {
       "type": "idle_ec2",
@@ -240,6 +264,10 @@
       "explanation": "Low CPU and low network usage over the lookback window.",
       "remediation_commands": [
         "aws ec2 stop-instances --instance-ids i-0123456789abcdef0"
+      ],
+      "verification_commands": [
+        "aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization --dimensions Name=InstanceId,Value=i-0123456789abcdef0 --start-time $(date -u -v-7d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 3600 --statistics Average",
+        "aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name NetworkIn --dimensions Name=InstanceId,Value=i-0123456789abcdef0 --start-time $(date -u -v-7d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 3600 --statistics Average"
       ],
       "reason_codes": [
         "cw_metrics_measured"
@@ -282,6 +310,10 @@
         "# Then delete volume:",
         "aws ec2 delete-volume --volume-id vol-0123456789abcdef"
       ],
+      "verification_commands": [
+        "aws ec2 describe-volumes --volume-ids vol-0123456789abcdef",
+        "aws ec2 describe-volumes --filters Name=status,Values=available Name=volume-id,Values=vol-0123456789abcdef"
+      ],
       "reason_codes": [
         "heuristic",
         "evidence_limited"
@@ -313,6 +345,10 @@
         "# Then delete volume:",
         "aws ec2 delete-volume --volume-id vol-fedcba9876543210"
       ],
+      "verification_commands": [
+        "aws ec2 describe-volumes --volume-ids vol-fedcba9876543210",
+        "aws ec2 describe-volumes --filters Name=status,Values=available Name=volume-id,Values=vol-fedcba9876543210"
+      ],
       "reason_codes": [
         "heuristic",
         "evidence_limited"
@@ -343,6 +379,10 @@
         "# Monitor performance after migration:",
         "aws cloudwatch get-metric-statistics --namespace AWS/EBS --metric-name VolumeReadOps --dimensions Name=VolumeId,Value=vol-1111222233334444 --start-time $(date -u -v-1d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 300 --statistics Average"
       ],
+      "verification_commands": [
+        "aws ec2 describe-volumes --volume-ids vol-1111222233334444 --query 'Volumes[0].VolumeType'",
+        "aws ec2 describe-volumes-modifications --volume-id vol-1111222233334444"
+      ],
       "reason_codes": [
         "heuristic",
         "evidence_limited"
@@ -370,6 +410,9 @@
       "remediation_commands": [
         "aws ec2 delete-snapshot --snapshot-id snap-old123456789abc"
       ],
+      "verification_commands": [
+        "aws ec2 describe-snapshots --snapshot-ids snap-old123456789abc"
+      ],
       "reason_codes": [
         "heuristic",
         "evidence_limited"
@@ -394,6 +437,9 @@
       "recommended_action": "set-logs-retention",
       "explanation": "Log group retention is set to Never Expire; set retention to reduce storage costs.",
       "remediation_commands": [],
+      "verification_commands": [
+        "aws logs describe-log-groups --log-group-name-prefix /aws/lambda/data-processor --query 'logGroups[0].retentionInDays'"
+      ],
       "reason_codes": [
         "heuristic",
         "evidence_limited"
@@ -418,6 +464,10 @@
       "recommended_action": "reduce-lambda-memory",
       "explanation": "Execution time indicates memory may be over-provisioned.",
       "remediation_commands": [],
+      "verification_commands": [
+        "aws lambda get-function-configuration --function-name data-transformer --query 'MemorySize'",
+        "aws cloudwatch get-metric-statistics --namespace AWS/Lambda --metric-name Duration --dimensions Name=FunctionName,Value=data-transformer --start-time $(date -u -v-7d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 3600 --statistics Average"
+      ],
       "reason_codes": [
         "heuristic",
         "evidence_limited"
@@ -444,6 +494,9 @@
       "remediation_commands": [
         "aws ec2 release-address --public-ip 54.123.45.67"
       ],
+      "verification_commands": [
+        "aws ec2 describe-addresses --public-ips 54.123.45.67"
+      ],
       "reason_codes": [
         "heuristic",
         "evidence_limited"
@@ -469,6 +522,9 @@
       "explanation": "Elastic IP is not attached to any instance; AWS charges for unused EIPs.",
       "remediation_commands": [
         "aws ec2 release-address --public-ip 34.210.98.76"
+      ],
+      "verification_commands": [
+        "aws ec2 describe-addresses --public-ips 34.210.98.76"
       ],
       "reason_codes": [
         "heuristic",
@@ -501,6 +557,10 @@
         "regional multiplier applied via pricing tables"
       ],
       "remediation_commands": [],
+      "verification_commands": [
+        "aws ec2 describe-nat-gateways --nat-gateway-ids nat-0123456789abcdef",
+        "aws ec2 describe-route-tables --filters Name=route.nat-gateway-id,Values=nat-0123456789abcdef"
+      ],
       "reason_codes": [
         "cost_estimated"
       ],
@@ -534,6 +594,9 @@
       "explanation": "Low request count over the lookback window.",
       "request_count_avg": 3.0,
       "remediation_commands": [],
+      "verification_commands": [
+        "aws cloudwatch get-metric-statistics --namespace AWS/ApplicationELB --metric-name RequestCount --dimensions Name=LoadBalancer,Value=app/my-alb-prod/1234567890abcdef --start-time $(date -u -v-7d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 86400 --statistics Sum"
+      ],
       "reason_codes": [
         "cw_metrics_measured"
       ],
@@ -580,6 +643,9 @@
           "status": "no_data",
           "datapoints": 0
         }
+      ],
+      "verification_commands": [
+        "aws cloudwatch get-metric-statistics --namespace AWS/ApplicationELB --metric-name RequestCount --dimensions Name=LoadBalancer,Value=app/my-alb-staging/abcdef1234567890 --start-time $(date -u -v-7d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 86400 --statistics Sum"
       ],
       "reason_codes": [
         "cw_no_data"
@@ -634,6 +700,10 @@
       "explanation": "Metric query skipped due to budget exhaustion",
       "metric_status": "skipped_budget",
       "remediation_commands": [],
+      "verification_commands": [
+        "aws rds describe-db-instances --db-instance-identifier prod-postgres-db",
+        "aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name CPUUtilization --dimensions Name=DBInstanceIdentifier,Value=prod-postgres-db --start-time $(date -u -v-7d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 3600 --statistics Average"
+      ],
       "reason_codes": [
         "cw_budget_exhausted"
       ],
@@ -682,6 +752,10 @@
           "status": "error",
           "classification": "not_authorized"
         }
+      ],
+      "verification_commands": [
+        "aws rds describe-db-instances --db-instance-identifier analytics-postgres-db",
+        "aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name CPUUtilization --dimensions Name=DBInstanceIdentifier,Value=analytics-postgres-db --start-time $(date -u -v-7d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 3600 --statistics Average"
       ],
       "reason_codes": [
         "cw_not_authorized"
@@ -734,6 +808,9 @@
       "explanation": "Snapshot is older than the retention window.",
       "remediation_commands": [
         "aws ec2 delete-snapshot --snapshot-id snap-0123456789abcdef"
+      ],
+      "verification_commands": [
+        "aws ec2 describe-snapshots --snapshot-ids snap-0123456789abcdef"
       ],
       "reason_codes": [
         "heuristic",
