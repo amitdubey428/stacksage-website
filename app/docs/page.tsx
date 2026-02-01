@@ -57,12 +57,27 @@ export default function DocsPage() {
                             savings opportunities.
                         </li>
                         <li>
+                            Checks <span className="font-semibold text-zinc-900 dark:text-zinc-100">cost guardrails</span>
+                            (Budgets and Anomaly Detection) so you catch spikes early.
+                        </li>
+                        <li>
                             Flags <span className="font-semibold text-zinc-900 dark:text-zinc-100">security posture signals</span>
                             (IAM hygiene, exposure basics, audit logging baselines).
                         </li>
                         <li>
                             Makes findings explainable via evidence/provenance (e.g. measured vs heuristic vs skipped due to permissions).
                         </li>
+                    </ul>
+                </Section>
+
+                <Section title="Cost guardrails (Budgets + Anomaly Detection)">
+                    <p>
+                        Guardrails are preventative checks that reduce surprise bills. We only report aggregate counts
+                        (for example, whether budgets or anomaly alerts exist), never line-item billing exports.
+                    </p>
+                    <ul className="list-disc pl-5 space-y-2">
+                        <li>Budgets present? (count only)</li>
+                        <li>Anomaly Detection monitors + subscriptions configured? (counts only)</li>
                     </ul>
                 </Section>
 

@@ -11,3 +11,4 @@ All notable changes to this project will be documented in this file.
 - Docs: align trial policy action with actual AccessDenied (s3:GetAccountPublicAccessBlock).
 - Docs: expand trial setup guidance (role ARN, optional assume role) and improve workflow snippet.
 - Checkout: add Razorpay Worker integration and checkout CTA.
+- Docs: add cost guardrails explanation (Budgets + Anomaly Detection).
