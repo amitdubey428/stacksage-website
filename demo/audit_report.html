@@ -160,6 +160,31 @@
       color: #757575;
     }
 
+    /* Scorecard statuses */
+    .scorecard-status {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .scorecard-pass {
+      background: #e8f5e9;
+      color: #2e7d32;
+      border: 1px solid #c8e6c9;
+    }
+    .scorecard-fail {
+      background: #ffebee;
+      color: #c62828;
+      border: 1px solid #ffcdd2;
+    }
+    .scorecard-unknown {
+      background: #fff8e1;
+      color: #f9a825;
+      border: 1px solid #ffecb3;
+    }
+
     /* Instant tooltips (avoid browser title delay) */
     .tip {
       position: relative;
@@ -330,7 +355,7 @@
     <div class="metadata">
       <strong>Account:</strong> 123456789012 | 
       <strong>Regions:</strong> us-east-1, us-west-2 | 
-      <strong>Generated:</strong> 2026-02-01 11:12:15 UTC
+      <strong>Generated:</strong> 2026-02-01 11:37:39 UTC
       | <strong>Pricing:</strong> v2025-12
     </div>
     
@@ -603,6 +628,123 @@
     <!-- Executive Summary -->
     <h2>Executive Summary</h2>
     <p style="font-size: 15px; line-height: 1.8; color: #424242;">Potential monthly savings: $280.40. Current cost (flagged resources): $426.25. Primary drivers: underutilized_rds(prod-postgres-db): $78.00, idle_ec2(i-0123456789abcdef0): $62.40, unattached_ebs(vol-fedcba9876543210): $50.00, old_snapshot(snap-old123456789abc): $25.00, idle_elb(my-alb-prod): $25.00</p>
+
+    
+    <h3>🛡️ Security Posture Scorecard</h3>
+    <p style="font-size: 14px; color: #616161; margin: 8px 0;">
+      A quick view of baseline security controls (pass/fail/unknown). See Security Posture Findings for details.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Control</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        <tr>
+          <td>Root MFA + no root keys</td>
+          <td>
+            <span class="scorecard-status scorecard-fail">
+              FAIL
+            </span>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Password policy baseline</td>
+          <td>
+            <span class="scorecard-status scorecard-fail">
+              FAIL
+            </span>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Access key hygiene</td>
+          <td>
+            <span class="scorecard-status scorecard-pass">
+              PASS
+            </span>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>S3 account public access block</td>
+          <td>
+            <span class="scorecard-status scorecard-fail">
+              FAIL
+            </span>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>S3 default encryption</td>
+          <td>
+            <span class="scorecard-status scorecard-pass">
+              PASS
+            </span>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>EBS encryption by default</td>
+          <td>
+            <span class="scorecard-status scorecard-pass">
+              PASS
+            </span>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>CloudTrail baseline</td>
+          <td>
+            <span class="scorecard-status scorecard-fail">
+              FAIL
+            </span>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>AWS Config recorder</td>
+          <td>
+            <span class="scorecard-status scorecard-pass">
+              PASS
+            </span>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>GuardDuty enabled</td>
+          <td>
+            <span class="scorecard-status scorecard-fail">
+              FAIL
+            </span>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>Security Hub enabled</td>
+          <td>
+            <span class="scorecard-status scorecard-pass">
+              PASS
+            </span>
+          </td>
+        </tr>
+        
+        <tr>
+          <td>CloudWatch alarms present</td>
+          <td>
+            <span class="scorecard-status scorecard-pass">
+              PASS
+            </span>
+          </td>
+        </tr>
+        
+      </tbody>
+    </table>
+    
 
     
     
