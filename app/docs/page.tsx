@@ -85,6 +85,16 @@ export default function DocsPage() {
                     </ul>
                 </Section>
 
+                <Section title="Spend movers (Cost Explorer) — how to interpret">
+                    <p>
+                        Spend movers show period-over-period changes by service and region. Read the guide for how to
+                        interpret spikes and validate expected vs. unexpected deltas.
+                    </p>
+                    <p>
+                        <Link className="underline" href="/spend-movers">Read the Spend Movers Guide →</Link>
+                    </p>
+                </Section>
+
                 <Section id="trial" title="Trial mode (self-serve)">
                     <p>
                         StackSage Trial is designed to run without dependency on us: you can set it up in your own repo, run it on demand,

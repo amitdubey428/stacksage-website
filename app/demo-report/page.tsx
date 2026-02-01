@@ -81,6 +81,9 @@ export default function DemoReportPage() {
                         Your actual report is generated in your GitHub Actions runner.
                         Optional enrichments include CloudWatch utilization, Cost Explorer historical spend breakdown, and spend movers (if you enable permissions).
                     </p>
+                    <p className="mt-2">
+                        <Link className="underline" href="/spend-movers">Read the Spend Movers Guide →</Link>
+                    </p>
                 </div>
             </div>
         </div>
