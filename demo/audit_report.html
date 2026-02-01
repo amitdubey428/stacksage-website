@@ -355,7 +355,7 @@
     <div class="metadata">
       <strong>Account:</strong> 123456789012 | 
       <strong>Regions:</strong> us-east-1, us-west-2 | 
-      <strong>Generated:</strong> 2026-02-01 11:37:39 UTC
+      <strong>Generated:</strong> 2026-02-01 18:36:45 UTC
       | <strong>Pricing:</strong> v2025-12
     </div>
     
@@ -1123,6 +1123,7 @@
               
                 <br><small style="color: #666; font-style: italic;">Metric query skipped due to budget exhaustion</small>
               
+              
             </td>
             <td>
               
@@ -1174,6 +1175,7 @@
               
                 <br><small style="color: #666; font-style: italic;">Low CPU and low network usage over the lookback window.</small>
               
+              
             </td>
             <td>
               
@@ -1190,7 +1192,7 @@
               unattached_ebs
               
                 <span class="badge badge-info" title="Detection confidence">
-                  95%
+                  50%
                 </span>
               
               
@@ -1220,6 +1222,7 @@
               
               
                 <br><small style="color: #666; font-style: italic;">EBS volume (500 GB) unattached for >7 days. Create snapshot for safety, then delete if unused.</small>
+              
               
             </td>
             <td>
@@ -1272,6 +1275,7 @@
               
                 <br><small style="color: #666; font-style: italic;">Low request count over the lookback window.</small>
               
+              
             </td>
             <td>
               
@@ -1288,7 +1292,7 @@
               old_snapshot
               
                 <span class="badge badge-info" title="Detection confidence">
-                  100%
+                  50%
                 </span>
               
               
@@ -1321,6 +1325,7 @@
               
                 <br><small style="color: #666; font-style: italic;">Snapshot is older than the retention window.</small>
               
+              
             </td>
             <td>
               
@@ -1337,7 +1342,7 @@
               unattached_ebs
               
                 <span class="badge badge-info" title="Detection confidence">
-                  95%
+                  50%
                 </span>
               
               
@@ -1368,6 +1373,7 @@
               
                 <br><small style="color: #666; font-style: italic;">EBS volume (100 GB) unattached for >7 days. Create snapshot for safety, then delete if unused.</small>
               
+              
             </td>
             <td>
               
@@ -1384,7 +1390,7 @@
               cloudwatch_logs_retention
               
                 <span class="badge badge-info" title="Detection confidence">
-                  75%
+                  50%
                 </span>
               
               
@@ -1415,6 +1421,7 @@
               
                 <br><small style="color: #666; font-style: italic;">Log group retention is set to Never Expire; set retention to reduce storage costs.</small>
               
+              
             </td>
             <td>
               
@@ -1431,7 +1438,7 @@
               gp2_to_gp3_migration
               
                 <span class="badge badge-info" title="Detection confidence">
-                  98%
+                  50%
                 </span>
               
               
@@ -1462,6 +1469,7 @@
               
                 <br><small style="color: #666; font-style: italic;">gp3 is typically cheaper than gp2 for similar workloads.</small>
               
+              
             </td>
             <td>
               
@@ -1478,7 +1486,7 @@
               old_snapshot
               
                 <span class="badge badge-info" title="Detection confidence">
-                  100%
+                  50%
                 </span>
               
               
@@ -1511,6 +1519,7 @@
               
                 <br><small style="color: #666; font-style: italic;">Snapshot is older than the retention window.</small>
               
+              
             </td>
             <td>
               
@@ -1527,7 +1536,7 @@
               unused_eip
               
                 <span class="badge badge-info" title="Detection confidence">
-                  100%
+                  50%
                 </span>
               
               
@@ -1558,6 +1567,7 @@
               
                 <br><small style="color: #666; font-style: italic;">Elastic IP is not attached to any instance; AWS charges for unused EIPs.</small>
               
+              
             </td>
             <td>
               
@@ -1574,7 +1584,7 @@
               unused_eip
               
                 <span class="badge badge-info" title="Detection confidence">
-                  100%
+                  50%
                 </span>
               
               
@@ -1605,6 +1615,7 @@
               
                 <br><small style="color: #666; font-style: italic;">Elastic IP is not attached to any instance; AWS charges for unused EIPs.</small>
               
+              
             </td>
             <td>
               
@@ -1621,7 +1632,7 @@
               overprovisioned_lambda
               
                 <span class="badge badge-info" title="Detection confidence">
-                  70%
+                  50%
                 </span>
               
               
@@ -1651,6 +1662,7 @@
               
               
                 <br><small style="color: #666; font-style: italic;">Execution time indicates memory may be over-provisioned.</small>
+              
               
             </td>
             <td>
@@ -1704,6 +1716,7 @@
               
                 <br><small style="color: #666; font-style: italic;">Unable to measure load balancer request volume: CloudWatch returned no datapoints for the lookback window.</small>
               
+              
             </td>
             <td>
               
@@ -1750,6 +1763,7 @@
               
               
                 <br><small style="color: #666; font-style: italic;">NAT gateways have hourly + data processing cost; if used primarily for S3, consider an S3 VPC endpoint.</small>
+              
               
             </td>
             <td>
@@ -1816,6 +1830,7 @@
               
               
                 <br><small style="color: #666; font-style: italic;">Unable to measure CPU/storage utilization: missing CloudWatch permissions (AccessDenied).</small>
+              
               
             </td>
             <td>
@@ -1887,6 +1902,7 @@
               
                 <br><small style="color: #666; font-style: italic;">Root access keys are present. Delete root access keys and use least-privilege IAM roles/users.</small>
               
+              
             </td>
             <td>
               
@@ -1933,6 +1949,7 @@
               
               
                 <br><small style="color: #666; font-style: italic;">Root MFA is not enabled. Enable MFA on the root user and restrict root usage.</small>
+              
               
             </td>
             <td>
@@ -1981,6 +1998,7 @@
               
                 <br><small style="color: #666; font-style: italic;">CloudTrail baseline appears incomplete. Enable an org/account trail (multi-region) and ensure it is actively logging.</small>
               
+              
             </td>
             <td>
               
@@ -2027,6 +2045,7 @@
               
               
                 <br><small style="color: #666; font-style: italic;">S3 account-level Block Public Access is not fully enabled.</small>
+              
               
             </td>
             <td>
@@ -2075,6 +2094,7 @@
               
                 <br><small style="color: #666; font-style: italic;">Security group allows inbound access from the public internet on sensitive ports.</small>
               
+              
             </td>
             <td>
               
@@ -2122,6 +2142,7 @@
               
                 <br><small style="color: #666; font-style: italic;">GuardDuty is not enabled in one or more regions checked.</small>
               
+              
             </td>
             <td>
               
@@ -2168,6 +2189,7 @@
               
               
                 <br><small style="color: #666; font-style: italic;">IAM password policy is weaker than common baseline settings.</small>
+              
               
             </td>
             <td>
@@ -2241,6 +2263,7 @@
               
                 <br><small style="color: #666; font-style: italic;">Root MFA is not enabled. Enable MFA on the root user and restrict root usage.</small>
               
+              
             </td>
             <td>
               
@@ -2287,6 +2310,7 @@
               
               
                 <br><small style="color: #666; font-style: italic;">Root access keys are present. Delete root access keys and use least-privilege IAM roles/users.</small>
+              
               
             </td>
             <td>
@@ -2335,6 +2359,7 @@
               
                 <br><small style="color: #666; font-style: italic;">IAM password policy is weaker than common baseline settings.</small>
               
+              
             </td>
             <td>
               
@@ -2381,6 +2406,7 @@
               
               
                 <br><small style="color: #666; font-style: italic;">CloudTrail baseline appears incomplete. Enable an org/account trail (multi-region) and ensure it is actively logging.</small>
+              
               
             </td>
             <td>
@@ -2429,6 +2455,7 @@
               
                 <br><small style="color: #666; font-style: italic;">S3 account-level Block Public Access is not fully enabled.</small>
               
+              
             </td>
             <td>
               
@@ -2476,6 +2503,7 @@
               
                 <br><small style="color: #666; font-style: italic;">Security group allows inbound access from the public internet on sensitive ports.</small>
               
+              
             </td>
             <td>
               
@@ -2522,6 +2550,7 @@
               
               
                 <br><small style="color: #666; font-style: italic;">GuardDuty is not enabled in one or more regions checked.</small>
+              
               
             </td>
             <td>
@@ -2574,6 +2603,7 @@
               
                 <br><small style="color: #666; font-style: italic;">Low CPU and low network usage over the lookback window.</small>
               
+              
             </td>
             <td>
               
@@ -2590,7 +2620,7 @@
               unattached_ebs
               
                 <span class="badge badge-info" title="Detection confidence">
-                  95%
+                  50%
                 </span>
               
               
@@ -2621,6 +2651,7 @@
               
                 <br><small style="color: #666; font-style: italic;">EBS volume (100 GB) unattached for >7 days. Create snapshot for safety, then delete if unused.</small>
               
+              
             </td>
             <td>
               
@@ -2637,7 +2668,7 @@
               unattached_ebs
               
                 <span class="badge badge-info" title="Detection confidence">
-                  95%
+                  50%
                 </span>
               
               
@@ -2668,6 +2699,7 @@
               
                 <br><small style="color: #666; font-style: italic;">EBS volume (500 GB) unattached for >7 days. Create snapshot for safety, then delete if unused.</small>
               
+              
             </td>
             <td>
               
@@ -2684,7 +2716,7 @@
               gp2_to_gp3_migration
               
                 <span class="badge badge-info" title="Detection confidence">
-                  98%
+                  50%
                 </span>
               
               
@@ -2715,6 +2747,7 @@
               
                 <br><small style="color: #666; font-style: italic;">gp3 is typically cheaper than gp2 for similar workloads.</small>
               
+              
             </td>
             <td>
               
@@ -2731,7 +2764,7 @@
               old_snapshot
               
                 <span class="badge badge-info" title="Detection confidence">
-                  100%
+                  50%
                 </span>
               
               
@@ -2764,6 +2797,7 @@
               
                 <br><small style="color: #666; font-style: italic;">Snapshot is older than the retention window.</small>
               
+              
             </td>
             <td>
               
@@ -2780,7 +2814,7 @@
               cloudwatch_logs_retention
               
                 <span class="badge badge-info" title="Detection confidence">
-                  75%
+                  50%
                 </span>
               
               
@@ -2811,6 +2845,7 @@
               
                 <br><small style="color: #666; font-style: italic;">Log group retention is set to Never Expire; set retention to reduce storage costs.</small>
               
+              
             </td>
             <td>
               
@@ -2827,7 +2862,7 @@
               overprovisioned_lambda
               
                 <span class="badge badge-info" title="Detection confidence">
-                  70%
+                  50%
                 </span>
               
               
@@ -2858,6 +2893,7 @@
               
                 <br><small style="color: #666; font-style: italic;">Execution time indicates memory may be over-provisioned.</small>
               
+              
             </td>
             <td>
               
@@ -2874,7 +2910,7 @@
               unused_eip
               
                 <span class="badge badge-info" title="Detection confidence">
-                  100%
+                  50%
                 </span>
               
               
@@ -2905,6 +2941,7 @@
               
                 <br><small style="color: #666; font-style: italic;">Elastic IP is not attached to any instance; AWS charges for unused EIPs.</small>
               
+              
             </td>
             <td>
               
@@ -2921,7 +2958,7 @@
               unused_eip
               
                 <span class="badge badge-info" title="Detection confidence">
-                  100%
+                  50%
                 </span>
               
               
@@ -2951,6 +2988,7 @@
               
               
                 <br><small style="color: #666; font-style: italic;">Elastic IP is not attached to any instance; AWS charges for unused EIPs.</small>
+              
               
             </td>
             <td>
@@ -2998,6 +3036,7 @@
               
               
                 <br><small style="color: #666; font-style: italic;">NAT gateways have hourly + data processing cost; if used primarily for S3, consider an S3 VPC endpoint.</small>
+              
               
             </td>
             <td>
@@ -3057,6 +3096,7 @@
               
                 <br><small style="color: #666; font-style: italic;">Low request count over the lookback window.</small>
               
+              
             </td>
             <td>
               
@@ -3108,6 +3148,7 @@
               
               
                 <br><small style="color: #666; font-style: italic;">Unable to measure load balancer request volume: CloudWatch returned no datapoints for the lookback window.</small>
+              
               
             </td>
             <td>
@@ -3169,6 +3210,7 @@
               
                 <br><small style="color: #666; font-style: italic;">Metric query skipped due to budget exhaustion</small>
               
+              
             </td>
             <td>
               
@@ -3228,6 +3270,7 @@
               
                 <br><small style="color: #666; font-style: italic;">Unable to measure CPU/storage utilization: missing CloudWatch permissions (AccessDenied).</small>
               
+              
             </td>
             <td>
               
@@ -3244,7 +3287,7 @@
               old_snapshot
               
                 <span class="badge badge-info" title="Detection confidence">
-                  100%
+                  50%
                 </span>
               
               
@@ -3276,6 +3319,7 @@
               
               
                 <br><small style="color: #666; font-style: italic;">Snapshot is older than the retention window.</small>
+              
               
             </td>
             <td>

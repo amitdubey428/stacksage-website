@@ -23,6 +23,10 @@
       "evidence": {
         "iam": {
           "account_mfa_enabled": false
+        },
+        "inventory": {
+          "resource_type": "account",
+          "resource_id": "root"
         }
       },
       "remediation_commands": []
@@ -45,6 +49,10 @@
       "evidence": {
         "iam": {
           "root_access_keys_present": true
+        },
+        "inventory": {
+          "resource_type": "account",
+          "resource_id": "root"
         }
       },
       "remediation_commands": []
@@ -74,6 +82,10 @@
           "minimum_password_length": 10,
           "password_reuse_prevention": 0,
           "max_password_age": 180
+        },
+        "inventory": {
+          "resource_type": "account",
+          "resource_id": "account"
         }
       },
       "remediation_commands": []
@@ -109,6 +121,10 @@
             "No multi-region trail",
             "No trail appears to be actively logging"
           ]
+        },
+        "inventory": {
+          "resource_type": "account",
+          "resource_id": "account"
         }
       },
       "remediation_commands": []
@@ -133,6 +149,10 @@
           "account_public_access_block_missing": [
             "BlockPublicPolicy"
           ]
+        },
+        "inventory": {
+          "resource_type": "account",
+          "resource_id": "account"
         }
       },
       "remediation_commands": []
@@ -166,6 +186,11 @@
               "cidr": "world"
             }
           ]
+        },
+        "inventory": {
+          "resource_type": "security-group",
+          "resource_id": "sg-0123abcd4567efgh8",
+          "region": "us-east-1"
         }
       },
       "remediation_commands": []
@@ -190,6 +215,10 @@
           "regions_missing": [
             "us-west-2"
           ]
+        },
+        "inventory": {
+          "resource_type": "account",
+          "resource_id": "account"
         }
       },
       "remediation_commands": []
@@ -226,6 +255,11 @@
             "used": 12,
             "remaining": 3
           }
+        },
+        "inventory": {
+          "resource_type": "ec2",
+          "resource_id": "i-0123456789abcdef0",
+          "region": "us-east-1"
         }
       }
     },
@@ -233,7 +267,7 @@
       "type": "unattached_ebs",
       "resource_type": "ebs",
       "severity": "high",
-      "confidence": 0.95,
+      "confidence": 0.5,
       "id": "vol-0123456789abcdef",
       "region": "us-east-1",
       "size_gb": 100,
@@ -249,15 +283,22 @@
         "aws ec2 delete-volume --volume-id vol-0123456789abcdef"
       ],
       "reason_codes": [
-        "heuristic"
+        "heuristic",
+        "evidence_limited"
       ],
-      "evidence": {}
+      "evidence": {
+        "inventory": {
+          "resource_type": "ebs",
+          "resource_id": "vol-0123456789abcdef",
+          "region": "us-east-1"
+        }
+      }
     },
     {
       "type": "unattached_ebs",
       "resource_type": "ebs",
       "severity": "high",
-      "confidence": 0.95,
+      "confidence": 0.5,
       "id": "vol-fedcba9876543210",
       "region": "us-west-2",
       "size_gb": 500,
@@ -273,15 +314,22 @@
         "aws ec2 delete-volume --volume-id vol-fedcba9876543210"
       ],
       "reason_codes": [
-        "heuristic"
+        "heuristic",
+        "evidence_limited"
       ],
-      "evidence": {}
+      "evidence": {
+        "inventory": {
+          "resource_type": "ebs",
+          "resource_id": "vol-fedcba9876543210",
+          "region": "us-west-2"
+        }
+      }
     },
     {
       "type": "gp2_to_gp3_migration",
       "resource_type": "ebs",
       "severity": "medium",
-      "confidence": 0.98,
+      "confidence": 0.5,
       "id": "vol-1111222233334444",
       "region": "us-east-1",
       "size_gb": 250,
@@ -296,15 +344,22 @@
         "aws cloudwatch get-metric-statistics --namespace AWS/EBS --metric-name VolumeReadOps --dimensions Name=VolumeId,Value=vol-1111222233334444 --start-time $(date -u -v-1d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 300 --statistics Average"
       ],
       "reason_codes": [
-        "heuristic"
+        "heuristic",
+        "evidence_limited"
       ],
-      "evidence": {}
+      "evidence": {
+        "inventory": {
+          "resource_type": "ebs",
+          "resource_id": "vol-1111222233334444",
+          "region": "us-east-1"
+        }
+      }
     },
     {
       "type": "old_snapshot",
       "resource_type": "snapshot",
       "severity": "medium",
-      "confidence": 1.0,
+      "confidence": 0.5,
       "id": "snap-old123456789abc",
       "region": "us-west-2",
       "days_old": 964,
@@ -316,15 +371,22 @@
         "aws ec2 delete-snapshot --snapshot-id snap-old123456789abc"
       ],
       "reason_codes": [
-        "heuristic"
+        "heuristic",
+        "evidence_limited"
       ],
-      "evidence": {}
+      "evidence": {
+        "inventory": {
+          "resource_type": "snapshot",
+          "resource_id": "snap-old123456789abc",
+          "region": "us-west-2"
+        }
+      }
     },
     {
       "type": "cloudwatch_logs_retention",
       "resource_type": "cloudwatch",
       "severity": "medium",
-      "confidence": 0.75,
+      "confidence": 0.5,
       "id": "/aws/lambda/data-processor",
       "region": "us-east-1",
       "estimated_monthly_cost_usd": 15.0,
@@ -333,15 +395,22 @@
       "explanation": "Log group retention is set to Never Expire; set retention to reduce storage costs.",
       "remediation_commands": [],
       "reason_codes": [
-        "heuristic"
+        "heuristic",
+        "evidence_limited"
       ],
-      "evidence": {}
+      "evidence": {
+        "inventory": {
+          "resource_type": "cloudwatch",
+          "resource_id": "/aws/lambda/data-processor",
+          "region": "us-east-1"
+        }
+      }
     },
     {
       "type": "overprovisioned_lambda",
       "resource_type": "lambda",
       "severity": "low",
-      "confidence": 0.7,
+      "confidence": 0.5,
       "id": "data-transformer",
       "region": "us-east-1",
       "estimated_monthly_cost_usd": 12.0,
@@ -350,15 +419,22 @@
       "explanation": "Execution time indicates memory may be over-provisioned.",
       "remediation_commands": [],
       "reason_codes": [
-        "heuristic"
+        "heuristic",
+        "evidence_limited"
       ],
-      "evidence": {}
+      "evidence": {
+        "inventory": {
+          "resource_type": "lambda",
+          "resource_id": "data-transformer",
+          "region": "us-east-1"
+        }
+      }
     },
     {
       "type": "unused_eip",
       "resource_type": "eip",
       "severity": "medium",
-      "confidence": 1.0,
+      "confidence": 0.5,
       "id": "54.123.45.67",
       "region": "us-east-1",
       "estimated_monthly_cost_usd": 4.0,
@@ -369,15 +445,22 @@
         "aws ec2 release-address --public-ip 54.123.45.67"
       ],
       "reason_codes": [
-        "heuristic"
+        "heuristic",
+        "evidence_limited"
       ],
-      "evidence": {}
+      "evidence": {
+        "inventory": {
+          "resource_type": "eip",
+          "resource_id": "54.123.45.67",
+          "region": "us-east-1"
+        }
+      }
     },
     {
       "type": "unused_eip",
       "resource_type": "eip",
       "severity": "medium",
-      "confidence": 1.0,
+      "confidence": 0.5,
       "id": "34.210.98.76",
       "region": "us-west-2",
       "estimated_monthly_cost_usd": 4.0,
@@ -388,9 +471,16 @@
         "aws ec2 release-address --public-ip 34.210.98.76"
       ],
       "reason_codes": [
-        "heuristic"
+        "heuristic",
+        "evidence_limited"
       ],
-      "evidence": {}
+      "evidence": {
+        "inventory": {
+          "resource_type": "eip",
+          "resource_id": "34.210.98.76",
+          "region": "us-west-2"
+        }
+      }
     },
     {
       "type": "nat_gateway",
@@ -423,6 +513,11 @@
             "regional multiplier applied via pricing tables"
           ],
           "adjusted_monthly_cost_usd": 32.85
+        },
+        "inventory": {
+          "resource_type": "nat",
+          "resource_id": "nat-0123456789abcdef",
+          "region": "us-east-1"
         }
       }
     },
@@ -453,6 +548,11 @@
             "used": 12,
             "remaining": 3
           }
+        },
+        "inventory": {
+          "resource_type": "elb",
+          "resource_id": "my-alb-prod",
+          "region": "us-east-1"
         }
       }
     },
@@ -510,6 +610,11 @@
             "used": 12,
             "remaining": 3
           }
+        },
+        "inventory": {
+          "resource_type": "elb",
+          "resource_id": "my-alb-staging",
+          "region": "us-west-2"
         }
       }
     },
@@ -543,6 +648,11 @@
             "used": 12,
             "remaining": 3
           }
+        },
+        "inventory": {
+          "resource_type": "rds",
+          "resource_id": "prod-postgres-db",
+          "region": "us-east-1"
         }
       }
     },
@@ -602,6 +712,11 @@
             "used": 12,
             "remaining": 3
           }
+        },
+        "inventory": {
+          "resource_type": "rds",
+          "resource_id": "analytics-postgres-db",
+          "region": "us-east-1"
         }
       }
     },
@@ -609,7 +724,7 @@
       "type": "old_snapshot",
       "resource_type": "snapshot",
       "severity": "low",
-      "confidence": 1.0,
+      "confidence": 0.5,
       "id": "snap-0123456789abcdef",
       "region": "us-east-1",
       "days_old": 668,
@@ -621,9 +736,16 @@
         "aws ec2 delete-snapshot --snapshot-id snap-0123456789abcdef"
       ],
       "reason_codes": [
-        "heuristic"
+        "heuristic",
+        "evidence_limited"
       ],
-      "evidence": {}
+      "evidence": {
+        "inventory": {
+          "resource_type": "snapshot",
+          "resource_id": "snap-0123456789abcdef",
+          "region": "us-east-1"
+        }
+      }
     }
   ],
   "estimated_monthly_cost": 426.25,
