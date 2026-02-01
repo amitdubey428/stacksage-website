@@ -1,7 +1,7 @@
 # StackSage Summary
 
 - Account: 123456789012
-- Timestamp: 2026-02-01 18:36:45 UTC
+- Timestamp: 2026-02-01 18:50:48 UTC
 - Regions scanned: us-east-1, us-west-2
 - Opt-ins: CloudWatch=unknown, CostExplorer=unknown, PricingAPI=unknown
 
