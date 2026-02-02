@@ -392,7 +392,7 @@
     <div class="metadata">
       <strong>Account:</strong> 123456789012 | 
       <strong>Regions:</strong> us-east-1, us-west-2 | 
-      <strong>Generated:</strong> 2026-02-01 18:50:48 UTC
+      <strong>Generated:</strong> 2026-02-02 04:28:33 UTC
       | <strong>Pricing:</strong> v2025-12
     </div>
     
@@ -400,12 +400,12 @@
     <h2>Executive Dashboard</h2>
     <div class="dashboard">
       <div class="card card-savings">
-        <div class="card-value">$280.4</div>
+        <div class="card-value">$433.25</div>
         <div class="card-label">Potential Savings/Month</div>
       </div>
       
       <div class="card card-issues">
-        <div class="card-value">22</div>
+        <div class="card-value">24</div>
         <div class="card-label">Issues Found</div>
       </div>
       
@@ -419,7 +419,7 @@
       <div class="card card-waste">
         <div class="card-value">
           
-            66%
+            75%
           
         </div>
         <div class="card-label">Potential Waste</div>
@@ -427,7 +427,7 @@
     </div>
     
     <p style="font-size: 14px; color: #616161; margin: 16px 0;">
-      <strong>Estimated Monthly Cost:</strong> $426.25
+      <strong>Estimated Monthly Cost:</strong> $579.1
     </p>
     
       
@@ -664,7 +664,7 @@
 
     <!-- Executive Summary -->
     <h2>Executive Summary</h2>
-    <p style="font-size: 15px; line-height: 1.8; color: #424242;">Potential monthly savings: $280.40. Current cost (flagged resources): $426.25. Primary drivers: underutilized_rds(prod-postgres-db): $78.00, idle_ec2(i-0123456789abcdef0): $62.40, unattached_ebs(vol-fedcba9876543210): $50.00, old_snapshot(snap-old123456789abc): $25.00, idle_elb(my-alb-prod): $25.00</p>
+    <p style="font-size: 15px; line-height: 1.8; color: #424242;">Potential monthly savings: $433.25. Current cost (flagged resources): $579.10. Primary drivers: rds_low_connections(reporting-postgres-db): $120.00, underutilized_rds(prod-postgres-db): $78.00, idle_ec2(i-0123456789abcdef0): $62.40, unattached_ebs(vol-fedcba9876543210): $50.00, idle_nat_gateway(nat-0123456789abcdef): $32.85</p>
 
     
     <h3>🛡️ Security Posture Scorecard</h3>
@@ -792,6 +792,16 @@
     <ul style="font-size: 14px; line-height: 1.8;">
       
         <li>
+          <strong>rds_low_connections</strong> (reporting-postgres-db) — 
+          <span style="color: #1976d2; font-weight: 600;">$120.0/month</span>
+          via review-and-stop-if-unused
+          
+          
+            <br><small style="color: #666; margin-left: 20px; font-style: italic;">Average connections 0.3 over 14 days. Review whether this instance is still needed.</small>
+          
+        </li>
+      
+        <li>
           <strong>underutilized_rds</strong> (prod-postgres-db) — 
           <span style="color: #1976d2; font-weight: 600;">$78.0/month</span>
           via review-and-rightsize
@@ -822,22 +832,12 @@
         </li>
       
         <li>
-          <strong>old_snapshot</strong> (snap-old123456789abc) — 
-          <span style="color: #1976d2; font-weight: 600;">$25.0/month</span>
-          via delete-snapshot
-          
-          
-            <br><small style="color: #666; margin-left: 20px; font-style: italic;">Snapshot is older than the retention window.</small>
-          
-        </li>
-      
-        <li>
-          <strong>idle_elb</strong> (my-alb-prod) — 
-          <span style="color: #1976d2; font-weight: 600;">$25.0/month</span>
+          <strong>idle_nat_gateway</strong> (nat-0123456789abcdef) — 
+          <span style="color: #1976d2; font-weight: 600;">$32.85/month</span>
           via review-and-delete-if-unused
           
           
-            <br><small style="color: #666; margin-left: 20px; font-style: italic;">Low request count over the lookback window.</small>
+            <br><small style="color: #666; margin-left: 20px; font-style: italic;">NAT gateway shows very low data processed (~0.25 GB/day across last 14 days). If unused, consider deleting to save hourly charges.</small>
           
         </li>
       
@@ -856,7 +856,7 @@
         data: {
           labels: ['account', 'security-group', 'ec2', 'ebs', 'snapshot', 'cloudwatch', 'lambda', 'eip', 'nat', 'elb', 'rds'],
           datasets: [{
-            data: [6, 1, 1, 3, 2, 1, 1, 2, 1, 2, 2],
+            data: [6, 1, 1, 3, 2, 1, 1, 2, 2, 2, 3],
             backgroundColor: [
               '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
               '#FF9F40', '#FF6384', '#C9CBCF', '#4BC0C0', '#FF9F40'
@@ -967,6 +967,16 @@
       <tbody>
       
         <tr class="severity-medium">
+          <td>rds_low_connections</td>
+          <td style="font-family: monospace; font-size: 12px;">reporting-postgres-db</td>
+          <td>us-east-1</td>
+          <td style="font-weight: 600; color: #1976d2;">
+            $120.0
+          </td>
+          <td>review-and-stop-if-unused</td>
+        </tr>
+      
+        <tr class="severity-medium">
           <td>underutilized_rds</td>
           <td style="font-family: monospace; font-size: 12px;">prod-postgres-db</td>
           <td>us-east-1</td>
@@ -997,21 +1007,11 @@
         </tr>
       
         <tr class="severity-medium">
-          <td>old_snapshot</td>
-          <td style="font-family: monospace; font-size: 12px;">snap-old123456789abc</td>
-          <td>us-west-2</td>
-          <td style="font-weight: 600; color: #1976d2;">
-            $25.0
-          </td>
-          <td>delete-snapshot</td>
-        </tr>
-      
-        <tr class="severity-high">
-          <td>idle_elb</td>
-          <td style="font-family: monospace; font-size: 12px;">my-alb-prod</td>
+          <td>idle_nat_gateway</td>
+          <td style="font-family: monospace; font-size: 12px;">nat-0123456789abcdef</td>
           <td>us-east-1</td>
           <td style="font-weight: 600; color: #1976d2;">
-            $25.0
+            $32.85
           </td>
           <td>review-and-delete-if-unused</td>
         </tr>
@@ -1073,7 +1073,7 @@
         
           <tr>
             <td>nat</td>
-            <td><strong>1</strong></td>
+            <td><strong>2</strong></td>
           </tr>
         
           <tr>
@@ -1083,7 +1083,7 @@
         
           <tr>
             <td>rds</td>
-            <td><strong>2</strong></td>
+            <td><strong>3</strong></td>
           </tr>
         
         </tbody>
@@ -1094,7 +1094,7 @@
     
 
     
-    <button class="collapsible">💰 Financial Findings (15 total)</button>
+    <button class="collapsible">💰 Financial Findings (17 total)</button>
     <div class="content">
       <table style="margin-top: 16px;">
         <thead>
@@ -1110,6 +1110,63 @@
           </tr>
         </thead>
         <tbody>
+        
+          <tr class="severity-medium">
+            <td>
+              rds_low_connections
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  50%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              reporting-postgres-db
+              
+              
+              
+            </td>
+            <td>us-east-1</td>
+            <td>
+              <span class="badge badge-medium">
+                MEDIUM
+              </span>
+            </td>
+            <td>120.0</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              120.0
+              
+            </td>
+            <td>
+              review-and-stop-if-unused
+              
+              
+                <br><small style="color: #666; font-style: italic;">Average connections 0.3 over 14 days. Review whether this instance is still needed.</small>
+              
+              
+                <details style="margin-top: 6px;">
+                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
+                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
+                    <button class="copy-btn" type="button">Copy</button>
+                    <code>aws rds describe-db-instances --db-instance-identifier reporting-postgres-db
+aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name DatabaseConnections --dimensions Name=DBInstanceIdentifier,Value=reporting-postgres-db --start-time $(date -u -v-14d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 300 --statistics Average</code>
+                  </div>
+                </details>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
         
           <tr class="severity-medium">
             <td>
@@ -1295,6 +1352,71 @@ aws ec2 describe-volumes --filters Name=status,Values=available Name=volume-id,V
               
               
                 <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-medium">
+            <td>
+              idle_nat_gateway
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  50%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              nat-0123456789abcdef
+              
+              
+              
+            </td>
+            <td>us-east-1</td>
+            <td>
+              <span class="badge badge-medium">
+                MEDIUM
+              </span>
+            </td>
+            <td>32.85</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              32.85
+              
+            </td>
+            <td>
+              review-and-delete-if-unused
+              
+              
+                <br><small style="color: #666; font-style: italic;">NAT gateway shows very low data processed (~0.25 GB/day across last 14 days). If unused, consider deleting to save hourly charges.</small>
+              
+              
+                <details style="margin-top: 6px;">
+                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
+                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
+                    <button class="copy-btn" type="button">Copy</button>
+                    <code>aws ec2 describe-nat-gateways --nat-gateway-ids nat-0123456789abcdef
+aws cloudwatch get-metric-statistics --namespace AWS/NATGateway --metric-name BytesOutToDestination --dimensions Name=NatGatewayId,Value=nat-0123456789abcdef --start-time $(date -u -v-14d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 86400 --statistics Sum
+aws cloudwatch get-metric-statistics --namespace AWS/NATGateway --metric-name BytesInFromSource --dimensions Name=NatGatewayId,Value=nat-0123456789abcdef --start-time $(date -u -v-14d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 86400 --statistics Sum</code>
+                  </div>
+                </details>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                
+                
+                
+                
+                <span class="tip">
+                  <span class="badge badge-info">📐 Estimation</span>
+                  <span class="tiptext">Adjusted cost: $32.85/mo</span>
+                </span>
               
             </td>
           </tr>
@@ -1791,7 +1913,7 @@ aws ec2 describe-volumes-modifications --volume-id vol-1111222233334444</code>
               reduce-lambda-memory
               
               
-                <br><small style="color: #666; font-style: italic;">Execution time indicates memory may be over-provisioned.</small>
+                <br><small style="color: #666; font-style: italic;">Execution time indicates memory may be over-provisioned. Estimated using measured invocations (~36,000/mo).</small>
               
               
                 <details style="margin-top: 6px;">
@@ -2434,7 +2556,7 @@ aws guardduty list-detectors --region us-west-2</code>
     
 
     <!-- All Findings (Collapsible) -->
-    <button class="collapsible">🔍 All Findings (22 total)</button>
+    <button class="collapsible">🔍 All Findings (24 total)</button>
     <div class="content">
       <table style="margin-top: 16px;">
         <thead>
@@ -3226,7 +3348,7 @@ aws ec2 describe-volumes-modifications --volume-id vol-1111222233334444</code>
               reduce-lambda-memory
               
               
-                <br><small style="color: #666; font-style: italic;">Execution time indicates memory may be over-provisioned.</small>
+                <br><small style="color: #666; font-style: italic;">Execution time indicates memory may be over-provisioned. Estimated using measured invocations (~36,000/mo).</small>
               
               
                 <details style="margin-top: 6px;">
@@ -3420,6 +3542,71 @@ aws ec2 describe-route-tables --filters Name=route.nat-gateway-id,Values=nat-012
                 <span class="tip">
                   <span class="badge badge-info">📐 Estimation</span>
                   <span class="tiptext">Method: base_hourly+uptime • Adjusted cost: $32.85/mo • Assumptions: ['no data processing included', 'uptime estimated from CreateTime', 'regional multiplier applied via pricing tables']</span>
+                </span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-medium">
+            <td>
+              idle_nat_gateway
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  50%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              nat-0123456789abcdef
+              
+              
+              
+            </td>
+            <td>us-east-1</td>
+            <td>
+              <span class="badge badge-medium">
+                MEDIUM
+              </span>
+            </td>
+            <td>32.85</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              32.85
+              
+            </td>
+            <td>
+              review-and-delete-if-unused
+              
+              
+                <br><small style="color: #666; font-style: italic;">NAT gateway shows very low data processed (~0.25 GB/day across last 14 days). If unused, consider deleting to save hourly charges.</small>
+              
+              
+                <details style="margin-top: 6px;">
+                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
+                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
+                    <button class="copy-btn" type="button">Copy</button>
+                    <code>aws ec2 describe-nat-gateways --nat-gateway-ids nat-0123456789abcdef
+aws cloudwatch get-metric-statistics --namespace AWS/NATGateway --metric-name BytesOutToDestination --dimensions Name=NatGatewayId,Value=nat-0123456789abcdef --start-time $(date -u -v-14d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 86400 --statistics Sum
+aws cloudwatch get-metric-statistics --namespace AWS/NATGateway --metric-name BytesInFromSource --dimensions Name=NatGatewayId,Value=nat-0123456789abcdef --start-time $(date -u -v-14d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 86400 --statistics Sum</code>
+                  </div>
+                </details>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                
+                
+                
+                
+                <span class="tip">
+                  <span class="badge badge-info">📐 Estimation</span>
+                  <span class="tiptext">Adjusted cost: $32.85/mo</span>
                 </span>
               
             </td>
@@ -3671,6 +3858,63 @@ aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name CPUUtiliz
                     <button class="copy-btn" type="button">Copy</button>
                     <code>aws rds describe-db-instances --db-instance-identifier analytics-postgres-db
 aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name CPUUtilization --dimensions Name=DBInstanceIdentifier,Value=analytics-postgres-db --start-time $(date -u -v-7d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 3600 --statistics Average</code>
+                  </div>
+                </details>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-medium">
+            <td>
+              rds_low_connections
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  50%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              reporting-postgres-db
+              
+              
+              
+            </td>
+            <td>us-east-1</td>
+            <td>
+              <span class="badge badge-medium">
+                MEDIUM
+              </span>
+            </td>
+            <td>120.0</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              120.0
+              
+            </td>
+            <td>
+              review-and-stop-if-unused
+              
+              
+                <br><small style="color: #666; font-style: italic;">Average connections 0.3 over 14 days. Review whether this instance is still needed.</small>
+              
+              
+                <details style="margin-top: 6px;">
+                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
+                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
+                    <button class="copy-btn" type="button">Copy</button>
+                    <code>aws rds describe-db-instances --db-instance-identifier reporting-postgres-db
+aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name DatabaseConnections --dimensions Name=DBInstanceIdentifier,Value=reporting-postgres-db --start-time $(date -u -v-14d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 300 --statistics Average</code>
                   </div>
                 </details>
               

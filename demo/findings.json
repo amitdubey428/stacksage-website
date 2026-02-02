@@ -462,7 +462,9 @@
       "estimated_monthly_cost_usd": 12.0,
       "estimated_monthly_savings_usd": 3.0,
       "recommended_action": "reduce-lambda-memory",
-      "explanation": "Execution time indicates memory may be over-provisioned.",
+      "explanation": "Execution time indicates memory may be over-provisioned. Estimated using measured invocations (~36,000/mo).",
+      "invocations_avg_per_day": 1200,
+      "invocations_estimated_per_month": 36000,
       "remediation_commands": [],
       "verification_commands": [
         "aws lambda get-function-configuration --function-name data-transformer --query 'MemorySize'",
@@ -574,6 +576,38 @@
           ],
           "adjusted_monthly_cost_usd": 32.85
         },
+        "inventory": {
+          "resource_type": "nat",
+          "resource_id": "nat-0123456789abcdef",
+          "region": "us-east-1"
+        }
+      }
+    },
+    {
+      "type": "idle_nat_gateway",
+      "resource_type": "nat",
+      "severity": "medium",
+      "confidence": 0.5,
+      "id": "nat-0123456789abcdef",
+      "region": "us-east-1",
+      "estimated_monthly_cost_usd": 32.85,
+      "adjusted_monthly_cost_usd": 32.85,
+      "estimated_monthly_savings_usd": 32.85,
+      "recommended_action": "review-and-delete-if-unused",
+      "explanation": "NAT gateway shows very low data processed (~0.25 GB/day across last 14 days). If unused, consider deleting to save hourly charges.",
+      "bytes_out_avg_per_day": 134217728,
+      "bytes_in_avg_per_day": 134217728,
+      "remediation_commands": [],
+      "verification_commands": [
+        "aws ec2 describe-nat-gateways --nat-gateway-ids nat-0123456789abcdef",
+        "aws cloudwatch get-metric-statistics --namespace AWS/NATGateway --metric-name BytesOutToDestination --dimensions Name=NatGatewayId,Value=nat-0123456789abcdef --start-time $(date -u -v-14d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 86400 --statistics Sum",
+        "aws cloudwatch get-metric-statistics --namespace AWS/NATGateway --metric-name BytesInFromSource --dimensions Name=NatGatewayId,Value=nat-0123456789abcdef --start-time $(date -u -v-14d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 86400 --statistics Sum"
+      ],
+      "reason_codes": [
+        "heuristic",
+        "evidence_limited"
+      ],
+      "evidence": {
         "inventory": {
           "resource_type": "nat",
           "resource_id": "nat-0123456789abcdef",
@@ -795,6 +829,36 @@
       }
     },
     {
+      "type": "rds_low_connections",
+      "resource_type": "rds",
+      "severity": "medium",
+      "confidence": 0.5,
+      "id": "reporting-postgres-db",
+      "region": "us-east-1",
+      "engine": "postgres",
+      "instance_class": "db.t3.medium",
+      "estimated_monthly_cost_usd": 120.0,
+      "estimated_monthly_savings_usd": 120.0,
+      "recommended_action": "review-and-stop-if-unused",
+      "explanation": "Average connections 0.3 over 14 days. Review whether this instance is still needed.",
+      "remediation_commands": [],
+      "verification_commands": [
+        "aws rds describe-db-instances --db-instance-identifier reporting-postgres-db",
+        "aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name DatabaseConnections --dimensions Name=DBInstanceIdentifier,Value=reporting-postgres-db --start-time $(date -u -v-14d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 300 --statistics Average"
+      ],
+      "reason_codes": [
+        "heuristic",
+        "evidence_limited"
+      ],
+      "evidence": {
+        "inventory": {
+          "resource_type": "rds",
+          "resource_id": "reporting-postgres-db",
+          "region": "us-east-1"
+        }
+      }
+    },
+    {
       "type": "old_snapshot",
       "resource_type": "snapshot",
       "severity": "low",
@@ -825,8 +889,8 @@
       }
     }
   ],
-  "estimated_monthly_cost": 426.25,
-  "estimated_monthly_savings": 280.4,
+  "estimated_monthly_cost": 579.1,
+  "estimated_monthly_savings": 433.25,
   "provenance": {
     "cloudwatch_metrics": true,
     "metrics_lookback_days": 7,
