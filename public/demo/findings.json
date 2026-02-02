@@ -29,10 +29,7 @@
           "resource_id": "root"
         }
       },
-      "remediation_commands": [],
-      "verification_commands": [
-        "aws iam get-account-summary --query 'SummaryMap.AccountMFAEnabled'"
-      ]
+      "remediation_commands": []
     },
     {
       "type": "iam_root_access_keys_present",
@@ -58,10 +55,7 @@
           "resource_id": "root"
         }
       },
-      "remediation_commands": [],
-      "verification_commands": [
-        "aws iam get-account-summary --query 'SummaryMap.AccountAccessKeysPresent'"
-      ]
+      "remediation_commands": []
     },
     {
       "type": "iam_password_policy_weak",
@@ -94,10 +88,7 @@
           "resource_id": "account"
         }
       },
-      "remediation_commands": [],
-      "verification_commands": [
-        "aws iam get-account-password-policy"
-      ]
+      "remediation_commands": []
     },
     {
       "type": "cloudtrail_not_configured",
@@ -136,11 +127,7 @@
           "resource_id": "account"
         }
       },
-      "remediation_commands": [],
-      "verification_commands": [
-        "aws cloudtrail describe-trails",
-        "aws cloudtrail get-trail-status --name <trail-name>"
-      ]
+      "remediation_commands": []
     },
     {
       "type": "s3_account_public_access_block_disabled",
@@ -168,10 +155,7 @@
           "resource_id": "account"
         }
       },
-      "remediation_commands": [],
-      "verification_commands": [
-        "aws s3control get-public-access-block --account-id 123456789012"
-      ]
+      "remediation_commands": []
     },
     {
       "type": "sg_open_to_world",
@@ -209,11 +193,7 @@
           "region": "us-east-1"
         }
       },
-      "remediation_commands": [],
-      "verification_commands": [
-        "aws ec2 describe-security-groups --group-ids sg-0123abcd4567efgh8",
-        "aws ec2 describe-security-group-rules --filters Name=group-id,Values=sg-0123abcd4567efgh8"
-      ]
+      "remediation_commands": []
     },
     {
       "type": "guardduty_not_enabled",
@@ -241,11 +221,7 @@
           "resource_id": "account"
         }
       },
-      "remediation_commands": [],
-      "verification_commands": [
-        "aws guardduty list-detectors --region us-east-1",
-        "aws guardduty list-detectors --region us-west-2"
-      ]
+      "remediation_commands": []
     },
     {
       "type": "idle_ec2",
@@ -264,10 +240,6 @@
       "explanation": "Low CPU and low network usage over the lookback window.",
       "remediation_commands": [
         "aws ec2 stop-instances --instance-ids i-0123456789abcdef0"
-      ],
-      "verification_commands": [
-        "aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization --dimensions Name=InstanceId,Value=i-0123456789abcdef0 --start-time $(date -u -v-7d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 3600 --statistics Average",
-        "aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name NetworkIn --dimensions Name=InstanceId,Value=i-0123456789abcdef0 --start-time $(date -u -v-7d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 3600 --statistics Average"
       ],
       "reason_codes": [
         "cw_metrics_measured"
@@ -310,10 +282,6 @@
         "# Then delete volume:",
         "aws ec2 delete-volume --volume-id vol-0123456789abcdef"
       ],
-      "verification_commands": [
-        "aws ec2 describe-volumes --volume-ids vol-0123456789abcdef",
-        "aws ec2 describe-volumes --filters Name=status,Values=available Name=volume-id,Values=vol-0123456789abcdef"
-      ],
       "reason_codes": [
         "heuristic",
         "evidence_limited"
@@ -344,10 +312,6 @@
         "aws ec2 create-snapshot --volume-id vol-fedcba9876543210 --description 'Backup before deletion'",
         "# Then delete volume:",
         "aws ec2 delete-volume --volume-id vol-fedcba9876543210"
-      ],
-      "verification_commands": [
-        "aws ec2 describe-volumes --volume-ids vol-fedcba9876543210",
-        "aws ec2 describe-volumes --filters Name=status,Values=available Name=volume-id,Values=vol-fedcba9876543210"
       ],
       "reason_codes": [
         "heuristic",
@@ -391,6 +355,47 @@
         "inventory": {
           "resource_type": "ebs",
           "resource_id": "vol-1111222233334444",
+          "region": "us-east-1"
+        }
+      }
+    },
+    {
+      "type": "ebs_overprovisioned_performance",
+      "resource_type": "ebs",
+      "severity": "medium",
+      "confidence": 0.5,
+      "id": "vol-5555666677778888",
+      "region": "us-east-1",
+      "volume_type": "gp3",
+      "size_gb": 500,
+      "provisioned_iops": 9000,
+      "provisioned_throughput_mbps": 250,
+      "avg_iops": 120.0,
+      "avg_throughput_mbps": 5.2,
+      "estimated_monthly_cost_usd": null,
+      "estimated_monthly_savings_usd": null,
+      "recommended_action": "reduce-provisioned-performance",
+      "explanation": "Provisioned performance appears high for observed usage over 14 days. Avg IOPS 120 (prov 9000), avg throughput 5.2 MB/s (prov 250 MB/s).",
+      "remediation_commands": [
+        "# Test in non-production first:",
+        "aws ec2 modify-volume --volume-id vol-5555666677778888 --iops 3000",
+        "aws ec2 modify-volume --volume-id vol-5555666677778888 --throughput 125"
+      ],
+      "verification_commands": [
+        "aws ec2 describe-volumes --volume-ids vol-5555666677778888",
+        "aws cloudwatch get-metric-statistics --namespace AWS/EBS --metric-name VolumeReadOps --dimensions Name=VolumeId,Value=vol-5555666677778888 --start-time $(date -u -v-14d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 300 --statistics Sum",
+        "aws cloudwatch get-metric-statistics --namespace AWS/EBS --metric-name VolumeWriteOps --dimensions Name=VolumeId,Value=vol-5555666677778888 --start-time $(date -u -v-14d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 300 --statistics Sum",
+        "aws cloudwatch get-metric-statistics --namespace AWS/EBS --metric-name VolumeReadBytes --dimensions Name=VolumeId,Value=vol-5555666677778888 --start-time $(date -u -v-14d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 300 --statistics Sum",
+        "aws cloudwatch get-metric-statistics --namespace AWS/EBS --metric-name VolumeWriteBytes --dimensions Name=VolumeId,Value=vol-5555666677778888 --start-time $(date -u -v-14d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 300 --statistics Sum"
+      ],
+      "reason_codes": [
+        "cost_unknown",
+        "evidence_limited"
+      ],
+      "evidence": {
+        "inventory": {
+          "resource_type": "ebs",
+          "resource_id": "vol-5555666677778888",
           "region": "us-east-1"
         }
       }
@@ -584,38 +589,6 @@
       }
     },
     {
-      "type": "idle_nat_gateway",
-      "resource_type": "nat",
-      "severity": "medium",
-      "confidence": 0.5,
-      "id": "nat-0123456789abcdef",
-      "region": "us-east-1",
-      "estimated_monthly_cost_usd": 32.85,
-      "adjusted_monthly_cost_usd": 32.85,
-      "estimated_monthly_savings_usd": 32.85,
-      "recommended_action": "review-and-delete-if-unused",
-      "explanation": "NAT gateway shows very low data processed (~0.25 GB/day across last 14 days). If unused, consider deleting to save hourly charges.",
-      "bytes_out_avg_per_day": 134217728,
-      "bytes_in_avg_per_day": 134217728,
-      "remediation_commands": [],
-      "verification_commands": [
-        "aws ec2 describe-nat-gateways --nat-gateway-ids nat-0123456789abcdef",
-        "aws cloudwatch get-metric-statistics --namespace AWS/NATGateway --metric-name BytesOutToDestination --dimensions Name=NatGatewayId,Value=nat-0123456789abcdef --start-time $(date -u -v-14d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 86400 --statistics Sum",
-        "aws cloudwatch get-metric-statistics --namespace AWS/NATGateway --metric-name BytesInFromSource --dimensions Name=NatGatewayId,Value=nat-0123456789abcdef --start-time $(date -u -v-14d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 86400 --statistics Sum"
-      ],
-      "reason_codes": [
-        "heuristic",
-        "evidence_limited"
-      ],
-      "evidence": {
-        "inventory": {
-          "resource_type": "nat",
-          "resource_id": "nat-0123456789abcdef",
-          "region": "us-east-1"
-        }
-      }
-    },
-    {
       "type": "idle_elb",
       "resource_type": "elb",
       "severity": "high",
@@ -734,10 +707,6 @@
       "explanation": "Metric query skipped due to budget exhaustion",
       "metric_status": "skipped_budget",
       "remediation_commands": [],
-      "verification_commands": [
-        "aws rds describe-db-instances --db-instance-identifier prod-postgres-db",
-        "aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name CPUUtilization --dimensions Name=DBInstanceIdentifier,Value=prod-postgres-db --start-time $(date -u -v-7d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 3600 --statistics Average"
-      ],
       "reason_codes": [
         "cw_budget_exhausted"
       ],
@@ -787,10 +756,6 @@
           "classification": "not_authorized"
         }
       ],
-      "verification_commands": [
-        "aws rds describe-db-instances --db-instance-identifier analytics-postgres-db",
-        "aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name CPUUtilization --dimensions Name=DBInstanceIdentifier,Value=analytics-postgres-db --start-time $(date -u -v-7d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 3600 --statistics Average"
-      ],
       "reason_codes": [
         "cw_not_authorized"
       ],
@@ -829,36 +794,6 @@
       }
     },
     {
-      "type": "rds_low_connections",
-      "resource_type": "rds",
-      "severity": "medium",
-      "confidence": 0.5,
-      "id": "reporting-postgres-db",
-      "region": "us-east-1",
-      "engine": "postgres",
-      "instance_class": "db.t3.medium",
-      "estimated_monthly_cost_usd": 120.0,
-      "estimated_monthly_savings_usd": 120.0,
-      "recommended_action": "review-and-stop-if-unused",
-      "explanation": "Average connections 0.3 over 14 days. Review whether this instance is still needed.",
-      "remediation_commands": [],
-      "verification_commands": [
-        "aws rds describe-db-instances --db-instance-identifier reporting-postgres-db",
-        "aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name DatabaseConnections --dimensions Name=DBInstanceIdentifier,Value=reporting-postgres-db --start-time $(date -u -v-14d '+%Y-%m-%dT%H:%M:%S') --end-time $(date -u '+%Y-%m-%dT%H:%M:%S') --period 300 --statistics Average"
-      ],
-      "reason_codes": [
-        "heuristic",
-        "evidence_limited"
-      ],
-      "evidence": {
-        "inventory": {
-          "resource_type": "rds",
-          "resource_id": "reporting-postgres-db",
-          "region": "us-east-1"
-        }
-      }
-    },
-    {
       "type": "old_snapshot",
       "resource_type": "snapshot",
       "severity": "low",
@@ -873,9 +808,6 @@
       "remediation_commands": [
         "aws ec2 delete-snapshot --snapshot-id snap-0123456789abcdef"
       ],
-      "verification_commands": [
-        "aws ec2 describe-snapshots --snapshot-ids snap-0123456789abcdef"
-      ],
       "reason_codes": [
         "heuristic",
         "evidence_limited"
@@ -889,8 +821,8 @@
       }
     }
   ],
-  "estimated_monthly_cost": 579.1,
-  "estimated_monthly_savings": 433.25,
+  "estimated_monthly_cost": 426.25,
+  "estimated_monthly_savings": 280.4,
   "provenance": {
     "cloudwatch_metrics": true,
     "metrics_lookback_days": 7,
@@ -925,78 +857,5 @@
         "us-east-1": 95.0
       }
     }
-  },
-  "spend_movers": {
-    "time_window": {
-      "current": {
-        "start": "2025-12-24",
-        "end": "2025-12-31"
-      },
-      "previous": {
-        "start": "2025-12-17",
-        "end": "2025-12-24"
-      }
-    },
-    "granularity": "DAILY",
-    "lookback_days": 7,
-    "compare_days": 7,
-    "min_delta_usd": 5.0,
-    "total_current": 410.25,
-    "total_previous": 360.1,
-    "total_delta": 50.15,
-    "total_pct_change": 13.92,
-    "top_increases_by_service": [
-      {
-        "key": "Amazon EC2",
-        "current_cost": 160.2,
-        "previous_cost": 120.1,
-        "delta": 40.1,
-        "pct_change": 33.39,
-        "new_spend": false,
-        "stopped_spend": false
-      },
-      {
-        "key": "Amazon S3",
-        "current_cost": 35.0,
-        "previous_cost": 20.0,
-        "delta": 15.0,
-        "pct_change": 75.0,
-        "new_spend": false,
-        "stopped_spend": false
-      }
-    ],
-    "top_decreases_by_service": [
-      {
-        "key": "Amazon CloudWatch",
-        "current_cost": 8.0,
-        "previous_cost": 15.5,
-        "delta": -7.5,
-        "pct_change": -48.39,
-        "new_spend": false,
-        "stopped_spend": false
-      }
-    ],
-    "top_increases_by_region": [
-      {
-        "key": "us-east-1",
-        "current_cost": 300.0,
-        "previous_cost": 255.0,
-        "delta": 45.0,
-        "pct_change": 17.65,
-        "new_spend": false,
-        "stopped_spend": false
-      }
-    ],
-    "top_decreases_by_region": [
-      {
-        "key": "us-west-2",
-        "current_cost": 110.25,
-        "previous_cost": 105.1,
-        "delta": 5.15,
-        "pct_change": 4.9,
-        "new_spend": false,
-        "stopped_spend": false
-      }
-    ]
   }
 }
