@@ -160,31 +160,6 @@
       color: #757575;
     }
 
-    /* Scorecard statuses */
-    .scorecard-status {
-      display: inline-block;
-      padding: 2px 8px;
-      border-radius: 10px;
-      font-size: 11px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-    .scorecard-pass {
-      background: #e8f5e9;
-      color: #2e7d32;
-      border: 1px solid #c8e6c9;
-    }
-    .scorecard-fail {
-      background: #ffebee;
-      color: #c62828;
-      border: 1px solid #ffcdd2;
-    }
-    .scorecard-unknown {
-      background: #fff8e1;
-      color: #f9a825;
-      border: 1px solid #ffecb3;
-    }
-
     /* Instant tooltips (avoid browser title delay) */
     .tip {
       position: relative;
@@ -294,43 +269,6 @@
     .content.expanded {
       overflow: visible;
     }
-
-    /* CLI code blocks + copy */
-    .codeblock {
-      position: relative;
-      background: #0f172a;
-      color: #e2e8f0;
-      border-radius: 8px;
-      padding: 12px 12px 12px 12px;
-      margin-top: 8px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 12px;
-      line-height: 1.5;
-      border: 1px solid #1e293b;
-      cursor: pointer;
-    }
-    .codeblock code {
-      white-space: pre-wrap;
-      display: block;
-    }
-    .copy-btn {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: #1e293b;
-      color: #e2e8f0;
-      border: 1px solid #334155;
-      border-radius: 6px;
-      padding: 4px 8px;
-      font-size: 11px;
-      font-weight: 600;
-      cursor: pointer;
-    }
-    .copy-btn.copied {
-      background: #0ea5e9;
-      border-color: #0ea5e9;
-      color: #fff;
-    }
     
     /* Priority boxes */
     .priority-grid {
@@ -392,7 +330,7 @@
     <div class="metadata">
       <strong>Account:</strong> 123456789012 | 
       <strong>Regions:</strong> us-east-1, us-west-2 | 
-      <strong>Generated:</strong> 2026-02-02 04:28:33 UTC
+      <strong>Generated:</strong> 2026-02-02 11:57:57 UTC
       | <strong>Pricing:</strong> v2025-12
     </div>
     
@@ -400,12 +338,12 @@
     <h2>Executive Dashboard</h2>
     <div class="dashboard">
       <div class="card card-savings">
-        <div class="card-value">$433.25</div>
+        <div class="card-value">$280.4</div>
         <div class="card-label">Potential Savings/Month</div>
       </div>
       
       <div class="card card-issues">
-        <div class="card-value">24</div>
+        <div class="card-value">23</div>
         <div class="card-label">Issues Found</div>
       </div>
       
@@ -419,7 +357,7 @@
       <div class="card card-waste">
         <div class="card-value">
           
-            75%
+            66%
           
         </div>
         <div class="card-label">Potential Waste</div>
@@ -427,7 +365,7 @@
     </div>
     
     <p style="font-size: 14px; color: #616161; margin: 16px 0;">
-      <strong>Estimated Monthly Cost:</strong> $579.1
+      <strong>Estimated Monthly Cost:</strong> $426.25
     </p>
     
       
@@ -530,258 +468,9 @@
     </div>
     
 
-    
-    <h3>📈 Spend Movers (2025-12-17 → 2025-12-24 vs 2025-12-24 → 2025-12-31)</h3>
-    <p style="font-size: 13px; color: #616161; margin: 6px 0 12px 0;">
-      Aggregated deltas only. Threshold: $5.0. Totals changed by $50.15 (13.92%).
-    </p>
-    <div style="display: flex; gap: 16px; flex-wrap: wrap; margin: 12px 0 20px 0;">
-      
-      <div style="flex: 1; min-width: 280px;">
-        <div style="font-size: 13px; color: #616161; margin-bottom: 6px;"><strong>Top Service Increases</strong></div>
-        <table>
-          <thead>
-            <tr>
-              <th>Service</th>
-              <th>Δ (USD)</th>
-              <th>Change</th>
-            </tr>
-          </thead>
-          <tbody>
-            
-            <tr>
-              <td>Amazon EC2</td>
-              <td style="color: #2e7d32; font-weight: 600;">$40.1</td>
-              <td>
-                
-                  33.39%
-                
-              </td>
-            </tr>
-            
-            <tr>
-              <td>Amazon S3</td>
-              <td style="color: #2e7d32; font-weight: 600;">$15.0</td>
-              <td>
-                
-                  75.0%
-                
-              </td>
-            </tr>
-            
-          </tbody>
-        </table>
-      </div>
-      
-
-      
-      <div style="flex: 1; min-width: 280px;">
-        <div style="font-size: 13px; color: #616161; margin-bottom: 6px;"><strong>Top Service Decreases</strong></div>
-        <table>
-          <thead>
-            <tr>
-              <th>Service</th>
-              <th>Δ (USD)</th>
-              <th>Change</th>
-            </tr>
-          </thead>
-          <tbody>
-            
-            <tr>
-              <td>Amazon CloudWatch</td>
-              <td style="color: #c62828; font-weight: 600;">$-7.5</td>
-              <td>
-                
-                  -48.39%
-                
-              </td>
-            </tr>
-            
-          </tbody>
-        </table>
-      </div>
-      
-    </div>
-
-    <div style="display: flex; gap: 16px; flex-wrap: wrap; margin: 12px 0 20px 0;">
-      
-      <div style="flex: 1; min-width: 280px;">
-        <div style="font-size: 13px; color: #616161; margin-bottom: 6px;"><strong>Top Region Increases</strong></div>
-        <table>
-          <thead>
-            <tr>
-              <th>Region</th>
-              <th>Δ (USD)</th>
-              <th>Change</th>
-            </tr>
-          </thead>
-          <tbody>
-            
-            <tr>
-              <td>us-east-1</td>
-              <td style="color: #2e7d32; font-weight: 600;">$45.0</td>
-              <td>
-                
-                  17.65%
-                
-              </td>
-            </tr>
-            
-          </tbody>
-        </table>
-      </div>
-      
-
-      
-      <div style="flex: 1; min-width: 280px;">
-        <div style="font-size: 13px; color: #616161; margin-bottom: 6px;"><strong>Top Region Decreases</strong></div>
-        <table>
-          <thead>
-            <tr>
-              <th>Region</th>
-              <th>Δ (USD)</th>
-              <th>Change</th>
-            </tr>
-          </thead>
-          <tbody>
-            
-            <tr>
-              <td>us-west-2</td>
-              <td style="color: #c62828; font-weight: 600;">$5.15</td>
-              <td>
-                
-                  4.9%
-                
-              </td>
-            </tr>
-            
-          </tbody>
-        </table>
-      </div>
-      
-    </div>
-    
-
     <!-- Executive Summary -->
     <h2>Executive Summary</h2>
-    <p style="font-size: 15px; line-height: 1.8; color: #424242;">Potential monthly savings: $433.25. Current cost (flagged resources): $579.10. Primary drivers: rds_low_connections(reporting-postgres-db): $120.00, underutilized_rds(prod-postgres-db): $78.00, idle_ec2(i-0123456789abcdef0): $62.40, unattached_ebs(vol-fedcba9876543210): $50.00, idle_nat_gateway(nat-0123456789abcdef): $32.85</p>
-
-    
-    <h3>🛡️ Security Posture Scorecard</h3>
-    <p style="font-size: 14px; color: #616161; margin: 8px 0;">
-      A quick view of baseline security controls (pass/fail/unknown). See Security Posture Findings for details.
-    </p>
-    <table>
-      <thead>
-        <tr>
-          <th>Control</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        
-        <tr>
-          <td>Root MFA + no root keys</td>
-          <td>
-            <span class="scorecard-status scorecard-fail">
-              FAIL
-            </span>
-          </td>
-        </tr>
-        
-        <tr>
-          <td>Password policy baseline</td>
-          <td>
-            <span class="scorecard-status scorecard-fail">
-              FAIL
-            </span>
-          </td>
-        </tr>
-        
-        <tr>
-          <td>Access key hygiene</td>
-          <td>
-            <span class="scorecard-status scorecard-pass">
-              PASS
-            </span>
-          </td>
-        </tr>
-        
-        <tr>
-          <td>S3 account public access block</td>
-          <td>
-            <span class="scorecard-status scorecard-fail">
-              FAIL
-            </span>
-          </td>
-        </tr>
-        
-        <tr>
-          <td>S3 default encryption</td>
-          <td>
-            <span class="scorecard-status scorecard-pass">
-              PASS
-            </span>
-          </td>
-        </tr>
-        
-        <tr>
-          <td>EBS encryption by default</td>
-          <td>
-            <span class="scorecard-status scorecard-pass">
-              PASS
-            </span>
-          </td>
-        </tr>
-        
-        <tr>
-          <td>CloudTrail baseline</td>
-          <td>
-            <span class="scorecard-status scorecard-fail">
-              FAIL
-            </span>
-          </td>
-        </tr>
-        
-        <tr>
-          <td>AWS Config recorder</td>
-          <td>
-            <span class="scorecard-status scorecard-pass">
-              PASS
-            </span>
-          </td>
-        </tr>
-        
-        <tr>
-          <td>GuardDuty enabled</td>
-          <td>
-            <span class="scorecard-status scorecard-fail">
-              FAIL
-            </span>
-          </td>
-        </tr>
-        
-        <tr>
-          <td>Security Hub enabled</td>
-          <td>
-            <span class="scorecard-status scorecard-pass">
-              PASS
-            </span>
-          </td>
-        </tr>
-        
-        <tr>
-          <td>CloudWatch alarms present</td>
-          <td>
-            <span class="scorecard-status scorecard-pass">
-              PASS
-            </span>
-          </td>
-        </tr>
-        
-      </tbody>
-    </table>
-    
+    <p style="font-size: 15px; line-height: 1.8; color: #424242;">Potential monthly savings: $280.40. Current cost (flagged resources): $426.25. Primary drivers: underutilized_rds(prod-postgres-db): $78.00, idle_ec2(i-0123456789abcdef0): $62.40, unattached_ebs(vol-fedcba9876543210): $50.00, old_snapshot(snap-old123456789abc): $25.00, idle_elb(my-alb-prod): $25.00</p>
 
     
     
@@ -790,16 +479,6 @@
     <!-- Top Savings Opportunities -->
     <h3>🎯 Top Savings Opportunities</h3>
     <ul style="font-size: 14px; line-height: 1.8;">
-      
-        <li>
-          <strong>rds_low_connections</strong> (reporting-postgres-db) — 
-          <span style="color: #1976d2; font-weight: 600;">$120.0/month</span>
-          via review-and-stop-if-unused
-          
-          
-            <br><small style="color: #666; margin-left: 20px; font-style: italic;">Average connections 0.3 over 14 days. Review whether this instance is still needed.</small>
-          
-        </li>
       
         <li>
           <strong>underutilized_rds</strong> (prod-postgres-db) — 
@@ -832,12 +511,22 @@
         </li>
       
         <li>
-          <strong>idle_nat_gateway</strong> (nat-0123456789abcdef) — 
-          <span style="color: #1976d2; font-weight: 600;">$32.85/month</span>
+          <strong>old_snapshot</strong> (snap-old123456789abc) — 
+          <span style="color: #1976d2; font-weight: 600;">$25.0/month</span>
+          via delete-snapshot
+          
+          
+            <br><small style="color: #666; margin-left: 20px; font-style: italic;">Snapshot is older than the retention window.</small>
+          
+        </li>
+      
+        <li>
+          <strong>idle_elb</strong> (my-alb-prod) — 
+          <span style="color: #1976d2; font-weight: 600;">$25.0/month</span>
           via review-and-delete-if-unused
           
           
-            <br><small style="color: #666; margin-left: 20px; font-style: italic;">NAT gateway shows very low data processed (~0.25 GB/day across last 14 days). If unused, consider deleting to save hourly charges.</small>
+            <br><small style="color: #666; margin-left: 20px; font-style: italic;">Low request count over the lookback window.</small>
           
         </li>
       
@@ -856,7 +545,7 @@
         data: {
           labels: ['account', 'security-group', 'ec2', 'ebs', 'snapshot', 'cloudwatch', 'lambda', 'eip', 'nat', 'elb', 'rds'],
           datasets: [{
-            data: [6, 1, 1, 3, 2, 1, 1, 2, 2, 2, 3],
+            data: [6, 1, 1, 4, 2, 1, 1, 2, 1, 2, 2],
             backgroundColor: [
               '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
               '#FF9F40', '#FF6384', '#C9CBCF', '#4BC0C0', '#FF9F40'
@@ -967,16 +656,6 @@
       <tbody>
       
         <tr class="severity-medium">
-          <td>rds_low_connections</td>
-          <td style="font-family: monospace; font-size: 12px;">reporting-postgres-db</td>
-          <td>us-east-1</td>
-          <td style="font-weight: 600; color: #1976d2;">
-            $120.0
-          </td>
-          <td>review-and-stop-if-unused</td>
-        </tr>
-      
-        <tr class="severity-medium">
           <td>underutilized_rds</td>
           <td style="font-family: monospace; font-size: 12px;">prod-postgres-db</td>
           <td>us-east-1</td>
@@ -1007,11 +686,21 @@
         </tr>
       
         <tr class="severity-medium">
-          <td>idle_nat_gateway</td>
-          <td style="font-family: monospace; font-size: 12px;">nat-0123456789abcdef</td>
+          <td>old_snapshot</td>
+          <td style="font-family: monospace; font-size: 12px;">snap-old123456789abc</td>
+          <td>us-west-2</td>
+          <td style="font-weight: 600; color: #1976d2;">
+            $25.0
+          </td>
+          <td>delete-snapshot</td>
+        </tr>
+      
+        <tr class="severity-high">
+          <td>idle_elb</td>
+          <td style="font-family: monospace; font-size: 12px;">my-alb-prod</td>
           <td>us-east-1</td>
           <td style="font-weight: 600; color: #1976d2;">
-            $32.85
+            $25.0
           </td>
           <td>review-and-delete-if-unused</td>
         </tr>
@@ -1048,7 +737,7 @@
         
           <tr>
             <td>ebs</td>
-            <td><strong>3</strong></td>
+            <td><strong>4</strong></td>
           </tr>
         
           <tr>
@@ -1073,7 +762,7 @@
         
           <tr>
             <td>nat</td>
-            <td><strong>2</strong></td>
+            <td><strong>1</strong></td>
           </tr>
         
           <tr>
@@ -1083,7 +772,7 @@
         
           <tr>
             <td>rds</td>
-            <td><strong>3</strong></td>
+            <td><strong>2</strong></td>
           </tr>
         
         </tbody>
@@ -1094,7 +783,7 @@
     
 
     
-    <button class="collapsible">💰 Financial Findings (17 total)</button>
+    <button class="collapsible">💰 Financial Findings (16 total)</button>
     <div class="content">
       <table style="margin-top: 16px;">
         <thead>
@@ -1110,63 +799,6 @@
           </tr>
         </thead>
         <tbody>
-        
-          <tr class="severity-medium">
-            <td>
-              rds_low_connections
-              
-                <span class="badge badge-info" title="Detection confidence">
-                  50%
-                </span>
-              
-              
-              
-              
-              
-            </td>
-            <td style="font-family: monospace; font-size: 12px;">
-              reporting-postgres-db
-              
-              
-              
-            </td>
-            <td>us-east-1</td>
-            <td>
-              <span class="badge badge-medium">
-                MEDIUM
-              </span>
-            </td>
-            <td>120.0</td>
-            <td style="font-weight: 600; color: #1976d2;">
-              120.0
-              
-            </td>
-            <td>
-              review-and-stop-if-unused
-              
-              
-                <br><small style="color: #666; font-style: italic;">Average connections 0.3 over 14 days. Review whether this instance is still needed.</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws rds describe-db-instances --db-instance-identifier reporting-postgres-db
-aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name DatabaseConnections --dimensions Name=DBInstanceIdentifier,Value=reporting-postgres-db --start-time $(date -u -v-14d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 300 --statistics Average</code>
-                  </div>
-                </details>
-              
-            </td>
-            <td>
-              
-              
-              
-              
-                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
-              
-            </td>
-          </tr>
         
           <tr class="severity-medium">
             <td>
@@ -1216,16 +848,6 @@ aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name DatabaseC
               
               
                 <br><small style="color: #666; font-style: italic;">Metric query skipped due to budget exhaustion</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws rds describe-db-instances --db-instance-identifier prod-postgres-db
-aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name CPUUtilization --dimensions Name=DBInstanceIdentifier,Value=prod-postgres-db --start-time $(date -u -v-7d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 3600 --statistics Average</code>
-                  </div>
-                </details>
               
             </td>
             <td>
@@ -1278,16 +900,6 @@ aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name CPUUtiliz
               
                 <br><small style="color: #666; font-style: italic;">Low CPU and low network usage over the lookback window.</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization --dimensions Name=InstanceId,Value=i-0123456789abcdef0 --start-time $(date -u -v-7d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 3600 --statistics Average
-aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name NetworkIn --dimensions Name=InstanceId,Value=i-0123456789abcdef0 --start-time $(date -u -v-7d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 3600 --statistics Average</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -1335,16 +947,6 @@ aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name NetworkIn
               
                 <br><small style="color: #666; font-style: italic;">EBS volume (500 GB) unattached for >7 days. Create snapshot for safety, then delete if unused.</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws ec2 describe-volumes --volume-ids vol-fedcba9876543210
-aws ec2 describe-volumes --filters Name=status,Values=available Name=volume-id,Values=vol-fedcba9876543210</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -1352,71 +954,6 @@ aws ec2 describe-volumes --filters Name=status,Values=available Name=volume-id,V
               
               
                 <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
-              
-            </td>
-          </tr>
-        
-          <tr class="severity-medium">
-            <td>
-              idle_nat_gateway
-              
-                <span class="badge badge-info" title="Detection confidence">
-                  50%
-                </span>
-              
-              
-              
-              
-              
-            </td>
-            <td style="font-family: monospace; font-size: 12px;">
-              nat-0123456789abcdef
-              
-              
-              
-            </td>
-            <td>us-east-1</td>
-            <td>
-              <span class="badge badge-medium">
-                MEDIUM
-              </span>
-            </td>
-            <td>32.85</td>
-            <td style="font-weight: 600; color: #1976d2;">
-              32.85
-              
-            </td>
-            <td>
-              review-and-delete-if-unused
-              
-              
-                <br><small style="color: #666; font-style: italic;">NAT gateway shows very low data processed (~0.25 GB/day across last 14 days). If unused, consider deleting to save hourly charges.</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws ec2 describe-nat-gateways --nat-gateway-ids nat-0123456789abcdef
-aws cloudwatch get-metric-statistics --namespace AWS/NATGateway --metric-name BytesOutToDestination --dimensions Name=NatGatewayId,Value=nat-0123456789abcdef --start-time $(date -u -v-14d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 86400 --statistics Sum
-aws cloudwatch get-metric-statistics --namespace AWS/NATGateway --metric-name BytesInFromSource --dimensions Name=NatGatewayId,Value=nat-0123456789abcdef --start-time $(date -u -v-14d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 86400 --statistics Sum</code>
-                  </div>
-                </details>
-              
-            </td>
-            <td>
-              
-              
-              
-              
-                
-                
-                
-                
-                <span class="tip">
-                  <span class="badge badge-info">📐 Estimation</span>
-                  <span class="tiptext">Adjusted cost: $32.85/mo</span>
-                </span>
               
             </td>
           </tr>
@@ -1460,15 +997,6 @@ aws cloudwatch get-metric-statistics --namespace AWS/NATGateway --metric-name By
               
               
                 <br><small style="color: #666; font-style: italic;">Low request count over the lookback window.</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws cloudwatch get-metric-statistics --namespace AWS/ApplicationELB --metric-name RequestCount --dimensions Name=LoadBalancer,Value=app/my-alb-prod/1234567890abcdef --start-time $(date -u -v-7d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 86400 --statistics Sum</code>
-                  </div>
-                </details>
               
             </td>
             <td>
@@ -1519,15 +1047,6 @@ aws cloudwatch get-metric-statistics --namespace AWS/NATGateway --metric-name By
               
                 <br><small style="color: #666; font-style: italic;">Snapshot is older than the retention window.</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws ec2 describe-snapshots --snapshot-ids snap-old123456789abc</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -1574,16 +1093,6 @@ aws cloudwatch get-metric-statistics --namespace AWS/NATGateway --metric-name By
               
               
                 <br><small style="color: #666; font-style: italic;">EBS volume (100 GB) unattached for >7 days. Create snapshot for safety, then delete if unused.</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws ec2 describe-volumes --volume-ids vol-0123456789abcdef
-aws ec2 describe-volumes --filters Name=status,Values=available Name=volume-id,Values=vol-0123456789abcdef</code>
-                  </div>
-                </details>
               
             </td>
             <td>
@@ -1632,15 +1141,6 @@ aws ec2 describe-volumes --filters Name=status,Values=available Name=volume-id,V
               
                 <br><small style="color: #666; font-style: italic;">Log group retention is set to Never Expire; set retention to reduce storage costs.</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws logs describe-log-groups --log-group-name-prefix /aws/lambda/data-processor --query &#39;logGroups[0].retentionInDays&#39;</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -1687,16 +1187,6 @@ aws ec2 describe-volumes --filters Name=status,Values=available Name=volume-id,V
               
               
                 <br><small style="color: #666; font-style: italic;">gp3 is typically cheaper than gp2 for similar workloads.</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws ec2 describe-volumes --volume-ids vol-1111222233334444 --query &#39;Volumes[0].VolumeType&#39;
-aws ec2 describe-volumes-modifications --volume-id vol-1111222233334444</code>
-                  </div>
-                </details>
               
             </td>
             <td>
@@ -1747,15 +1237,6 @@ aws ec2 describe-volumes-modifications --volume-id vol-1111222233334444</code>
               
                 <br><small style="color: #666; font-style: italic;">Snapshot is older than the retention window.</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws ec2 describe-snapshots --snapshot-ids snap-0123456789abcdef</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -1802,15 +1283,6 @@ aws ec2 describe-volumes-modifications --volume-id vol-1111222233334444</code>
               
               
                 <br><small style="color: #666; font-style: italic;">Elastic IP is not attached to any instance; AWS charges for unused EIPs.</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws ec2 describe-addresses --public-ips 54.123.45.67</code>
-                  </div>
-                </details>
               
             </td>
             <td>
@@ -1859,15 +1331,6 @@ aws ec2 describe-volumes-modifications --volume-id vol-1111222233334444</code>
               
                 <br><small style="color: #666; font-style: italic;">Elastic IP is not attached to any instance; AWS charges for unused EIPs.</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws ec2 describe-addresses --public-ips 34.210.98.76</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -1915,15 +1378,52 @@ aws ec2 describe-volumes-modifications --volume-id vol-1111222233334444</code>
               
                 <br><small style="color: #666; font-style: italic;">Execution time indicates memory may be over-provisioned. Estimated using measured invocations (~36,000/mo).</small>
               
+            </td>
+            <td>
               
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws lambda get-function-configuration --function-name data-transformer --query &#39;MemorySize&#39;
-aws cloudwatch get-metric-statistics --namespace AWS/Lambda --metric-name Duration --dimensions Name=FunctionName,Value=data-transformer --start-time $(date -u -v-7d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 3600 --statistics Average</code>
-                  </div>
-                </details>
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-medium">
+            <td>
+              ebs_overprovisioned_performance
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  50%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              vol-5555666677778888
+              
+              
+              
+            </td>
+            <td>us-east-1</td>
+            <td>
+              <span class="badge badge-medium">
+                MEDIUM
+              </span>
+            </td>
+            <td>None</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              None
+              
+            </td>
+            <td>
+              reduce-provisioned-performance
+              
+              
+                <br><small style="color: #666; font-style: italic;">Provisioned performance appears high for observed usage over 14 days. Avg IOPS 120 (prov 9000), avg throughput 5.2 MB/s (prov 250 MB/s).</small>
               
             </td>
             <td>
@@ -1977,15 +1477,6 @@ aws cloudwatch get-metric-statistics --namespace AWS/Lambda --metric-name Durati
               
                 <br><small style="color: #666; font-style: italic;">Unable to measure load balancer request volume: CloudWatch returned no datapoints for the lookback window.</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws cloudwatch get-metric-statistics --namespace AWS/ApplicationELB --metric-name RequestCount --dimensions Name=LoadBalancer,Value=app/my-alb-staging/abcdef1234567890 --start-time $(date -u -v-7d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 86400 --statistics Sum</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -2032,16 +1523,6 @@ aws cloudwatch get-metric-statistics --namespace AWS/Lambda --metric-name Durati
               
               
                 <br><small style="color: #666; font-style: italic;">NAT gateways have hourly + data processing cost; if used primarily for S3, consider an S3 VPC endpoint.</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws ec2 describe-nat-gateways --nat-gateway-ids nat-0123456789abcdef
-aws ec2 describe-route-tables --filters Name=route.nat-gateway-id,Values=nat-0123456789abcdef</code>
-                  </div>
-                </details>
               
             </td>
             <td>
@@ -2108,16 +1589,6 @@ aws ec2 describe-route-tables --filters Name=route.nat-gateway-id,Values=nat-012
               
               
                 <br><small style="color: #666; font-style: italic;">Unable to measure CPU/storage utilization: missing CloudWatch permissions (AccessDenied).</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws rds describe-db-instances --db-instance-identifier analytics-postgres-db
-aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name CPUUtilization --dimensions Name=DBInstanceIdentifier,Value=analytics-postgres-db --start-time $(date -u -v-7d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 3600 --statistics Average</code>
-                  </div>
-                </details>
               
             </td>
             <td>
@@ -2189,15 +1660,6 @@ aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name CPUUtiliz
               
                 <br><small style="color: #666; font-style: italic;">Root access keys are present. Delete root access keys and use least-privilege IAM roles/users.</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws iam get-account-summary --query &#39;SummaryMap.AccountAccessKeysPresent&#39;</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -2244,15 +1706,6 @@ aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name CPUUtiliz
               
               
                 <br><small style="color: #666; font-style: italic;">Root MFA is not enabled. Enable MFA on the root user and restrict root usage.</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws iam get-account-summary --query &#39;SummaryMap.AccountMFAEnabled&#39;</code>
-                  </div>
-                </details>
               
             </td>
             <td>
@@ -2301,16 +1754,6 @@ aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name CPUUtiliz
               
                 <br><small style="color: #666; font-style: italic;">CloudTrail baseline appears incomplete. Enable an org/account trail (multi-region) and ensure it is actively logging.</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws cloudtrail describe-trails
-aws cloudtrail get-trail-status --name &lt;trail-name&gt;</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -2357,15 +1800,6 @@ aws cloudtrail get-trail-status --name &lt;trail-name&gt;</code>
               
               
                 <br><small style="color: #666; font-style: italic;">S3 account-level Block Public Access is not fully enabled.</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws s3control get-public-access-block --account-id 123456789012</code>
-                  </div>
-                </details>
               
             </td>
             <td>
@@ -2414,16 +1848,6 @@ aws cloudtrail get-trail-status --name &lt;trail-name&gt;</code>
               
                 <br><small style="color: #666; font-style: italic;">Security group allows inbound access from the public internet on sensitive ports.</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws ec2 describe-security-groups --group-ids sg-0123abcd4567efgh8
-aws ec2 describe-security-group-rules --filters Name=group-id,Values=sg-0123abcd4567efgh8</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -2470,16 +1894,6 @@ aws ec2 describe-security-group-rules --filters Name=group-id,Values=sg-0123abcd
               
               
                 <br><small style="color: #666; font-style: italic;">GuardDuty is not enabled in one or more regions checked.</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws guardduty list-detectors --region us-east-1
-aws guardduty list-detectors --region us-west-2</code>
-                  </div>
-                </details>
               
             </td>
             <td>
@@ -2528,15 +1942,6 @@ aws guardduty list-detectors --region us-west-2</code>
               
                 <br><small style="color: #666; font-style: italic;">IAM password policy is weaker than common baseline settings.</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws iam get-account-password-policy</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -2556,7 +1961,7 @@ aws guardduty list-detectors --region us-west-2</code>
     
 
     <!-- All Findings (Collapsible) -->
-    <button class="collapsible">🔍 All Findings (24 total)</button>
+    <button class="collapsible">🔍 All Findings (23 total)</button>
     <div class="content">
       <table style="margin-top: 16px;">
         <thead>
@@ -2609,15 +2014,6 @@ aws guardduty list-detectors --region us-west-2</code>
               
                 <br><small style="color: #666; font-style: italic;">Root MFA is not enabled. Enable MFA on the root user and restrict root usage.</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws iam get-account-summary --query &#39;SummaryMap.AccountMFAEnabled&#39;</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -2664,15 +2060,6 @@ aws guardduty list-detectors --region us-west-2</code>
               
               
                 <br><small style="color: #666; font-style: italic;">Root access keys are present. Delete root access keys and use least-privilege IAM roles/users.</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws iam get-account-summary --query &#39;SummaryMap.AccountAccessKeysPresent&#39;</code>
-                  </div>
-                </details>
               
             </td>
             <td>
@@ -2721,15 +2108,6 @@ aws guardduty list-detectors --region us-west-2</code>
               
                 <br><small style="color: #666; font-style: italic;">IAM password policy is weaker than common baseline settings.</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws iam get-account-password-policy</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -2776,16 +2154,6 @@ aws guardduty list-detectors --region us-west-2</code>
               
               
                 <br><small style="color: #666; font-style: italic;">CloudTrail baseline appears incomplete. Enable an org/account trail (multi-region) and ensure it is actively logging.</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws cloudtrail describe-trails
-aws cloudtrail get-trail-status --name &lt;trail-name&gt;</code>
-                  </div>
-                </details>
               
             </td>
             <td>
@@ -2834,15 +2202,6 @@ aws cloudtrail get-trail-status --name &lt;trail-name&gt;</code>
               
                 <br><small style="color: #666; font-style: italic;">S3 account-level Block Public Access is not fully enabled.</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws s3control get-public-access-block --account-id 123456789012</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -2890,16 +2249,6 @@ aws cloudtrail get-trail-status --name &lt;trail-name&gt;</code>
               
                 <br><small style="color: #666; font-style: italic;">Security group allows inbound access from the public internet on sensitive ports.</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws ec2 describe-security-groups --group-ids sg-0123abcd4567efgh8
-aws ec2 describe-security-group-rules --filters Name=group-id,Values=sg-0123abcd4567efgh8</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -2946,16 +2295,6 @@ aws ec2 describe-security-group-rules --filters Name=group-id,Values=sg-0123abcd
               
               
                 <br><small style="color: #666; font-style: italic;">GuardDuty is not enabled in one or more regions checked.</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws guardduty list-detectors --region us-east-1
-aws guardduty list-detectors --region us-west-2</code>
-                  </div>
-                </details>
               
             </td>
             <td>
@@ -3008,16 +2347,6 @@ aws guardduty list-detectors --region us-west-2</code>
               
                 <br><small style="color: #666; font-style: italic;">Low CPU and low network usage over the lookback window.</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name CPUUtilization --dimensions Name=InstanceId,Value=i-0123456789abcdef0 --start-time $(date -u -v-7d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 3600 --statistics Average
-aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name NetworkIn --dimensions Name=InstanceId,Value=i-0123456789abcdef0 --start-time $(date -u -v-7d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 3600 --statistics Average</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -3064,16 +2393,6 @@ aws cloudwatch get-metric-statistics --namespace AWS/EC2 --metric-name NetworkIn
               
               
                 <br><small style="color: #666; font-style: italic;">EBS volume (100 GB) unattached for >7 days. Create snapshot for safety, then delete if unused.</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws ec2 describe-volumes --volume-ids vol-0123456789abcdef
-aws ec2 describe-volumes --filters Name=status,Values=available Name=volume-id,Values=vol-0123456789abcdef</code>
-                  </div>
-                </details>
               
             </td>
             <td>
@@ -3122,16 +2441,6 @@ aws ec2 describe-volumes --filters Name=status,Values=available Name=volume-id,V
               
                 <br><small style="color: #666; font-style: italic;">EBS volume (500 GB) unattached for >7 days. Create snapshot for safety, then delete if unused.</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws ec2 describe-volumes --volume-ids vol-fedcba9876543210
-aws ec2 describe-volumes --filters Name=status,Values=available Name=volume-id,Values=vol-fedcba9876543210</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -3179,15 +2488,52 @@ aws ec2 describe-volumes --filters Name=status,Values=available Name=volume-id,V
               
                 <br><small style="color: #666; font-style: italic;">gp3 is typically cheaper than gp2 for similar workloads.</small>
               
+            </td>
+            <td>
               
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws ec2 describe-volumes --volume-ids vol-1111222233334444 --query &#39;Volumes[0].VolumeType&#39;
-aws ec2 describe-volumes-modifications --volume-id vol-1111222233334444</code>
-                  </div>
-                </details>
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-medium">
+            <td>
+              ebs_overprovisioned_performance
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  50%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              vol-5555666677778888
+              
+              
+              
+            </td>
+            <td>us-east-1</td>
+            <td>
+              <span class="badge badge-medium">
+                MEDIUM
+              </span>
+            </td>
+            <td>None</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              None
+              
+            </td>
+            <td>
+              reduce-provisioned-performance
+              
+              
+                <br><small style="color: #666; font-style: italic;">Provisioned performance appears high for observed usage over 14 days. Avg IOPS 120 (prov 9000), avg throughput 5.2 MB/s (prov 250 MB/s).</small>
               
             </td>
             <td>
@@ -3238,15 +2584,6 @@ aws ec2 describe-volumes-modifications --volume-id vol-1111222233334444</code>
               
                 <br><small style="color: #666; font-style: italic;">Snapshot is older than the retention window.</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws ec2 describe-snapshots --snapshot-ids snap-old123456789abc</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -3293,15 +2630,6 @@ aws ec2 describe-volumes-modifications --volume-id vol-1111222233334444</code>
               
               
                 <br><small style="color: #666; font-style: italic;">Log group retention is set to Never Expire; set retention to reduce storage costs.</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws logs describe-log-groups --log-group-name-prefix /aws/lambda/data-processor --query &#39;logGroups[0].retentionInDays&#39;</code>
-                  </div>
-                </details>
               
             </td>
             <td>
@@ -3350,16 +2678,6 @@ aws ec2 describe-volumes-modifications --volume-id vol-1111222233334444</code>
               
                 <br><small style="color: #666; font-style: italic;">Execution time indicates memory may be over-provisioned. Estimated using measured invocations (~36,000/mo).</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws lambda get-function-configuration --function-name data-transformer --query &#39;MemorySize&#39;
-aws cloudwatch get-metric-statistics --namespace AWS/Lambda --metric-name Duration --dimensions Name=FunctionName,Value=data-transformer --start-time $(date -u -v-7d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 3600 --statistics Average</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -3406,15 +2724,6 @@ aws cloudwatch get-metric-statistics --namespace AWS/Lambda --metric-name Durati
               
               
                 <br><small style="color: #666; font-style: italic;">Elastic IP is not attached to any instance; AWS charges for unused EIPs.</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws ec2 describe-addresses --public-ips 54.123.45.67</code>
-                  </div>
-                </details>
               
             </td>
             <td>
@@ -3463,15 +2772,6 @@ aws cloudwatch get-metric-statistics --namespace AWS/Lambda --metric-name Durati
               
                 <br><small style="color: #666; font-style: italic;">Elastic IP is not attached to any instance; AWS charges for unused EIPs.</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws ec2 describe-addresses --public-ips 34.210.98.76</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -3519,16 +2819,6 @@ aws cloudwatch get-metric-statistics --namespace AWS/Lambda --metric-name Durati
               
                 <br><small style="color: #666; font-style: italic;">NAT gateways have hourly + data processing cost; if used primarily for S3, consider an S3 VPC endpoint.</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws ec2 describe-nat-gateways --nat-gateway-ids nat-0123456789abcdef
-aws ec2 describe-route-tables --filters Name=route.nat-gateway-id,Values=nat-0123456789abcdef</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -3542,71 +2832,6 @@ aws ec2 describe-route-tables --filters Name=route.nat-gateway-id,Values=nat-012
                 <span class="tip">
                   <span class="badge badge-info">📐 Estimation</span>
                   <span class="tiptext">Method: base_hourly+uptime • Adjusted cost: $32.85/mo • Assumptions: ['no data processing included', 'uptime estimated from CreateTime', 'regional multiplier applied via pricing tables']</span>
-                </span>
-              
-            </td>
-          </tr>
-        
-          <tr class="severity-medium">
-            <td>
-              idle_nat_gateway
-              
-                <span class="badge badge-info" title="Detection confidence">
-                  50%
-                </span>
-              
-              
-              
-              
-              
-            </td>
-            <td style="font-family: monospace; font-size: 12px;">
-              nat-0123456789abcdef
-              
-              
-              
-            </td>
-            <td>us-east-1</td>
-            <td>
-              <span class="badge badge-medium">
-                MEDIUM
-              </span>
-            </td>
-            <td>32.85</td>
-            <td style="font-weight: 600; color: #1976d2;">
-              32.85
-              
-            </td>
-            <td>
-              review-and-delete-if-unused
-              
-              
-                <br><small style="color: #666; font-style: italic;">NAT gateway shows very low data processed (~0.25 GB/day across last 14 days). If unused, consider deleting to save hourly charges.</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws ec2 describe-nat-gateways --nat-gateway-ids nat-0123456789abcdef
-aws cloudwatch get-metric-statistics --namespace AWS/NATGateway --metric-name BytesOutToDestination --dimensions Name=NatGatewayId,Value=nat-0123456789abcdef --start-time $(date -u -v-14d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 86400 --statistics Sum
-aws cloudwatch get-metric-statistics --namespace AWS/NATGateway --metric-name BytesInFromSource --dimensions Name=NatGatewayId,Value=nat-0123456789abcdef --start-time $(date -u -v-14d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 86400 --statistics Sum</code>
-                  </div>
-                </details>
-              
-            </td>
-            <td>
-              
-              
-              
-              
-                
-                
-                
-                
-                <span class="tip">
-                  <span class="badge badge-info">📐 Estimation</span>
-                  <span class="tiptext">Adjusted cost: $32.85/mo</span>
                 </span>
               
             </td>
@@ -3651,15 +2876,6 @@ aws cloudwatch get-metric-statistics --namespace AWS/NATGateway --metric-name By
               
               
                 <br><small style="color: #666; font-style: italic;">Low request count over the lookback window.</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws cloudwatch get-metric-statistics --namespace AWS/ApplicationELB --metric-name RequestCount --dimensions Name=LoadBalancer,Value=app/my-alb-prod/1234567890abcdef --start-time $(date -u -v-7d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 86400 --statistics Sum</code>
-                  </div>
-                </details>
               
             </td>
             <td>
@@ -3712,15 +2928,6 @@ aws cloudwatch get-metric-statistics --namespace AWS/NATGateway --metric-name By
               
               
                 <br><small style="color: #666; font-style: italic;">Unable to measure load balancer request volume: CloudWatch returned no datapoints for the lookback window.</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws cloudwatch get-metric-statistics --namespace AWS/ApplicationELB --metric-name RequestCount --dimensions Name=LoadBalancer,Value=app/my-alb-staging/abcdef1234567890 --start-time $(date -u -v-7d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 86400 --statistics Sum</code>
-                  </div>
-                </details>
               
             </td>
             <td>
@@ -3782,16 +2989,6 @@ aws cloudwatch get-metric-statistics --namespace AWS/NATGateway --metric-name By
               
                 <br><small style="color: #666; font-style: italic;">Metric query skipped due to budget exhaustion</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws rds describe-db-instances --db-instance-identifier prod-postgres-db
-aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name CPUUtilization --dimensions Name=DBInstanceIdentifier,Value=prod-postgres-db --start-time $(date -u -v-7d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 3600 --statistics Average</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -3851,73 +3048,6 @@ aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name CPUUtiliz
               
                 <br><small style="color: #666; font-style: italic;">Unable to measure CPU/storage utilization: missing CloudWatch permissions (AccessDenied).</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws rds describe-db-instances --db-instance-identifier analytics-postgres-db
-aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name CPUUtilization --dimensions Name=DBInstanceIdentifier,Value=analytics-postgres-db --start-time $(date -u -v-7d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 3600 --statistics Average</code>
-                  </div>
-                </details>
-              
-            </td>
-            <td>
-              
-              
-              
-              
-                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
-              
-            </td>
-          </tr>
-        
-          <tr class="severity-medium">
-            <td>
-              rds_low_connections
-              
-                <span class="badge badge-info" title="Detection confidence">
-                  50%
-                </span>
-              
-              
-              
-              
-              
-            </td>
-            <td style="font-family: monospace; font-size: 12px;">
-              reporting-postgres-db
-              
-              
-              
-            </td>
-            <td>us-east-1</td>
-            <td>
-              <span class="badge badge-medium">
-                MEDIUM
-              </span>
-            </td>
-            <td>120.0</td>
-            <td style="font-weight: 600; color: #1976d2;">
-              120.0
-              
-            </td>
-            <td>
-              review-and-stop-if-unused
-              
-              
-                <br><small style="color: #666; font-style: italic;">Average connections 0.3 over 14 days. Review whether this instance is still needed.</small>
-              
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws rds describe-db-instances --db-instance-identifier reporting-postgres-db
-aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name DatabaseConnections --dimensions Name=DBInstanceIdentifier,Value=reporting-postgres-db --start-time $(date -u -v-14d &#39;+%Y-%m-%dT%H:%M:%S&#39;) --end-time $(date -u &#39;+%Y-%m-%dT%H:%M:%S&#39;) --period 300 --statistics Average</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -3967,15 +3097,6 @@ aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name DatabaseC
               
                 <br><small style="color: #666; font-style: italic;">Snapshot is older than the retention window.</small>
               
-              
-                <details style="margin-top: 6px;">
-                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
-                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
-                    <button class="copy-btn" type="button">Copy</button>
-                    <code>aws ec2 describe-snapshots --snapshot-ids snap-0123456789abcdef</code>
-                  </div>
-                </details>
-              
             </td>
             <td>
               
@@ -4021,29 +3142,6 @@ aws cloudwatch get-metric-statistics --namespace AWS/RDS --metric-name DatabaseC
             content.style.maxHeight = content.scrollHeight + 'px';
           }
         });
-      });
-
-      document.querySelectorAll('.codeblock').forEach(block => {
-        const button = block.querySelector('.copy-btn');
-        const code = block.querySelector('code');
-        const copy = () => {
-          const text = code.innerText;
-          navigator.clipboard.writeText(text).then(() => {
-            button.classList.add('copied');
-            button.textContent = 'Copied';
-            setTimeout(() => {
-              button.classList.remove('copied');
-              button.textContent = 'Copy';
-            }, 1500);
-          }).catch(() => {
-            button.textContent = 'Select';
-          });
-        };
-        button.addEventListener('click', (e) => {
-          e.stopPropagation();
-          copy();
-        });
-        block.addEventListener('click', copy);
       });
     </script>
   </div>

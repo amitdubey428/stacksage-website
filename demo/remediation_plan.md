@@ -1,7 +1,7 @@
 # StackSage Remediation Plan (v1)
 
 - Account: 123456789012
-- Generated: 2026-02-02 04:28:33 UTC
+- Generated: 2026-02-02 11:57:57 UTC
 - Estimated savings (actions in this plan): $43.00/mo
 
 This plan is generated from a read-only audit. Treat it as a checklist: verify ownership, blast radius, and compliance/retention before applying.
