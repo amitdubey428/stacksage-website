@@ -31,12 +31,12 @@ const features = [
     },
     {
         title: "RDS Signals",
-        desc: "Right-sizing signals plus public access, encryption, and backup posture",
+        desc: "Right-sizing signals plus low-connections guardrail, public access, encryption, and backup posture",
         icon: <Database className="h-5 w-5" />,
     },
     {
         title: "Network Waste",
-        desc: "NAT gateways, unused EIPs, idle load balancers, missing S3 endpoints",
+        desc: "Idle NAT gateways, unused EIPs, and idle load balancers",
         icon: <Network className="h-5 w-5" />,
     },
     {
@@ -46,7 +46,7 @@ const features = [
     },
     {
         title: "CloudWatch (Optional)",
-        desc: "Utilization enrichments with a bounded query budget + provenance",
+        desc: "Utilization enrichments (invocations, bytes, requests) with a bounded query budget + provenance",
         icon: <Eye className="h-5 w-5" />,
     },
     {
@@ -56,7 +56,7 @@ const features = [
     },
     {
         title: "Workflow Outputs",
-        desc: "One-page summary + HTML report + machine-readable JSON/CSV findings as artifacts",
+        desc: "One-page summary + HTML report + JSON/CSV findings with copyable verification commands",
         icon: <Timer className="h-5 w-5" />,
     },
 ];

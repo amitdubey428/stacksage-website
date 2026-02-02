@@ -40,6 +40,7 @@ export default function Hero() {
                         <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Self-serve Trial</li>
                         <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Cost + security posture in one pack</li>
                         <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Summary + HTML + JSON/CSV outputs</li>
+                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Copyable verification CLI</li>
                     </ul>
                 </motion.div>
             </div>

@@ -4,7 +4,7 @@ const steps = [
     { n: 1, title: "Install the Workflow", desc: "Add the StackSage workflow to your repo (Trial or paid)" },
     { n: 2, title: "Grant Read-Only Access", desc: "Provide a customer-controlled IAM role ARN (assume role)" },
     { n: 3, title: "Run Trial (or add license)", desc: "Trial runs without a license. Paid workflow uses a time-limited license secret." },
-    { n: 4, title: "Get the Audit Pack", desc: "Receive a summary, an HTML report, and JSON/CSV findings — covering cost + security posture" },
+    { n: 4, title: "Get the Audit Pack", desc: "Receive a summary, an HTML report, and JSON/CSV findings — with copyable verification commands" },
 ];
 
 export default function HowItWorks() {
