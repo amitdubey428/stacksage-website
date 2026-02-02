@@ -1,12 +1,12 @@
 # StackSage Summary
 
 - Account: 123456789012
-- Timestamp: 2026-02-01 18:50:48 UTC
+- Timestamp: 2026-02-02 04:28:33 UTC
 - Regions scanned: us-east-1, us-west-2
 - Opt-ins: CloudWatch=unknown, CostExplorer=unknown, PricingAPI=unknown
 
-- Estimated monthly cost: $426.25
-- Estimated monthly savings opportunities: $280.40
+- Estimated monthly cost: $579.10
+- Estimated monthly savings opportunities: $433.25
 
 ## Security posture scorecard
 | Check | Status |
@@ -31,11 +31,11 @@
 - HIGH: sg_open_to_world (us-east-1)
 
 ## Top cost opportunities
+- $120.00/mo: rds_low_connections (us-east-1)
 - $78.00/mo: underutilized_rds (us-east-1)
 - $62.40/mo: idle_ec2 (us-east-1)
 - $50.00/mo: unattached_ebs (us-west-2)
-- $25.00/mo: old_snapshot (us-west-2)
-- $25.00/mo: idle_elb (us-east-1)
+- $32.85/mo: idle_nat_gateway (us-east-1)
 
 ## Spend movers (period-over-period)
 - Total change: $50.15 (13.92%)
