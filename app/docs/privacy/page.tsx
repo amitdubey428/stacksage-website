@@ -137,10 +137,10 @@ export default function PrivacyPage() {
                 The StackSage Docker image (<code>ghcr.io/amitdubey428/stacksage-audit</code>) is:
             </p>
             <ul>
-                <li><strong>Open source:</strong> Full source code available on GitHub</li>
-                <li><strong>Reproducible:</strong> Built from Dockerfile in public repository</li>
-                <li><strong>Scanned:</strong> Automated vulnerability scanning via GitHub Security</li>
+                <li><strong>Reproducible:</strong> Built from Dockerfile with version control</li>
+                <li><strong>Scanned:</strong> Automated vulnerability scanning</li>
                 <li><strong>Minimal:</strong> Based on Python slim image with minimal dependencies</li>
+                <li><strong>Verified:</strong> Signed container images for authenticity</li>
             </ul>
 
             <h2>Compliance Considerations</h2>
@@ -259,7 +259,7 @@ export default function PrivacyPage() {
                 <ul className="space-y-1 mb-0 text-sm text-blue-800 dark:text-blue-200">
                     <li>📧 Email: <a href="mailto:privacy@stacksageai.com" className="underline">privacy@stacksageai.com</a></li>
                     <li>🔒 Security: <a href="mailto:security@stacksageai.com" className="underline">security@stacksageai.com</a></li>
-                    <li>💬 GitHub: <a href="https://github.com/amitdubey428/stacksage-audit/discussions" target="_blank" rel="noopener noreferrer" className="underline">Open a discussion</a></li>
+                    <li>💬 Support: <a href="mailto:hello@stacksageai.com" className="underline">hello@stacksageai.com</a></li>
                 </ul>
             </div>
 

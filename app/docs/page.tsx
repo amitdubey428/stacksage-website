@@ -87,16 +87,7 @@ export default function DocsPage() {
 
             <div className="mt-12 border-t border-zinc-200 dark:border-zinc-800 pt-8">
                 <h3 className="text-lg font-semibold mb-4">Need Help?</h3>
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                    <a
-                        href="https://github.com/amitdubey428/stacksage-audit"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-4 border border-zinc-200 dark:border-zinc-800 rounded-lg hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors"
-                    >
-                        <div className="font-medium mb-1">GitHub Repository</div>
-                        <div className="text-sm text-zinc-600 dark:text-zinc-400">View source code and open issues</div>
-                    </a>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <a
                         href="/demo-report/"
                         className="p-4 border border-zinc-200 dark:border-zinc-800 rounded-lg hover:border-zinc-300 dark:hover:border-zinc-700 transition-colors"

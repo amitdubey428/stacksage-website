@@ -216,13 +216,10 @@ exclusions:
                 <h3 className="text-lg font-semibold mb-3 text-blue-900 dark:text-blue-100">Still stuck?</h3>
                 <div className="space-y-2">
                     <div className="text-sm text-blue-800 dark:text-blue-200">
-                        <strong>Check GitHub Issues:</strong>{" "}
-                        <a href="https://github.com/amitdubey428/stacksage-audit/issues" target="_blank" rel="noopener noreferrer" className="underline">
-                            Search existing issues
-                        </a>
+                        <strong>Contact Support:</strong> Email us at <a href="mailto:hello@stacksageai.com" className="underline">hello@stacksageai.com</a>
                     </div>
                     <div className="text-sm text-blue-800 dark:text-blue-200">
-                        <strong>Open an Issue:</strong> Include workflow logs, stacksage.yml, and error messages
+                        <strong>Include Details:</strong> Provide workflow logs, stacksage.yml, and error messages
                     </div>
                     <div className="text-sm text-blue-800 dark:text-blue-200">
                         <strong>Enable Debug Logging:</strong> Add <code>STACKSAGE_DEBUG=1</code> environment variable
