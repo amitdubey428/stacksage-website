@@ -1,12 +1,12 @@
 # StackSage Summary
 
 - Account: 123456789012
-- Timestamp: 2026-02-03 06:07:00 UTC
+- Timestamp: 2026-02-03 08:32:06 UTC
 - Regions scanned: us-east-1, us-west-2
 - Opt-ins: CloudWatch=unknown, CostExplorer=unknown, PricingAPI=unknown
 
-- Estimated monthly cost: $426.25
-- Estimated monthly savings opportunities: $280.40
+- Estimated monthly cost: $448.75
+- Estimated monthly savings opportunities: $302.90
 
 ## Security posture scorecard
 | Check | Status |
