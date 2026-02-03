@@ -439,7 +439,7 @@
     <div class="metadata">
       <strong>Account:</strong> 123456789012 | 
       <strong>Regions:</strong> us-east-1, us-west-2 | 
-      <strong>Generated:</strong> 2026-02-03 06:07:00 UTC
+      <strong>Generated:</strong> 2026-02-03 08:32:06 UTC
       | <strong>Pricing:</strong> v2025-12
     </div>
     
@@ -447,12 +447,12 @@
     <h2>Executive Dashboard</h2>
     <div class="dashboard">
       <div class="card card-savings">
-        <div class="card-value">$280.4</div>
+        <div class="card-value">$302.9</div>
         <div class="card-label">Potential Savings/Month</div>
       </div>
       
       <div class="card card-issues">
-        <div class="card-value">23</div>
+        <div class="card-value">24</div>
         <div class="card-label">Issues Found</div>
       </div>
       
@@ -466,7 +466,7 @@
       <div class="card card-waste">
         <div class="card-value">
           
-            66%
+            67%
           
         </div>
         <div class="card-label">Potential Waste</div>
@@ -474,7 +474,7 @@
     </div>
     
     <p style="font-size: 14px; color: #616161; margin: 16px 0;">
-      <strong>Estimated Monthly Cost:</strong> $426.25
+      <strong>Estimated Monthly Cost:</strong> $448.75
     </p>
     
       
@@ -581,7 +581,7 @@
 
     <!-- Executive Summary -->
     <h2>Executive Summary</h2>
-    <p style="font-size: 15px; line-height: 1.8; color: #424242;">Potential monthly savings: $280.40. Current cost (flagged resources): $426.25. Primary drivers: underutilized_rds(prod-postgres-db): $78.00, idle_ec2(i-0123456789abcdef0): $62.40, unattached_ebs(vol-fedcba9876543210): $50.00, old_snapshot(snap-old123456789abc): $25.00, idle_elb(my-alb-prod): $25.00</p>
+    <p style="font-size: 15px; line-height: 1.8; color: #424242;">Potential monthly savings: $302.90. Current cost (flagged resources): $448.75. Primary drivers: underutilized_rds(prod-postgres-db): $78.00, idle_ec2(i-0123456789abcdef0): $62.40, unattached_ebs(vol-fedcba9876543210): $50.00, old_snapshot(snap-old123456789abc): $25.00, idle_elb(my-alb-prod): $25.00</p>
 
     
     <h3>🛡️ Security Posture Scorecard</h3>
@@ -773,7 +773,7 @@
         data: {
           labels: ['account', 'security-group', 'ec2', 'ebs', 'snapshot', 'cloudwatch', 'lambda', 'eip', 'nat', 'elb', 'rds'],
           datasets: [{
-            data: [6, 1, 1, 4, 2, 1, 1, 2, 1, 2, 2],
+            data: [6, 1, 1, 4, 2, 1, 1, 2, 1, 3, 2],
             backgroundColor: [
               '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF',
               '#FF9F40', '#FF6384', '#C9CBCF', '#4BC0C0', '#FF9F40'
@@ -1005,7 +1005,7 @@
         
           <tr>
             <td>elb</td>
-            <td><strong>2</strong></td>
+            <td><strong>3</strong></td>
           </tr>
         
           <tr>
@@ -1021,7 +1021,7 @@
     
 
     
-    <button class="collapsible">💰 Financial Findings (16 total)</button>
+    <button class="collapsible">💰 Financial Findings (17 total)</button>
     <div class="content">
       <div class="table-wrapper">
         <table style="margin-top: 16px;">
@@ -1304,6 +1304,70 @@
                   <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
                     <button class="copy-btn" type="button">Copy</button>
                     <code>aws ec2 describe-snapshots --snapshot-ids snap-old123456789abc</code>
+                  </div>
+                </details>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-medium">
+            <td>
+              lb_empty_target_groups
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  90%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              old-api-alb
+              
+              
+              
+            </td>
+            <td>us-west-2</td>
+            <td>
+              <span class="badge badge-medium">
+                MEDIUM
+              </span>
+            </td>
+            <td>22.5</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              22.5
+              
+            </td>
+            <td>
+              delete-if-unused
+              
+              
+                <br><small style="color: #666; font-style: italic;">APPLICATION load balancer with 2 target group(s), all empty (0 registered targets). Likely leftover from decommissioned application.</small>
+              
+              
+                <details style="margin-top: 6px;">
+                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
+                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
+                    <button class="copy-btn" type="button">Copy</button>
+                    <code># Check load balancer details
+aws elbv2 describe-load-balancers --names old-api-alb --region us-west-2
+
+# List all target groups
+aws elbv2 describe-target-groups --load-balancer-arn arn:aws:elasticloadbalancing:us-west-2:123456789012:loadbalancer/app/old-api-alb/abc123 --region us-west-2
+
+# Check target health for each group (example for first group)
+aws elbv2 describe-target-health --target-group-arn arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/api-backend-tg/xyz789 --region us-west-2
+aws elbv2 describe-target-health --target-group-arn arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/api-frontend-tg/xyz790 --region us-west-2</code>
                   </div>
                 </details>
               
@@ -2313,7 +2377,7 @@ aws ec2 describe-route-tables --filters Name=route.nat-gateway-id,Values=nat-012
     
 
     <!-- All Findings (Collapsible) -->
-    <button class="collapsible">🔍 All Findings (23 total)</button>
+    <button class="collapsible">🔍 All Findings (24 total)</button>
     <div class="content">
       <div class="table-wrapper">
         <table style="margin-top: 16px;">
@@ -3275,6 +3339,70 @@ aws ec2 describe-route-tables --filters Name=route.nat-gateway-id,Values=nat-012
                   <span class="badge badge-info">📐 Estimation</span>
                   <span class="tiptext">Method: base_hourly+uptime • Adjusted cost: $32.85/mo • Assumptions: ['no data processing included', 'uptime estimated from CreateTime', 'regional multiplier applied via pricing tables']</span>
                 </span>
+              
+            </td>
+          </tr>
+        
+          <tr class="severity-medium">
+            <td>
+              lb_empty_target_groups
+              
+                <span class="badge badge-info" title="Detection confidence">
+                  90%
+                </span>
+              
+              
+              
+              
+              
+            </td>
+            <td style="font-family: monospace; font-size: 12px;">
+              old-api-alb
+              
+              
+              
+            </td>
+            <td>us-west-2</td>
+            <td>
+              <span class="badge badge-medium">
+                MEDIUM
+              </span>
+            </td>
+            <td>22.5</td>
+            <td style="font-weight: 600; color: #1976d2;">
+              22.5
+              
+            </td>
+            <td>
+              delete-if-unused
+              
+              
+                <br><small style="color: #666; font-style: italic;">APPLICATION load balancer with 2 target group(s), all empty (0 registered targets). Likely leftover from decommissioned application.</small>
+              
+              
+                <details style="margin-top: 6px;">
+                  <summary style="cursor: pointer; font-size: 12px; color: #1976d2;">Verify (AWS CLI)</summary>
+                  <div class="codeblock" role="button" aria-label="Copy AWS CLI commands">
+                    <button class="copy-btn" type="button">Copy</button>
+                    <code># Check load balancer details
+aws elbv2 describe-load-balancers --names old-api-alb --region us-west-2
+
+# List all target groups
+aws elbv2 describe-target-groups --load-balancer-arn arn:aws:elasticloadbalancing:us-west-2:123456789012:loadbalancer/app/old-api-alb/abc123 --region us-west-2
+
+# Check target health for each group (example for first group)
+aws elbv2 describe-target-health --target-group-arn arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/api-backend-tg/xyz789 --region us-west-2
+aws elbv2 describe-target-health --target-group-arn arn:aws:elasticloadbalancing:us-west-2:123456789012:targetgroup/api-frontend-tg/xyz790 --region us-west-2</code>
+                  </div>
+                </details>
+              
+            </td>
+            <td>
+              
+              
+              
+              
+                <span class="badge badge-heuristic" title="Static pricing/heuristics">Heuristic</span>
               
             </td>
           </tr>
