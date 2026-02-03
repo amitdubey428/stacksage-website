@@ -9,25 +9,25 @@ export const metadata: Metadata = {
 
 export default function TroubleshootingPage() {
     return (
-        <div className="prose prose-zinc dark:prose-invert max-w-none">
-            <h1>Troubleshooting</h1>
-            <p className="lead">
+        <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-900 dark:text-zinc-100">
+            <h1 className="text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-4">Troubleshooting</h1>
+            <p className="text-xl text-zinc-600 dark:text-zinc-300 mb-8">
                 Solutions to common issues when running StackSage audits.
             </p>
 
-            <h2>Authentication Issues</h2>
+            <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">Authentication Issues</h2>
 
-            <h3>Error: "User is not authorized to perform: sts:AssumeRoleWithWebIdentity"</h3>
-            <p>
-                <strong>Cause:</strong> The OIDC provider is not configured or the trust policy is incorrect.
+            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mt-8 mb-3">Error: "User is not authorized to perform: sts:AssumeRoleWithWebIdentity"</h3>
+            <p className="text-zinc-700 dark:text-zinc-300 mb-4">
+                <strong className="text-zinc-900 dark:text-zinc-100">Cause:</strong> The OIDC provider is not configured or the trust policy is incorrect.
             </p>
-            <p>
-                <strong>Solution:</strong>
+            <p className="text-zinc-700 dark:text-zinc-300 mb-4">
+                <strong className="text-zinc-900 dark:text-zinc-100">Solution:</strong>
             </p>
-            <ol>
+            <ol className="space-y-2 text-zinc-700 dark:text-zinc-300 mb-6">
                 <li>Verify the OIDC provider exists in IAM Console → Identity providers</li>
                 <li>Check the trust policy references the correct GitHub org/repo</li>
-                <li>Ensure the audience is set to <code>sts.amazonaws.com</code></li>
+                <li>Ensure the audience is set to <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">sts.amazonaws.com</code></li>
             </ol>
 
             <div className="not-prose my-6">

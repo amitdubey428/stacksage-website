@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 
 export default function IAMPolicyPage() {
     return (
-        <div className="prose prose-zinc dark:prose-invert max-w-none">
-            <h1>IAM Policy Setup</h1>
-            <p className="lead">
+        <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-900 dark:text-zinc-100">
+            <h1 className="text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-4">IAM Policy Setup</h1>
+            <p className="text-xl text-zinc-600 dark:text-zinc-300 mb-8">
                 Configure AWS IAM roles and policies to grant StackSage read-only access to your AWS resources.
             </p>
 

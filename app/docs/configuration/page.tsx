@@ -9,15 +9,15 @@ export const metadata: Metadata = {
 
 export default function ConfigurationPage() {
     return (
-        <div className="prose prose-zinc dark:prose-invert max-w-none">
-            <h1>Configuration</h1>
-            <p className="lead">
-                Customize StackSage audit behavior with a <code>stacksage.yml</code> file in your repository root.
+        <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-900 dark:text-zinc-100">
+            <h1 className="text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-4">Configuration</h1>
+            <p className="text-xl text-zinc-600 dark:text-zinc-300 mb-8">
+                Customize StackSage audit behavior with a <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">stacksage.yml</code> file in your repository root.
             </p>
 
-            <h2>Quick Start</h2>
-            <p>
-                Create a <code>stacksage.yml</code> file in your repository root:
+            <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">Quick Start</h2>
+            <p className="text-zinc-700 dark:text-zinc-300 mb-6">
+                Create a <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">stacksage.yml</code> file in your repository root:
             </p>
 
             <div className="not-prose my-6">
@@ -35,14 +35,14 @@ mv stacksage.yml.example stacksage.yml`}</code></pre>
                 </div>
             </div>
 
-            <p>
-                All configuration settings are <strong>optional</strong>. StackSage uses sensible defaults if no config file is present.
+            <p className="text-zinc-700 dark:text-zinc-300 mb-6">
+                All configuration settings are <strong className="text-zinc-900 dark:text-zinc-100">optional</strong>. StackSage uses sensible defaults if no config file is present.
             </p>
 
-            <h2>Configuration Sections</h2>
+            <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">Configuration Sections</h2>
 
-            <h3>Exclusions</h3>
-            <p>
+            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mt-8 mb-3">Exclusions</h3>
+            <p className="text-zinc-700 dark:text-zinc-300 mb-6">
                 Skip specific resources, regions, or entire detector types:
             </p>
 

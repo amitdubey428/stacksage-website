@@ -9,21 +9,21 @@ export const metadata: Metadata = {
 
 export default function QuickStartPage() {
     return (
-        <div className="prose prose-zinc dark:prose-invert max-w-none">
-            <h1>Quick Start</h1>
-            <p className="lead">
+        <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-900 dark:text-zinc-100">
+            <h1 className="text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-4">Quick Start</h1>
+            <p className="text-xl text-zinc-600 dark:text-zinc-300 mb-8">
                 Get StackSage running in your GitHub repository in under 5 minutes.
             </p>
 
-            <h2>Prerequisites</h2>
-            <ul>
+            <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">Prerequisites</h2>
+            <ul className="space-y-2 text-zinc-700 dark:text-zinc-300 mb-8">
                 <li>An AWS account with resources to audit</li>
                 <li>A GitHub repository</li>
                 <li>AWS IAM permissions to create roles and policies</li>
             </ul>
 
-            <h2>Step 1: Set Up AWS IAM</h2>
-            <p>
+            <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">Step 1: Set Up AWS IAM</h2>
+            <p className="text-zinc-700 dark:text-zinc-300 mb-6">
                 Create a read-only IAM role for StackSage to assume. This role needs permissions to describe your AWS resources
                 and access CloudWatch metrics.
             </p>
@@ -52,22 +52,22 @@ aws iam attach-role-policy \\
                 </div>
             </div>
 
-            <p>
-                See the <Link href="/docs/iam-policy">IAM Policy Setup</Link> guide for detailed instructions and policy templates.
+            <p className="text-zinc-700 dark:text-zinc-300 mb-6">
+                See the <Link href="/docs/iam-policy" className="text-blue-600 dark:text-blue-400 hover:underline">IAM Policy Setup</Link> guide for detailed instructions and policy templates.
             </p>
 
-            <h2>Step 2: Add GitHub Secrets</h2>
-            <p>
+            <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">Step 2: Add GitHub Secrets</h2>
+            <p className="text-zinc-700 dark:text-zinc-300 mb-6">
                 In your GitHub repository, go to Settings → Secrets and variables → Actions, and add:
             </p>
-            <ul>
-                <li><code>AWS_ROLE_ARN</code> - The ARN of the IAM role you created (e.g., <code>arn:aws:iam::123456789012:role/StackSageAuditor</code>)</li>
-                <li><code>AWS_REGION</code> - Your primary AWS region (e.g., <code>us-east-1</code>)</li>
+            <ul className="space-y-2 text-zinc-700 dark:text-zinc-300 mb-8">
+                <li><code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">AWS_ROLE_ARN</code> - The ARN of the IAM role you created (e.g., <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">arn:aws:iam::123456789012:role/StackSageAuditor</code>)</li>
+                <li><code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">AWS_REGION</code> - Your primary AWS region (e.g., <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">us-east-1</code>)</li>
             </ul>
 
-            <h2>Step 3: Create GitHub Actions Workflow</h2>
-            <p>
-                Create <code>.github/workflows/stacksage-audit.yml</code> in your repository:
+            <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">Step 3: Create GitHub Actions Workflow</h2>
+            <p className="text-zinc-700 dark:text-zinc-300 mb-6">
+                Create <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">.github/workflows/stacksage-audit.yml</code> in your repository:
             </p>
 
             <div className="not-prose my-6">
@@ -112,8 +112,8 @@ jobs:
                 </div>
             </div>
 
-            <h2>Step 4: Run Your First Audit</h2>
-            <p>
+            <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">Step 4: Run Your First Audit</h2>
+            <p className="text-zinc-700 dark:text-zinc-300 mb-6">
                 Go to your repository's Actions tab, select the "StackSage AWS Audit" workflow, and click "Run workflow".
                 After a few minutes, download the report artifact to view your findings.
             </p>
@@ -131,12 +131,12 @@ jobs:
                 </Link>
             </div>
 
-            <h2>What's Next?</h2>
-            <ul>
-                <li><Link href="/docs/configuration">Configure exclusions and thresholds</Link></li>
-                <li><Link href="/docs/detectors">Learn about available detectors</Link></li>
-                <li><Link href="/docs/github-actions">Advanced GitHub Actions setup</Link></li>
-                <li><Link href="/docs/troubleshooting">Troubleshooting common issues</Link></li>
+            <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">What's Next?</h2>
+            <ul className="space-y-2 text-zinc-700 dark:text-zinc-300 mb-8">
+                <li><Link href="/docs/configuration" className="text-blue-600 dark:text-blue-400 hover:underline">Configure exclusions and thresholds</Link></li>
+                <li><Link href="/docs/detectors" className="text-blue-600 dark:text-blue-400 hover:underline">Learn about available detectors</Link></li>
+                <li><Link href="/docs/github-actions" className="text-blue-600 dark:text-blue-400 hover:underline">Advanced GitHub Actions setup</Link></li>
+                <li><Link href="/docs/troubleshooting" className="text-blue-600 dark:text-blue-400 hover:underline">Troubleshooting common issues</Link></li>
             </ul>
         </div>
     );

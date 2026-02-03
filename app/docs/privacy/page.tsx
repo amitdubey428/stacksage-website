@@ -9,9 +9,9 @@ export const metadata: Metadata = {
 
 export default function PrivacyPage() {
     return (
-        <div className="prose prose-zinc dark:prose-invert max-w-none">
-            <h1>Privacy & Data Handling</h1>
-            <p className="lead">
+        <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-900 dark:text-zinc-100">
+            <h1 className="text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-4">Privacy & Data Handling</h1>
+            <p className="text-xl text-zinc-600 dark:text-zinc-300 mb-8">
                 StackSage is designed with privacy as a core principle. Your AWS data never leaves your infrastructure.
             </p>
 
