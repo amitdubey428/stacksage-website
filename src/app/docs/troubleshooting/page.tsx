@@ -161,7 +161,7 @@ python -c "import yaml; yaml.safe_load(open('stacksage.yml'))"`}</code></pre>
 
             <h2>Performance Issues</h2>
 
-            <h3>Workflow takes too long (>15 minutes)</h3>
+            <h3>Workflow takes too long ({">"}15 minutes)</h3>
             <p>
                 <strong>Causes:</strong> Large AWS environment, many regions, or API throttling.
             </p>
