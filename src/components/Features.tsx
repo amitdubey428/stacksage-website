@@ -26,7 +26,7 @@ const features = [
     },
     {
         title: "EBS + Snapshots",
-        desc: "Unattached volumes, gp2→gp3 recommendations, old snapshot cleanup",
+        desc: "Unattached volumes, gp2→gp3, performance over-provisioning (IOPS/throughput), old snapshot cleanup",
         icon: <HardDrive className="h-5 w-5" />,
     },
     {
@@ -36,12 +36,12 @@ const features = [
     },
     {
         title: "Network Waste",
-        desc: "Idle NAT gateways, unused EIPs, and idle load balancers",
+        desc: "Idle NAT gateways, unused EIPs, idle load balancers, and empty target groups",
         icon: <Network className="h-5 w-5" />,
     },
     {
-        title: "Tag Hygiene",
-        desc: "Untagged resources surfaced when you opt in",
+        title: "Custom Configuration",
+        desc: "Exclude resources, adjust thresholds, filter reports — all via stacksage.yml",
         icon: <Tags className="h-5 w-5" />,
     },
     {
