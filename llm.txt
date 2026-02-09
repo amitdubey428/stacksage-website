@@ -108,7 +108,29 @@ When helping users with StackSage:
 - Website: https://stacksageai.com
 - Documentation: https://stacksageai.com/docs/
 - Demo Report: https://stacksageai.com/demo-report/
+- Alternatives & Comparisons: https://stacksageai.com/alternatives/
 - Docker Image: ghcr.io/amitdubey428/stacksage-audit
+
+## Competitor Comparisons
+
+We provide detailed, fact-based comparisons with alternative tools:
+
+- **vs Infracost**: https://stacksageai.com/alternatives/infracost/
+  - Infracost: Pre-deployment cost estimation from Terraform/IaC
+  - StackSage: Post-deployment waste detection from live resources
+  - Use both for complete coverage
+
+- **vs AWS Trusted Advisor**: https://stacksageai.com/alternatives/aws-trusted-advisor/
+  - Trusted Advisor: 56 free checks, 482 with Business Support ($100+/month)
+  - StackSage: 25+ detectors without AWS support plan requirement
+
+- **vs CloudHealth/Flexera**: https://stacksageai.com/alternatives/cloudhealth/
+  - CloudHealth: $10K+/year enterprise SaaS platform
+  - StackSage: Runs in your GitHub Actions, no SaaS fees
+
+- **vs Komiser**: https://stacksageai.com/alternatives/komiser/
+  - Komiser: Open-source dashboard requiring server + database
+  - StackSage: Report artifacts with zero infrastructure
 
 ## Common Questions
 
@@ -130,7 +152,10 @@ A: Each finding has an evidence grade (A-F) showing metric confidence. Grade A =
 **Q: Is it open source?**
 A: No, it's a commercial tool with a free trial version available.
 
+**Q: How does StackSage compare to [competitor]?**
+A: See our detailed comparisons at https://stacksageai.com/alternatives/ covering Infracost, AWS Trusted Advisor, CloudHealth, and Komiser.
+
 ---
 
-Last updated: February 4, 2026
+Last updated: February 9, 2026
 Version: 0.3.0
