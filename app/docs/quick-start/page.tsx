@@ -15,6 +15,12 @@ export default function QuickStartPage() {
                 Get StackSage running in your GitHub repository in under 5 minutes.
             </p>
 
+            <div className="not-prose my-6 rounded-lg border border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950 p-6">
+                <p className="text-sm text-blue-800 dark:text-blue-200">
+                    <strong>Note:</strong> This guide covers the trial version (no license required). For full feature access including cost optimization, see <Link href="/docs/licensing" className="underline hover:text-blue-900 dark:hover:text-blue-100">Trial vs Full License</Link>.
+                </p>
+            </div>
+
             <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">Prerequisites</h2>
             <ul className="space-y-2 text-zinc-700 dark:text-zinc-300 mb-8">
                 <li>An AWS account with resources to audit</li>
@@ -133,6 +139,7 @@ jobs:
 
             <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">What's Next?</h2>
             <ul className="space-y-2 text-zinc-700 dark:text-zinc-300 mb-8">
+                <li><Link href="/docs/licensing" className="text-blue-600 dark:text-blue-400 hover:underline">Upgrade to full license for cost optimization</Link></li>
                 <li><Link href="/docs/configuration" className="text-blue-600 dark:text-blue-400 hover:underline">Configure exclusions and thresholds</Link></li>
                 <li><Link href="/docs/detectors" className="text-blue-600 dark:text-blue-400 hover:underline">Learn about available detectors</Link></li>
                 <li><Link href="/docs/github-actions" className="text-blue-600 dark:text-blue-400 hover:underline">Advanced GitHub Actions setup</Link></li>

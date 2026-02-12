@@ -14,6 +14,7 @@ export default function DocsPage() {
             icon: <Zap className="h-6 w-6" />,
             links: [
                 { href: "/docs/quick-start", label: "Quick Start Guide" },
+                { href: "/docs/licensing", label: "Trial vs Full License" },
                 { href: "/docs/installation", label: "Installation" },
                 { href: "/docs/github-actions", label: "GitHub Actions Setup" },
             ],

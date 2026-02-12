@@ -37,20 +37,28 @@ StackSage is an AWS audit platform that runs entirely in your GitHub Actions env
 
 ## Versions
 
-### Trial Version
-- 6 core detectors (EC2 idle, EBS unattached, NAT idle, RDS low connections, Elastic IP unattached, Lambda low invocations)
-- 5 resource cap per detector
-- Free evaluation
+### Trial Version (Free)
+- No license required
+- Basic security & compliance detectors (subset)
+- Capped findings per detector
+- Minimal IAM permissions
+- No cost optimization features
+- Perfect for evaluation
 
-### Full Version
-- 25+ detectors across all AWS services
-- Unlimited resource scanning
-- Security scorecard
-- License-based access
+### Full Licensed Version
+- Complete 50+ detector suite
+- Unlimited findings
+- Cost optimization analysis with savings estimates
+- Detailed remediation plans
+- Multi-account rollup reporting
+- Extended CloudWatch metrics analysis
+- Priority support
+- Learn more: https://stacksageai.com/docs/licensing
 
 ## Documentation Structure
 
 - Quick Start: /docs/quick-start/
+- Trial vs Full License: /docs/licensing/
 - Configuration Guide: /docs/configuration/
 - IAM Policy Setup: /docs/iam-policy/
 - All Detectors Reference: /docs/detectors/

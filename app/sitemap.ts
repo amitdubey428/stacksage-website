@@ -78,6 +78,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.9,
         },
         {
+            url: `${base}/docs/licensing`,
+            lastModified: new Date(),
+            changeFrequency: "monthly",
+            priority: 0.8,
+        },
+        {
             url: `${base}/docs/configuration`,
             lastModified: new Date(),
             changeFrequency: "monthly",
