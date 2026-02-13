@@ -12,17 +12,13 @@ const navigation: NavItem[] = [
         title: "Getting Started",
         items: [
             { title: "Quick Start", href: "/docs/quick-start/" },
-            { title: "Installation", href: "/docs/installation/" },
-            { title: "GitHub Actions Setup", href: "/docs/github-actions/" },
+            { title: "Licensing & Trial", href: "/docs/licensing/" },
         ],
     },
     {
         title: "Configuration",
         items: [
             { title: "Overview", href: "/docs/configuration/" },
-            { title: "Exclusions & Filters", href: "/docs/exclusions/" },
-            { title: "Custom Thresholds", href: "/docs/thresholds/" },
-            { title: "Tag Governance", href: "/docs/tag-governance/" },
         ],
     },
     {
@@ -30,24 +26,17 @@ const navigation: NavItem[] = [
         items: [
             { title: "IAM Policy Setup", href: "/docs/iam-policy/" },
             { title: "Privacy & Data Handling", href: "/docs/privacy/" },
-            { title: "Security Best Practices", href: "/docs/security/" },
         ],
     },
     {
         title: "Detectors",
         items: [
             { title: "All Detectors", href: "/docs/detectors/" },
-            { title: "Compute", href: "/docs/detectors/compute/" },
-            { title: "Storage", href: "/docs/detectors/storage/" },
-            { title: "Database", href: "/docs/detectors/database/" },
-            { title: "Network", href: "/docs/detectors/network/" },
         ],
     },
     {
         title: "Reference",
         items: [
-            { title: "CLI Reference", href: "/docs/cli-reference/" },
-            { title: "Report Format", href: "/docs/report-format/" },
             { title: "Troubleshooting", href: "/docs/troubleshooting/" },
         ],
     },
