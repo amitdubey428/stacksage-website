@@ -283,7 +283,9 @@ export default function LicensingPage() {
                         Start Trial
                     </Link>
                     <a
-                        href="mailto:hello@stacksageai.com"
+                        href="https://tally.so/r/68Lrke"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-4 py-2 border-2 border-blue-600 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-600 hover:text-white transition-colors font-medium"
                     >
                         Request License
