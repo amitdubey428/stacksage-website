@@ -9,7 +9,10 @@ export const metadata: Metadata = {
 
 export default function TroubleshootingPage() {
     return (
-        <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-900 dark:text-zinc-100">
+        <div
+            className="prose prose-zinc dark:prose-invert max-w-none text-zinc-900 dark:text-zinc-100
+            [&_h2]:mt-10 [&_h2]:mb-4 [&_h3]:mt-8 [&_h3]:mb-3 [&_p]:my-4 [&_ul]:my-4 [&_ol]:my-4"
+        >
             <h1 className="text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-4">Troubleshooting</h1>
             <p className="text-xl text-zinc-600 dark:text-zinc-300 mb-8">
                 Solutions to common issues when running StackSage audits.
