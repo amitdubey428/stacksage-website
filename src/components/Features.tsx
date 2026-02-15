@@ -73,6 +73,22 @@ export default function Features() {
                     </Parallax>
                 ))}
             </div>
+
+            <div className="mt-8">
+                <details className="rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/30 p-5">
+                    <summary className="cursor-pointer text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                        Technical details (permissions, outputs, trust model)
+                    </summary>
+                    <div className="mt-3 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                        <ul className="space-y-2">
+                            <li>• Runs inside your GitHub Actions runner (no external SaaS ingestion of AWS credentials).</li>
+                            <li>• Uses a customer-controlled read-only role (AssumeRole) and reads only metadata + aggregate metrics.</li>
+                            <li>• Outputs a summary + HTML report + JSON/CSV findings, with copyable verification commands.</li>
+                            <li>• Optional CloudWatch enrichments use a bounded query budget and include provenance.</li>
+                        </ul>
+                    </div>
+                </details>
+            </div>
         </section>
     );
 }

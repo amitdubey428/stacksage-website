@@ -49,7 +49,7 @@ export default function Navigation() {
     };
 
     return (
-        <nav className="sticky top-0 z-50 w-full backdrop-blur supports-[backdrop-filter]:bg-white/60 bg-white/80 dark:supports-[backdrop-filter]:bg-black/40 dark:bg-black/60 border-b border-zinc-200/60 dark:border-zinc-800">
+        <nav className="sticky top-0 z-50 w-full backdrop-blur supports-[backdrop-filter]:bg-white/60 bg-white/80 text-zinc-900 dark:supports-[backdrop-filter]:bg-black/40 dark:bg-black/60 dark:text-zinc-100 border-b border-zinc-200/60 dark:border-zinc-800">
             <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
                 <Link href="/" className="font-bold tracking-tight relative inline-block group" onClick={() => setClicks((c) => c + 1)}>
                     {/* Base label */}
@@ -65,29 +65,30 @@ export default function Navigation() {
                     <Link
                         href="/#features"
                         onClick={(e) => onNavSectionClick(e, "features")}
-                        className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1"
+                        className="text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50 hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1"
                     >
                         Features
                     </Link>
                     <Link
                         href="/#how-it-works"
                         onClick={(e) => onNavSectionClick(e, "how-it-works")}
-                        className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1"
+                        className="text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50 hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1"
                     >
                         How it works
                     </Link>
-                    <Link href="/docs/" className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">Docs</Link>
+                    <Link href="/walkthrough/" className="text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50 hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">Walkthrough</Link>
+                    <Link href="/docs/" className="text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50 hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1">Docs</Link>
                     <Link
                         href="/#pricing"
                         onClick={(e) => onNavSectionClick(e, "pricing")}
-                        className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1"
+                        className="text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50 hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1"
                     >
                         Pricing
                     </Link>
                     <Link
                         href="/#demo"
                         onClick={(e) => onNavSectionClick(e, "demo")}
-                        className="hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1"
+                        className="text-zinc-700 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50 hover:text-indigo-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1"
                     >
                         Demo
                     </Link>
@@ -120,6 +121,9 @@ export default function Navigation() {
                             onClick={(e) => onNavSectionClick(e, "how-it-works")}
                         >
                             How it works
+                        </Link>
+                        <Link className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="/walkthrough/" onClick={() => setOpen(false)}>
+                            Walkthrough
                         </Link>
                         <Link className="focus-visible:outline focus-visible:outline-2 focus-visible:outline-indigo-400 rounded-md px-1" href="/docs/">Docs</Link>
                         <Link

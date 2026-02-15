@@ -4,6 +4,7 @@ import Link from "next/link";
 import Script from "next/script";
 
 export default function Demo() {
+    const loomUrl = process.env.NEXT_PUBLIC_LOOM_DEMO_URL;
     const sampleArtifacts = [
         {
             title: "Summary (human-readable)",
@@ -33,10 +34,12 @@ export default function Demo() {
 
             <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-zinc-600 dark:text-zinc-400">
                 <Link className="underline" href="/demo-report/">View the sample audit pack (no signup)</Link>
-                <span className="text-zinc-300 dark:text-zinc-700">•</span>
+                <span className="text-zinc-400 dark:text-zinc-600">•</span>
                 <span className="text-zinc-700 dark:text-zinc-300">
                     No AWS credential sharing. Customer-controlled read-only role.
                 </span>
+                <span className="text-zinc-400 dark:text-zinc-600">•</span>
+                <Link className="underline" href="/walkthrough/">60‑second walkthrough</Link>
             </div>
 
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -52,6 +55,50 @@ export default function Demo() {
                         </div>
                     </div>
                 ))}
+            </div>
+
+            <div className="mt-6 rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/40 p-6">
+                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                    <div>
+                        <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+                            90‑second video walkthrough
+                        </h3>
+                        <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
+                            Prefer a quick visual demo? Watch the end-to-end flow: run → artifacts → report → next steps.
+                        </p>
+                    </div>
+                    <div className="flex gap-3">
+                        <Link
+                            href="/walkthrough/"
+                            className="inline-flex items-center justify-center rounded-xl font-medium transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ring-offset-transparent border border-zinc-300 text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800 focus-visible:ring-zinc-400 h-11 px-5 text-base active:scale-[0.98] whitespace-nowrap"
+                        >
+                            Text walkthrough →
+                        </Link>
+                        <Link
+                            href="/demo-report/"
+                            className="inline-flex items-center justify-center rounded-xl font-medium transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ring-offset-transparent bg-indigo-600 text-white hover:bg-indigo-700 focus-visible:ring-indigo-400 h-11 px-5 text-base active:scale-[0.98] whitespace-nowrap"
+                        >
+                            Sample report →
+                        </Link>
+                    </div>
+                </div>
+
+                {loomUrl ? (
+                    <div className="mt-5 overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950/40">
+                        <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
+                            <iframe
+                                src={loomUrl}
+                                title="StackSage walkthrough"
+                                className="absolute inset-0 h-full w-full"
+                                allow="fullscreen; picture-in-picture"
+                            />
+                        </div>
+                    </div>
+                ) : (
+                    <p className="mt-4 text-xs text-zinc-500 dark:text-zinc-400">
+                        Video embed is optional. To enable it, set <code>NEXT_PUBLIC_LOOM_DEMO_URL</code> in the site environment.
+                    </p>
+                )}
             </div>
 
             <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">

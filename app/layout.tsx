@@ -201,7 +201,7 @@ export default function RootLayout({
                     }}
                 />
             </head>
-            <body className={`${inter.variable} antialiased bg-black text-zinc-100`}>
+            <body className={`${inter.variable} antialiased bg-white text-zinc-900 dark:bg-black dark:text-zinc-100`}>
                 <header role="banner">
                     <Navigation />
                 </header>

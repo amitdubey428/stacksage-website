@@ -70,10 +70,10 @@ function NavGroup({ item }: { item: NavItem }) {
 
 export default function DocsLayout({ children }: { children: React.ReactNode }) {
     return (
-        <div className="fixed inset-0 z-[9999] flex bg-white dark:bg-zinc-950">
+        <div className="min-h-screen flex bg-white dark:bg-zinc-950">
             {/* Sidebar - hidden on mobile, visible on desktop */}
-            <aside className="hidden lg:block fixed inset-y-0 left-0 z-50 w-64 border-r border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
-                <div className="flex h-full flex-col">
+            <aside className="hidden lg:flex w-64 shrink-0 border-r border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
+                <div className="sticky top-16 flex h-[calc(100vh-4rem)] w-full flex-col">
                     <div className="flex h-16 items-center justify-center border-b border-zinc-200 px-6 dark:border-zinc-800">
                         <Link href="/" className="text-lg font-bold text-zinc-900 dark:text-zinc-100">
                             StackSage
@@ -88,29 +88,26 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                     </nav>
                     <div className="border-t border-zinc-200 p-4 dark:border-zinc-800">
                         <div className="text-xs text-zinc-500 dark:text-zinc-400">
-                            Version 0.3.0
+                            Version 0.5.0
                         </div>
                     </div>
                 </div>
             </aside>
 
             {/* Main content */}
-            <div className="flex flex-1 flex-col lg:ml-64 overflow-y-auto bg-white dark:bg-zinc-950">
-                {/* Page content */}
-                <main className="flex-1 min-h-screen bg-white dark:bg-zinc-950">
-                    <div className="mx-auto max-w-4xl px-4 py-8 lg:px-8 lg:py-12">
-                        {/* Mobile nav hint */}
-                        <div className="lg:hidden mb-6 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4">
-                            <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                                <Link href="/docs/" className="font-medium text-blue-600 dark:text-blue-400 hover:underline">
-                                    ← Back to Documentation
-                                </Link>
-                            </p>
-                        </div>
-                        {children}
+            <main className="flex-1 min-h-screen bg-white dark:bg-zinc-950">
+                <div className="mx-auto max-w-4xl px-4 py-8 lg:px-8 lg:py-12">
+                    {/* Mobile nav hint */}
+                    <div className="lg:hidden mb-6 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4">
+                        <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                            <Link href="/docs/" className="font-medium text-blue-600 dark:text-blue-400 hover:underline">
+                                ← Back to Documentation
+                            </Link>
+                        </p>
                     </div>
-                </main>
-            </div>
+                    {children}
+                </div>
+            </main>
         </div>
     );
 }
