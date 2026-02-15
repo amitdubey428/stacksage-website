@@ -34,6 +34,13 @@ export default function DetectorsPage() {
                     severity: "Low",
                     savings: "$5-50/mo per function",
                 },
+                {
+                    name: "Lambda Memory Overprovisioning",
+                    id: "lambda_memory_overprovisioning",
+                    description: "Functions using <30% of allocated memory with high timeout headroom",
+                    severity: "Medium",
+                    savings: "$10-100/mo per function",
+                },
             ],
         },
         {
@@ -88,6 +95,26 @@ export default function DetectorsPage() {
                     severity: "Medium",
                     savings: "$30-300/mo per instance",
                 },
+                {
+                    name: "DynamoDB Unused Tables",
+                    id: "dynamodb_unused_tables",
+                    description: "Tables with zero read/write activity for 30+ days (NEW in v0.4.0)",
+                    severity: "Medium",
+                    savings: "$5-200/mo per table",
+                },
+            ],
+        },
+        {
+            category: "Caching",
+            icon: "⚡",
+            detectors: [
+                {
+                    name: "ElastiCache Idle Clusters",
+                    id: "elasticache_idle_clusters",
+                    description: "Redis/Memcached clusters with <5% hit rate and <2 connections for 14+ days (NEW in v0.4.0)",
+                    severity: "Medium",
+                    savings: "$20-300/mo per cluster",
+                },
             ],
         },
         {
@@ -124,6 +151,26 @@ export default function DetectorsPage() {
                 },
             ],
         },
+        {
+            category: "Content Delivery & DNS",
+            icon: "🌍",
+            detectors: [
+                {
+                    name: "CloudFront Unused Distributions",
+                    id: "cloudfront_unused_distributions",
+                    description: "Distributions with <100 requests over 30 days (forgotten CDNs) (NEW in v0.4.0)",
+                    severity: "Low",
+                    savings: "$1-10/mo per distribution",
+                },
+                {
+                    name: "Route 53 Unused Hosted Zones",
+                    id: "route53_unused_hosted_zones",
+                    description: "Hosted zones with zero DNS queries for 90+ days (NEW in v0.4.0)",
+                    severity: "Medium",
+                    savings: "$0.50-50/mo per zone",
+                },
+            ],
+        },
     ];
 
     return (
@@ -138,7 +185,7 @@ export default function DetectorsPage() {
                     <div className="rounded-lg border border-green-200 dark:border-green-900 bg-green-50 dark:bg-green-950 p-4">
                         <div className="flex items-center gap-2 mb-2">
                             <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
-                            <span className="font-semibold text-green-900 dark:text-green-100">15 Active Detectors</span>
+                            <span className="font-semibold text-green-900 dark:text-green-100">20 Active Detectors</span>
                         </div>
                         <p className="text-sm text-green-800 dark:text-green-200 mb-0">
                             Continuously monitoring your AWS environment
