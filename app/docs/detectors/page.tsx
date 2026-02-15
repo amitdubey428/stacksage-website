@@ -58,6 +58,26 @@ export default function DetectorsPage() {
             ],
         },
         {
+            category: "Containers",
+            icon: "📦",
+            detectors: [
+                {
+                    name: "ECS (EC2) → Fargate Migration Opportunities",
+                    id: "ecs_to_fargate",
+                    description: "Detects low-utilization ECS services on EC2 and estimates savings by moving to Fargate (NEW in v0.6.0)",
+                    severity: "Low",
+                    savings: "$5-200/mo per service",
+                },
+                {
+                    name: "Fargate Spot Opportunities (Non-Prod)",
+                    id: "fargate_spot_opportunity",
+                    description: "Recommends Fargate Spot for dev/test/staging services not already using FARGATE_SPOT (NEW in v0.6.0)",
+                    severity: "Low",
+                    savings: "$5-200/mo per service",
+                },
+            ],
+        },
+        {
             category: "Storage",
             icon: "💾",
             detectors: [
@@ -206,7 +226,7 @@ export default function DetectorsPage() {
                     <div className="rounded-lg border border-green-200 dark:border-green-900 bg-green-50 dark:bg-green-950 p-4">
                         <div className="flex items-center gap-2 mb-2">
                             <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
-                            <span className="font-semibold text-green-900 dark:text-green-100">23 Active Detectors</span>
+                            <span className="font-semibold text-green-900 dark:text-green-100">25 Active Detectors</span>
                         </div>
                         <p className="text-sm text-green-800 dark:text-green-200 mb-0">
                             Continuously monitoring your AWS environment
