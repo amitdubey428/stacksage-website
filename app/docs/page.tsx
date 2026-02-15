@@ -13,20 +13,17 @@ export default function DocsPage() {
             title: "Getting Started",
             icon: <Zap className="h-6 w-6" />,
             links: [
-                { href: "/docs/quick-start", label: "Quick Start Guide" },
-                { href: "/docs/licensing", label: "Trial vs Full License" },
-                { href: "/docs/installation", label: "Installation" },
-                { href: "/docs/github-actions", label: "GitHub Actions Setup" },
+                { href: "/docs/quick-start", label: "Quick Start" },
+                { href: "/docs/licensing", label: "Licensing & Trial" },
+                { href: "/walkthrough", label: "60‑second Walkthrough" },
+                { href: "/demo-report", label: "Sample Audit Pack" },
             ],
         },
         {
             title: "Configuration",
             icon: <Settings className="h-6 w-6" />,
             links: [
-                { href: "/docs/configuration", label: "Configuration Guide" },
-                { href: "/docs/exclusions", label: "Exclusions & Filters" },
-                { href: "/docs/thresholds", label: "Custom Thresholds" },
-                { href: "/docs/tag-governance", label: "Tag Governance" },
+                { href: "/docs/configuration", label: "Configuration" },
             ],
         },
         {
@@ -35,7 +32,7 @@ export default function DocsPage() {
             links: [
                 { href: "/docs/iam-policy", label: "IAM Policy Setup" },
                 { href: "/docs/privacy", label: "Privacy & Data Handling" },
-                { href: "/docs/security", label: "Security Best Practices" },
+                { href: "/privacy-access", label: "Privacy Access (Data & Permissions)" },
             ],
         },
         {
@@ -43,9 +40,8 @@ export default function DocsPage() {
             icon: <BookOpen className="h-6 w-6" />,
             links: [
                 { href: "/docs/detectors", label: "All Detectors" },
-                { href: "/docs/cli-reference", label: "CLI Reference" },
-                { href: "/docs/report-format", label: "Report Format" },
                 { href: "/docs/troubleshooting", label: "Troubleshooting" },
+                { href: "/spend-movers", label: "Spend Movers Guide" },
             ],
         },
     ];

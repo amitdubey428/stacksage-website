@@ -32,7 +32,7 @@ const faqs = [
 
 export default function FAQ() {
     return (
-        <section aria-labelledby="faq-title" className="mx-auto max-w-6xl px-4 py-20 scroll-mt-24">
+        <section id="faq" aria-labelledby="faq-title" className="mx-auto max-w-6xl px-4 py-20 scroll-mt-24">
             <h2 id="faq-title" className="text-3xl sm:text-4xl font-bold tracking-tight">FAQ</h2>
             <div className="mt-6 grid gap-3">
                 {faqs.map((f) => (
