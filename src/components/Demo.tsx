@@ -3,8 +3,38 @@ import React from "react";
 import Link from "next/link";
 import Script from "next/script";
 
+type ColorScheme = "light" | "dark";
+
+
+function getPreferredScheme(): ColorScheme {
+    if (typeof window === "undefined") return "light";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light";
+}
+
 export default function Demo() {
     const loomUrl = process.env.NEXT_PUBLIC_LOOM_DEMO_URL;
+
+    const [tallyTheme, setTallyTheme] = React.useState<ColorScheme>("light");
+    React.useEffect(() => {
+        const mql = window.matchMedia("(prefers-color-scheme: dark)");
+        const update = () => setTallyTheme(getPreferredScheme());
+        update();
+        mql.addEventListener("change", update);
+        return () => mql.removeEventListener("change", update);
+    }, []);
+
+    const tallySrc = `https://tally.so/embed/68Lrke?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&theme=${tallyTheme}`;
+
+    React.useEffect(() => {
+        // When theme changes, ask Tally embed script to re-scan and apply.
+        // Safe no-op if the script hasn't loaded yet.
+        const w = window as any;
+        if (w?.Tally?.loadEmbeds) {
+            w.Tally.loadEmbeds();
+        }
+    }, [tallyTheme]);
     const sampleArtifacts = [
         {
             title: "Summary (human-readable)",
@@ -152,7 +182,8 @@ export default function Demo() {
 
                 <div className="w-full overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800">
                     <iframe
-                        data-tally-src="https://tally.so/embed/68Lrke?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                        key={tallyTheme}
+                        data-tally-src={tallySrc}
                         loading="lazy"
                         width="100%"
                         height="835"
