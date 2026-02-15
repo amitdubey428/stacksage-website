@@ -13,6 +13,7 @@ const navigation: NavItem[] = [
         items: [
             { title: "Quick Start", href: "/docs/quick-start/" },
             { title: "Licensing & Trial", href: "/docs/licensing/" },
+            { title: "GitHub Actions Setup", href: "/docs/github-actions/" },
         ],
     },
     {
@@ -26,6 +27,7 @@ const navigation: NavItem[] = [
         items: [
             { title: "IAM Policy Setup", href: "/docs/iam-policy/" },
             { title: "Privacy & Data Handling", href: "/docs/privacy/" },
+            { title: "Security Best Practices", href: "/docs/security/" },
         ],
     },
     {
@@ -38,6 +40,8 @@ const navigation: NavItem[] = [
         title: "Reference",
         items: [
             { title: "Troubleshooting", href: "/docs/troubleshooting/" },
+            { title: "Report Format", href: "/docs/report-format/" },
+            { title: "CLI Reference", href: "/docs/cli-reference/" },
         ],
     },
 ];
