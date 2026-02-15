@@ -41,6 +41,20 @@ export default function DetectorsPage() {
                     severity: "Medium",
                     savings: "$10-100/mo per function",
                 },
+                {
+                    name: "Lambda Graviton Migration (arm64)",
+                    id: "lambda_graviton_migration",
+                    description: "Recommends migrating x86_64 Lambda functions to arm64 (Graviton) for ~20% compute savings (NEW in v0.5.0)",
+                    severity: "Low",
+                    savings: "$1-50/mo per function",
+                },
+                {
+                    name: "EC2 → Serverless Migration Opportunities",
+                    id: "ec2_to_serverless_migration",
+                    description: "Flags small always-on EC2 instances with low CPU as candidates for Lambda + API Gateway (NEW in v0.5.0)",
+                    severity: "Medium",
+                    savings: "$5-200/mo per instance",
+                },
             ],
         },
         {
@@ -101,6 +115,13 @@ export default function DetectorsPage() {
                     description: "Tables with zero read/write activity for 30+ days (NEW in v0.4.0)",
                     severity: "Medium",
                     savings: "$5-200/mo per table",
+                },
+                {
+                    name: "RDS → Aurora Serverless v2 Candidates",
+                    id: "rds_to_aurora_serverless_v2",
+                    description: "Detects spiky RDS workloads (high max CPU, low average) that may benefit from Aurora Serverless v2 (NEW in v0.5.0)",
+                    severity: "Medium",
+                    savings: "$5-200/mo per instance",
                 },
             ],
         },
@@ -185,7 +206,7 @@ export default function DetectorsPage() {
                     <div className="rounded-lg border border-green-200 dark:border-green-900 bg-green-50 dark:bg-green-950 p-4">
                         <div className="flex items-center gap-2 mb-2">
                             <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400" />
-                            <span className="font-semibold text-green-900 dark:text-green-100">20 Active Detectors</span>
+                            <span className="font-semibold text-green-900 dark:text-green-100">23 Active Detectors</span>
                         </div>
                         <p className="text-sm text-green-800 dark:text-green-200 mb-0">
                             Continuously monitoring your AWS environment
@@ -230,10 +251,10 @@ export default function DetectorsPage() {
                                         {detector.name}
                                     </h3>
                                     <span className={`text-xs font-medium px-2 py-1 rounded ${detector.severity === 'High'
-                                            ? 'bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-200'
-                                            : detector.severity === 'Medium'
-                                                ? 'bg-orange-100 text-orange-800 dark:bg-orange-950 dark:text-orange-200'
-                                                : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-950 dark:text-yellow-200'
+                                        ? 'bg-red-100 text-red-800 dark:bg-red-950 dark:text-red-200'
+                                        : detector.severity === 'Medium'
+                                            ? 'bg-orange-100 text-orange-800 dark:bg-orange-950 dark:text-orange-200'
+                                            : 'bg-yellow-100 text-yellow-800 dark:bg-yellow-950 dark:text-yellow-200'
                                         }`}>
                                         {detector.severity}
                                     </span>

@@ -70,7 +70,7 @@ export default function DemoReportPage() {
                     <iframe
                         src="/demo/audit_report.html"
                         className="w-full"
-                        style={{ height: "calc(100vh - 250px)", minHeight: "600px" }}
+                        style={{ height: "75vh", minHeight: "600px" }}
                         title="StackSage Sample Audit Pack"
                         sandbox="allow-scripts allow-same-origin"
                     />
