@@ -67,6 +67,62 @@ async function verifyPaddleSignature(
     return expected === h1;
 }
 
+async function doFulfill(
+    eventType: string,
+    data: Record<string, unknown>,
+    env: Env,
+): Promise<void> {
+    const customerObj = data.customer as Record<string, unknown> | undefined;
+    const customData = data.custom_data as Record<string, unknown> | undefined;
+    const billingDetails = data.billing_details as Record<string, unknown> | undefined;
+
+    const email =
+        (customData?.email as string | undefined) ||
+        (customerObj?.email as string | undefined) ||
+        (billingDetails?.email_address as string | undefined) ||
+        "";
+
+    if (!email) {
+        console.error(
+            `[stacksage] No customer email in ${eventType} event — skipping fulfillment`,
+            JSON.stringify(data).slice(0, 400),
+        );
+        return;
+    }
+
+    const name =
+        (customData?.name as string | undefined) ||
+        (customerObj?.name as string | undefined) ||
+        email;
+
+    let daysValid = parseInt(env.LICENSE_DAYS_DEFAULT || "365", 10);
+    const items = (data.items as Array<Record<string, unknown>> | undefined) || [];
+    const firstItem = items[0] as Record<string, unknown> | undefined;
+    const price = firstItem?.price as Record<string, unknown> | undefined;
+    const billingCycle = price?.billing_cycle as Record<string, unknown> | undefined;
+    if (billingCycle?.interval === "month") daysValid = 35;  // 30d + 5d grace
+    if (billingCycle?.interval === "year") daysValid = 370;  // 365d + 5d grace
+
+    const plan = (customData?.plan as string | undefined) || "pro";
+
+    console.log(`[stacksage] Fulfilling ${eventType} for ${email} — plan=${plan} days=${daysValid}`);
+
+    await fulfillOrder({
+        customerName: name,
+        customerEmail: email,
+        plan,
+        daysValid,
+        ghcrImage: env.STACKSAGE_IMAGE,
+        ghcrUsername: env.STACKSAGE_GHCR_USERNAME,
+        ghcrToken: env.STACKSAGE_GHCR_TOKEN,
+        privateKeyPkcs8B64: env.STACKSAGE_PRIVATE_KEY_PKCS8_B64,
+        resendApiKey: env.RESEND_API_KEY,
+        fromEmail: env.FROM_EMAIL || "onboarding@stacksageai.com",
+    });
+
+    console.log(`[stacksage] Onboarding email sent to ${email}`);
+}
+
 async function handleWebhook(request: Request, env: Env): Promise<Response> {
     const signature = request.headers.get("paddle-signature") || "";
     if (!signature) {
@@ -93,64 +149,26 @@ async function handleWebhook(request: Request, env: Env): Promise<Response> {
     // if fulfillment throws, we log but still return 200 to avoid duplicate retries.
     const fulfillmentPromise = (async () => {
         switch (eventType) {
-            case "transaction.completed":
-            case "subscription.activated": {
+            case "transaction.completed": {
                 const data = event.data as Record<string, unknown>;
 
-                // Paddle Billing embeds the customer object in transaction events
-                const customerObj = data.customer as Record<string, unknown> | undefined;
-                const customData = data.custom_data as Record<string, unknown> | undefined;
-                // billing_details.email_address is reliably present for all paid transactions
-                const billingDetails = data.billing_details as Record<string, unknown> | undefined;
-
-                const email =
-                    (customData?.email as string | undefined) ||
-                    (customerObj?.email as string | undefined) ||
-                    (billingDetails?.email_address as string | undefined) ||
-                    "";
-
-                if (!email) {
-                    console.error(
-                        `[stacksage] No customer email in ${eventType} event — skipping fulfillment`,
-                        JSON.stringify(data).slice(0, 400),
+                // If this transaction belongs to a subscription, skip fulfillment here —
+                // subscription.activated is the canonical trigger for subscriptions and
+                // fires separately. Fulfilling both would send the customer two emails.
+                if (data.subscription_id) {
+                    console.log(
+                        `[stacksage] transaction.completed has subscription_id=${data.subscription_id} — deferring to subscription.activated`,
                     );
-                    return;
+                    break;
                 }
 
-                const name =
-                    (customData?.name as string | undefined) ||
-                    (customerObj?.name as string | undefined) ||
-                    email;
+                await doFulfill(eventType, data, env);
+                break;
+            }
 
-                // Derive license duration from billing cycle; fall back to env var
-                let daysValid = parseInt(env.LICENSE_DAYS_DEFAULT || "365", 10);
-                const items = (data.items as Array<Record<string, unknown>> | undefined) || [];
-                const firstItem = items[0] as Record<string, unknown> | undefined;
-                const price = firstItem?.price as Record<string, unknown> | undefined;
-                const billingCycle = price?.billing_cycle as Record<string, unknown> | undefined;
-                if (billingCycle?.interval === "month") daysValid = 35; // 30d + 5d grace
-                if (billingCycle?.interval === "year") daysValid = 370; // 365d + 5d grace
-
-                const plan = (customData?.plan as string | undefined) || "pro";
-
-                console.log(
-                    `[stacksage] Fulfilling ${eventType} for ${email} — plan=${plan} days=${daysValid}`,
-                );
-
-                await fulfillOrder({
-                    customerName: name,
-                    customerEmail: email,
-                    plan,
-                    daysValid,
-                    ghcrImage: env.STACKSAGE_IMAGE,
-                    ghcrUsername: env.STACKSAGE_GHCR_USERNAME,
-                    ghcrToken: env.STACKSAGE_GHCR_TOKEN,
-                    privateKeyPkcs8B64: env.STACKSAGE_PRIVATE_KEY_PKCS8_B64,
-                    resendApiKey: env.RESEND_API_KEY,
-                    fromEmail: env.FROM_EMAIL || "onboarding@stacksageai.com",
-                });
-
-                console.log(`[stacksage] Onboarding email sent to ${email}`);
+            case "subscription.activated": {
+                const data = event.data as Record<string, unknown>;
+                await doFulfill(eventType, data, env);
                 break;
             }
 
