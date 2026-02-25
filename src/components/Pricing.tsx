@@ -22,13 +22,14 @@ const tiers = [
     {
         name: "GitHub Workflow",
         price: "$99/mo",
-        description: "Full audit pack delivered as a workflow you run on your schedule",
+        description: "Monthly subscription — full audit pack delivered as a workflow you run on your schedule",
         features: [
             "Private GHCR image + workflow template",
             "Time-limited license secret",
             "Deeper coverage + richer evidence",
             "Recurring runs (weekly/daily)",
             "Prioritized outputs for actionability",
+            "Cancel anytime",
         ],
         popular: true,
     },
@@ -89,7 +90,12 @@ export default function Pricing() {
                 {tiers.map((t) => (
                     <Card key={t.name} title={t.name} highlight={t.popular} className={t.popular ? "scale-[1.02]" : ""}>
                         <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{t.description}</p>
-                        <p className="mt-3 text-2xl font-bold">{t.price}</p>
+                        <p className="mt-3 text-2xl font-bold">
+                            {t.price}
+                            {t.popular && (
+                                <span className="ml-1.5 text-sm font-normal text-zinc-500 dark:text-zinc-400">+ taxes</span>
+                            )}
+                        </p>
                         <ul className="mt-4 space-y-2">
                             {t.features.map((f) => (
                                 <li key={f} className="text-sm">• {f}</li>
@@ -118,7 +124,8 @@ export default function Pricing() {
                     Trial is self-serve. If you need help, email is optional.
                 </p>
                 <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                    Email us at <a className="underline" href="mailto:hello@stacksageai.com">hello@stacksageai.com</a>
+                    To cancel your subscription, use the Paddle customer portal link in your receipt email or contact{" "}
+                    <a className="underline" href="mailto:hello@stacksageai.com">hello@stacksageai.com</a>.
                 </p>
             </div>
         </section>

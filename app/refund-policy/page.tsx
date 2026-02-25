@@ -46,6 +46,14 @@ export default function RefundPolicyPage() {
                             current billing period and you will retain access until that date. No partial-period refunds
                             will be issued.
                         </p>
+                        <p className="mt-2">
+                            To cancel, use the Paddle customer portal link sent to your email after purchase, or contact
+                            us at{" "}
+                            <a className="underline" href="mailto:hello@stacksageai.com">
+                                hello@stacksageai.com
+                            </a>{" "}
+                            and we will cancel it for you promptly.
+                        </p>
                     </div>
 
                     <div>
