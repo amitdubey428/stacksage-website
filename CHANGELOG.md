@@ -15,5 +15,14 @@ All notable changes to this project will be documented in this file.
 - Docs: fix trial IAM policy action for S3 account public access block.
 - Docs: align trial policy action with actual AccessDenied (s3:GetAccountPublicAccessBlock).
 - Docs: expand trial setup guidance (role ARN, optional assume role) and improve workflow snippet.
-- Checkout: add Razorpay Worker integration and checkout CTA.
 - Docs: add cost guardrails explanation (Budgets + Anomaly Detection).
+
+## 2026-02-25
+- Payments: replace Razorpay with Paddle as payment processor; checkout handled client-side via Paddle.js.
+- Payments: add Cloudflare Worker (`workers/paddle`) for Paddle webhook signature verification and subscription event handling.
+- Pricing: update paid tier description to "Monthly subscription", add "Cancel anytime" feature bullet, add "+ taxes" label.
+- Legal: rename Terms page to Terms and Conditions; explicitly mention StackSage as legal business name.
+- Legal: add Refund Policy page (`/refund-policy/`) — non-refundable with trial-first justification.
+- Legal: document cancellation steps in Refund Policy and below pricing cards (Paddle customer portal + email fallback).
+- Footer: add Refund Policy link.
+- Sitemap: add `/refund-policy` route.
