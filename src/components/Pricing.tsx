@@ -35,72 +35,47 @@ const tiers = [
 ];
 
 export default function Pricing() {
-    const paymentLink =
-        process.env.NEXT_PUBLIC_RAZORPAY_PAYMENT_LINK ||
-        process.env.NEXT_PUBLIC_STRIPE_PAYMENT_LINK ||
-        "/#paid-access";
-    const razorpayKey = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID;
-    const orderUrl = process.env.NEXT_PUBLIC_RAZORPAY_ORDER_URL;
+    const clientToken = process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN;
+    const priceId = process.env.NEXT_PUBLIC_PADDLE_PRICE_ID;
     const [loading, setLoading] = useState(false);
 
-    const canCheckout = Boolean(razorpayKey && orderUrl);
+    const canCheckout = Boolean(clientToken && priceId);
 
-    const loadRazorpay = useCallback(async () => {
+    const loadPaddle = useCallback(async (): Promise<boolean> => {
         if (typeof window === "undefined") return false;
-        if ((window as any).Razorpay) return true;
+        if ((window as any).Paddle) return true;
 
         return new Promise<boolean>((resolve) => {
             const script = document.createElement("script");
-            script.src = "https://checkout.razorpay.com/v1/checkout.js";
-            script.onload = () => resolve(true);
+            script.src = "https://cdn.paddle.com/paddle/v2/paddle.js";
+            script.onload = () => {
+                (window as any).Paddle.Initialize({ token: clientToken });
+                resolve(true);
+            };
             script.onerror = () => resolve(false);
             document.body.appendChild(script);
         });
-    }, []);
+    }, [clientToken]);
 
     const handleCheckout = useCallback(async () => {
         if (!canCheckout) return;
         setLoading(true);
-        const ready = await loadRazorpay();
+        const ready = await loadPaddle();
         if (!ready) {
             setLoading(false);
-            window.open(paymentLink, "_blank", "noopener,noreferrer");
             return;
         }
-
-        const resp = await fetch(orderUrl as string, {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify({ source: "pricing" }),
+        (window as any).Paddle.Checkout.open({
+            items: [{ priceId, quantity: 1 }],
         });
-
-        const data = await resp.json().catch(() => null);
-        const order = data?.order;
-        if (!order?.id) {
-            setLoading(false);
-            window.open(paymentLink, "_blank", "noopener,noreferrer");
-            return;
-        }
-
-        const options = {
-            key: razorpayKey,
-            order_id: order.id,
-            name: "StackSage",
-            description: "StackSage GitHub Workflow",
-            prefill: {},
-            theme: { color: "#4f46e5" },
-        };
-
-        const rz = new (window as any).Razorpay(options);
-        rz.open();
         setLoading(false);
-    }, [canCheckout, loadRazorpay, orderUrl, paymentLink, razorpayKey]);
+    }, [canCheckout, loadPaddle, priceId]);
 
     useEffect(() => {
         if (canCheckout) {
-            loadRazorpay();
+            loadPaddle();
         }
-    }, [canCheckout, loadRazorpay]);
+    }, [canCheckout, loadPaddle]);
 
     return (
         <section id="pricing" aria-labelledby="pricing-title" className="mx-auto max-w-6xl px-4 py-20 scroll-mt-24">
@@ -130,21 +105,9 @@ export default function Pricing() {
                             <Button
                                 className="mt-6"
                                 onClick={canCheckout ? handleCheckout : undefined}
-                                asChild={!canCheckout}
-                                disabled={loading}
+                                disabled={loading || !canCheckout}
                             >
-                                {canCheckout ? (
-                                    <span>{loading ? "Loading..." : "Buy now"}</span>
-                                ) : (
-                                    <a
-                                        href={paymentLink}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        aria-label="Buy StackSage"
-                                    >
-                                        Buy now
-                                    </a>
-                                )}
+                                <span>{loading ? "Loading..." : "Buy now"}</span>
                             </Button>
                         )}
                     </Card>

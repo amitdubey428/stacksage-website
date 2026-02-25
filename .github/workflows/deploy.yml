@@ -29,9 +29,8 @@ jobs:
       - name: Build static site
         env:
           NEXT_PUBLIC_SITE_URL: https://stacksageai.com
-          NEXT_PUBLIC_RAZORPAY_KEY_ID: ${{ secrets.NEXT_PUBLIC_RAZORPAY_KEY_ID }}
-          NEXT_PUBLIC_RAZORPAY_ORDER_URL: ${{ secrets.NEXT_PUBLIC_RAZORPAY_ORDER_URL }}
-          NEXT_PUBLIC_RAZORPAY_PAYMENT_LINK: ${{ secrets.NEXT_PUBLIC_RAZORPAY_PAYMENT_LINK }}
+          NEXT_PUBLIC_PADDLE_CLIENT_TOKEN: ${{ secrets.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN }}
+          NEXT_PUBLIC_PADDLE_PRICE_ID: ${{ secrets.NEXT_PUBLIC_PADDLE_PRICE_ID }}
         run: |
           npm run build
           # Next.js 'export' output is in ./out
