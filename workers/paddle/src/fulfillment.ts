@@ -53,9 +53,11 @@ export async function signLicense(
     plan: string,
     daysValid: number,
 ): Promise<string> {
-    // Strip any whitespace (newlines, spaces) — base64 output from openssl/tr
-    // may still contain line breaks depending on how the secret was pasted.
-    const pkcs8 = Uint8Array.from(atob(privateKeyPkcs8B64.replace(/\s+/g, "")), (c) => c.charCodeAt(0));
+    // Strip anything that isn't a valid base64 character.
+    // Newlines come from openssl wrapping; '%' appears when zsh's no-newline
+    // indicator is accidentally included when copying terminal output.
+    const cleanKey = privateKeyPkcs8B64.replace(/[^A-Za-z0-9+/=]/g, "");
+    const pkcs8 = Uint8Array.from(atob(cleanKey), (c) => c.charCodeAt(0));
     const key = await crypto.subtle.importKey(
         "pkcs8",
         pkcs8,
