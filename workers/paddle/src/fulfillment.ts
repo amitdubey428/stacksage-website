@@ -53,7 +53,9 @@ export async function signLicense(
     plan: string,
     daysValid: number,
 ): Promise<string> {
-    const pkcs8 = Uint8Array.from(atob(privateKeyPkcs8B64), (c) => c.charCodeAt(0));
+    // Strip any whitespace (newlines, spaces) — base64 output from openssl/tr
+    // may still contain line breaks depending on how the secret was pasted.
+    const pkcs8 = Uint8Array.from(atob(privateKeyPkcs8B64.replace(/\s+/g, "")), (c) => c.charCodeAt(0));
     const key = await crypto.subtle.importKey(
         "pkcs8",
         pkcs8,
