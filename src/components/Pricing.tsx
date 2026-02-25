@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -39,6 +39,10 @@ export default function Pricing() {
     const clientToken = process.env.NEXT_PUBLIC_PADDLE_CLIENT_TOKEN;
     const priceId = process.env.NEXT_PUBLIC_PADDLE_PRICE_ID;
     const [loading, setLoading] = useState(false);
+    const [showEmailStep, setShowEmailStep] = useState(false);
+    const [email, setEmail] = useState("");
+    const [emailError, setEmailError] = useState("");
+    const emailInputRef = useRef<HTMLInputElement>(null);
 
     const canCheckout = Boolean(clientToken && priceId);
 
@@ -58,8 +62,29 @@ export default function Pricing() {
         });
     }, [clientToken]);
 
-    const handleCheckout = useCallback(async () => {
+    // Show the email capture step first
+    const handleBuyNow = useCallback(() => {
         if (!canCheckout) return;
+        setShowEmailStep(true);
+        setEmailError("");
+    }, [canCheckout]);
+
+    // Focus the email input once it appears
+    useEffect(() => {
+        if (showEmailStep) {
+            setTimeout(() => emailInputRef.current?.focus(), 50);
+        }
+    }, [showEmailStep]);
+
+    // Open Paddle checkout with email in customData
+    const handleCheckout = useCallback(async () => {
+        const trimmed = email.trim();
+        if (!trimmed || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
+            setEmailError("Please enter a valid email address.");
+            emailInputRef.current?.focus();
+            return;
+        }
+        setEmailError("");
         setLoading(true);
         const ready = await loadPaddle();
         if (!ready) {
@@ -68,9 +93,11 @@ export default function Pricing() {
         }
         (window as any).Paddle.Checkout.open({
             items: [{ priceId, quantity: 1 }],
+            customer: { email: trimmed },
+            customData: { email: trimmed, plan: "pro" },
         });
         setLoading(false);
-    }, [canCheckout, loadPaddle, priceId]);
+    }, [canCheckout, loadPaddle, priceId, email]);
 
     useEffect(() => {
         if (canCheckout) {
@@ -107,13 +134,51 @@ export default function Pricing() {
                                     Start Trial
                                 </Link>
                             </Button>
+                        ) : showEmailStep ? (
+                            <div className="mt-6 space-y-2">
+                                <label htmlFor="checkout-email" className="block text-xs font-medium text-zinc-500 dark:text-zinc-400 uppercase tracking-wide">
+                                    Your work email
+                                </label>
+                                <input
+                                    id="checkout-email"
+                                    ref={emailInputRef}
+                                    type="email"
+                                    autoComplete="email"
+                                    placeholder="you@company.com"
+                                    value={email}
+                                    onChange={(e) => { setEmail(e.target.value); setEmailError(""); }}
+                                    onKeyDown={(e) => e.key === "Enter" && handleCheckout()}
+                                    className="w-full rounded-md border border-zinc-300 dark:border-zinc-600 bg-white dark:bg-zinc-800 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900 dark:focus:ring-zinc-100"
+                                />
+                                {emailError && (
+                                    <p className="text-xs text-red-500">{emailError}</p>
+                                )}
+                                <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                                    Your license and access credentials will be sent here immediately after payment.
+                                </p>
+                                <div className="flex gap-2">
+                                    <Button
+                                        className="flex-1"
+                                        onClick={handleCheckout}
+                                        disabled={loading}
+                                    >
+                                        {loading ? "Loading..." : "Continue to checkout →"}
+                                    </Button>
+                                    <Button
+                                        variant="outline"
+                                        onClick={() => { setShowEmailStep(false); setEmailError(""); }}
+                                    >
+                                        Back
+                                    </Button>
+                                </div>
+                            </div>
                         ) : (
                             <Button
                                 className="mt-6"
-                                onClick={canCheckout ? handleCheckout : undefined}
-                                disabled={loading || !canCheckout}
+                                onClick={canCheckout ? handleBuyNow : undefined}
+                                disabled={!canCheckout}
                             >
-                                <span>{loading ? "Loading..." : "Buy now"}</span>
+                                <span>Buy now</span>
                             </Button>
                         )}
                     </Card>

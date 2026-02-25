@@ -4,4 +4,13 @@ compatibility_date = "2024-12-01"
 
 [vars]
 ALLOWED_ORIGIN = "https://stacksageai.com"
-# PADDLE_WEBHOOK_SECRET set via: wrangler secret put PADDLE_WEBHOOK_SECRET
+STACKSAGE_IMAGE = "ghcr.io/amitdubey428/stacksage-audit:v0.7.1"
+STACKSAGE_GHCR_USERNAME = "stacksage-bot"
+FROM_EMAIL = "onboarding@stacksageai.com"
+LICENSE_DAYS_DEFAULT = "365"
+
+# Secrets — set via: wrangler secret put <NAME>
+# PADDLE_WEBHOOK_SECRET
+# STACKSAGE_PRIVATE_KEY_PKCS8_B64   (Ed25519 private key, PKCS8 DER, base64)
+# STACKSAGE_GHCR_TOKEN              (stacksage-bot classic PAT, read:packages)
+# RESEND_API_KEY
