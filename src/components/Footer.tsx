@@ -20,6 +20,7 @@ export default function Footer() {
                     <Link href="/alternatives/" aria-label="Alternatives" className="hover:text-indigo-600">Alternatives</Link>
                     <Link href="/privacy/" aria-label="Privacy" className="hover:text-indigo-600">Privacy</Link>
                     <Link href="/terms/" aria-label="Terms" className="hover:text-indigo-600">Terms</Link>
+                    <Link href="/refund-policy/" aria-label="Refund Policy" className="hover:text-indigo-600">Refund Policy</Link>
                 </div>
             </div>
         </footer>

@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-    title: "Terms — StackSage",
-    description: "Terms for early access use of StackSage.",
+    title: "Terms and Conditions — StackSage",
+    description: "Terms and conditions for use of StackSage services.",
 };
 
 export default function TermsPage() {
@@ -17,8 +17,9 @@ export default function TermsPage() {
                     ← Back to Home
                 </Link>
 
-                <h1 className="mt-6 text-3xl sm:text-4xl font-bold tracking-tight">Terms</h1>
+                <h1 className="mt-6 text-3xl sm:text-4xl font-bold tracking-tight">Terms and Conditions</h1>
                 <p className="mt-4 text-zinc-600 dark:text-zinc-300">
+                    These terms govern your use of StackSage services provided by <strong>StackSage</strong> (the "Company").
                     StackSage is currently offered as early access. Access to the private image and support details are
                     provided case-by-case.
                 </p>
