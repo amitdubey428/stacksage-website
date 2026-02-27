@@ -42,6 +42,7 @@ export default function Pricing() {
     const [showEmailStep, setShowEmailStep] = useState(false);
     const [email, setEmail] = useState("");
     const [emailError, setEmailError] = useState("");
+    const [paid, setPaid] = useState(false);
     const emailInputRef = useRef<HTMLInputElement>(null);
 
     const canCheckout = Boolean(clientToken && priceId);
@@ -95,6 +96,15 @@ export default function Pricing() {
             items: [{ priceId, quantity: 1 }],
             customer: { email: trimmed },
             customData: { email: trimmed, plan: "pro" },
+            settings: {
+                successUrl: undefined,
+            },
+            eventCallback: (event: any) => {
+                if (event?.name === "checkout.completed") {
+                    setPaid(true);
+                    setShowEmailStep(false);
+                }
+            },
         });
         setLoading(false);
     }, [canCheckout, loadPaddle, priceId, email]);
@@ -107,6 +117,21 @@ export default function Pricing() {
 
     return (
         <section id="pricing" aria-labelledby="pricing-title" className="mx-auto max-w-6xl px-4 py-20 scroll-mt-24">
+            {paid && (
+                <div className="mb-8 rounded-xl border border-green-500/40 bg-green-950/60 px-6 py-5 text-sm text-green-200">
+                    <p className="font-semibold text-green-300 text-base">🎉 Payment confirmed — your access is on its way!</p>
+                    <p className="mt-2">
+                        Your onboarding email (with license key + setup instructions) will arrive at <strong>{email}</strong> within a minute.
+                    </p>
+                    <p className="mt-2 font-medium text-green-300">
+                        👉 Please check your <strong>spam / promotions folder</strong> if you don&apos;t see it in your inbox — transactional emails sometimes land there on first send.
+                    </p>
+                    <p className="mt-2">
+                        Still nothing after 5 minutes? Email us at{" "}
+                        <a href="mailto:hello@stacksageai.com" className="underline">hello@stacksageai.com</a> and we&apos;ll sort it out.
+                    </p>
+                </div>
+            )}
             <div className="text-center mb-12">
                 <h2 id="pricing-title" className="text-3xl sm:text-4xl font-bold tracking-tight">Simple, Transparent Pricing</h2>
                 <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
