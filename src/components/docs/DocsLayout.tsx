@@ -92,7 +92,7 @@ export default function DocsLayout({ children }: { children: React.ReactNode }) 
                     </nav>
                     <div className="border-t border-zinc-200 p-4 dark:border-zinc-800">
                         <div className="text-xs text-zinc-500 dark:text-zinc-400">
-                            Version 0.7.1
+                            Version 0.7.2
                         </div>
                     </div>
                 </div>

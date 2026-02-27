@@ -50,7 +50,7 @@ wrangler secret put RESEND_API_KEY
 | Var | Default | Notes |
 |-----|---------|-------|
 | `ALLOWED_ORIGIN` | `https://stacksageai.com` | CORS origin |
-| `STACKSAGE_IMAGE` | `ghcr.io/amitdubey428/stacksage-audit:v0.7.1` | Update on each release |
+| `STACKSAGE_IMAGE` | `ghcr.io/amitdubey428/stacksage-audit:v0.7.2` | Update on each release |
 | `STACKSAGE_GHCR_USERNAME` | `stacksage-bot` | |
 | `FROM_EMAIL` | `onboarding@stacksageai.com` | Must be verified in Resend |
 | `LICENSE_DAYS_DEFAULT` | `365` | Fallback when billing_cycle not present |

@@ -4,7 +4,7 @@ compatibility_date = "2024-12-01"
 
 [vars]
 ALLOWED_ORIGIN = "https://stacksageai.com"
-STACKSAGE_IMAGE = "ghcr.io/amitdubey428/stacksage-audit:v0.7.1"
+STACKSAGE_IMAGE = "ghcr.io/amitdubey428/stacksage-audit:v0.7.2"
 STACKSAGE_GHCR_USERNAME = "stacksage-bot"
 FROM_EMAIL = "onboarding@mail.stacksageai.com"
 LICENSE_DAYS_DEFAULT = "365"
