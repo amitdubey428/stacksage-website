@@ -96,9 +96,6 @@ export default function Pricing() {
             items: [{ priceId, quantity: 1 }],
             customer: { email: trimmed },
             customData: { email: trimmed, plan: "pro" },
-            settings: {
-                successUrl: undefined,
-            },
             eventCallback: (event: any) => {
                 if (event?.name === "checkout.completed") {
                     setPaid(true);
