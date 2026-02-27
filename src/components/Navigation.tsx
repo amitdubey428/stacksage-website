@@ -59,7 +59,7 @@ export default function Navigation() {
                         width={171}
                         height={32}
                         priority
-                        className="h-8 w-auto"
+                        className="h-8 w-auto brightness-0 invert"
                     />
                     <span className="sr-only">StackSage – Home</span>
                 </Link>
