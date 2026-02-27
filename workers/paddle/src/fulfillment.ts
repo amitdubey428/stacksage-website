@@ -265,6 +265,7 @@ async function sendOnboardingEmail(p: EmailParams): Promise<void> {
         body: JSON.stringify({
             from: p.fromEmail,
             to: p.toEmail,
+            reply_to: "hello@stacksageai.com",
             subject: "Your StackSage access is ready",
             html: buildEmailHtml(p),
             text: buildEmailText(p),
