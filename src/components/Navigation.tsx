@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -51,15 +52,16 @@ export default function Navigation() {
     return (
         <nav className="sticky top-0 z-50 w-full backdrop-blur supports-[backdrop-filter]:bg-white/60 bg-white/80 text-zinc-900 dark:supports-[backdrop-filter]:bg-black/40 dark:bg-black/60 dark:text-zinc-100 border-b border-zinc-200/60 dark:border-zinc-800">
             <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-                <Link href="/" className="font-bold tracking-tight relative inline-block group" onClick={() => setClicks((c) => c + 1)}>
-                    {/* Base label */}
-                    <span className="block">StackSage</span>
-                    {/* Glitch layers (show on hover) */}
-                    <span aria-hidden className="pointer-events-none absolute inset-0 transition-opacity duration-150 opacity-0 group-hover:opacity-100">
-                        <span className="absolute inset-0 text-indigo-400 mix-blend-screen transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 select-none">StackSage</span>
-                        <span className="absolute inset-0 text-pink-400 mix-blend-screen transform group-hover:-translate-x-0.5 group-hover:translate-y-0.5 select-none">StackSage</span>
-                    </span>
-                    <span className="sr-only">Home</span>
+                <Link href="/" className="relative inline-block" onClick={() => setClicks((c) => c + 1)}>
+                    <Image
+                        src="/logo.png"
+                        alt="StackSage"
+                        width={171}
+                        height={32}
+                        priority
+                        className="h-8 w-auto"
+                    />
+                    <span className="sr-only">StackSage – Home</span>
                 </Link>
                 <div className="hidden md:flex items-center gap-6">
                     <Link

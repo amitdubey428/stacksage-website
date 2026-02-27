@@ -271,8 +271,10 @@ async function sendOnboardingEmail(p: EmailParams): Promise<void> {
         }),
     });
 
+    const body = await resp.text();
+    console.log(`[stacksage] Resend response status=${resp.status} body=${body}`);
+
     if (!resp.ok) {
-        const body = await resp.text();
         throw new Error(`Resend API error ${resp.status}: ${body}`);
     }
 }
