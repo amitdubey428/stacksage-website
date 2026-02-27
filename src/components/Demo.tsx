@@ -7,7 +7,7 @@ export default function Demo() {
     const loomUrl = process.env.NEXT_PUBLIC_LOOM_DEMO_URL;
 
     // Site is permanently dark — always pass theme=dark to Tally
-    const tallySrc = `https://tally.so/embed/68Lrke?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&theme=dark`;
+    const tallySrc = `https://tally.so/embed/68Lrke?alignLeft=1&hideTitle=1&dynamicHeight=1&theme=dark`;
 
     const sampleArtifacts = [
         {
@@ -154,7 +154,7 @@ export default function Demo() {
                     </ul>
                 </div>
 
-                <div className="w-full overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800">
+                <div className="w-full overflow-hidden rounded-2xl border border-zinc-800 bg-[#1a1917]">
                     <iframe
                         key="tally-dark"
                         data-tally-src={tallySrc}
