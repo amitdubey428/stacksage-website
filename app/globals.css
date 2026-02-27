@@ -17,7 +17,8 @@ html {
 body {
     font-family: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
     background-color: black;
-    color: rgb(244 244 245); /* zinc-100 */
+    color: rgb(244 244 245);
+    /* zinc-100 */
 }
 
 *:focus-visible {
