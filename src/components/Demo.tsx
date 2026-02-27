@@ -87,7 +87,7 @@ export default function Demo() {
                     </div>
                 </div>
 
-                {loomUrl ? (
+                {loomUrl && (
                     <div className="mt-5 overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950/40">
                         <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
                             <iframe
@@ -98,10 +98,6 @@ export default function Demo() {
                             />
                         </div>
                     </div>
-                ) : (
-                    <p className="mt-4 text-xs text-zinc-500 dark:text-zinc-400">
-                        Video embed is optional. To enable it, set <code>NEXT_PUBLIC_LOOM_DEMO_URL</code> in the site environment.
-                    </p>
                 )}
             </div>
 
