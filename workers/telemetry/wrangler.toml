@@ -1,0 +1,14 @@
+name = "stacksage-telemetry"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+
+# Analytics Engine binding — stores the ping data.
+# Create the dataset in Cloudflare Dashboard → Analytics Engine → Datasets
+# then bind it here by dataset name.
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
+dataset = "stacksage_cli_pings"
+
+[vars]
+# Allowed CLI versions — reject anything else to avoid abuse
+ALLOWED_USER_AGENT_PREFIX = "stacksage-cli/"
