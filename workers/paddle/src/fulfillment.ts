@@ -139,59 +139,63 @@ function buildEmailHtml(p: EmailParams): string {
     p{margin:8px 0;font-size:15px;line-height:1.6;color:#374151}
     .label{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:#9ca3af;margin-bottom:4px;font-weight:600}
     .cred{background:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;padding:12px 14px;font-family:'SF Mono',Monaco,Consolas,monospace;font-size:12px;word-break:break-all;color:#1a1a1a;margin-bottom:16px}
+    .steps{background:#f9fafb;border:1px solid #e5e7eb;border-radius:6px;padding:16px 20px;margin:12px 0}
+    .steps code{background:#e5e7eb;border-radius:3px;padding:2px 6px;font-size:13px;font-family:'SF Mono',Monaco,Consolas,monospace;display:block;margin:6px 0;word-break:break-all}
     ul{padding-left:20px;margin:8px 0}
     li{font-size:14px;line-height:1.7;color:#374151}
     code{background:#f3f4f6;border-radius:3px;padding:1px 5px;font-size:13px;font-family:monospace}
     a{color:#2563eb}
     .footer{margin-top:40px;padding-top:16px;border-top:1px solid #f0f0f0;font-size:12px;color:#9ca3af}
+    .note{background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:10px 14px;font-size:13px;color:#1e40af;margin:12px 0}
   </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>Your StackSage access is ready <span class="badge">ACTIVE</span></h1>
+  <h1>Your StackSage Pro license is ready <span class="badge">ACTIVE</span></h1>
   <p>Hi ${escHtml(p.customerName)},</p>
-  <p>Thanks for subscribing to StackSage. Your license is active until <strong>${p.expiresDate}</strong>.
-  Add the four secrets below to your GitHub repo and you'll be running your first audit in under 10 minutes.</p>
+  <p>Thanks for subscribing. Your license is active until <strong>${p.expiresDate}</strong>. You can run your first full audit in under 2 minutes.</p>
 
-  <h2>Step 1 — Add secrets to your GitHub repo</h2>
-  <p>Go to your repo → <strong>Settings → Secrets and variables → Actions → New repository secret</strong></p>
-
-  <div class="label">STACKSAGE_IMAGE</div>
-  <div class="cred">${escHtml(p.ghcrImage)}</div>
-
-  <div class="label">STACKSAGE_GHCR_USERNAME</div>
-  <div class="cred">${escHtml(p.ghcrUsername)}</div>
-
-  <div class="label">STACKSAGE_GHCR_TOKEN</div>
-  <div class="cred">${escHtml(p.ghcrToken)}</div>
-
+  <h2>Your license key</h2>
   <div class="label">STACKSAGE_LICENSE</div>
   <div class="cred">${escHtml(p.licenseToken)}</div>
+  <p style="font-size:13px;color:#6b7280">Keep this private. It\'s tied to your subscription and expires on ${p.expiresDate}.</p>
 
-  <h2>Step 2 — Add your AWS credentials</h2>
-  <ul>
-    <li><code>AWS_ACCESS_KEY_ID</code></li>
-    <li><code>AWS_SECRET_ACCESS_KEY</code></li>
-    <li><code>AWS_DEFAULT_REGION</code> <span style="color:#9ca3af">(optional; fallback for endpoint discovery)</span></li>
-  </ul>
-  <p>For least-privilege access, create a read-only role and add <code>CUSTOMER_ROLE_ARN</code> as a secret (see IAM setup below).</p>
+  <h2>Option A — Run on your machine right now (fastest)</h2>
+  <p>Requires Python 3.10+ and AWS credentials already configured (<code>~/.aws/credentials</code>, env vars, or SSO).</p>
+  <div class="steps">
+    <code>pip install stacksage</code>
+    <code>export STACKSAGE_LICENSE=${escHtml(p.licenseToken)}</code>
+    <code>stacksage scan</code>
+  </div>
+  <p>The full HTML report opens in your browser automatically when the scan completes.</p>
+  <p>Use <code>--profile my-sso-profile</code> for SSO, or <code>--role-arn arn:aws:iam::123456789012:role/ReadOnly</code> to assume a cross-account role.</p>
+  <p><a href="https://stacksageai.com/docs/cli-reference/">Full CLI reference →</a></p>
 
-  <h2>Step 3 — Install the workflow</h2>
-  <p>Create <code>.github/workflows/stacksage_audit.yml</code> in your repo using the template from our docs:</p>
-  <p><a href="https://stacksageai.com/docs/github-actions/">stacksageai.com/docs/github-actions</a></p>
+  <div class="note">
+    <strong>Tip:</strong> Add <code>export STACKSAGE_LICENSE=...</code> to your shell profile (<code>~/.zshrc</code> or <code>~/.bashrc</code>) so you don\'t need to set it every time.
+  </div>
 
-  <h2>Step 4 — AWS IAM role setup (recommended)</h2>
-  <p>Create a read-only IAM role for least-privilege access. Full instructions including the policy JSON:</p>
-  <p><a href="https://stacksageai.com/docs/iam-policy/">stacksageai.com/docs/iam-policy</a></p>
+  <h2>Option B — GitHub Actions (scheduled / automated audits)</h2>
+  <p>For automated weekly audits in CI/CD. Add these secrets to your repo under <strong>Settings → Secrets and variables → Actions</strong>:</p>
+  <div class="label">STACKSAGE_LICENSE</div>
+  <div class="cred">${escHtml(p.licenseToken)}</div>
+  <div class="label">STACKSAGE_IMAGE</div>
+  <div class="cred">${escHtml(p.ghcrImage)}</div>
+  <div class="label">STACKSAGE_GHCR_USERNAME</div>
+  <div class="cred">${escHtml(p.ghcrUsername)}</div>
+  <div class="label">STACKSAGE_GHCR_TOKEN</div>
+  <div class="cred">${escHtml(p.ghcrToken)}</div>
+  <p>Then add the workflow file to your repo:</p>
+  <p><a href="https://stacksageai.com/docs/github-actions/">GitHub Actions setup guide →</a></p>
 
-  <h2>Run your first audit</h2>
-  <p>Actions → <em>StackSage Audit</em> → <strong>Run workflow</strong>.<br/>
-  The audit pack (HTML report + JSON/CSV findings) uploads as a workflow artifact when the run completes.</p>
+  <h2>IAM setup (recommended for least-privilege access)</h2>
+  <p>Create a read-only IAM role and pass it via <code>--role-arn</code>. Takes 5 minutes and means StackSage never touches your default credentials.</p>
+  <p><a href="https://stacksageai.com/docs/iam-policy/">IAM policy setup guide →</a></p>
 
   <div class="footer">
-    Questions? Reply to this email — we'll help you get set up.<br/>
+    Questions? Reply to this email — we typically respond within 48 hours.<br/>
     StackSage · <a href="https://stacksageai.com">stacksageai.com</a><br/>
-    License expires ${p.expiresDate}. We'll send a renewal notice before then.
+    License expires ${p.expiresDate}. We\'ll send a renewal reminder before then.
   </div>
 </div>
 </body>
@@ -201,13 +205,37 @@ function buildEmailHtml(p: EmailParams): string {
 function buildEmailText(p: EmailParams): string {
     return `Hi ${p.customerName},
 
-Your StackSage access is ready. License active until ${p.expiresDate}.
+Your StackSage Pro license is ready. Active until ${p.expiresDate}.
+
+YOUR LICENSE KEY
+${p.licenseToken}
+
+Keep this private — it's tied to your subscription.
 
 ====================================================
-STEP 1 — GitHub Actions secrets
+OPTION A — Run on your machine right now (fastest)
 ====================================================
-Add all four to your repo:
-Settings → Secrets and variables → Actions → New repository secret
+Requires Python 3.10+ and AWS credentials configured.
+
+  pip install stacksage
+  export STACKSAGE_LICENSE=${p.licenseToken}
+  stacksage scan
+
+The full HTML report opens in your browser when the scan completes.
+Use --profile for SSO or --role-arn for cross-account access.
+
+Full CLI reference: https://stacksageai.com/docs/cli-reference/
+
+Tip: add the export line to ~/.zshrc or ~/.bashrc to persist it.
+
+====================================================
+OPTION B — GitHub Actions (scheduled / automated audits)
+====================================================
+Add these secrets to your repo:
+Settings → Secrets and variables → Actions
+
+STACKSAGE_LICENSE
+${p.licenseToken}
 
 STACKSAGE_IMAGE
 ${p.ghcrImage}
@@ -218,31 +246,14 @@ ${p.ghcrUsername}
 STACKSAGE_GHCR_TOKEN
 ${p.ghcrToken}
 
-STACKSAGE_LICENSE
-${p.licenseToken}
+Workflow setup guide: https://stacksageai.com/docs/github-actions/
 
 ====================================================
-STEP 2 — Your AWS credentials (add to the same repo)
+IAM SETUP (recommended for least-privilege access)
 ====================================================
-  AWS_ACCESS_KEY_ID
-  AWS_SECRET_ACCESS_KEY
-  AWS_DEFAULT_REGION (optional)
+https://stacksageai.com/docs/iam-policy/
 
-For least-privilege: create a read-only role and add CUSTOMER_ROLE_ARN.
-IAM setup guide: https://stacksageai.com/docs/iam-policy/
-
-====================================================
-STEP 3 — Workflow template
-====================================================
-https://stacksageai.com/docs/github-actions/
-
-====================================================
-STEP 4 — Run your first audit
-====================================================
-Actions → StackSage Audit → Run workflow
-(Results upload as a workflow artifact when the run completes.)
-
-Questions? Reply here — we'll help.
+Questions? Reply here — we typically respond within 48 hours.
 — StackSage · https://stacksageai.com
 `;
 }
@@ -266,7 +277,8 @@ async function sendOnboardingEmail(p: EmailParams): Promise<void> {
             from: p.fromEmail,
             to: p.toEmail,
             reply_to: "hello@stacksageai.com",
-            subject: "Your StackSage access is ready",
+            subject: "Your StackSage Pro license is ready",
+            tags: [{ name: "category", value: "onboarding" }],
             html: buildEmailHtml(p),
             text: buildEmailText(p),
         }),

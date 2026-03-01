@@ -1,5 +1,8 @@
 # Razorpay Worker (Cloudflare)
 
+> ⚠️ **NOT IN USE** — as of 2026-03 StackSage processes payments exclusively through Paddle.
+> This worker is kept for reference and is **not deployed**. Active payment worker: `workers/paddle/`
+
 Endpoints:
 - `POST /create-order` — creates a Razorpay order
 - `POST /webhook` — validates Razorpay webhook signature

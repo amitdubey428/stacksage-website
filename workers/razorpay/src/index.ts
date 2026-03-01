@@ -1,3 +1,11 @@
+/**
+ * ⚠️  NOT IN USE — as of 2026-03 StackSage uses Paddle exclusively for payments.
+ * This worker is kept for reference but is NOT deployed and NOT receiving traffic.
+ * Do NOT modify, deploy, or wire up new secrets for this worker without confirming
+ * that the team has decided to re-enable Razorpay.
+ * Active payment worker: workers/paddle/
+ */
+
 export interface Env {
     RAZORPAY_KEY_ID: string;
     RAZORPAY_KEY_SECRET: string;

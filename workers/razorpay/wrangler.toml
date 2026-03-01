@@ -1,3 +1,5 @@
+# ⚠️  NOT IN USE — Razorpay is archived. Active payment worker: workers/paddle/
+# Do NOT deploy this worker without team confirmation.
 name = "stacksage-razorpay"
 main = "src/index.ts"
 compatibility_date = "2024-12-01"

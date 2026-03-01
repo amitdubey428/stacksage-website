@@ -3,29 +3,29 @@ import Link from "next/link";
 import { Terminal } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: "Configuration - StackSage Documentation",
-    description: "Customize StackSage behavior with stacksage.yml",
+  title: "Configuration - StackSage Documentation",
+  description: "Customize StackSage behavior with stacksage.yml",
 };
 
 export default function ConfigurationPage() {
-    return (
-        <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-900 dark:text-zinc-100">
-            <h1 className="text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-4">Configuration</h1>
-            <p className="text-xl text-zinc-600 dark:text-zinc-300 mb-8">
-                Customize StackSage audit behavior with a <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">stacksage.yml</code> file in your repository root.
-            </p>
+  return (
+    <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-900 dark:text-zinc-100">
+      <h1 className="text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-4">Configuration</h1>
+      <p className="text-xl text-zinc-600 dark:text-zinc-300 mb-8">
+        Customize StackSage audit behavior with a <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">stacksage.yml</code> file in your repository root.
+      </p>
 
-            <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">Quick Start</h2>
-            <p className="text-zinc-700 dark:text-zinc-300 mb-6">
-                Create a <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">stacksage.yml</code> file in your repository root:
-            </p>
+      <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">Quick Start</h2>
+      <p className="text-zinc-700 dark:text-zinc-300 mb-6">
+        Create a <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">stacksage.yml</code> file in your repository root:
+      </p>
 
-            <div className="not-prose my-6">
-                <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4">
-                    <div className="flex items-start gap-3">
-                        <Terminal className="h-5 w-5 mt-0.5 text-zinc-600 dark:text-zinc-400" />
-                        <div className="flex-1">
-                            <pre className="text-sm overflow-x-auto"><code>{`# Create a stacksage.yml in your working directory
+      <div className="not-prose my-6">
+        <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4">
+          <div className="flex items-start gap-3">
+            <Terminal className="h-5 w-5 mt-0.5 text-zinc-600 dark:text-zinc-400" />
+            <div className="flex-1">
+              <pre className="text-sm overflow-x-auto"><code>{`# Create a stacksage.yml in your working directory
 cat > stacksage.yml << 'EOF'
 # StackSage configuration — all settings are optional
 
@@ -43,25 +43,25 @@ thresholds:
 reporting:
   min_savings_usd: 0
 EOF`}</code></pre>
-                        </div>
-                    </div>
-                </div>
             </div>
+          </div>
+        </div>
+      </div>
 
-            <p className="text-zinc-700 dark:text-zinc-300 mb-6">
-                All configuration settings are <strong className="text-zinc-900 dark:text-zinc-100">optional</strong>. StackSage uses sensible defaults if no config file is present.
-            </p>
+      <p className="text-zinc-700 dark:text-zinc-300 mb-6">
+        All configuration settings are <strong className="text-zinc-900 dark:text-zinc-100">optional</strong>. StackSage uses sensible defaults if no config file is present.
+      </p>
 
-            <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">Configuration Sections</h2>
+      <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">Configuration Sections</h2>
 
-            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mt-8 mb-3">Exclusions</h3>
-            <p className="text-zinc-700 dark:text-zinc-300 mb-6">
-                Skip specific resources, regions, or entire detector types:
-            </p>
+      <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mt-8 mb-3">Exclusions</h3>
+      <p className="text-zinc-700 dark:text-zinc-300 mb-6">
+        Skip specific resources, regions, or entire detector types:
+      </p>
 
-            <div className="not-prose my-6">
-                <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4">
-                    <pre className="text-sm overflow-x-auto"><code>{`exclusions:
+      <div className="not-prose my-6">
+        <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4">
+          <pre className="text-sm overflow-x-auto"><code>{`exclusions:
   # Skip specific resource IDs
   resources:
     - vol-abc123  # Intentional idle volume for disaster recovery
@@ -82,24 +82,24 @@ EOF`}</code></pre>
   detectors:
     - ec2_generation_upgrade  # Hardware roadmap planned
     - gp2_to_gp3_migration    # Migration in Q3`}</code></pre>
-                </div>
-            </div>
+        </div>
+      </div>
 
-            <div className="not-prose my-6 rounded-lg border border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950 p-4">
-                <p className="text-sm text-blue-800 dark:text-blue-200 mb-0">
-                    <strong>Tip:</strong> Use exclusions to suppress known findings that you've consciously decided not to address,
-                    reducing noise in your reports.
-                </p>
-            </div>
+      <div className="not-prose my-6 rounded-lg border border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950 p-4">
+        <p className="text-sm text-blue-800 dark:text-blue-200 mb-0">
+          <strong>Tip:</strong> Use exclusions to suppress known findings that you've consciously decided not to address,
+          reducing noise in your reports.
+        </p>
+      </div>
 
-            <h3>Thresholds</h3>
-            <p>
-                Adjust detection sensitivity for your environment:
-            </p>
+      <h3>Thresholds</h3>
+      <p>
+        Adjust detection sensitivity for your environment:
+      </p>
 
-            <div className="not-prose my-6">
-                <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4">
-                    <pre className="text-sm overflow-x-auto"><code>{`thresholds:
+      <div className="not-prose my-6">
+        <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4">
+          <pre className="text-sm overflow-x-auto"><code>{`thresholds:
   ebs:
     unattached_days: 14           # Default: 7
     performance_utilization: 0.15  # Default: 0.20 (20%)
@@ -123,17 +123,17 @@ EOF`}</code></pre>
   severity:
     high_cost_threshold: 100  # Findings ≥$100/mo = high severity
     medium_cost_threshold: 25  # Findings ≥$25/mo = medium`}</code></pre>
-                </div>
-            </div>
+        </div>
+      </div>
 
-            <h3>Reporting Filters</h3>
-            <p>
-                Control what appears in final reports:
-            </p>
+      <h3>Reporting Filters</h3>
+      <p>
+        Control what appears in final reports:
+      </p>
 
-            <div className="not-prose my-6">
-                <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4">
-                    <pre className="text-sm overflow-x-auto"><code>{`reporting:
+      <div className="not-prose my-6">
+        <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4">
+          <pre className="text-sm overflow-x-auto"><code>{`reporting:
   # Only show findings with savings ≥ this amount
   min_savings_usd: 10  # Default: 0
   
@@ -147,17 +147,17 @@ EOF`}</code></pre>
     - cost_optimization
     - security
     - performance`}</code></pre>
-                </div>
-            </div>
+        </div>
+      </div>
 
-            <h3>Tag Governance</h3>
-            <p>
-                Define required tags and cost allocation rules:
-            </p>
+      <h3>Tag Governance</h3>
+      <p>
+        Define required tags and cost allocation rules:
+      </p>
 
-            <div className="not-prose my-6">
-                <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4">
-                    <pre className="text-sm overflow-x-auto"><code>{`tag_governance:
+      <div className="not-prose my-6">
+        <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4">
+          <pre className="text-sm overflow-x-auto"><code>{`tag_governance:
   required_tags:
     - Name
     - Environment
@@ -174,19 +174,19 @@ EOF`}</code></pre>
       values:
         - SOC2
         - HIPAA`}</code></pre>
-                </div>
-            </div>
+        </div>
+      </div>
 
-            <h2>Common Patterns</h2>
+      <h2>Common Patterns</h2>
 
-            <h3>Progressive Rollout</h3>
-            <p>
-                Start with high thresholds and gradually tighten as you address findings:
-            </p>
+      <h3>Progressive Rollout</h3>
+      <p>
+        Start with high thresholds and gradually tighten as you address findings:
+      </p>
 
-            <div className="not-prose my-6">
-                <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4">
-                    <pre className="text-sm overflow-x-auto"><code>{`# Week 1: Focus on high-impact items only
+      <div className="not-prose my-6">
+        <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4">
+          <pre className="text-sm overflow-x-auto"><code>{`# Week 1: Focus on high-impact items only
 reporting:
   min_savings_usd: 50
   severity_filter: [critical, high]
@@ -195,34 +195,34 @@ reporting:
 reporting:
   min_savings_usd: 20
   severity_filter: [critical, high, medium]`}</code></pre>
-                </div>
-            </div>
+        </div>
+      </div>
 
-            <h3>Team-Specific Audits</h3>
-            <p>
-                Use tag-based exclusions for different teams:
-            </p>
+      <h3>Team-Specific Audits</h3>
+      <p>
+        Use tag-based exclusions for different teams:
+      </p>
 
-            <div className="not-prose my-6">
-                <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4">
-                    <pre className="text-sm overflow-x-auto"><code>{`# Only audit infrastructure team resources
+      <div className="not-prose my-6">
+        <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4">
+          <pre className="text-sm overflow-x-auto"><code>{`# Only audit infrastructure team resources
 exclusions:
   tags:
     - key: Team
       value: application
     - key: Team
       value: data-science`}</code></pre>
-                </div>
-            </div>
+        </div>
+      </div>
 
-            <h3>Environment-Based Rules</h3>
-            <p>
-                Skip development resources, focus on production:
-            </p>
+      <h3>Environment-Based Rules</h3>
+      <p>
+        Skip development resources, focus on production:
+      </p>
 
-            <div className="not-prose my-6">
-                <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4">
-                    <pre className="text-sm overflow-x-auto"><code>{`exclusions:
+      <div className="not-prose my-6">
+        <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-4">
+          <pre className="text-sm overflow-x-auto"><code>{`exclusions:
   tags:
     - key: Environment
       value: development
@@ -235,16 +235,16 @@ thresholds:
     unattached_days: 3
   nat_gateway:
     idle_threshold_gb_per_day: 0.1`}</code></pre>
-                </div>
-            </div>
-
-            <h2>Related Topics</h2>
-            <ul>
-                <li><Link href="/docs/exclusions">Exclusions & Filters Deep Dive</Link></li>
-                <li><Link href="/docs/thresholds">Custom Thresholds Reference</Link></li>
-                <li><Link href="/docs/tag-governance">Tag Governance Guide</Link></li>
-                <li><Link href="/docs/troubleshooting">Troubleshooting Configuration</Link></li>
-            </ul>
         </div>
-    );
+      </div>
+
+      <h2>Related Topics</h2>
+      <ul>
+        <li><Link href="/docs/exclusions">Exclusions & Filters Deep Dive</Link></li>
+        <li><Link href="/docs/thresholds">Custom Thresholds Reference</Link></li>
+        <li><Link href="/docs/tag-governance">Tag Governance Guide</Link></li>
+        <li><Link href="/docs/troubleshooting">Troubleshooting Configuration</Link></li>
+      </ul>
+    </div>
+  );
 }

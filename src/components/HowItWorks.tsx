@@ -1,10 +1,10 @@
 import React from "react";
 
 const steps = [
-    { n: 1, title: "Install the Workflow", desc: "Add the StackSage workflow to your repo (Trial or paid)" },
-    { n: 2, title: "Grant Read-Only Access", desc: "Provide a customer-controlled IAM role ARN (assume role)" },
-    { n: 3, title: "Run Trial (or add license)", desc: "Trial runs without a license. Paid workflow uses a time-limited license secret." },
-    { n: 4, title: "Get the Audit Pack", desc: "Receive a summary, an HTML report, and JSON/CSV findings — with copyable verification commands" },
+    { n: 1, title: "pip install stacksage", desc: "One command. No containers, no CI setup. Python 3.10+ required." },
+    { n: 2, title: "Configure AWS access", desc: "Works with any credential method: ~/.aws/credentials, env vars, SSO profiles, or a read-only IAM role ARN." },
+    { n: 3, title: "stacksage scan", desc: "Scans EC2, RDS, EBS, Lambda, S3, IAM, networking, and more. Completes in 2–5 minutes." },
+    { n: 4, title: "Get your audit report", desc: "HTML report opens in your browser automatically. JSON/CSV for automation. Markdown summary ready to paste into Slack or an exec email." },
 ];
 
 export default function HowItWorks() {

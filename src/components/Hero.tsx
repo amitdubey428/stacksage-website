@@ -27,7 +27,7 @@ export default function Hero() {
                     className="text-center"
                 >
                     <h1 id="hero-title" className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-sky-600">
-                        Find what&apos;s wasting money in your AWS account
+                        Your complete AWS audit — cost savings and security posture in minutes
                     </h1>
                     <p className="mt-6 text-lg sm:text-xl text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
                         Runs on your machine in under 5 minutes. Connects with read-only credentials,

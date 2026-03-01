@@ -15,7 +15,7 @@ export default function DocsPage() {
             links: [
                 { href: "/docs/quick-start", label: "Quick Start" },
                 { href: "/docs/licensing", label: "Licensing & Trial" },
-                { href: "/walkthrough", label: "60‑second Walkthrough" },
+                { href: "/walkthrough", label: "How It Works (Walkthrough)" },
                 { href: "/demo-report", label: "Sample Audit Pack" },
             ],
         },

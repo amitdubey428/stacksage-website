@@ -4,8 +4,6 @@ import Link from "next/link";
 import Script from "next/script";
 
 export default function Demo() {
-    const loomUrl = process.env.NEXT_PUBLIC_LOOM_DEMO_URL;
-
     // Site is permanently dark — always pass theme=dark to Tally
     const tallySrc = `https://tally.so/embed/68Lrke?alignLeft=1&hideTitle=1&dynamicHeight=1&theme=dark`;
 
@@ -33,7 +31,7 @@ export default function Demo() {
                 First look: what you get after one run
             </h2>
             <p className="mt-2 text-zinc-600 dark:text-zinc-300 max-w-2xl leading-relaxed">
-                Before you wire anything up, here’s the proof: a real audit pack output (summary + HTML + JSON/CSV) generated inside GitHub Actions.
+                Before you wire anything up, here&apos;s the proof: a real audit pack output (summary + HTML + JSON/CSV) from an actual StackSage run.
             </p>
 
             <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-zinc-600 dark:text-zinc-400">
@@ -65,10 +63,10 @@ export default function Demo() {
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
                     <div>
                         <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
-                            90‑second video walkthrough
+                            See exactly how it works
                         </h3>
                         <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-300 leading-relaxed">
-                            Prefer a quick visual demo? Watch the end-to-end flow: run → artifacts → report → next steps.
+                            Step-by-step walkthrough: install → scan → report. What each output looks like and what to do next.
                         </p>
                     </div>
                     <div className="flex gap-3">
@@ -76,7 +74,7 @@ export default function Demo() {
                             href="/walkthrough/"
                             className="inline-flex items-center justify-center rounded-xl font-medium transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 ring-offset-transparent border border-zinc-300 text-zinc-900 hover:bg-zinc-100 dark:border-zinc-700 dark:text-zinc-100 dark:hover:bg-zinc-800 focus-visible:ring-zinc-400 h-11 px-5 text-base active:scale-[0.98] whitespace-nowrap"
                         >
-                            Text walkthrough →
+                            Walkthrough →
                         </Link>
                         <Link
                             href="/demo-report/"
@@ -86,19 +84,6 @@ export default function Demo() {
                         </Link>
                     </div>
                 </div>
-
-                {loomUrl && (
-                    <div className="mt-5 overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-950/40">
-                        <div className="relative w-full" style={{ paddingTop: "56.25%" }}>
-                            <iframe
-                                src={loomUrl}
-                                title="StackSage walkthrough"
-                                className="absolute inset-0 h-full w-full"
-                                allow="fullscreen; picture-in-picture"
-                            />
-                        </div>
-                    </div>
-                )}
             </div>
 
             <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch">
@@ -124,15 +109,15 @@ export default function Demo() {
                 </div>
 
                 <div className="rounded-2xl border border-zinc-200 dark:border-zinc-800 p-6 h-full flex flex-col">
-                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">If you want to run it in your repo</h3>
+                    <h3 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">What you need to run it</h3>
                     <ul className="mt-3 space-y-2 text-sm text-zinc-600 dark:text-zinc-300">
-                        <li>• A GitHub repo with Actions enabled</li>
-                        <li>• A customer-controlled IAM read-only role ARN to assume</li>
-                        <li>• GitHub secrets for the workflow</li>
+                        <li>• Python 3.10+</li>
+                        <li>• AWS credentials (any method: env vars, ~/.aws/credentials, SSO, or IAM role)</li>
+                        <li>• 2–5 minutes for a full scan</li>
                     </ul>
 
                     <p className="mt-3 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
-                        You keep full control: StackSage runs inside your Actions runner and only reads metadata + aggregate metrics.
+                        StackSage reads only metadata and aggregate metrics. Nothing leaves your machine — no SaaS ingestion.
                     </p>
                 </div>
             </div>

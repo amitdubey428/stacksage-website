@@ -51,7 +51,7 @@ const features = [
     },
     {
         title: "Privacy-First",
-        desc: "Runs in your GitHub Actions runner with a customer-controlled read-only role",
+        desc: "Runs on your machine or in CI — AWS credentials never leave your environment. Read-only access only.",
         icon: <ShieldCheck className="h-5 w-5" />,
     },
     {
@@ -64,8 +64,8 @@ const features = [
 export default function Features() {
     return (
         <section id="features" aria-labelledby="features-title" className="mx-auto max-w-6xl px-4 py-20 scroll-mt-24">
-            <h2 id="features-title" className="text-3xl sm:text-4xl font-bold tracking-tight">An audit pack, not just a cost scan</h2>
-            <p className="mt-2 text-zinc-600 dark:text-zinc-300">Get cost savings, guardrails, and security posture in one shareable report — summary, HTML, and JSON/CSV artifacts.</p>
+            <h2 id="features-title" className="text-3xl sm:text-4xl font-bold tracking-tight">40+ checks across 13 AWS services. Cost savings + security posture in one audit.</h2>
+            <p className="mt-2 text-zinc-600 dark:text-zinc-300">Every run produces a full audit: cost findings with savings estimates, security posture signals, and remediation commands — summary, HTML, and JSON/CSV artifacts.</p>
             <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 {features.map((f, i) => (
                     <Parallax key={f.title} amount={10 + (i % 4) * 5}>
@@ -81,7 +81,7 @@ export default function Features() {
                     </summary>
                     <div className="mt-3 text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
                         <ul className="space-y-2">
-                            <li>• Runs inside your GitHub Actions runner (no external SaaS ingestion of AWS credentials).</li>
+                            <li>• Runs on your machine or in CI/CD — no SaaS ingestion of AWS credentials, ever.</li>
                             <li>• Uses a customer-controlled read-only role (AssumeRole) and reads only metadata + aggregate metrics.</li>
                             <li>• Outputs a summary + HTML report + JSON/CSV findings, with copyable verification commands.</li>
                             <li>• Optional CloudWatch enrichments use a bounded query budget and include provenance.</li>
