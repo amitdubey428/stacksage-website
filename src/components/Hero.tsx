@@ -6,6 +6,16 @@ import { Button } from "@/components/ui/button";
 import AnimatedGradient from "@/components/AnimatedGradient";
 
 export default function Hero() {
+    const [copied, setCopied] = React.useState(false);
+    const installCmd = "pip install stacksage && stacksage scan";
+
+    function handleCopy() {
+        navigator.clipboard.writeText(installCmd).then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        });
+    }
+
     return (
         <section className="relative isolate" aria-labelledby="hero-title">
             <AnimatedGradient />
@@ -17,16 +27,33 @@ export default function Hero() {
                     className="text-center"
                 >
                     <h1 id="hero-title" className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight leading-tight bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 via-fuchsia-600 to-sky-600">
-                        Cloud audit packs that run in your GitHub Actions
+                        Find what&apos;s wasting money in your AWS account
                     </h1>
                     <p className="mt-6 text-lg sm:text-xl text-zinc-600 dark:text-zinc-300 max-w-2xl mx-auto">
-                        StackSage runs inside your GitHub Actions runner with a customer‑controlled, read‑only role.
-                        It delivers a CTO‑ready audit pack: cost savings, guardrails, and security posture — without sharing AWS credentials.
+                        Runs on your machine in under 5 minutes. Connects with read-only credentials,
+                        scans for cost waste and security gaps, opens a full HTML report in your browser —
+                        nothing leaves your machine.
                     </p>
-                    <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center">
+
+                    {/* pip install block */}
+                    <div className="mt-8 flex justify-center">
+                        <button
+                            onClick={handleCopy}
+                            className="group flex items-center gap-3 rounded-xl border border-zinc-200 dark:border-zinc-700 bg-zinc-50 dark:bg-zinc-900 px-5 py-3 font-mono text-sm text-zinc-800 dark:text-zinc-200 shadow-sm hover:border-indigo-400 dark:hover:border-indigo-500 transition-colors"
+                            aria-label="Copy install command"
+                        >
+                            <span className="text-indigo-500 select-none">$</span>
+                            <span>{installCmd}</span>
+                            <span className="ml-2 text-xs text-zinc-400 group-hover:text-indigo-500 transition-colors select-none">
+                                {copied ? "✓ copied" : "copy"}
+                            </span>
+                        </button>
+                    </div>
+
+                    <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center">
                         <Magnetic>
                             <Button asChild size="lg">
-                                <Link href="/docs/#trial">Start Trial</Link>
+                                <Link href="/docs/quick-start/">Get Started Free</Link>
                             </Button>
                         </Magnetic>
                         <Magnetic strength={20}>
@@ -36,11 +63,11 @@ export default function Hero() {
                         </Magnetic>
                     </div>
                     <ul className="mt-6 flex flex-wrap items-center justify-center gap-3 text-sm text-zinc-600 dark:text-zinc-400">
-                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Runs in GitHub Actions</li>
-                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Self-serve Trial</li>
-                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Cost + security posture in one pack</li>
-                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Summary + HTML + JSON/CSV outputs</li>
-                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Copyable verification CLI</li>
+                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Free — top 50 findings, no sign-up</li>
+                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Runs locally, nothing shared</li>
+                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Works with any AWS profile or SSO</li>
+                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">Cost + security posture in one report</li>
+                        <li className="rounded-full border border-zinc-200/60 dark:border-zinc-700 px-3 py-1">HTML + JSON/CSV outputs</li>
                     </ul>
                 </motion.div>
             </div>

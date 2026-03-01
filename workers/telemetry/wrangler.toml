@@ -4,9 +4,10 @@ compatibility_date = "2024-12-01"
 
 # Custom domain — Cloudflare provisions the DNS record automatically
 # since stacksageai.com is on Cloudflare nameservers.
-# This means `wrangler deploy` sets up telemetry.stacksageai.com in one step.
+# Path routing (/v1/ping) is handled inside the worker, not here —
+# Custom Domains only accept a bare hostname (no paths allowed).
 routes = [
-  { pattern = "telemetry.stacksageai.com/v1/ping", custom_domain = true }
+  { pattern = "telemetry.stacksageai.com", custom_domain = true }
 ]
 
 # Workers Observability — real-time logs, error tracking, CPU metrics.
