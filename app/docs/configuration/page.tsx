@@ -25,11 +25,24 @@ export default function ConfigurationPage() {
                     <div className="flex items-start gap-3">
                         <Terminal className="h-5 w-5 mt-0.5 text-zinc-600 dark:text-zinc-400" />
                         <div className="flex-1">
-                            <pre className="text-sm overflow-x-auto"><code>{`# Download the example configuration
-curl -O https://raw.githubusercontent.com/amitdubey428/stacksage-audit/main/stacksage.yml.example
+                            <pre className="text-sm overflow-x-auto"><code>{`# Create a stacksage.yml in your working directory
+cat > stacksage.yml << 'EOF'
+# StackSage configuration — all settings are optional
 
-# Rename and customize
-mv stacksage.yml.example stacksage.yml`}</code></pre>
+exclusions:
+  tags:
+    - key: stacksage:ignore
+      value: "true"
+
+thresholds:
+  ebs:
+    unattached_days: 7
+  nat_gateway:
+    idle_threshold_gb_per_day: 1.0
+
+reporting:
+  min_savings_usd: 0
+EOF`}</code></pre>
                         </div>
                     </div>
                 </div>

@@ -24,6 +24,10 @@ export default function DocsPage() {
             icon: <Settings className="h-6 w-6" />,
             links: [
                 { href: "/docs/configuration", label: "Configuration" },
+                { href: "/docs/exclusions", label: "Exclusions & Filters" },
+                { href: "/docs/thresholds", label: "Custom Thresholds" },
+                { href: "/docs/tag-governance", label: "Tag Governance" },
+                { href: "/docs/cli-reference", label: "CLI Reference" },
             ],
         },
         {
