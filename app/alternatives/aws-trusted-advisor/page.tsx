@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle, XCircle } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "AWS Trusted Advisor vs StackSage - Complete Comparison",
-    description: "Compare AWS Trusted Advisor and StackSage. Trusted Advisor has 56 free checks (482 with Business Support). StackSage provides 25+ detectors without requiring AWS support plans.",
+    description: "Compare AWS Trusted Advisor and StackSage. Trusted Advisor has 56 free checks (482 with Business Support). StackSage provides 40+ checks without requiring AWS support plans.",
     keywords: ["aws trusted advisor alternative", "trusted advisor vs stacksage", "aws cost optimization", "aws well-architected"],
 };
 
@@ -13,7 +13,7 @@ export default function TrustedAdvisorComparisonPage() {
         {
             feature: "Free Tier Checks",
             trustedAdvisor: "56 checks",
-            stacksage: "25+ detectors (trial: 6)",
+            stacksage: "40+ checks (trial: top 50 findings)",
         },
         {
             feature: "Full Access Requirement",
@@ -23,22 +23,22 @@ export default function TrustedAdvisorComparisonPage() {
         {
             feature: "Total Checks Available",
             trustedAdvisor: "482 checks (with Business Support+)",
-            stacksage: "25+ detectors + expanding",
+            stacksage: "40+ checks + expanding",
         },
         {
             feature: "Deployment Model",
             trustedAdvisor: "AWS Console + API",
-            stacksage: "Docker in GitHub Actions",
+            stacksage: "pip install or CI",
         },
         {
             feature: "Authentication",
             trustedAdvisor: "AWS IAM credentials",
-            stacksage: "GitHub OIDC (no access keys)",
+            stacksage: "Local creds, SSO profile, or IAM role",
         },
         {
             feature: "Data Privacy",
             trustedAdvisor: "Analyzed by AWS",
-            stacksage: "Stays in your GitHub Actions",
+            stacksage: "Stays on your machine or CI runner",
         },
         {
             feature: "CloudWatch Metrics",
@@ -53,7 +53,7 @@ export default function TrustedAdvisorComparisonPage() {
         {
             feature: "Security Checks",
             trustedAdvisor: "Yes (comprehensive)",
-            stacksage: "Yes (15+ posture checks)",
+            stacksage: "Yes (16 posture checks)",
         },
         {
             feature: "Remediation Guidance",
@@ -80,8 +80,8 @@ export default function TrustedAdvisorComparisonPage() {
                         AWS Trusted Advisor vs StackSage
                     </h1>
                     <p className="text-xl text-zinc-600 dark:text-zinc-300 max-w-3xl mx-auto">
-                        <strong>Comprehensive AWS auditing without requiring AWS Business Support.</strong> Get 25+
-                        cost and security detectors without paying for an AWS support plan.
+                        <strong>Comprehensive AWS auditing without requiring AWS Business Support.</strong> Get 40+
+                        cost and security checks without paying for an AWS support plan.
                     </p>
                 </div>
 
@@ -127,7 +127,7 @@ export default function TrustedAdvisorComparisonPage() {
                             🔍 StackSage
                         </h2>
                         <p className="text-zinc-700 dark:text-zinc-300 mb-4">
-                            <strong>Privacy-first audits</strong> in your GitHub Actions without AWS support plans.
+                            <strong>Privacy-first audits</strong> — runs on your machine or in CI without AWS support plans.
                         </p>
                         <ul className="space-y-2 text-zinc-700 dark:text-zinc-300 text-sm">
                             <li className="flex items-start gap-2">
@@ -136,7 +136,7 @@ export default function TrustedAdvisorComparisonPage() {
                             </li>
                             <li className="flex items-start gap-2">
                                 <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
-                                <span>25+ detectors (cost + security)</span>
+                                <span>40+ checks (cost + security)</span>
                             </li>
                             <li className="flex items-start gap-2">
                                 <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
@@ -152,7 +152,7 @@ export default function TrustedAdvisorComparisonPage() {
                             </li>
                             <li className="flex items-start gap-2">
                                 <XCircle className="h-5 w-5 text-red-600 dark:text-red-400 mt-0.5 flex-shrink-0" />
-                                <span>Requires GitHub Actions runner</span>
+                                <span>AWS-only (no multi-cloud)</span>
                             </li>
                         </ul>
                     </div>
@@ -255,7 +255,7 @@ export default function TrustedAdvisorComparisonPage() {
                             </li>
                             <li className="flex items-start gap-2">
                                 <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
-                                <span>Want privacy-first (data stays in GitHub)</span>
+                                <span>Want privacy-first (data stays on your machine)</span>
                             </li>
                             <li className="flex items-start gap-2">
                                 <CheckCircle className="h-5 w-5 text-green-600 dark:text-green-400 mt-0.5 flex-shrink-0" />
@@ -275,7 +275,7 @@ export default function TrustedAdvisorComparisonPage() {
                         Get comprehensive AWS audits without support plans
                     </h2>
                     <p className="text-lg text-zinc-700 dark:text-zinc-300 mb-8 max-w-2xl mx-auto">
-                        Try StackSage free to audit your AWS account with 25+ cost and security detectors.
+                        Try StackSage free to audit your AWS account with 40+ cost and security checks.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Link

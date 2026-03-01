@@ -20,7 +20,7 @@ export default function AlternativesPage() {
         {
             name: "StackSage vs AWS Trusted Advisor",
             slug: "aws-trusted-advisor",
-            tagline: "25+ detectors vs Limited free checks",
+            tagline: "40+ checks vs Limited free checks",
             description: "Trusted Advisor's free tier has limited checks. StackSage provides comprehensive detection without AWS support plans.",
             icon: "✅",
         },

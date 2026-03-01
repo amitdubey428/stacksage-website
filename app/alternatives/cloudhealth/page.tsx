@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle, XCircle } from "lucide-react";
 
 export const metadata: Metadata = {
     title: "CloudHealth vs StackSage - Enterprise FinOps Platform vs Privacy-First Audit Tool",
-    description: "Compare CloudHealth/Flexera and StackSage. CloudHealth is a $10K+/year enterprise SaaS platform. StackSage runs in your GitHub Actions with zero external data transmission.",
+    description: "Compare CloudHealth/Flexera and StackSage. CloudHealth is a $10K+/year enterprise SaaS platform. StackSage runs on your machine or in CI with zero external data transmission.",
     keywords: ["cloudhealth alternative", "flexera alternative", "finops tools", "aws cost management", "cloudhealth vs stacksage"],
 };
 
@@ -13,12 +13,12 @@ export default function CloudHealthComparisonPage() {
         {
             feature: "Deployment Model",
             cloudhealth: "Multi-tenant SaaS platform",
-            stacksage: "Docker in your GitHub Actions",
+            stacksage: "pip install or CI",
         },
         {
             feature: "Data Privacy",
             cloudhealth: "Data sent to Flexera servers",
-            stacksage: "Data stays in your GitHub runner",
+            stacksage: "Data stays on your machine or CI runner",
         },
         {
             feature: "Pricing",
@@ -43,12 +43,12 @@ export default function CloudHealthComparisonPage() {
         {
             feature: "Cost Optimization",
             cloudhealth: "Yes (extensive)",
-            stacksage: "Yes (25+ detectors)",
+            stacksage: "Yes (40+ checks)",
         },
         {
             feature: "Security Posture",
             cloudhealth: "Yes",
-            stacksage: "Yes (15+ checks)",
+            stacksage: "Yes (16+ posture checks)",
         },
         {
             feature: "Evidence Grading",
@@ -58,7 +58,7 @@ export default function CloudHealthComparisonPage() {
         {
             feature: "Infrastructure Required",
             cloudhealth: "None (SaaS)",
-            stacksage: "None (uses GitHub Actions)",
+            stacksage: "None (runs locally or in CI)",
         },
     ];
 
@@ -81,7 +81,7 @@ export default function CloudHealthComparisonPage() {
                     </h1>
                     <p className="text-xl text-zinc-600 dark:text-zinc-300 max-w-3xl mx-auto">
                         <strong>Enterprise SaaS vs Privacy-First Audits.</strong> CloudHealth is a $10K+/year platform.
-                        StackSage runs in your GitHub Actions with zero external data transmission.
+                        StackSage runs on your machine or in CI with zero external data transmission.
                     </p>
                 </div>
 
@@ -131,7 +131,7 @@ export default function CloudHealthComparisonPage() {
                             🔍 StackSage
                         </h2>
                         <p className="text-zinc-700 dark:text-zinc-300 mb-4">
-                            <strong>Privacy-first audits</strong> running entirely in your GitHub Actions environment.
+                            <strong>Privacy-first audits</strong> — runs on your machine or in CI, nothing shared.
                         </p>
                         <ul className="space-y-2 text-zinc-700 dark:text-zinc-300 text-sm">
                             <li className="flex items-start gap-2">

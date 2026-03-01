@@ -28,12 +28,12 @@ export default function InfracostComparisonPage() {
         {
             feature: "Authentication",
             infracost: "No cloud credentials needed",
-            stacksage: "GitHub OIDC with AWS STS",
+            stacksage: "Local creds, SSO profile, or IAM role",
         },
         {
             feature: "Deployment Model",
             infracost: "SaaS platform + CLI",
-            stacksage: "Docker in your GitHub Actions",
+            stacksage: "pip install or CI",
         },
         {
             feature: "Pricing",
@@ -53,7 +53,7 @@ export default function InfracostComparisonPage() {
         {
             feature: "Security Posture Checks",
             infracost: "No",
-            stacksage: "Yes (15+ checks)",
+            stacksage: "Yes (16 posture checks)",
         },
         {
             feature: "Evidence Grading",
@@ -123,7 +123,7 @@ export default function InfracostComparisonPage() {
                             🔍 StackSage
                         </h2>
                         <p className="text-zinc-700 dark:text-zinc-300 mb-4">
-                            <strong>Post-deployment waste detection</strong> running in your GitHub Actions.
+                            <strong>Post-deployment waste detection</strong> — runs on your machine or in CI.
                         </p>
                         <ul className="space-y-2 text-zinc-700 dark:text-zinc-300">
                             <li className="flex items-start gap-2">

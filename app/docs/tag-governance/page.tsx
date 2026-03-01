@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
     title: "Tag Governance — StackSage Docs",
-    description: "Enforce required tags, cost allocation tags, and audit tag filters with StackSage.",
+    description: "Surface untagged resources in your AWS audit with StackSage's opt-in tagging compliance check.",
 };
 
 export default function TagGovernancePage() {
@@ -12,77 +12,64 @@ export default function TagGovernancePage() {
         [&_h2]:mt-10 [&_h2]:mb-4 [&_h3]:mt-8 [&_h3]:mb-3 [&_p]:my-4 [&_ul]:my-4 [&_ol]:my-4">
             <h1>Tag Governance</h1>
             <p className="lead">
-                Enforce tagging standards across your AWS environment and surface untagged or
-                incorrectly tagged resources in every audit.
+                Surface untagged resources in every audit. Useful for tracking ownership, preventing
+                accidental deletion, and enabling accurate AWS Cost Explorer cost allocation.
             </p>
 
             <h2>Overview</h2>
             <p>
-                StackSage&apos;s tag governance feature audits resources against your organisation&apos;s
-                tagging policy. Resources missing required tags are surfaced as findings with their
-                estimated monthly cost, so you can prioritise which untagged resources to fix first.
+                StackSage includes an opt-in untagged resource detector. It flags EC2 instances,
+                EBS volumes (≥ 50 GB), and RDS instances that have <em>zero</em> user-defined tags
+                (AWS-managed <code>aws:*</code> tags are ignored). Each finding includes the
+                resource&apos;s estimated monthly cost so you can prioritise which resources to tag first.
             </p>
 
-            <h2>Required Tags</h2>
-            <p>
-                Define which tags every resource must have. Any resource missing one or more of these
-                will appear as an <code>untagged_resource</code> finding:
-            </p>
-            <pre><code>{`tag_governance:
-  required_tags:
-    - Name
-    - Environment
-    - Owner
-    - CostCenter`}</code></pre>
-
-            <h2>Cost Allocation Tags</h2>
-            <p>
-                Identify which tags are used for cost allocation in AWS Cost Explorer. StackSage uses
-                these to group and attribute spend in its reports:
-            </p>
-            <pre><code>{`tag_governance:
-  cost_allocation_tags:
-    - CostCenter
-    - Project
-    - Team`}</code></pre>
-
-            <h2>Audit Tag Filters</h2>
-            <p>
-                Restrict the audit scope to resources matching specific tag values — useful for
-                compliance-scoped audits:
-            </p>
-            <pre><code>{`tag_governance:
-  audit_tag_filters:
-    - key: Compliance
-      values:
-        - SOC2
-        - HIPAA`}</code></pre>
-
-            <h2>Full example</h2>
-            <pre><code>{`tag_governance:
-  required_tags:
-    - Name
-    - Environment
-    - Owner
-    - CostCenter
-
-  cost_allocation_tags:
-    - CostCenter
-    - Project
-    - Team
-
-  audit_tag_filters:
-    - key: Compliance
-      values:
-        - SOC2
-        - HIPAA`}</code></pre>
-
-            <div className="not-prose my-4 rounded-lg border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950 p-4">
-                <p className="text-sm text-amber-800 dark:text-amber-200 mb-0">
-                    <strong>Note:</strong> Tag matching is case-sensitive for both key and value.
-                    Ensure your tagging standards are consistently applied across teams.
+            <div className="not-prose my-4 rounded-lg border border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950 p-4">
+                <p className="text-sm text-blue-800 dark:text-blue-200 mb-0">
+                    <strong>Opt-in only.</strong> The tagging check is disabled by default to keep
+                    reports focused. Enable it per the instructions below when you want tagging
+                    compliance findings included.
                 </p>
             </div>
+
+            <h2>Enable the check</h2>
+            <p>
+                Add the following to your <code>stacksage.yml</code>:
+            </p>
+            <pre><code>{`detectors:
+  check_tagging_compliance: true`}</code></pre>
+            <p>
+                When enabled, any resource with no user-defined tags appears as an{" "}
+                <code>untagged_resource</code> finding with severity <code>low</code> and a
+                copy-paste <code>aws … create-tags</code> remediation command.
+            </p>
+
+            <h2>Example finding</h2>
+            <pre><code>{`{
+  "type": "untagged_resource",
+  "resource_type": "ec2",
+  "id": "i-0abc123def456",
+  "region": "us-east-1",
+  "instance_type": "t3.medium",
+  "estimated_monthly_cost_usd": 30.37,
+  "severity": "low",
+  "recommended_action": "add-basic-tags",
+  "remediation_commands": [
+    "aws ec2 create-tags --resources i-0abc123def456 --tags Key=Name,Value=<name> Key=Environment,Value=<prod|dev|test> Key=Owner,Value=<team>"
+  ]
+}`}</code></pre>
+
+            <h2>Suppress noisy resources</h2>
+            <p>
+                Use <Link className="underline" href="/docs/exclusions/">exclusions</Link> to skip
+                specific resources or entire regions from the tagging check:
+            </p>
+            <pre><code>{`exclude:
+  resource_ids:
+    - i-0abc123def456   # intentionally untagged (legacy)
+  tags:
+    - key: ManagedBy
+      value: terraform  # terraform-managed resources tagged by IaC`}</code></pre>
 
             <h2>Related topics</h2>
             <ul>

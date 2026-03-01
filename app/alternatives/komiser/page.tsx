@@ -18,12 +18,12 @@ export default function KomiserComparisonPage() {
         {
             feature: "Deployment Model",
             komiser: "Self-hosted dashboard",
-            stacksage: "Docker in GitHub Actions",
+            stacksage: "pip install or CI",
         },
         {
             feature: "Infrastructure Required",
             komiser: "Yes (server + database)",
-            stacksage: "No (uses GitHub Actions)",
+            stacksage: "None (runs locally or in CI)",
         },
         {
             feature: "Output Format",
@@ -33,12 +33,12 @@ export default function KomiserComparisonPage() {
         {
             feature: "Data Storage",
             komiser: "PostgreSQL/MySQL database",
-            stacksage: "GitHub Actions artifacts",
+            stacksage: "Local files or CI artifacts",
         },
         {
             feature: "Authentication",
             komiser: "Cloud credentials in config",
-            stacksage: "GitHub OIDC (no access keys)",
+            stacksage: "Local creds, SSO profile, or IAM role",
         },
         {
             feature: "Cloud Support",
@@ -48,7 +48,7 @@ export default function KomiserComparisonPage() {
         {
             feature: "Cost Optimization",
             komiser: "Inventory + basic cost analysis",
-            stacksage: "25+ idle/oversized detectors",
+            stacksage: "40+ cost + security checks",
         },
         {
             feature: "Evidence Grading",
@@ -58,7 +58,7 @@ export default function KomiserComparisonPage() {
         {
             feature: "Security Checks",
             komiser: "Basic security insights",
-            stacksage: "15+ posture checks with scorecard",
+            stacksage: "16 posture checks with scorecard",
         },
     ];
 
@@ -131,7 +131,7 @@ export default function KomiserComparisonPage() {
                             📦 StackSage
                         </h2>
                         <p className="text-zinc-700 dark:text-zinc-300 mb-4">
-                            <strong>Report artifacts</strong> generated in your GitHub Actions with no infrastructure.
+                            <strong>Report artifacts</strong> — generated locally or in CI with no infrastructure.
                         </p>
                         <ul className="space-y-2 text-zinc-700 dark:text-zinc-300 text-sm">
                             <li className="flex items-start gap-2">
@@ -185,11 +185,11 @@ export default function KomiserComparisonPage() {
                         <div>
                             <h3 className="font-semibold text-zinc-900 dark:text-zinc-100 mb-2">StackSage Requires:</h3>
                             <ul className="space-y-2 text-zinc-700 dark:text-zinc-300">
-                                <li>• GitHub repository (you already have)</li>
-                                <li>• GitHub Actions YAML file (250 lines)</li>
+                                <li>• Python 3.10+ (already on most machines)</li>
+                                <li>• <code>pip install stacksage</code> (one command)</li>
                                 <li>• No server infrastructure</li>
                                 <li>• No database maintenance</li>
-                                <li>• Auto-updates via Docker tag</li>
+                                <li>• Updates via <code>pip install --upgrade stacksage</code></li>
                             </ul>
                         </div>
                     </div>
