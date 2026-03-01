@@ -2,6 +2,19 @@ name = "stacksage-telemetry"
 main = "src/index.ts"
 compatibility_date = "2024-12-01"
 
+# Custom domain — Cloudflare provisions the DNS record automatically
+# since stacksageai.com is on Cloudflare nameservers.
+# This means `wrangler deploy` sets up telemetry.stacksageai.com in one step.
+routes = [
+  { pattern = "telemetry.stacksageai.com/v1/ping", custom_domain = true }
+]
+
+# Workers Observability — real-time logs, error tracking, CPU metrics.
+# Free up to 200k log events/day. Essential for verifying pings arrive
+# and catching any Analytics Engine write failures.
+[observability]
+enabled = true
+
 # Analytics Engine binding — stores the ping data.
 # Create the dataset in Cloudflare Dashboard → Analytics Engine → Datasets
 # then bind it here by dataset name.

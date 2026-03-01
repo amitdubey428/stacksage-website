@@ -13,10 +13,13 @@
  *   cd workers/telemetry
  *   wrangler deploy
  *
- * Add custom domain in Cloudflare Dashboard:
- *   Workers & Pages → stacksage-telemetry → Settings → Domains & Routes
- *   → Add Custom Domain → telemetry.stacksageai.com
- *   (requires stacksageai.com to be on Cloudflare nameservers)
+ * Deploy (sets up worker + custom domain in one step):
+ *   cd workers/telemetry
+ *   npm install
+ *   wrangler deploy
+ *
+ * View logs (Workers Observability):
+ *   Cloudflare Dashboard → Workers & Pages → stacksage-telemetry → Logs
  */
 
 export interface Env {
@@ -34,12 +37,14 @@ export default {
         // Only POST to /v1/ping
         const url = new URL(request.url);
         if (request.method !== "POST" || url.pathname !== "/v1/ping") {
+            console.log(`[telemetry] rejected: ${request.method} ${url.pathname}`);
             return new Response("Not Found", { status: 404 });
         }
 
         // Validate User-Agent — only accept pings from the CLI
         const ua = request.headers.get("User-Agent") ?? "";
         if (!ua.startsWith(env.ALLOWED_USER_AGENT_PREFIX)) {
+            console.warn(`[telemetry] forbidden user-agent: "${ua}"`);
             return new Response("Forbidden", { status: 403 });
         }
 
@@ -48,6 +53,7 @@ export default {
         try {
             body = await request.json();
         } catch {
+            console.warn("[telemetry] bad request: invalid JSON");
             return new Response("Bad Request: invalid JSON", { status: 400 });
         }
 
@@ -65,16 +71,25 @@ export default {
             aws_region_count > 30 ||    // AWS has ~30 regions
             Object.keys(payload as object).length !== 2
         ) {
+            console.warn("[telemetry] bad request: unexpected shape", JSON.stringify(payload));
             return new Response("Bad Request: unexpected payload shape", { status: 400 });
         }
 
         // Write to Analytics Engine — two doubles, no blobs, no indexes
         // (no identifiable data stored at all)
-        env.ANALYTICS.writeDataPoint({
-            doubles: [findings_count, aws_region_count],
-            blobs: [],
-            indexes: [],
-        });
+        try {
+            env.ANALYTICS.writeDataPoint({
+                doubles: [findings_count, aws_region_count],
+                blobs: [],
+                indexes: [],
+            });
+            console.log(
+                `[telemetry] ping recorded: findings=${findings_count} regions=${aws_region_count}`
+            );
+        } catch (e) {
+            // Non-fatal — log for observability but still return 200 to the CLI
+            console.error("[telemetry] analytics write failed:", e);
+        }
 
         return new Response("ok", { status: 200 });
     },
