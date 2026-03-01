@@ -78,10 +78,10 @@ export default {
         // Write to Analytics Engine — two doubles, no blobs, no indexes
         // (no identifiable data stored at all)
         try {
+            // indexes must be a single-element array or omitted (CF limitation).
+            // doubles[0] = findings_count, doubles[1] = aws_region_count
             env.ANALYTICS.writeDataPoint({
                 doubles: [findings_count, aws_region_count],
-                blobs: [],
-                indexes: [],
             });
             console.log(
                 `[telemetry] ping recorded: findings=${findings_count} regions=${aws_region_count}`
