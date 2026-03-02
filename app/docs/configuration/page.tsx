@@ -238,7 +238,7 @@ thresholds:
         </div>
       </div>
 
-      <h2>Related Topics</h2>
+      <h2 className="mt-10">Related Topics</h2>
       <ul>
         <li><Link href="/docs/exclusions">Exclusions & Filters Deep Dive</Link></li>
         <li><Link href="/docs/thresholds">Custom Thresholds Reference</Link></li>

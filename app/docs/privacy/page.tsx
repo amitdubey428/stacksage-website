@@ -266,7 +266,7 @@ export default function PrivacyPage() {
                 </ul>
             </div>
 
-            <h2>Related Topics</h2>
+            <h2 className="mt-10">Related Topics</h2>
             <ul>
                 <li><Link href="/docs/iam-policy">IAM Policy Setup</Link></li>
                 <li><Link href="/docs/quick-start">Quick Start</Link></li>
