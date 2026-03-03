@@ -189,12 +189,12 @@ function buildEmailHtml(p: EmailParams): string {
     <code>&nbsp;&nbsp;&nbsp;&nbsp;steps:</code>
     <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- uses: aws-actions/configure-aws-credentials@v4</code>
     <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with:</code>
-    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;role-to-assume: ${{ secrets.AWS_AUDIT_ROLE_ARN }}</code>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;role-to-assume: \${{ secrets.AWS_AUDIT_ROLE_ARN }}</code>
     <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aws-region: us-east-1</code>
     <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- run: pip install stacksage</code>
     <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- run: stacksage audit --use-cloudwatch --use-cost-explorer --out ./results</code>
     <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;env:</code>
-    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STACKSAGE_LICENSE: ${{ secrets.STACKSAGE_LICENSE }}</code>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STACKSAGE_LICENSE: \${{ secrets.STACKSAGE_LICENSE }}</code>
     <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- uses: actions/upload-artifact@v4</code>
     <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with:</code>
     <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: stacksage-report</code>
