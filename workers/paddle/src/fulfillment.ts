@@ -22,9 +22,6 @@ export interface FulfillmentInput {
     plan: string;
     /** Number of days the license should be valid */
     daysValid: number;
-    ghcrImage: string;
-    ghcrUsername: string;
-    ghcrToken: string;
     /** Base64-encoded PKCS8 DER private key bytes */
     privateKeyPkcs8B64: string;
     resendApiKey: string;
@@ -103,9 +100,6 @@ export async function fulfillOrder(input: FulfillmentInput): Promise<void> {
         toEmail: input.customerEmail,
         customerName: input.customerName,
         licenseToken,
-        ghcrImage: input.ghcrImage,
-        ghcrUsername: input.ghcrUsername,
-        ghcrToken: input.ghcrToken,
         expiresDate,
     });
 }
@@ -118,9 +112,6 @@ interface EmailParams {
     toEmail: string;
     customerName: string;
     licenseToken: string;
-    ghcrImage: string;
-    ghcrUsername: string;
-    ghcrToken: string;
     expiresDate: string;
 }
 
@@ -165,9 +156,9 @@ function buildEmailHtml(p: EmailParams): string {
   <div class="steps">
     <code>pip install stacksage</code>
     <code>export STACKSAGE_LICENSE=${escHtml(p.licenseToken)}</code>
-    <code>stacksage scan</code>
+    <code>stacksage scan --use-cloudwatch --use-cost-explorer</code>
   </div>
-  <p>The full HTML report opens in your browser automatically when the scan completes.</p>
+  <p>The full HTML report opens in your browser automatically when the scan completes (~2–5 minutes depending on account size).</p>
   <p>Use <code>--profile my-sso-profile</code> for SSO, or <code>--role-arn arn:aws:iam::123456789012:role/ReadOnly</code> to assume a cross-account role.</p>
   <p><a href="https://stacksageai.com/docs/cli-reference/">Full CLI reference →</a></p>
 
@@ -175,18 +166,43 @@ function buildEmailHtml(p: EmailParams): string {
     <strong>Tip:</strong> Add <code>export STACKSAGE_LICENSE=...</code> to your shell profile (<code>~/.zshrc</code> or <code>~/.bashrc</code>) so you don\'t need to set it every time.
   </div>
 
-  <h2>Option B — GitHub Actions (scheduled / automated audits)</h2>
-  <p>For automated weekly audits in CI/CD. Add these secrets to your repo under <strong>Settings → Secrets and variables → Actions</strong>:</p>
+  <h2>Option B — Scheduled audits via GitHub Actions</h2>
+  <p>Want automated weekly audits that save the report as a CI artifact? It takes two secrets and one workflow file — no Docker, no container registry.</p>
+  <p>Add these two secrets to your repo under <strong>Settings → Secrets and variables → Actions</strong>:</p>
   <div class="label">STACKSAGE_LICENSE</div>
   <div class="cred">${escHtml(p.licenseToken)}</div>
-  <div class="label">STACKSAGE_IMAGE</div>
-  <div class="cred">${escHtml(p.ghcrImage)}</div>
-  <div class="label">STACKSAGE_GHCR_USERNAME</div>
-  <div class="cred">${escHtml(p.ghcrUsername)}</div>
-  <div class="label">STACKSAGE_GHCR_TOKEN</div>
-  <div class="cred">${escHtml(p.ghcrToken)}</div>
-  <p>Then add the workflow file to your repo:</p>
-  <p><a href="https://stacksageai.com/docs/github-actions/">GitHub Actions setup guide →</a></p>
+  <div class="label">AWS_AUDIT_ROLE_ARN</div>
+  <div class="cred">arn:aws:iam::YOUR_ACCOUNT_ID:role/StackSageReadOnly</div>
+  <p>Then create <code>.github/workflows/stacksage.yml</code> in your repo:</p>
+  <div class="steps">
+    <code>name: StackSage Weekly Audit</code>
+    <code>on:</code>
+    <code>&nbsp;&nbsp;schedule:</code>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;- cron: \'0 9 * * 1\'  # every Monday 9 am UTC</code>
+    <code>&nbsp;&nbsp;workflow_dispatch:</code>
+    <code>jobs:</code>
+    <code>&nbsp;&nbsp;audit:</code>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;runs-on: ubuntu-latest</code>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;permissions:</code>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id-token: write</code>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;contents: read</code>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;steps:</code>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- uses: aws-actions/configure-aws-credentials@v4</code>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with:</code>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;role-to-assume: ${{ secrets.AWS_AUDIT_ROLE_ARN }}</code>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;aws-region: us-east-1</code>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- run: pip install stacksage</code>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- run: stacksage audit --use-cloudwatch --use-cost-explorer --out ./results</code>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;env:</code>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STACKSAGE_LICENSE: ${{ secrets.STACKSAGE_LICENSE }}</code>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- uses: actions/upload-artifact@v4</code>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with:</code>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: stacksage-report</code>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;path: results/</code>
+    <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;retention-days: 30</code>
+  </div>
+  <p style="font-size:13px;color:#6b7280">Note: <code>stacksage audit</code> is the CI-optimised command — it enforces the license, runs the full scan, and writes structured artifacts. Use <code>stacksage scan</code> for interactive laptop runs.</p>
+  <p><a href="https://stacksageai.com/docs/github-actions/">Full GitHub Actions setup guide →</a></p>
 
   <h2>IAM setup (recommended for least-privilege access)</h2>
   <p>Create a read-only IAM role and pass it via <code>--role-arn</code>. Takes 5 minutes and means StackSage never touches your default credentials.</p>
@@ -219,9 +235,9 @@ Requires Python 3.10+ and AWS credentials configured.
 
   pip install stacksage
   export STACKSAGE_LICENSE=${p.licenseToken}
-  stacksage scan
+  stacksage scan --use-cloudwatch --use-cost-explorer
 
-The full HTML report opens in your browser when the scan completes.
+The full HTML report opens in your browser when the scan completes (~2-5 min).
 Use --profile for SSO or --role-arn for cross-account access.
 
 Full CLI reference: https://stacksageai.com/docs/cli-reference/
@@ -229,24 +245,50 @@ Full CLI reference: https://stacksageai.com/docs/cli-reference/
 Tip: add the export line to ~/.zshrc or ~/.bashrc to persist it.
 
 ====================================================
-OPTION B — GitHub Actions (scheduled / automated audits)
+OPTION B — Scheduled audits via GitHub Actions
 ====================================================
-Add these secrets to your repo:
-Settings → Secrets and variables → Actions
+Automated weekly audits — no Docker, no container registry. Just 2 secrets.
+
+Add to: Settings → Secrets and variables → Actions
 
 STACKSAGE_LICENSE
 ${p.licenseToken}
 
-STACKSAGE_IMAGE
-${p.ghcrImage}
+AWS_AUDIT_ROLE_ARN
+arn:aws:iam::YOUR_ACCOUNT_ID:role/StackSageReadOnly
 
-STACKSAGE_GHCR_USERNAME
-${p.ghcrUsername}
+Then create .github/workflows/stacksage.yml:
 
-STACKSAGE_GHCR_TOKEN
-${p.ghcrToken}
+  name: StackSage Weekly Audit
+  on:
+    schedule:
+      - cron: '0 9 * * 1'  # every Monday 9 am UTC
+    workflow_dispatch:
+  jobs:
+    audit:
+      runs-on: ubuntu-latest
+      permissions:
+        id-token: write
+        contents: read
+      steps:
+        - uses: aws-actions/configure-aws-credentials@v4
+          with:
+            role-to-assume: \${{ secrets.AWS_AUDIT_ROLE_ARN }}
+            aws-region: us-east-1
+        - run: pip install stacksage
+        - run: stacksage audit --use-cloudwatch --use-cost-explorer --out ./results
+          env:
+            STACKSAGE_LICENSE: \${{ secrets.STACKSAGE_LICENSE }}
+        - uses: actions/upload-artifact@v4
+          with:
+            name: stacksage-report
+            path: results/
+            retention-days: 30
 
-Workflow setup guide: https://stacksageai.com/docs/github-actions/
+Note: use 'stacksage audit' in CI (license-enforced, no browser pop).
+Use 'stacksage scan' for interactive laptop runs.
+
+Full setup guide: https://stacksageai.com/docs/github-actions/
 
 ====================================================
 IAM SETUP (recommended for least-privilege access)
@@ -277,7 +319,7 @@ async function sendOnboardingEmail(p: EmailParams): Promise<void> {
             from: p.fromEmail,
             to: p.toEmail,
             reply_to: "hello@stacksageai.com",
-            subject: "Your StackSage Pro license is ready",
+            subject: "Your StackSage license — run your first audit in 2 minutes",
             tags: [{ name: "category", value: "onboarding" }],
             html: buildEmailHtml(p),
             text: buildEmailText(p),
