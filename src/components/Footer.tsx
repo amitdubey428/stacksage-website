@@ -8,6 +8,15 @@ export default function Footer() {
                 <p className="text-sm text-zinc-600 dark:text-zinc-400">© {new Date().getFullYear()} StackSage. All rights reserved.</p>
                 <div className="flex items-center gap-4">
                     <a
+                        href="https://github.com/amitdubey428/stacksage-ai-stacksage-community/issues"
+                        target="_blank"
+                        rel="noreferrer"
+                        aria-label="Community"
+                        className="hover:text-indigo-600"
+                    >
+                        Community
+                    </a>
+                    <a
                         href="https://pypi.org/project/stacksage/"
                         target="_blank"
                         rel="noreferrer"
