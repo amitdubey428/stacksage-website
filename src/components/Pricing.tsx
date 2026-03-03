@@ -7,28 +7,28 @@ import { Button } from "@/components/ui/button";
 
 const tiers = [
     {
-        name: "Trial",
+        name: "Free",
         price: "Free",
-        description: "Self-serve audit pack you can run independently in GitHub Actions",
+        description: "pip install stacksage — runs on your machine, nothing shared",
         features: [
-            "Public trial image (GHCR)",
-            "No license required",
-            "Minimal IAM permissions (read-only)",
-            "Summary + HTML + JSON/CSV outputs",
-            "Security posture basics + limited cost/waste preview",
-            "Findings capped (intentionally)",
+            "pip install stacksage (no sign-up)",
+            "Full infrastructure scan",
+            "Top 50 findings by estimated savings",
+            "Security & posture checks (always full)",
+            "HTML report + JSON/CSV output",
+            "No remediation plan",
         ],
     },
     {
-        name: "GitHub Workflow",
+        name: "Pro",
         price: "$99/mo",
-        description: "Monthly subscription — full audit pack delivered as a workflow you run on your schedule",
+        description: "All findings, remediation plan, and scheduled CI audits",
         features: [
-            "Private GHCR image + workflow template",
-            "Time-limited license secret",
-            "Deeper coverage + richer evidence",
-            "Recurring runs (weekly/daily)",
-            "Prioritized outputs for actionability",
+            "All findings — no cap",
+            "Full remediation plan with fix commands",
+            "Schedule via GitHub Actions (pip-based, 2 secrets)",
+            "stacksage audit for CI/CD pipelines",
+            "Email support — 48h response",
             "Cancel anytime",
         ],
         popular: true,
@@ -110,7 +110,7 @@ export default function Pricing() {
             <div className="text-center mb-12">
                 <h2 id="pricing-title" className="text-3xl sm:text-4xl font-bold tracking-tight">Simple, Transparent Pricing</h2>
                 <p className="mt-4 text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mx-auto">
-                    Two ways to get value: run the free Trial, or use the paid workflow for full coverage.
+                    Free: <code className="text-sm">pip install stacksage</code> and scan immediately — no sign-up. Pro unlocks all findings, remediation plans, and CI scheduling.
                 </p>
             </div>
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -128,10 +128,10 @@ export default function Pricing() {
                                 <li key={f} className="text-sm">• {f}</li>
                             ))}
                         </ul>
-                        {t.name === "Trial" ? (
+                        {t.name === "Free" ? (
                             <Button className="mt-6" asChild>
-                                <Link href="/docs/#trial" aria-label="Start Trial">
-                                    Start Trial
+                                <Link href="/docs/quick-start/" aria-label="Get started free">
+                                    Get started free
                                 </Link>
                             </Button>
                         ) : showEmailStep ? (
@@ -186,7 +186,7 @@ export default function Pricing() {
             </div>
             <div className="mt-8 text-center space-y-2">
                 <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                    Trial is self-serve. If you need help, email is optional.
+                    Free tier needs no sign-up — just <code className="text-xs">pip install stacksage</code> and your AWS credentials.
                 </p>
                 <p className="text-sm text-zinc-600 dark:text-zinc-400">
                     To cancel your subscription, use the Paddle customer portal link in your receipt email or contact{" "}
