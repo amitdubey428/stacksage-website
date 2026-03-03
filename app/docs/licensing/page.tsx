@@ -3,16 +3,17 @@ import Link from "next/link";
 import { CheckCircle, XCircle, AlertTriangle } from "lucide-react";
 
 export const metadata: Metadata = {
-    title: "Licensing & Trial - StackSage Documentation",
-    description: "Understanding StackSage trial and full license options",
+    title: "Licensing — Free & Pro - StackSage Documentation",
+    description: "StackSage Free vs Pro — understand what's included in each tier and how the license key works",
 };
 
 export default function LicensingPage() {
     return (
         <div className="prose prose-zinc dark:prose-invert max-w-none text-zinc-900 dark:text-zinc-100">
-            <h1 className="text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-4">Licensing & Trial</h1>
+            <h1 className="text-4xl font-bold text-zinc-900 dark:text-zinc-100 mb-4">Licensing — Free &amp; Pro</h1>
             <p className="text-xl text-zinc-600 dark:text-zinc-300 mb-8">
-                StackSage offers both a free trial version and full licensed version. Both run entirely in your GitHub Actions—no external data transmission.
+                The Free tier runs on your machine with <code className="text-base">pip install stacksage</code> — no sign-up, no Docker, no secrets.
+                Pro unlocks all findings, remediation plans, and scheduled GitHub Actions audits.
             </p>
 
             <div className="not-prose grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
@@ -21,18 +22,19 @@ export default function LicensingPage() {
                         <div className="rounded-full bg-blue-600 p-2">
                             <CheckCircle className="h-5 w-5 text-white" />
                         </div>
-                        <h3 className="text-xl font-semibold text-blue-900 dark:text-blue-100">Trial Version</h3>
+                        <h3 className="text-xl font-semibold text-blue-900 dark:text-blue-100">Free</h3>
                     </div>
                     <ul className="space-y-2 text-sm text-blue-800 dark:text-blue-200">
-                        <li>✓ No license required</li>
-                        <li>✓ Runs in your GitHub Actions</li>
-                        <li>✓ Basic security & compliance checks</li>
-                        <li>✓ Minimal IAM permissions</li>
-                        <li>✓ Real findings with capped results</li>
-                        <li>✗ Limited detector coverage</li>
-                        <li>✗ No cost optimization analysis</li>
-                        <li>✗ No remediation plans</li>
-                        <li>✗ No multi-account support</li>
+                        <li>✓ No license key — no sign-up</li>
+                        <li>✓ <code className="text-xs">pip install stacksage</code> + your AWS creds</li>
+                        <li>✓ Full infrastructure scan (all detectors)</li>
+                        <li>✓ Top 50 findings by estimated savings</li>
+                        <li>✓ Security &amp; posture checks — always full</li>
+                        <li>✓ HTML, JSON, and CSV output</li>
+                        <li>✗ Remaining findings hidden (see total count)</li>
+                        <li>✗ No remediation plan</li>
+                        <li>✗ No per-resource fix commands</li>
+                        <li>✗ No scheduled CI audits</li>
                     </ul>
                 </div>
 
@@ -41,132 +43,134 @@ export default function LicensingPage() {
                         <div className="rounded-full bg-green-600 p-2">
                             <CheckCircle className="h-5 w-5 text-white" />
                         </div>
-                        <h3 className="text-xl font-semibold text-green-900 dark:text-green-100">Full License</h3>
+                        <h3 className="text-xl font-semibold text-green-900 dark:text-green-100">Pro — $99/mo</h3>
                     </div>
                     <ul className="space-y-2 text-sm text-green-800 dark:text-green-200">
-                        <li>✓ Complete detector suite (50+ checks)</li>
-                        <li>✓ Cost optimization & savings estimates</li>
-                        <li>✓ Detailed remediation plans</li>
-                        <li>✓ Multi-account rollup reporting</li>
-                        <li>✓ Unlimited findings</li>
-                        <li>✓ Extended CloudWatch metrics analysis</li>
-                        <li>✓ Priority support</li>
-                        <li>✓ Quarterly license renewal included</li>
+                        <li>✓ All findings — no cap</li>
+                        <li>✓ Full remediation plan with fix commands</li>
+                        <li>✓ Per-resource remediation steps</li>
+                        <li>✓ Security posture details</li>
+                        <li>✓ Schedule via GitHub Actions (pip-based, 2 secrets)</li>
+                        <li>✓ <code className="text-xs">stacksage audit</code> for CI/CD pipelines</li>
+                        <li>✓ Email support — 48h response</li>
+                        <li>✓ Cancel anytime</li>
                     </ul>
                 </div>
             </div>
 
-            <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">Trial Version Setup</h2>
+            <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">Free Tier</h2>
             <p className="text-zinc-700 dark:text-zinc-300 mb-6">
-                The trial version is perfect for evaluating StackSage before committing to a full license. It runs entirely within your GitHub Actions with no external dependencies.
+                The free tier is the fastest way to see what StackSage finds in your AWS account. No account, no Docker, no secrets needed beyond your own AWS credentials.
             </p>
 
-            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mt-8 mb-3">What You Get</h3>
-            <ul className="space-y-2 text-zinc-700 dark:text-zinc-300 mb-6">
-                <li><strong>Security posture checks</strong> - Basic security and compliance detectors</li>
-                <li><strong>Real audit reports</strong> - HTML, JSON, CSV, and Markdown formats</li>
-                <li><strong>Finding previews</strong> - See actual issues in your AWS environment (capped results)</li>
-                <li><strong>No license key required</strong> - Use the public trial image immediately</li>
-            </ul>
+            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mt-8 mb-3">Getting Started (Free)</h3>
+            <ol className="space-y-3 text-zinc-700 dark:text-zinc-300 mb-6">
+                <li><strong>Install</strong> — <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">pip install stacksage</code></li>
+                <li><strong>Authenticate</strong> — any standard AWS credential method (profile, env vars, IAM role)</li>
+                <li><strong>Run</strong> — <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">stacksage scan --profile &lt;profile&gt;</code></li>
+                <li><strong>Open report</strong> — HTML report opens automatically in your browser</li>
+            </ol>
 
-            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mt-8 mb-3">Trial Limitations</h3>
+            <p className="text-zinc-700 dark:text-zinc-300 mb-6">
+                See the <Link href="/docs/quick-start/" className="text-blue-600 dark:text-blue-400 hover:underline">Quick Start Guide</Link> for full setup instructions.
+            </p>
+
+            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mt-8 mb-3">Free Tier Limits</h3>
             <div className="not-prose my-6 rounded-lg border border-amber-200 dark:border-amber-800 bg-amber-50 dark:bg-amber-950 p-6">
                 <div className="flex gap-3">
                     <AlertTriangle className="h-5 w-5 text-amber-600 dark:text-amber-400 mt-0.5 flex-shrink-0" />
                     <div className="text-sm text-amber-800 dark:text-amber-200 space-y-2">
-                        <p><strong>Intentional Restrictions:</strong></p>
+                        <p><strong>What&apos;s capped in the free report:</strong></p>
                         <ul className="list-disc list-inside space-y-1 ml-2">
-                            <li>Runs a subset of detectors (security focus only)</li>
-                            <li>Findings are capped per detector</li>
-                            <li>No cost optimization or waste detection</li>
-                            <li>No savings estimates or ROI calculations</li>
-                            <li>No remediation plans or automation scripts</li>
-                            <li>Single-account only (no multi-account rollups)</li>
+                            <li>Top 50 findings shown (ranked by estimated monthly savings)</li>
+                            <li>Remaining findings hidden — count and estimated waste shown in the banner</li>
+                            <li>No remediation plan or per-resource fix commands</li>
                         </ul>
+                        <p className="mt-2">All detectors still run; the gate is only on the output, not the scan itself.</p>
                     </div>
                 </div>
             </div>
 
-            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mt-8 mb-3">Setting Up Trial</h3>
+            <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">Pro License</h2>
             <p className="text-zinc-700 dark:text-zinc-300 mb-6">
-                Trial setup uses a minimal IAM policy and a simplified workflow:
+                Pro removes the output cap and adds remediation plans. It also enables <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">stacksage audit</code> for scheduled CI/CD runs.
             </p>
 
-            <ol className="space-y-3 text-zinc-700 dark:text-zinc-300 mb-6">
-                <li><strong>Create minimal IAM role</strong> - Uses <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">trial-read-only-policy.json</code> (fewer permissions than full version)</li>
-                <li><strong>Add GitHub secrets</strong> - Only AWS credentials required (no license key)</li>
-                <li><strong>Install trial workflow</strong> - Copy <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">customer_run_audit_trial.yml</code></li>
-                <li><strong>Run audit</strong> - Get results in minutes</li>
-            </ol>
-
-            <p className="text-zinc-700 dark:text-zinc-300 mb-6">
-                See the <Link href="/docs/quick-start" className="text-blue-600 dark:text-blue-400 hover:underline">Quick Start Guide</Link> for step-by-step trial setup instructions.
-            </p>
-
-            <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">Full License</h2>
-            <p className="text-zinc-700 dark:text-zinc-300 mb-6">
-                The full license unlocks all StackSage features, including cost optimization analysis, detailed remediation plans, and multi-account support.
-            </p>
-
-            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mt-8 mb-3">What's Included</h3>
+            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mt-8 mb-3">Feature Comparison</h3>
             <div className="not-prose overflow-x-auto mb-8">
                 <table className="min-w-full divide-y divide-zinc-200 dark:divide-zinc-800 text-sm">
                     <thead className="bg-zinc-50 dark:bg-zinc-900">
                         <tr>
                             <th className="px-4 py-3 text-left font-semibold text-zinc-900 dark:text-zinc-100">Feature</th>
-                            <th className="px-4 py-3 text-center font-semibold text-zinc-900 dark:text-zinc-100">Trial</th>
-                            <th className="px-4 py-3 text-center font-semibold text-zinc-900 dark:text-zinc-100">Full License</th>
+                            <th className="px-4 py-3 text-center font-semibold text-zinc-900 dark:text-zinc-100">Free</th>
+                            <th className="px-4 py-3 text-center font-semibold text-zinc-900 dark:text-zinc-100">Pro</th>
                         </tr>
                     </thead>
                     <tbody className="divide-y divide-zinc-200 dark:divide-zinc-800">
                         <tr className="bg-white dark:bg-zinc-900/50">
-                            <td className="px-4 py-3 text-zinc-700 dark:text-zinc-300">Security & compliance detectors</td>
-                            <td className="px-4 py-3 text-center"><span className="text-blue-600 dark:text-blue-400">Basic</span></td>
-                            <td className="px-4 py-3 text-center"><span className="text-green-600 dark:text-green-400">50+ checks</span></td>
-                        </tr>
-                        <tr className="bg-white dark:bg-zinc-900/50">
-                            <td className="px-4 py-3 text-zinc-700 dark:text-zinc-300">Cost optimization analysis</td>
-                            <td className="px-4 py-3 text-center"><XCircle className="h-4 w-4 text-red-500 mx-auto" /></td>
+                            <td className="px-4 py-3 text-zinc-700 dark:text-zinc-300">All detectors run</td>
+                            <td className="px-4 py-3 text-center"><CheckCircle className="h-4 w-4 text-green-500 mx-auto" /></td>
                             <td className="px-4 py-3 text-center"><CheckCircle className="h-4 w-4 text-green-500 mx-auto" /></td>
                         </tr>
                         <tr className="bg-white dark:bg-zinc-900/50">
-                            <td className="px-4 py-3 text-zinc-700 dark:text-zinc-300">Savings estimates & ROI</td>
-                            <td className="px-4 py-3 text-center"><XCircle className="h-4 w-4 text-red-500 mx-auto" /></td>
+                            <td className="px-4 py-3 text-zinc-700 dark:text-zinc-300">Security &amp; posture checks</td>
+                            <td className="px-4 py-3 text-center"><CheckCircle className="h-4 w-4 text-green-500 mx-auto" /></td>
                             <td className="px-4 py-3 text-center"><CheckCircle className="h-4 w-4 text-green-500 mx-auto" /></td>
                         </tr>
                         <tr className="bg-white dark:bg-zinc-900/50">
-                            <td className="px-4 py-3 text-zinc-700 dark:text-zinc-300">Remediation plans</td>
-                            <td className="px-4 py-3 text-center"><XCircle className="h-4 w-4 text-red-500 mx-auto" /></td>
+                            <td className="px-4 py-3 text-zinc-700 dark:text-zinc-300">HTML, JSON, CSV output</td>
+                            <td className="px-4 py-3 text-center"><CheckCircle className="h-4 w-4 text-green-500 mx-auto" /></td>
                             <td className="px-4 py-3 text-center"><CheckCircle className="h-4 w-4 text-green-500 mx-auto" /></td>
                         </tr>
                         <tr className="bg-white dark:bg-zinc-900/50">
-                            <td className="px-4 py-3 text-zinc-700 dark:text-zinc-300">Multi-account rollup</td>
-                            <td className="px-4 py-3 text-center"><XCircle className="h-4 w-4 text-red-500 mx-auto" /></td>
-                            <td className="px-4 py-3 text-center"><CheckCircle className="h-4 w-4 text-green-500 mx-auto" /></td>
-                        </tr>
-                        <tr className="bg-white dark:bg-zinc-900/50">
-                            <td className="px-4 py-3 text-zinc-700 dark:text-zinc-300">Finding limits</td>
-                            <td className="px-4 py-3 text-center"><span className="text-amber-600 dark:text-amber-400">Capped</span></td>
+                            <td className="px-4 py-3 text-zinc-700 dark:text-zinc-300">Finding limit</td>
+                            <td className="px-4 py-3 text-center"><span className="text-amber-600 dark:text-amber-400">Top 50</span></td>
                             <td className="px-4 py-3 text-center"><span className="text-green-600 dark:text-green-400">Unlimited</span></td>
                         </tr>
                         <tr className="bg-white dark:bg-zinc-900/50">
-                            <td className="px-4 py-3 text-zinc-700 dark:text-zinc-300">CloudWatch metrics analysis</td>
-                            <td className="px-4 py-3 text-center"><span className="text-blue-600 dark:text-blue-400">Basic</span></td>
-                            <td className="px-4 py-3 text-center"><span className="text-green-600 dark:text-green-400">Extended</span></td>
+                            <td className="px-4 py-3 text-zinc-700 dark:text-zinc-300">Savings estimates &amp; ROI</td>
+                            <td className="px-4 py-3 text-center"><span className="text-amber-600 dark:text-amber-400">Top 50 only</span></td>
+                            <td className="px-4 py-3 text-center"><CheckCircle className="h-4 w-4 text-green-500 mx-auto" /></td>
                         </tr>
                         <tr className="bg-white dark:bg-zinc-900/50">
-                            <td className="px-4 py-3 text-zinc-700 dark:text-zinc-300">Report formats</td>
-                            <td className="px-4 py-3 text-center"><span className="text-green-600 dark:text-green-400">All</span></td>
-                            <td className="px-4 py-3 text-center"><span className="text-green-600 dark:text-green-400">All</span></td>
+                            <td className="px-4 py-3 text-zinc-700 dark:text-zinc-300">Remediation plan</td>
+                            <td className="px-4 py-3 text-center"><XCircle className="h-4 w-4 text-red-500 mx-auto" /></td>
+                            <td className="px-4 py-3 text-center"><CheckCircle className="h-4 w-4 text-green-500 mx-auto" /></td>
+                        </tr>
+                        <tr className="bg-white dark:bg-zinc-900/50">
+                            <td className="px-4 py-3 text-zinc-700 dark:text-zinc-300">Per-resource fix commands</td>
+                            <td className="px-4 py-3 text-center"><XCircle className="h-4 w-4 text-red-500 mx-auto" /></td>
+                            <td className="px-4 py-3 text-center"><CheckCircle className="h-4 w-4 text-green-500 mx-auto" /></td>
+                        </tr>
+                        <tr className="bg-white dark:bg-zinc-900/50">
+                            <td className="px-4 py-3 text-zinc-700 dark:text-zinc-300">GitHub Actions scheduling</td>
+                            <td className="px-4 py-3 text-center"><XCircle className="h-4 w-4 text-red-500 mx-auto" /></td>
+                            <td className="px-4 py-3 text-center"><CheckCircle className="h-4 w-4 text-green-500 mx-auto" /></td>
                         </tr>
                         <tr className="bg-white dark:bg-zinc-900/50">
                             <td className="px-4 py-3 text-zinc-700 dark:text-zinc-300">Support</td>
                             <td className="px-4 py-3 text-center"><span className="text-zinc-500 dark:text-zinc-500">Community</span></td>
-                            <td className="px-4 py-3 text-center"><span className="text-green-600 dark:text-green-400">Priority</span></td>
+                            <td className="px-4 py-3 text-center"><span className="text-green-600 dark:text-green-400">Email 48h</span></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+
+            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mt-8 mb-3">Setting Up Pro</h3>
+            <p className="text-zinc-700 dark:text-zinc-300 mb-6">
+                After purchase you&apos;ll receive a license key by email. To activate:
+            </p>
+
+            <ol className="space-y-3 text-zinc-700 dark:text-zinc-300 mb-6">
+                <li><strong>Set the env var</strong> — <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">export STACKSAGE_LICENSE=&lt;your-key&gt;</code></li>
+                <li><strong>Run audit</strong> — <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">stacksage audit --profile &lt;profile&gt;</code></li>
+                <li><strong>For scheduled CI</strong> — add two GitHub secrets: <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">STACKSAGE_LICENSE</code> and <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">AWS_AUDIT_ROLE_ARN</code></li>
+            </ol>
+
+            <p className="text-zinc-700 dark:text-zinc-300 mb-6">
+                No Docker image, no GHCR credentials, no additional tooling — just pip and your license key.
+                See the <Link href="/docs/github-actions/" className="text-blue-600 dark:text-blue-400 hover:underline">GitHub Actions guide</Link> for a complete workflow example.
+            </p>
 
             <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mt-8 mb-3">How Licensing Works</h3>
             <p className="text-zinc-700 dark:text-zinc-300 mb-6">
@@ -174,11 +178,11 @@ export default function LicensingPage() {
             </p>
 
             <ul className="space-y-2 text-zinc-700 dark:text-zinc-300 mb-6">
-                <li><strong>Offline verification</strong> - License is validated locally in your GitHub Actions runner (no phone-home)</li>
-                <li><strong>Time-limited</strong> - Licenses expire after a fixed period (typically quarterly)</li>
-                <li><strong>Ed25519 signatures</strong> - Cryptographically signed to prevent tampering</li>
-                <li><strong>Customer-specific</strong> - Each license is issued to your organization</li>
-                <li><strong>Environment variable</strong> - Stored as <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">STACKSAGE_LICENSE</code> GitHub secret</li>
+                <li><strong>Offline verification</strong> — license is validated locally; no phone-home</li>
+                <li><strong>Time-limited</strong> — licenses expire after a fixed period; renewal is automatic via Paddle</li>
+                <li><strong>Ed25519 signatures</strong> — cryptographically signed to prevent tampering</li>
+                <li><strong>Customer-specific</strong> — each license is issued to your organisation</li>
+                <li><strong>Single env var</strong> — stored as <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">STACKSAGE_LICENSE</code></li>
             </ul>
 
             <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mt-8 mb-3">License Format</h3>
@@ -203,32 +207,9 @@ export default function LicensingPage() {
                 <li><code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">issued_at</code> - Issue date</li>
             </ul>
 
-            <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mt-8 mb-3">Setting Up Full License</h3>
-            <p className="text-zinc-700 dark:text-zinc-300 mb-6">
-                When you purchase a StackSage license, you'll receive:
-            </p>
-
-            <ol className="space-y-3 text-zinc-700 dark:text-zinc-300 mb-6">
-                <li><strong>Private Docker image access</strong> - GHCR credentials for pulling the full version</li>
-                <li><strong>License key</strong> - Time-limited license string</li>
-                <li><strong>Full IAM policy</strong> - Complete permissions for all detectors</li>
-                <li><strong>Production workflow</strong> - Enhanced workflow with all features enabled</li>
-            </ol>
-
-            <p className="text-zinc-700 dark:text-zinc-300 mb-6">
-                Store these as GitHub secrets:
-            </p>
-
-            <ul className="space-y-2 text-zinc-700 dark:text-zinc-300 mb-6">
-                <li><code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">STACKSAGE_IMAGE</code> - Full version Docker image URL</li>
-                <li><code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">STACKSAGE_GHCR_USERNAME</code> - GHCR username</li>
-                <li><code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">STACKSAGE_GHCR_TOKEN</code> - GHCR access token</li>
-                <li><code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">STACKSAGE_LICENSE</code> - Your license key</li>
-            </ul>
-
             <h3 className="text-2xl font-semibold text-zinc-900 dark:text-zinc-100 mt-8 mb-3">License Renewal</h3>
             <p className="text-zinc-700 dark:text-zinc-300 mb-6">
-                Licenses are typically issued quarterly. Before expiration, you'll receive a new license key via email. Update the <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">STACKSAGE_LICENSE</code> secret in your GitHub repository to continue using the full version.
+                Renewals are handled automatically by Paddle for active subscriptions. If you need to update manually, set the new value in <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">STACKSAGE_LICENSE</code> (env var or GitHub secret).
             </p>
 
             <div className="not-prose my-6 rounded-lg border border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950 p-6">
@@ -237,59 +218,41 @@ export default function LicensingPage() {
                 </p>
             </div>
 
-            <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">Upgrading from Trial</h2>
-            <p className="text-zinc-700 dark:text-zinc-300 mb-6">
-                Transitioning from trial to full license is straightforward:
-            </p>
-
-            <ol className="space-y-3 text-zinc-700 dark:text-zinc-300 mb-6">
-                <li><strong>Update IAM policy</strong> - Replace trial policy with full <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">read-only-policy.json</code></li>
-                <li><strong>Switch workflow</strong> - Replace trial workflow with <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">customer_run_audit_ghcr.yml</code></li>
-                <li><strong>Add license secrets</strong> - Add the four GHCR/license secrets from your welcome email</li>
-                <li><strong>Run full audit</strong> - Unlock all detectors and features</li>
-            </ol>
-
-            <p className="text-zinc-700 dark:text-zinc-300 mb-6">
-                Your trial reports and configurations are compatible with the full version—no data migration needed.
-            </p>
-
             <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">Privacy Guarantee</h2>
             <p className="text-zinc-700 dark:text-zinc-300 mb-6">
-                Both trial and licensed versions respect your privacy:
+                Both Free and Pro respect your privacy:
             </p>
 
             <ul className="space-y-2 text-zinc-700 dark:text-zinc-300 mb-6">
-                <li><CheckCircle className="h-4 w-4 text-green-500 inline mr-2" />All audits run in <strong>your</strong> GitHub Actions runners</li>
+                <li><CheckCircle className="h-4 w-4 text-green-500 inline mr-2" />All audits run on <strong>your</strong> machine or CI environment</li>
                 <li><CheckCircle className="h-4 w-4 text-green-500 inline mr-2" />AWS credentials never leave your environment</li>
                 <li><CheckCircle className="h-4 w-4 text-green-500 inline mr-2" />No data transmission to StackSage infrastructure</li>
-                <li><CheckCircle className="h-4 w-4 text-green-500 inline mr-2" />License verification is offline (no phone-home)</li>
-                <li><CheckCircle className="h-4 w-4 text-green-500 inline mr-2" />Reports stored as GitHub artifacts in your account</li>
+                <li><CheckCircle className="h-4 w-4 text-green-500 inline mr-2" />License verification is fully offline (no phone-home)</li>
+                <li><CheckCircle className="h-4 w-4 text-green-500 inline mr-2" />Reports stay on your machine or in your GitHub artifacts</li>
             </ul>
 
             <p className="text-zinc-700 dark:text-zinc-300 mb-6">
-                See our <Link href="/docs/privacy" className="text-blue-600 dark:text-blue-400 hover:underline">Privacy & Data Handling</Link> guide for complete details.
+                See our <Link href="/privacy/" className="text-blue-600 dark:text-blue-400 hover:underline">Privacy Policy</Link> for complete details.
             </p>
 
             <div className="not-prose my-8 rounded-lg border-2 border-blue-200 dark:border-blue-900 bg-blue-50 dark:bg-blue-950 p-6">
                 <h3 className="text-lg font-semibold mb-3 text-blue-900 dark:text-blue-100">Ready to Get Started?</h3>
                 <p className="text-blue-800 dark:text-blue-200 mb-4">
-                    Start with the trial to see StackSage in action, then upgrade to the full license when you're ready to unlock cost optimization and advanced features.
+                    Run the free tier now — no sign-up. Upgrade to Pro when you need all findings and remediation plans.
                 </p>
                 <div className="flex gap-4">
                     <Link
-                        href="/docs/quick-start"
+                        href="/docs/quick-start/"
                         className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
                     >
-                        Start Trial
+                        Try Free Now
                     </Link>
-                    <a
-                        href="https://tally.so/r/68Lrke"
-                        target="_blank"
-                        rel="noopener noreferrer"
+                    <Link
+                        href="/#pricing"
                         className="inline-flex items-center gap-2 px-4 py-2 border-2 border-blue-600 text-blue-600 dark:text-blue-400 rounded-lg hover:bg-blue-600 hover:text-white transition-colors font-medium"
                     >
-                        Request License
-                    </a>
+                        Get Pro
+                    </Link>
                 </div>
             </div>
         </div>
