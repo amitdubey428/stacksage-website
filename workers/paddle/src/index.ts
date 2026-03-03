@@ -5,10 +5,6 @@ export interface Env {
     ALLOWED_ORIGIN: string;
     // License signing — Ed25519 private key (PKCS8 DER, base64-encoded)
     STACKSAGE_PRIVATE_KEY_PKCS8_B64: string;
-    // GHCR delivery
-    STACKSAGE_IMAGE: string;
-    STACKSAGE_GHCR_USERNAME: string;
-    STACKSAGE_GHCR_TOKEN: string;
     // Email
     RESEND_API_KEY: string;
     FROM_EMAIL: string;
@@ -112,9 +108,6 @@ async function doFulfill(
         customerEmail: email,
         plan,
         daysValid,
-        ghcrImage: env.STACKSAGE_IMAGE,
-        ghcrUsername: env.STACKSAGE_GHCR_USERNAME,
-        ghcrToken: env.STACKSAGE_GHCR_TOKEN,
         privateKeyPkcs8B64: env.STACKSAGE_PRIVATE_KEY_PKCS8_B64,
         resendApiKey: env.RESEND_API_KEY,
         fromEmail: env.FROM_EMAIL || "onboarding@stacksageai.com",
