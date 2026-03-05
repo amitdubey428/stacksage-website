@@ -35,6 +35,7 @@ export default function Footer() {
                         LinkedIn
                     </a>
                     <Link href="/docs/" aria-label="Docs" className="hover:text-indigo-600">Docs</Link>
+                    <Link href="/changelog/" aria-label="Changelog" className="hover:text-indigo-600">Changelog</Link>
                     <Link href="/alternatives/" aria-label="Alternatives" className="hover:text-indigo-600">Alternatives</Link>
                     <Link href="/privacy/" aria-label="Privacy" className="hover:text-indigo-600">Privacy</Link>
                     <Link href="/terms/" aria-label="Terms" className="hover:text-indigo-600">Terms</Link>
