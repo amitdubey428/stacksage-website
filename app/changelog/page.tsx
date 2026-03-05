@@ -22,7 +22,7 @@ const releases = [
             "CloudWatch log groups with no metric filters — large log groups stored but never analysed; corroborates retention findings",
             "NAT idle-gateway detector now active (was imported but previously unhoooked)",
         ],
-        detectorCount: "35+",
+        detectorCount: "40+",
     },
     {
         version: "v0.7.3",
@@ -39,7 +39,7 @@ const releases = [
             "HTML audit report auto-opens in browser with findings, remediation plan, and verification commands",
             "Telemetry opt-in — anonymous ping on first run (finding count + region count only)",
         ],
-        detectorCount: "30+",
+        detectorCount: "35+",
     },
     {
         version: "v0.6.0",
@@ -53,7 +53,7 @@ const releases = [
             "Fargate Spot recommendations for non-production services (tag/name heuristic)",
             "Scanner: full ECS cluster + service inventory including task CPU/memory enrichment",
         ],
-        detectorCount: "28+",
+        detectorCount: "33+",
     },
     {
         version: "v0.5.0",
@@ -67,7 +67,7 @@ const releases = [
             "Lambda x86_64 → arm64 (Graviton2) — ~20% compute savings with no code changes in most runtimes",
             "RDS → Aurora Serverless v2 candidates for spiky CPU workloads",
         ],
-        detectorCount: "25+",
+        detectorCount: "30+",
     },
     {
         version: "v0.4.0",
