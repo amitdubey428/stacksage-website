@@ -86,6 +86,25 @@ export default function QuickStartPage() {
                 Add the <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">export</code> line to your <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">~/.zshrc</code> or <code className="text-sm bg-zinc-100 dark:bg-zinc-800 px-2 py-1 rounded">~/.bashrc</code> to persist it across sessions.
             </p>
 
+            {/* scan vs audit */}
+            <div className="not-prose my-6 rounded-lg border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-5">
+                <h3 className="text-base font-semibold mb-3 text-zinc-900 dark:text-zinc-100">Two commands: scan vs audit</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                    <div>
+                        <code className="font-mono font-bold text-zinc-800 dark:text-zinc-200">stacksage scan</code>
+                        <p className="mt-1 text-zinc-600 dark:text-zinc-400">Interactive use on your laptop. Free tier shows top 50 findings. Auto-opens report in your browser.</p>
+                    </div>
+                    <div>
+                        <code className="font-mono font-bold text-zinc-800 dark:text-zinc-200">stacksage audit</code>
+                        <p className="mt-1 text-zinc-600 dark:text-zinc-400">CI/CD pipelines. Requires a Pro license. All findings, no browser pop, writes structured artifacts for automation.</p>
+                    </div>
+                </div>
+                <p className="mt-3 text-xs text-zinc-500 dark:text-zinc-400">
+                    Using GitHub Actions?{" "}
+                    <Link href="/docs/github-actions/" className="underline hover:text-zinc-700 dark:hover:text-zinc-300">See the GitHub Actions setup guide →</Link>
+                </p>
+            </div>
+
             {/* IAM */}
             <h2 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100 mt-12 mb-4">Recommended: least-privilege IAM</h2>
             <p className="text-zinc-700 dark:text-zinc-300 mb-6">

@@ -213,6 +213,11 @@ stacksage scan`}</code></pre>
                         <td>Include historical spend summary from Cost Explorer.</td>
                     </tr>
                     <tr>
+                        <td><code>--live</code></td>
+                        <td>off</td>
+                        <td>Convenience flag: enables <code>--use-cloudwatch</code>, <code>--use-cost-explorer</code>, and <code>--live-pricing</code> in one flag.</td>
+                    </tr>
+                    <tr>
                         <td><code>--check-tagging</code></td>
                         <td>off</td>
                         <td>Flag resources missing required tags (opt-in).</td>
@@ -260,7 +265,28 @@ stacksage audit --profile my-sso-profile --use-cloudwatch --use-cost-explorer`}<
             <pre><code>{`STACKSAGE_LICENSE=$LICENSE stacksage audit \\
   --role-arn arn:aws:iam::123456789012:role/StackSageReadOnly \\
   --use-cloudwatch --use-cost-explorer \\
-  --out ./reports --no-browser`}</code></pre>
+  --out ./results`}</code></pre>
+
+            <h4>Full live mode (CloudWatch + Cost Explorer + live pricing)</h4>
+            <pre><code>{`STACKSAGE_LICENSE=$LICENSE stacksage audit --live --out ./results`}</code></pre>
+
+            <h4>GitHub Actions workflow snippet</h4>
+            <pre><code>{`- name: Run StackSage audit
+  env:
+    STACKSAGE_LICENSE: $\{{ secrets.STACKSAGE_LICENSE }}
+  run: |
+    stacksage audit \\
+      --role-arn arn:aws:iam::123456789012:role/StackSageReadOnly \\
+      --use-cloudwatch --use-cost-explorer \\
+      --out ./results
+
+- name: Upload report
+  uses: actions/upload-artifact@v4
+  with:
+    name: stacksage-report-$\{{ github.run_number }}
+    path: results/
+    retention-days: 30`}</code></pre>
+            <p>See the <Link className="underline" href="/docs/github-actions/">GitHub Actions setup guide</Link> for the full workflow including OIDC role assumption.</p>
 
             <h4>JSON output for downstream processing</h4>
             <pre><code>{`STACKSAGE_LICENSE=$LICENSE stacksage audit --format json --out ./results`}</code></pre>

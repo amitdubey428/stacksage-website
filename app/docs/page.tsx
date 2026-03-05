@@ -15,6 +15,7 @@ export default function DocsPage() {
             links: [
                 { href: "/docs/quick-start", label: "Quick Start" },
                 { href: "/docs/licensing", label: "Licensing & Trial" },
+                { href: "/docs/github-actions", label: "GitHub Actions (CI/CD)" },
                 { href: "/walkthrough", label: "How It Works (Walkthrough)" },
                 { href: "/demo-report", label: "Sample Audit Pack" },
             ],
