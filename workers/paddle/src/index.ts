@@ -110,7 +110,7 @@ async function doFulfill(
         daysValid,
         privateKeyPkcs8B64: env.STACKSAGE_PRIVATE_KEY_PKCS8_B64,
         resendApiKey: env.RESEND_API_KEY,
-        fromEmail: env.FROM_EMAIL || "onboarding@stacksageai.com",
+        fromEmail: env.FROM_EMAIL || "connect-stacksage@sagelabs.in",
     });
 
     console.log(`[stacksage] Onboarding email sent to ${email}`);

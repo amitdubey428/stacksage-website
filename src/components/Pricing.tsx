@@ -190,7 +190,7 @@ export default function Pricing() {
                 </p>
                 <p className="text-sm text-zinc-600 dark:text-zinc-400">
                     To cancel your subscription, use the Paddle customer portal link in your receipt email or contact{" "}
-                    <a className="underline" href="mailto:hello@stacksageai.com">hello@stacksageai.com</a>.
+                    <a className="underline" href="mailto:connect-stacksage@sagelabs.in">connect-stacksage@sagelabs.in</a>.
                 </p>
             </div>
         </section>

@@ -40,7 +40,7 @@ export default function TermsPage() {
                 </div>
 
                 <p className="mt-10 text-sm text-zinc-500 dark:text-zinc-400">
-                    Contact <a className="underline" href="mailto:hello@stacksageai.com">hello@stacksageai.com</a>.
+                    Contact <a className="underline" href="mailto:connect-stacksage@sagelabs.in">connect-stacksage@sagelabs.in</a>.
                 </p>
             </div>
         </div>

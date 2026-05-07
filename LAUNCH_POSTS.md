@@ -244,7 +244,7 @@ Questions welcome!
 **If asked about pricing:**
 ```
 Trial version is free (6 core detectors, 5 resources per detector cap).
-Full version is license-based. Contact hello@stacksageai.com for pricing.
+Full version is license-based. Contact connect-stacksage@sagelabs.in for pricing.
 
 CloudWatch API costs are typically <$5/month for comprehensive scans.
 No percentage of your AWS spend (unlike CloudHealth).

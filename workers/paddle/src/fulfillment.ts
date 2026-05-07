@@ -318,7 +318,7 @@ async function sendOnboardingEmail(p: EmailParams): Promise<void> {
         body: JSON.stringify({
             from: p.fromEmail,
             to: p.toEmail,
-            reply_to: "hello@stacksageai.com",
+          reply_to: "connect-stacksage@sagelabs.in",
             subject: "Your StackSage license — run your first audit in 2 minutes",
             tags: [{ name: "category", value: "onboarding" }],
             html: buildEmailHtml(p),

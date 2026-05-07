@@ -252,7 +252,7 @@ export default function PrivacyAccessPage() {
                 </Section>
 
                 <p className="mt-12 text-sm text-zinc-500 dark:text-zinc-400">
-                    Questions? Email <a className="underline" href="mailto:hello@stacksageai.com">hello@stacksageai.com</a>.
+                    Questions? Email <a className="underline" href="mailto:connect-stacksage@sagelabs.in">connect-stacksage@sagelabs.in</a>.
                 </p>
             </div>
         </div>

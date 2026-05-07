@@ -49,8 +49,8 @@ export default function RefundPolicyPage() {
                         <p className="mt-2">
                             To cancel, use the Paddle customer portal link sent to your email after purchase, or contact
                             us at{" "}
-                            <a className="underline" href="mailto:hello@stacksageai.com">
-                                hello@stacksageai.com
+                            <a className="underline" href="mailto:connect-stacksage@sagelabs.in">
+                                connect-stacksage@sagelabs.in
                             </a>{" "}
                             and we will cancel it for you promptly.
                         </p>
@@ -68,8 +68,8 @@ export default function RefundPolicyPage() {
 
                 <p className="mt-10 text-sm text-zinc-500 dark:text-zinc-400">
                     For billing questions, contact{" "}
-                    <a className="underline" href="mailto:hello@stacksageai.com">
-                        hello@stacksageai.com
+                    <a className="underline" href="mailto:connect-stacksage@sagelabs.in">
+                        connect-stacksage@sagelabs.in
                     </a>
                     .
                 </p>

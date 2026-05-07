@@ -219,7 +219,7 @@ exclusions:
                 <h3 className="text-lg font-semibold mb-3 text-blue-900 dark:text-blue-100">Still stuck?</h3>
                 <div className="space-y-2">
                     <div className="text-sm text-blue-800 dark:text-blue-200">
-                        <strong>Contact Support:</strong> Email us at <a href="mailto:hello@stacksageai.com" className="underline">hello@stacksageai.com</a>
+                        <strong>Contact Support:</strong> Email us at <a href="mailto:connect-stacksage@sagelabs.in" className="underline">connect-stacksage@sagelabs.in</a>
                     </div>
                     <div className="text-sm text-blue-800 dark:text-blue-200">
                         <strong>Include Details:</strong> Provide workflow logs, stacksage.yml, and error messages

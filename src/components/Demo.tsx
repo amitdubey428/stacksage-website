@@ -152,7 +152,7 @@ export default function Demo() {
 
             <p className="mt-4 text-sm text-zinc-500 dark:text-zinc-400">
                 Questions? Email us at {" "}
-                <a className="underline" href="mailto:hello@stacksageai.com">hello@stacksageai.com</a>.
+                <a className="underline" href="mailto:connect-stacksage@sagelabs.in">connect-stacksage@sagelabs.in</a>.
             </p>
 
             <Script async src="https://tally.so/widgets/embed.js" strategy="afterInteractive" />

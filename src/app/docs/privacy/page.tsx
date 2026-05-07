@@ -248,7 +248,7 @@ export default function PrivacyPage() {
                 <li>Revoke GitHub OIDC provider trust immediately</li>
                 <li>Delete the IAM role in AWS</li>
                 <li>Review CloudTrail logs for unauthorized API calls</li>
-                <li>Report security vulnerabilities to: <a href="mailto:security@stacksageai.com">security@stacksageai.com</a></li>
+                <li>Report security vulnerabilities to: <a href="mailto:connect-stacksage@sagelabs.in">connect-stacksage@sagelabs.in</a></li>
             </ol>
 
             <h2>Questions?</h2>
@@ -257,8 +257,8 @@ export default function PrivacyPage() {
                     Have privacy or security questions? We're here to help:
                 </p>
                 <ul className="space-y-1 mb-0 text-sm text-blue-800 dark:text-blue-200">
-                    <li>📧 Email: <a href="mailto:privacy@stacksageai.com" className="underline">privacy@stacksageai.com</a></li>
-                    <li>🔒 Security: <a href="mailto:security@stacksageai.com" className="underline">security@stacksageai.com</a></li>
+                    <li>📧 Email: <a href="mailto:connect-stacksage@sagelabs.in" className="underline">connect-stacksage@sagelabs.in</a></li>
+                    <li>🔒 Security: <a href="mailto:connect-stacksage@sagelabs.in" className="underline">connect-stacksage@sagelabs.in</a></li>
                     <li>💬 GitHub: <a href="https://github.com/amitdubey428/stacksage-audit/discussions" target="_blank" rel="noopener noreferrer" className="underline">Open a discussion</a></li>
                 </ul>
             </div>

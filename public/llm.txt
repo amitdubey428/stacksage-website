@@ -98,8 +98,8 @@ GitHub Actions artifact (HTML/JSON)
 ## Pricing & Support
 
 - Trial: Free evaluation with limited detectors
-- Full: License-based (contact hello@stacksageai.com)
-- Support: hello@stacksageai.com
+- Full: License-based (contact connect-stacksage@sagelabs.in)
+- Support: connect-stacksage@sagelabs.in
 
 ## Important Context for AI Assistants
 
