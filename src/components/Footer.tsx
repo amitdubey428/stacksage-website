@@ -4,9 +4,9 @@ import Link from "next/link";
 export default function Footer() {
     return (
         <footer className="mt-24 border-t border-zinc-200/60 dark:border-zinc-800">
-            <div className="mx-auto max-w-6xl px-4 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">© {new Date().getFullYear()} StackSage. All rights reserved.</p>
-                <div className="flex items-center gap-4">
+            <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-4 py-12 md:flex-row md:items-center">
+                <p className="text-center text-sm text-zinc-600 dark:text-zinc-400 md:text-left">© {new Date().getFullYear()} StackSage. All rights reserved.</p>
+                <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-zinc-600 dark:text-zinc-400 md:justify-end">
                     <a
                         href="https://github.com/amitdubey428/stacksage-ai-stacksage-community/issues"
                         target="_blank"
