@@ -16,26 +16,26 @@
  */
 
 export interface FulfillmentInput {
-    customerName: string;
-    customerEmail: string;
-    /** Plan identifier that goes into the license payload, e.g. "pro", "pilot" */
-    plan: string;
-    /** Number of days the license should be valid */
-    daysValid: number;
-    /** Base64-encoded PKCS8 DER private key bytes */
-    privateKeyPkcs8B64: string;
-    resendApiKey: string;
-    fromEmail: string;
+  customerName: string;
+  customerEmail: string;
+  /** Plan identifier that goes into the license payload, e.g. "pro", "pilot" */
+  plan: string;
+  /** Number of days the license should be valid */
+  daysValid: number;
+  /** Base64-encoded PKCS8 DER private key bytes */
+  privateKeyPkcs8B64: string;
+  resendApiKey: string;
+  fromEmail: string;
 }
 
 // ── License signing ────────────────────────────────────────────────────────────
 
 function b64urlEncode(bytes: Uint8Array): string {
-    let binary = "";
-    for (let i = 0; i < bytes.length; i++) {
-        binary += String.fromCharCode(bytes[i]);
-    }
-    return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=/g, "");
+  let binary = "";
+  for (let i = 0; i < bytes.length; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return btoa(binary).replace(/\+/g, "-").replace(/\//g, "_").replace(/=/g, "");
 }
 
 /**
@@ -45,78 +45,78 @@ function b64urlEncode(bytes: Uint8Array): string {
  * Payload JSON:   {"customer":"...","exp":...,"iat":...,"plan":"..."}  (keys sorted)
  */
 export async function signLicense(
-    privateKeyPkcs8B64: string,
-    customer: string,
-    plan: string,
-    daysValid: number,
+  privateKeyPkcs8B64: string,
+  customer: string,
+  plan: string,
+  daysValid: number,
 ): Promise<string> {
-    // Strip anything that isn't a valid base64 character.
-    // Newlines come from openssl wrapping; '%' appears when zsh's no-newline
-    // indicator is accidentally included when copying terminal output.
-    const cleanKey = privateKeyPkcs8B64.replace(/[^A-Za-z0-9+/=]/g, "");
-    const pkcs8 = Uint8Array.from(atob(cleanKey), (c) => c.charCodeAt(0));
-    const key = await crypto.subtle.importKey(
-        "pkcs8",
-        pkcs8,
-        { name: "Ed25519" },
-        false,
-        ["sign"],
-    );
+  // Strip anything that isn't a valid base64 character.
+  // Newlines come from openssl wrapping; '%' appears when zsh's no-newline
+  // indicator is accidentally included when copying terminal output.
+  const cleanKey = privateKeyPkcs8B64.replace(/[^A-Za-z0-9+/=]/g, "");
+  const pkcs8 = Uint8Array.from(atob(cleanKey), (c) => c.charCodeAt(0));
+  const key = await crypto.subtle.importKey(
+    "pkcs8",
+    pkcs8,
+    { name: "Ed25519" },
+    false,
+    ["sign"],
+  );
 
-    const now = Math.floor(Date.now() / 1000);
-    const exp = now + daysValid * 86400;
+  const now = Math.floor(Date.now() / 1000);
+  const exp = now + daysValid * 86400;
 
-    // Reproduce Python's json.dumps(sort_keys=True, separators=(',', ':'))
-    const raw: Record<string, string | number> = { customer, exp, iat: now, plan };
-    const sortedObj: Record<string, string | number> = {};
-    for (const k of Object.keys(raw).sort()) sortedObj[k] = raw[k];
-    // JSON.stringify without options produces compact output (no spaces), matching Python separators=(',',':')
-    const payloadJson = JSON.stringify(sortedObj);
+  // Reproduce Python's json.dumps(sort_keys=True, separators=(',', ':'))
+  const raw: Record<string, string | number> = { customer, exp, iat: now, plan };
+  const sortedObj: Record<string, string | number> = {};
+  for (const k of Object.keys(raw).sort()) sortedObj[k] = raw[k];
+  // JSON.stringify without options produces compact output (no spaces), matching Python separators=(',',':')
+  const payloadJson = JSON.stringify(sortedObj);
 
-    const payloadB64 = b64urlEncode(new TextEncoder().encode(payloadJson));
-    const signingInput = new TextEncoder().encode(`STACKSAGE1.${payloadB64}`);
-    const sig = await crypto.subtle.sign({ name: "Ed25519" }, key, signingInput);
+  const payloadB64 = b64urlEncode(new TextEncoder().encode(payloadJson));
+  const signingInput = new TextEncoder().encode(`STACKSAGE1.${payloadB64}`);
+  const sig = await crypto.subtle.sign({ name: "Ed25519" }, key, signingInput);
 
-    return `STACKSAGE1.${payloadB64}.${b64urlEncode(new Uint8Array(sig))}`;
+  return `STACKSAGE1.${payloadB64}.${b64urlEncode(new Uint8Array(sig))}`;
 }
 
 // ── Orchestration ──────────────────────────────────────────────────────────────
 
 export async function fulfillOrder(input: FulfillmentInput): Promise<void> {
-    const licenseToken = await signLicense(
-        input.privateKeyPkcs8B64,
-        input.customerName,
-        input.plan,
-        input.daysValid,
-    );
+  const licenseToken = await signLicense(
+    input.privateKeyPkcs8B64,
+    input.customerName,
+    input.plan,
+    input.daysValid,
+  );
 
-    const expiresDate = new Date(Date.now() + input.daysValid * 86400 * 1000)
-        .toISOString()
-        .split("T")[0];
+  const expiresDate = new Date(Date.now() + input.daysValid * 86400 * 1000)
+    .toISOString()
+    .split("T")[0];
 
-    await sendOnboardingEmail({
-        resendApiKey: input.resendApiKey,
-        fromEmail: input.fromEmail,
-        toEmail: input.customerEmail,
-        customerName: input.customerName,
-        licenseToken,
-        expiresDate,
-    });
+  await sendOnboardingEmail({
+    resendApiKey: input.resendApiKey,
+    fromEmail: input.fromEmail,
+    toEmail: input.customerEmail,
+    customerName: input.customerName,
+    licenseToken,
+    expiresDate,
+  });
 }
 
 // ── Email ──────────────────────────────────────────────────────────────────────
 
 interface EmailParams {
-    resendApiKey: string;
-    fromEmail: string;
-    toEmail: string;
-    customerName: string;
-    licenseToken: string;
-    expiresDate: string;
+  resendApiKey: string;
+  fromEmail: string;
+  toEmail: string;
+  customerName: string;
+  licenseToken: string;
+  expiresDate: string;
 }
 
 function buildEmailHtml(p: EmailParams): string {
-    return `<!DOCTYPE html>
+  return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
@@ -219,7 +219,7 @@ function buildEmailHtml(p: EmailParams): string {
 }
 
 function buildEmailText(p: EmailParams): string {
-    return `Hi ${p.customerName},
+  return `Hi ${p.customerName},
 
 Your StackSage Pro license is ready. Active until ${p.expiresDate}.
 
@@ -301,35 +301,35 @@ Questions? Reply here — we typically respond within 48 hours.
 }
 
 function escHtml(s: string): string {
-    return s
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;");
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
 }
 
 async function sendOnboardingEmail(p: EmailParams): Promise<void> {
-    const resp = await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: {
-            Authorization: `Bearer ${p.resendApiKey}`,
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-            from: p.fromEmail,
-            to: p.toEmail,
-          reply_to: "connect-stacksage@sagelabs.in",
-            subject: "Your StackSage license — run your first audit in 2 minutes",
-            tags: [{ name: "category", value: "onboarding" }],
-            html: buildEmailHtml(p),
-            text: buildEmailText(p),
-        }),
-    });
+  const resp = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${p.resendApiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      from: p.fromEmail,
+      to: p.toEmail,
+      reply_to: "connect-stacksage@sagelabs.in",
+      subject: "Your StackSage license — run your first audit in 2 minutes",
+      tags: [{ name: "category", value: "onboarding" }],
+      html: buildEmailHtml(p),
+      text: buildEmailText(p),
+    }),
+  });
 
-    const body = await resp.text();
-    console.log(`[stacksage] Resend response status=${resp.status} body=${body}`);
+  const body = await resp.text();
+  console.log(`[stacksage] Resend response status=${resp.status} body=${body}`);
 
-    if (!resp.ok) {
-        throw new Error(`Resend API error ${resp.status}: ${body}`);
-    }
+  if (!resp.ok) {
+    throw new Error(`Resend API error ${resp.status}: ${body}`);
+  }
 }
